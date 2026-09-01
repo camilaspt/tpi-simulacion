@@ -1,0 +1,8 @@
+Equipo;Secuencia;Linea_tipo;Celda;Puesto;Tarea;Tiempo_min;Tiempo_seg;Cantidad_operarios
+AILA 30KG;1;Armado;Celda 1;Armado Puesto 1;Armador;3,5;210;1
+AILA 30KG;2;Armado;Celda 1;Armado Puesto 2;Armador;7;420;1
+AILA 30KG;3;Armado;Celda 1;Armado Puesto 3;Armador;7;420;1
+AILA 30KG;4;Armado;Celda 1;Armado Puesto 4;Armador;7,5;450;1
+AILA 30KG;5;Armado;Celda 2;Ajuste;Ajustador;5;300;1
+AILA 30KG;6;Control Final;Control Final;Control Final;Controlador;4,5;270;1
+AILA 30KG;7;Control Final;Embalaje;Embalaje;Embalador;10;600;1
