@@ -1,8 +1,13 @@
-Equipo;Secuencia;Linea_tipo;Celda;Puesto;Tarea;Tiempo_min;Tiempo_seg;Cantidad_operarios
-AILA 30KG;1;Armado;Celda 1;Armado Puesto 1;Armador;3,5;210;1
-AILA 30KG;2;Armado;Celda 1;Armado Puesto 2;Armador;7;420;1
-AILA 30KG;3;Armado;Celda 1;Armado Puesto 3;Armador;7;420;1
-AILA 30KG;4;Armado;Celda 1;Armado Puesto 4;Armador;7,5;450;1
-AILA 30KG;5;Armado;Celda 2;Ajuste;Ajustador;5;300;1
-AILA 30KG;6;Control Final;Control Final;Control Final;Controlador;4,5;270;1
-AILA 30KG;7;Control Final;Embalaje;Embalaje;Embalador;10;600;1
+Equipo;Secuencia;Linea_tipo;Celda;Puesto;Tarea;Tiempo_min;Tiempo_seg;Cantidad_operarios;Nota
+AILA 30KG;1;Armado;Celda 1;Armado Puesto 1;Armador;3,5;210;1;
+AILA 30KG;2;Armado;Celda 1;Armado Puesto 2;Armador;7;420;1;
+AILA 30KG;3;Armado;Celda 1;Armado Puesto 3;Armador;7;420;1;
+AILA 30KG;4;Armado;Celda 1;Armado Puesto 4;Armador;7,5;450;1;
+AILA 30KG;5;Armado;Celda 2;Ajuste;Ajustador;5;300;1;
+AILA 30KG;6;Control Final;Control Final;Control Final;Controlador;4,5;270;1;
+AILA 30KG;7;Control Final;Embalaje;Embalaje;Embalador;10;600;1;
+Balanza REPORT LT;1;Armado;Deposito;Salida Deposito (retiro de materiales);Armador;2;120;1;"Mismo operario que arma en Celda 1: viaje fisico a Deposito a buscar los materiales antes de armar, no es un rol/recurso aparte"
+Balanza REPORT LT;2;Armado;Celda 1;Armado;Armador;11;660;1;
+Balanza REPORT LT;3;Armado;Celda 3;Ensamble Final, Calibrado y Cierre de Equipo;Ajustador;12;720;1;
+Balanza REPORT LT;4;Control Final;Control Final;Control Final y Metrologico;Controlador;12;720;1;
+Balanza REPORT LT;5;Control Final;Embalaje;Embalaje;Embalador;12;720;1;
