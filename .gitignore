@@ -1,0 +1,6 @@
+# AnyLogic
+*.autosave
+
+# Python
+__pycache__/
+*.pyc
