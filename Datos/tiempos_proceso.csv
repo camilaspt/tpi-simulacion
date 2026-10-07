@@ -1,5 +1,5 @@
 Equipo;Secuencia;Linea_tipo;Celda;Puesto;Tarea;Tiempo_min;Tiempo_seg;Cantidad_operarios;Nota
-AILA 30KG;1;Armado;Deposito;Salida Deposito (retiro de materiales);Armador;2;120;1;"Retira del rack unico de fabricacion (mismo rack para los 5 equipos, no hay racks separados por equipo); mismo operario que arma en Celda 1"
+AILA 30KG;1;Deposito;Deposito;Viaje a Deposito (retiro de materiales);Armador;2;120;1;"Paso inicial comun a TODOS los equipos: el operario camina hasta el rack unico de fabricacion (mismo rack para los 5 equipos) a retirar los materiales y sigue a su primer puesto (Celda 1 - Armado Puesto 1); lo hace el mismo operario (Armador) que realiza ese puesto"
 AILA 30KG;2;Armado;Celda 1;Armado Puesto 1;Armador;3,5;210;1;
 AILA 30KG;3;Armado;Celda 1;Armado Puesto 2;Armador;7;420;1;
 AILA 30KG;4;Armado;Celda 1;Armado Puesto 3;Armador;7;420;1;
@@ -7,21 +7,21 @@ AILA 30KG;5;Armado;Celda 1;Armado Puesto 4;Armador;7,5;450;1;
 AILA 30KG;6;Armado;Celda 2;Ajuste;Ajustador;5;300;1;
 AILA 30KG;7;Control Final;Control Final;Control Final;Controlador;4,5;270;1;
 AILA 30KG;8;Control Final;Embalaje;Embalaje;Embalador;10;600;1;
-Balanza REPORT LT;1;Armado;Deposito;Salida Deposito (retiro de materiales);Armador;2;120;1;"Retira del rack unico de fabricacion (mismo rack para los 5 equipos, no hay racks separados por equipo); mismo operario que arma en Celda 1"
+Balanza REPORT LT;1;Deposito;Deposito;Viaje a Deposito (retiro de materiales);Armador;2;120;1;"Paso inicial comun a TODOS los equipos: el operario camina hasta el rack unico de fabricacion (mismo rack para los 5 equipos) a retirar los materiales y sigue a su primer puesto (Celda 1 - Armado); lo hace el mismo operario (Armador) que realiza ese puesto"
 Balanza REPORT LT;2;Armado;Celda 1;Armado;Armador;11;660;1;
 Balanza REPORT LT;3;Armado;Celda 3;Ensamble Final, Calibrado y Cierre de Equipo;Ajustador;12;720;1;
 Balanza REPORT LT;4;Control Final;Control Final;Control Final y Metrologico;Controlador;12;720;1;
 Balanza REPORT LT;5;Control Final;Embalaje;Embalaje;Embalador;12;720;1;
-Balanza NOVEL ECO;1;Armado;Deposito;Salida Deposito (retiro de materiales);Armador;2;120;1;"Retira del rack unico de fabricacion (mismo rack para los 5 equipos, no hay racks separados por equipo); mismo operario que arma en Celda 1"
+Balanza NOVEL ECO;1;Deposito;Deposito;Viaje a Deposito (retiro de materiales);Armador;2;120;1;"Paso inicial comun a TODOS los equipos: el operario camina hasta el rack unico de fabricacion (mismo rack para los 5 equipos) a retirar los materiales y sigue a su primer puesto (Celda 1 - Armado); lo hace el mismo operario (Armador) que realiza ese puesto"
 Balanza NOVEL ECO;2;Armado;Celda 1;Armado;Armador;3,15;189;1;
 Balanza NOVEL ECO;3;Armado;Celda 2;Ajuste;Ajustador;3;180;1;
 Balanza NOVEL ECO;4;Control Final;Control Final;Control Final;Controlador;2,25;135;1;
 Balanza NOVEL ECO;5;Control Final;Embalaje;Embalaje;Embalador;3;180;1;
-Balanza LURA;1;Armado;Deposito;Salida Deposito (retiro de materiales);Ajustador;2;120;1;"Retira del rack unico de fabricacion (mismo rack para los 5 equipos, no hay racks separados por equipo); este equipo no pasa por Celda 1/Armado, asi que el que retira el material es el Ajustador"
+Balanza LURA;1;Deposito;Deposito;Viaje a Deposito (retiro de materiales);Ajustador;2;120;1;"Paso inicial comun a TODOS los equipos: el operario camina hasta el rack unico de fabricacion (mismo rack para los 5 equipos) a retirar los materiales y sigue a su primer puesto (Celda 2 - Ajuste); lo hace el mismo operario (Ajustador) que realiza ese puesto"
 Balanza LURA;2;Armado;Celda 2;Ajuste;Ajustador;4;240;1;
 Balanza LURA;3;Control Final;Control Final;Control Final;Controlador;3,15;189;1;
 Balanza LURA;4;Control Final;Embalaje;Embalaje;Embalador;3,15;189;1;
-Balanza AURA;1;Armado;Deposito;Salida Deposito (retiro de materiales);Armador;2;120;1;"Retira del rack unico de fabricacion (mismo rack para los 5 equipos, no hay racks separados por equipo); mismo operario que arma en Celda 1"
+Balanza AURA;1;Deposito;Deposito;Viaje a Deposito (retiro de materiales);Armador;2;120;1;"Paso inicial comun a TODOS los equipos: el operario camina hasta el rack unico de fabricacion (mismo rack para los 5 equipos) a retirar los materiales y sigue a su primer puesto (Celda 1 - Armado); lo hace el mismo operario (Armador) que realiza ese puesto"
 Balanza AURA;2;Armado;Celda 1;Armado;Armador;3,15;189;1;
 Balanza AURA;3;Armado;Celda 2;Ajuste;Ajustador;3;180;1;
 Balanza AURA;4;Control Final;Control Final;Control Final;Controlador;2,5;150;1;

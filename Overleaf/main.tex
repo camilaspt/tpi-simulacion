@@ -1,0 +1,482 @@
+% ------------------------------------------------------------------
+% Especificación del Modelo — TPI Simulación KRETZ — Etapa 1/2
+% Generado a partir de README-Especificacion_1.md
+% Compilador en Overleaf: pdfLaTeX (Menu > Settings > Compiler).
+% Subir también el archivo diagrama_conceptual.png al proyecto.
+% ------------------------------------------------------------------
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[spanish,es-noquoting,es-nodecimaldot,es-tabla]{babel}
+\usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=2.3cm,right=2.3cm]{geometry}
+\usepackage{microtype}
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{caption}
+\usepackage{needspace}
+\usepackage{tocloft}
+\setlength{\cftsecnumwidth}{2.2em}
+\setlength{\cftsubsecnumwidth}{2.6em}
+\usepackage[hidelinks]{hyperref}
+
+% Colores
+\definecolor{kretzazul}{HTML}{1F3A6B}
+\definecolor{kretzfila}{HTML}{EEF2FA}
+\definecolor{kretzgris}{HTML}{B7C2D8}
+
+% Párrafos y listas
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\setlist{itemsep=2pt,topsep=3pt,parsep=0pt}
+\renewcommand{\arraystretch}{1.3}
+
+% Tablas: columna de ancho fijo alineada a la izquierda
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash\small}p{#1}}
+\setlength{\LTpre}{0.6em}
+\setlength{\LTpost}{0.6em}
+
+% Títulos
+\titleformat{\section}{\Large\bfseries\color{kretzazul}}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries\color{kretzazul}}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{kretzazul}}{}{0em}{}
+\titlespacing*{\section}{0pt}{1.4em}{0.6em}
+\titlespacing*{\subsection}{0pt}{1.1em}{0.4em}
+\titlespacing*{\subsubsection}{0pt}{0.9em}{0.2em}
+
+% Encabezado y pie
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{gray}Especificación del Modelo de Simulación}
+\fancyhead[R]{\small\color{gray}Grupo 7}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\hypersetup{pdftitle={Especificación del Modelo de Simulación}, pdfsubject={Línea de producción y depósito — Fábrica de balanzas KRETZ}}
+
+\begin{document}
+
+% ------------------------------------------------------------------ Portada
+\begin{titlepage}
+  \centering
+  \vspace*{4cm}
+  {\Huge\bfseries\color{kretzazul} Especificación del Modelo de Simulación \par}
+  \vspace{0.8cm}
+  {\Large Línea de producción y depósito — Fábrica de balanzas KRETZ \par}
+  \vspace{1.6cm}
+  {\large Trabajo Práctico Integrador de Simulación — Etapa 1/2 \par}
+  \vspace{0.3cm}
+  {\large\bfseries Grupo 7 \par}
+  \vfill
+  \begin{minipage}{0.85\linewidth}
+    \normalsize Este documento es la especificación del sistema a simular (Etapa 1/2), previa a la construcción del modelo ejecutable en AnyLogic (Etapa 2/2). Describe el sistema, sus componentes y las reglas de funcionamiento con el detalle necesario para que el modelo pueda construirse sin ambigüedades a partir de esta especificación.
+  \end{minipage}
+  \vspace{2cm}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Sistema seleccionado}
+
+Se simulan la línea de producción y el depósito de materiales de la planta de KRETZ, fabricante de balanzas industriales y comerciales. KRETZ fabrica una gama de modelos más amplia; \textbf{para esta simulación se eligieron 5 modelos representativos} (AILA 30KG, REPORT LT, NOVEL ECO, LURA y AURA). Cubren distintas gamas y distintos recorridos de proceso, incluido un equipo importado que llega ya armado.
+
+La planta física tiene dos naves: una de producción (líneas de Armado y de Control Final) y otra de depósito (rack de materiales, racks de producto terminado y de espera de control de calidad). Las une una zona de circulación común.
+
+\begin{longtable}{@{}P{\dimexpr0.183\linewidth-2\tabcolsep\relax}P{\dimexpr0.174\linewidth-2\tabcolsep\relax}P{\dimexpr0.642\linewidth-2\tabcolsep\relax}@{}}
+\rowcolor{kretzazul}\textcolor{white}{\textbf{Nave}} & \textcolor{white}{\textbf{Dimensión aproximada}} & \textcolor{white}{\textbf{Uso}} \\
+\endfirsthead
+\rowcolor{kretzazul}\textcolor{white}{\textbf{Nave}} & \textcolor{white}{\textbf{Dimensión aproximada}} & \textcolor{white}{\textbf{Uso}} \\
+\endhead
+\arrayrulecolor{kretzgris}\hline
+\endlastfoot
+Planta de producción & 20 m \(\times\) 25 m & 6 líneas de producción (Armado y Control Final) \\
+\rowcolor{kretzfila}Depósito & 22 m \(\times\) 25 m & Rack único de materiales de fabricación, rack de espera de control de calidad y racks de producto terminado \\
+\end{longtable}
+
+\section{Descripción del problema}
+
+La planta tiene \textbf{6 líneas de producción} (4 de Armado y 2 de Control Final), \textbf{con 5 puestos de trabajo cada una}. Las líneas no están dedicadas a un modelo de balanza: cualquier línea de Armado puede recibir cualquiera de los 5 equipos, y lo mismo pasa con las de Control Final. \textbf{Los puestos no están siempre ocupados}. Un puesto puede quedar sin operario porque falta alguien de la dotación o porque ese día hay ausencias. También puede quedar ocioso, con operario pero sin trabajo, porque el mix de equipos de la OF no lo necesita.
+
+La producción de cada día responde a una \textbf{Orden de Fabricación (OF)} que indica qué equipos hay que producir y en qué cantidad. Los tiempos de proceso relevados de SAP son promedios, pero en la operación real varían. A eso se suman las ausencias del personal y la cantidad limitada de puestos. Como resultado, \textbf{hay días en que la OF no se cumple}. Hoy KRETZ recupera ese faltante con \textbf{horas extra los fines de semana, que se pagan al doble}, y eso representa un costo importante para la empresa.
+
+El objetivo de la simulación es, por un lado, reproducir el funcionamiento de las jornadas de trabajo para medir cuándo y por qué no se llega a la OF. Por otro, \textbf{evaluar en términos de costo} si conviene contratar más empleados, reorganizar las áreas (redistribuir operarios, puestos o la secuencia de fabricación) o tener personal de reserva para cubrir ausencias. Todas estas alternativas se comparan contra el costo actual de las horas extra de fin de semana. Se simula con variabilidad, y no se calcula solo con la media, porque la variabilidad de los tiempos y las ausencias es justamente lo que produce los incumplimientos.
+
+Hay tres aspectos centrales del problema:
+
+\begin{itemize}
+  \item \textbf{Viaje a Depósito como primer paso de todos los equipos.} Antes de trabajar en un equipo, el operario que lo va a atender camina hasta el rack único de materiales del depósito, retira lo que necesita y después va a su primer puesto. Por eso los operarios se modelan como peatones (Pedestrian Library) y no como recursos abstractos: el tiempo de traslado entre naves es parte del tiempo real del proceso.
+  \item \textbf{Ausentismo y coberturas.} A partir de la planilla de asistencia de los empleados se modela quién falta cada día. Cuando falta alguien, su puesto queda vacante y otro operario tiene que cubrirlo, dejando su propio puesto. El modelo tiene que mostrar qué pasa con la producción en ese caso, porque es un argumento directo a favor o en contra de tener más gente.
+  \item \textbf{Control de calidad por muestreo.} Los equipos terminados esperan en un rack del depósito hasta el control de calidad. Por cada tipo de equipo fabricado en el día se toma una muestra, y el inspector controla solo el primer y el último equipo de esa muestra.
+\end{itemize}
+
+\section{Límites del sistema}
+
+\subsection*{Incluido en el alcance del modelo}
+
+\begin{itemize}
+  \item El flujo de cada unidad (Balanza) de los 5 modelos seleccionados. Arranca cuando se libera para producción según la OF y termina cuando pasa a stock, después del control de calidad.
+  \item El viaje a Depósito para retirar materiales del rack único de fabricación, como \textbf{primer paso obligatorio de todos los equipos}.
+  \item Las 6 líneas de producción (4 de Armado y 2 de Control Final) con sus 5 puestos cada una. Incluye el estado de cada puesto (ocupado, vacante u ocioso) y la asignación de cada unidad a una línea o puesto disponible (ruteo, porque las líneas no son exclusivas de un equipo).
+  \item El desplazamiento peatonal de los operarios entre el depósito y los puestos de trabajo.
+  \item \textbf{El ausentismo del personal}, a partir de la planilla de asistencia, y la \textbf{cobertura de puestos vacantes} por otros operarios.
+  \item El rack de espera de calidad y la regla de muestreo (primer y último equipo de la muestra, por tipo de equipo).
+  \item El cierre de jornada: comparación entre producción real y OF, cálculo de las \textbf{horas extra de fin de semana} necesarias para recuperar el faltante y su \textbf{costo} (al doble).
+  \item La comparación económica entre escenarios: dotación actual con horas extra, contratación de personal, reorganización de áreas y personal de reserva polivalente.
+\end{itemize}
+
+\subsection*{Fuera del alcance del modelo}
+
+\begin{itemize}
+  \item Los modelos de balanza que KRETZ fabrica y no fueron seleccionados para la simulación.
+  \item La cadena de abastecimiento externa. Se asume que el rack de materiales siempre tiene stock para iniciar cualquier unidad de la OF (no se modela agotamiento de insumos ni reposición desde proveedores).
+  \item La logística de despacho a clientes una vez que el producto terminado entra a stock.
+  \item El mantenimiento y las fallas de máquinas o herramientas de los puestos.
+  \item El retrabajo de los equipos rechazados en control de calidad (se registra el rechazo, pero no se simula la reparación).
+  \item La generación administrativa de la OF (la OF es un dato de entrada, no una salida del modelo).
+\end{itemize}
+
+\section{Entidades}
+
+\begin{longtable}{@{}P{\dimexpr0.191\linewidth-2\tabcolsep\relax}P{\dimexpr0.405\linewidth-2\tabcolsep\relax}P{\dimexpr0.405\linewidth-2\tabcolsep\relax}@{}}
+\rowcolor{kretzazul}\textcolor{white}{\textbf{Entidad}} & \textcolor{white}{\textbf{Descripción}} & \textcolor{white}{\textbf{Atributos principales}} \\
+\endfirsthead
+\rowcolor{kretzazul}\textcolor{white}{\textbf{Entidad}} & \textcolor{white}{\textbf{Descripción}} & \textcolor{white}{\textbf{Atributos principales}} \\
+\endhead
+\arrayrulecolor{kretzgris}\hline
+\endlastfoot
+Balanza & Unidad de producto que recorre el sistema desde el viaje a Depósito hasta el stock. & modelo (AILA 30KG / REPORT LT / NOVEL ECO / LURA / AURA); línea y puestos asignados; hora de inicio y de fin; posición en la muestra de calidad; resultado del control (si se inspeccionó) \\
+\rowcolor{kretzfila}Orden de Fabricación (OF) del día & Define qué modelos hay que producir en la jornada y en qué cantidad. & lista de (modelo, cantidad objetivo); fecha / día de la semana \\
+Muestra de control de calidad & Conjunto de unidades de un mismo modelo producidas en el día. De ella se inspeccionan el primer y el último equipo. & modelo; tamaño de la muestra; unidades acumuladas \\
+\end{longtable}
+
+\section{Recursos}
+
+El recurso central es el \textbf{Operario}, modelado como agente peatón (Pedestrian Library). Tiene una especialidad (Armador, Ajustador, Controlador o Embalador), un puesto habitual y un estado de asistencia del día. Ocupa una posición física en la planta, camina entre el depósito y su puesto, y su desplazamiento consume tiempo de simulación.
+
+\begin{longtable}{@{}P{\dimexpr0.275\linewidth-2\tabcolsep\relax}P{\dimexpr0.142\linewidth-2\tabcolsep\relax}P{\dimexpr0.583\linewidth-2\tabcolsep\relax}@{}}
+\rowcolor{kretzazul}\textcolor{white}{\textbf{Recurso}} & \textcolor{white}{\textbf{Cantidad}} & \textcolor{white}{\textbf{Detalle}} \\
+\endfirsthead
+\rowcolor{kretzazul}\textcolor{white}{\textbf{Recurso}} & \textcolor{white}{\textbf{Cantidad}} & \textcolor{white}{\textbf{Detalle}} \\
+\endhead
+\arrayrulecolor{kretzgris}\hline
+\endlastfoot
+Líneas de Armado & 4 & Equivalentes entre sí, con 5 puestos cada una. Cualquiera puede recibir cualquier modelo. \\
+\rowcolor{kretzfila}Líneas de Control Final & 2 & Equivalentes entre sí, con 5 puestos cada una. Incluyen los puestos de Control Final y de Embalaje. \\
+Puestos de trabajo & 30 (6 líneas \(\times\) 5) & No siempre ocupados: pueden estar vacantes (sin operario) u ociosos (sin trabajo). \\
+\rowcolor{kretzfila}Operarios de líneas de producción & \(\approx\) 30 & Especializados en Ajustador, Controlador o Embalador. Los puestos de armado no requieren especialización. \\
+Operarios de depósito & \(\approx\) 20 & Recepción, almacenamiento y despacho en el depósito. \\
+\rowcolor{kretzfila}Inspector de calidad & 1 & Hace el control de calidad por muestreo sobre el rack de espera. \\
+Rack único de fabricación & 1 & Punto físico único de retiro de materiales para los 5 modelos (no hay racks separados por equipo). \\
+\rowcolor{kretzfila}Rack de espera de calidad & 1 & Donde los equipos embalados esperan el control de calidad antes de pasar a stock. \\
+\end{longtable}
+
+Dotación total: \textbf{51 empleados}. Como hay tantos operarios de línea como puestos (\(\approx\) 30), cualquier ausencia deja un puesto vacante o fuerza una cobertura.
+
+\section{Procesos}
+
+\subsection{Secuencia por modelo}
+
+\textbf{Todos los equipos empiezan con el viaje a Depósito (Secuencia 1)}: el operario camina hasta el rack único de fabricación, retira los materiales y va a su primer puesto. El tiempo de SAP de este paso (2 min) es \textbf{solo el tiempo de retiro de los materiales en el rack}: no incluye la caminata hasta el depósito ni el regreso al puesto, que salen de la simulación peatonal. Después, cada modelo sigue su propia secuencia de puestos y tiempos, relevada de SAP:
+
+\needspace{10\baselineskip}
+\subsubsection*{AILA 30KG}
+
+\begin{longtable}{@{}P{\dimexpr0.082\linewidth-2\tabcolsep\relax}P{\dimexpr0.138\linewidth-2\tabcolsep\relax}P{\dimexpr0.138\linewidth-2\tabcolsep\relax}P{\dimexpr0.340\linewidth-2\tabcolsep\relax}P{\dimexpr0.193\linewidth-2\tabcolsep\relax}P{\dimexpr0.110\linewidth-2\tabcolsep\relax}@{}}
+\rowcolor{kretzazul}\textcolor{white}{\textbf{Seq.}} & \textcolor{white}{\textbf{Etapa}} & \textcolor{white}{\textbf{Celda}} & \textcolor{white}{\textbf{Puesto / tarea}} & \textcolor{white}{\textbf{Especialidad}} & \textcolor{white}{\textbf{Tiempo medio (min)}} \\
+\endfirsthead
+\rowcolor{kretzazul}\textcolor{white}{\textbf{Seq.}} & \textcolor{white}{\textbf{Etapa}} & \textcolor{white}{\textbf{Celda}} & \textcolor{white}{\textbf{Puesto / tarea}} & \textcolor{white}{\textbf{Especialidad}} & \textcolor{white}{\textbf{Tiempo medio (min)}} \\
+\endhead
+\arrayrulecolor{kretzgris}\hline
+\endlastfoot
+1 & Depósito & Depósito & Viaje a Depósito (retiro de materiales) & Armador & 2 \\
+\rowcolor{kretzfila}2 & Armado & Celda 1 & Armado Puesto 1 & Armador & 3,5 \\
+3 & Armado & Celda 1 & Armado Puesto 2 & Armador & 7 \\
+\rowcolor{kretzfila}4 & Armado & Celda 1 & Armado Puesto 3 & Armador & 7 \\
+5 & Armado & Celda 1 & Armado Puesto 4 & Armador & 7,5 \\
+\rowcolor{kretzfila}6 & Armado & Celda 2 & Ajuste & Ajustador & 5 \\
+7 & Control Final & Control Final & Control Final & Controlador & 4,5 \\
+\rowcolor{kretzfila}8 & Control Final & Embalaje & Embalaje & Embalador & 10 \\
+\end{longtable}
+
+\needspace{10\baselineskip}
+\subsubsection*{REPORT LT}
+
+\begin{longtable}{@{}P{\dimexpr0.078\linewidth-2\tabcolsep\relax}P{\dimexpr0.132\linewidth-2\tabcolsep\relax}P{\dimexpr0.132\linewidth-2\tabcolsep\relax}P{\dimexpr0.367\linewidth-2\tabcolsep\relax}P{\dimexpr0.185\linewidth-2\tabcolsep\relax}P{\dimexpr0.105\linewidth-2\tabcolsep\relax}@{}}
+\rowcolor{kretzazul}\textcolor{white}{\textbf{Seq.}} & \textcolor{white}{\textbf{Etapa}} & \textcolor{white}{\textbf{Celda}} & \textcolor{white}{\textbf{Puesto / tarea}} & \textcolor{white}{\textbf{Especialidad}} & \textcolor{white}{\textbf{Tiempo medio (min)}} \\
+\endfirsthead
+\rowcolor{kretzazul}\textcolor{white}{\textbf{Seq.}} & \textcolor{white}{\textbf{Etapa}} & \textcolor{white}{\textbf{Celda}} & \textcolor{white}{\textbf{Puesto / tarea}} & \textcolor{white}{\textbf{Especialidad}} & \textcolor{white}{\textbf{Tiempo medio (min)}} \\
+\endhead
+\arrayrulecolor{kretzgris}\hline
+\endlastfoot
+1 & Depósito & Depósito & Viaje a Depósito (retiro de materiales) & Armador & 2 \\
+\rowcolor{kretzfila}2 & Armado & Celda 1 & Armado & Armador & 11 \\
+3 & Armado & Celda 3 & Ensamble final, calibrado y cierre de equipo & Ajustador & 12 \\
+\rowcolor{kretzfila}4 & Control Final & Control Final & Control Final y metrológico & Controlador & 12 \\
+5 & Control Final & Embalaje & Embalaje & Embalador & 12 \\
+\end{longtable}
+
+\needspace{10\baselineskip}
+\subsubsection*{NOVEL ECO}
+
+\begin{longtable}{@{}P{\dimexpr0.082\linewidth-2\tabcolsep\relax}P{\dimexpr0.138\linewidth-2\tabcolsep\relax}P{\dimexpr0.138\linewidth-2\tabcolsep\relax}P{\dimexpr0.340\linewidth-2\tabcolsep\relax}P{\dimexpr0.193\linewidth-2\tabcolsep\relax}P{\dimexpr0.110\linewidth-2\tabcolsep\relax}@{}}
+\rowcolor{kretzazul}\textcolor{white}{\textbf{Seq.}} & \textcolor{white}{\textbf{Etapa}} & \textcolor{white}{\textbf{Celda}} & \textcolor{white}{\textbf{Puesto / tarea}} & \textcolor{white}{\textbf{Especialidad}} & \textcolor{white}{\textbf{Tiempo medio (min)}} \\
+\endfirsthead
+\rowcolor{kretzazul}\textcolor{white}{\textbf{Seq.}} & \textcolor{white}{\textbf{Etapa}} & \textcolor{white}{\textbf{Celda}} & \textcolor{white}{\textbf{Puesto / tarea}} & \textcolor{white}{\textbf{Especialidad}} & \textcolor{white}{\textbf{Tiempo medio (min)}} \\
+\endhead
+\arrayrulecolor{kretzgris}\hline
+\endlastfoot
+1 & Depósito & Depósito & Viaje a Depósito (retiro de materiales) & Armador & 2 \\
+\rowcolor{kretzfila}2 & Armado & Celda 1 & Armado & Armador & 3,15 \\
+3 & Armado & Celda 2 & Ajuste & Ajustador & 3 \\
+\rowcolor{kretzfila}4 & Control Final & Control Final & Control Final & Controlador & 2,25 \\
+5 & Control Final & Embalaje & Embalaje & Embalador & 3 \\
+\end{longtable}
+
+\needspace{10\baselineskip}
+\subsubsection*{LURA}
+
+\begin{longtable}{@{}P{\dimexpr0.082\linewidth-2\tabcolsep\relax}P{\dimexpr0.138\linewidth-2\tabcolsep\relax}P{\dimexpr0.138\linewidth-2\tabcolsep\relax}P{\dimexpr0.340\linewidth-2\tabcolsep\relax}P{\dimexpr0.193\linewidth-2\tabcolsep\relax}P{\dimexpr0.110\linewidth-2\tabcolsep\relax}@{}}
+\rowcolor{kretzazul}\textcolor{white}{\textbf{Seq.}} & \textcolor{white}{\textbf{Etapa}} & \textcolor{white}{\textbf{Celda}} & \textcolor{white}{\textbf{Puesto / tarea}} & \textcolor{white}{\textbf{Especialidad}} & \textcolor{white}{\textbf{Tiempo medio (min)}} \\
+\endfirsthead
+\rowcolor{kretzazul}\textcolor{white}{\textbf{Seq.}} & \textcolor{white}{\textbf{Etapa}} & \textcolor{white}{\textbf{Celda}} & \textcolor{white}{\textbf{Puesto / tarea}} & \textcolor{white}{\textbf{Especialidad}} & \textcolor{white}{\textbf{Tiempo medio (min)}} \\
+\endhead
+\arrayrulecolor{kretzgris}\hline
+\endlastfoot
+1 & Depósito & Depósito & Viaje a Depósito (retiro de materiales) & Ajustador & 2 \\
+\rowcolor{kretzfila}2 & Armado & Celda 2 & Ajuste & Ajustador & 4 \\
+3 & Control Final & Control Final & Control Final & Controlador & 3,15 \\
+\rowcolor{kretzfila}4 & Control Final & Embalaje & Embalaje & Embalador & 3,15 \\
+\end{longtable}
+
+\needspace{10\baselineskip}
+\subsubsection*{AURA}
+
+\begin{longtable}{@{}P{\dimexpr0.082\linewidth-2\tabcolsep\relax}P{\dimexpr0.138\linewidth-2\tabcolsep\relax}P{\dimexpr0.138\linewidth-2\tabcolsep\relax}P{\dimexpr0.340\linewidth-2\tabcolsep\relax}P{\dimexpr0.193\linewidth-2\tabcolsep\relax}P{\dimexpr0.110\linewidth-2\tabcolsep\relax}@{}}
+\rowcolor{kretzazul}\textcolor{white}{\textbf{Seq.}} & \textcolor{white}{\textbf{Etapa}} & \textcolor{white}{\textbf{Celda}} & \textcolor{white}{\textbf{Puesto / tarea}} & \textcolor{white}{\textbf{Especialidad}} & \textcolor{white}{\textbf{Tiempo medio (min)}} \\
+\endfirsthead
+\rowcolor{kretzazul}\textcolor{white}{\textbf{Seq.}} & \textcolor{white}{\textbf{Etapa}} & \textcolor{white}{\textbf{Celda}} & \textcolor{white}{\textbf{Puesto / tarea}} & \textcolor{white}{\textbf{Especialidad}} & \textcolor{white}{\textbf{Tiempo medio (min)}} \\
+\endhead
+\arrayrulecolor{kretzgris}\hline
+\endlastfoot
+1 & Depósito & Depósito & Viaje a Depósito (retiro de materiales) & Armador & 2 \\
+\rowcolor{kretzfila}2 & Armado & Celda 1 & Armado & Armador & 3,15 \\
+3 & Armado & Celda 2 & Ajuste & Ajustador & 3 \\
+\rowcolor{kretzfila}4 & Control Final & Control Final & Control Final & Controlador & 2,5 \\
+5 & Control Final & Embalaje & Embalaje & Embalador & 2,88 \\
+\end{longtable}
+
+\subsection{Viaje a Depósito (común a todos los equipos)}
+
+El viaje a Depósito lo hace siempre \textbf{el mismo operario que va a ejecutar el primer puesto del equipo}. Es un Armador en AILA 30KG, REPORT LT, NOVEL ECO y AURA, y un Ajustador en LURA, porque LURA llega armado desde origen y no pasa por Celda 1. No hay una dotación de depósito dedicada a esta tarea.
+
+\textbf{Qué incluye el tiempo de SAP:} los 2 minutos relevados son solo el tiempo aproximado de retiro de los materiales en el rack. No incluyen el tiempo de ir desde el puesto hasta el depósito ni el de volver al primer puesto. Esos traslados los calcula el modelo con la distancia real recorrida y la velocidad peatonal del operario. El tiempo total del paso 1 es entonces: caminata hasta el depósito + 2 min de retiro en el rack + caminata hasta el primer puesto.
+
+Para garantizar que sea el mismo operario, el paso se modela como un único \emph{Seize} del operario, seguido de un \emph{Delay} en el depósito (solo los 2 min de retiro; la caminata la resuelve el movimiento peatonal) y otro \emph{Delay} en el primer puesto (uno por cada ubicación física). El \emph{Release} va al final. Nunca se modela como dos bloques de servicio independientes, porque eso podría asignar el traslado y la tarea a dos operarios distintos.
+
+\subsection{Ruteo entre líneas equivalentes}
+
+Ninguna de las 4 líneas de Armado ni de las 2 de Control Final está dedicada a un modelo. Por eso el modelo decide en ejecución a qué línea o puesto disponible dirigir cada unidad, según qué puestos tienen operario presente y libre, en lugar de seguir un camino fijo equipo\(\rightarrow\)línea.
+
+\subsection{Asistencia, puestos vacantes y coberturas}
+
+\begin{enumerate}
+  \item \textbf{Inicio de jornada:} se determina qué empleados están presentes, a partir de las probabilidades de ausencia que surgen de la planilla de asistencia.
+  \item \textbf{Puesto vacante:} el puesto habitual de cada ausente queda vacante y no puede procesar unidades mientras nadie lo cubra.
+  \item \textbf{Cobertura:} un operario presente cubre el puesto vacante según una regla de prioridad. Primero lo cubre alguien de la misma especialidad y de la misma línea, después alguien de la misma especialidad de otra línea. Los puestos de armado los puede cubrir cualquier operario. Quien cubre deja su propio puesto, así que la cobertura traslada el cuello de botella en vez de eliminarlo.
+  \item \textbf{Registro:} se registran la cantidad de coberturas, los puestos que quedaron sin cubrir y el tiempo que cada puesto pasó vacante, para medir cuánta producción se pierde por ausentismo.
+\end{enumerate}
+
+\subsection{Control de calidad por muestreo}
+
+Después del Control Final (que el Controlador hace sobre el 100\% de las unidades, con los tiempos de SAP) y del Embalaje, cada equipo va al \textbf{rack de espera de calidad} del depósito. Por cada tipo de equipo fabricado en el día se arma una muestra con la producción de ese tipo. El inspector de calidad controla \textbf{solo el primer y el último equipo de esa muestra}. El resto pasa a stock sin inspección. Esto se repite por separado para cada modelo de la OF del día.
+
+\subsection{Cierre de jornada y costo del faltante}
+
+Al terminar el turno se compara, por modelo y en total, la cantidad efectivamente terminada con la cantidad pedida por la OF. Si hay faltante, se simula una \textbf{jornada de recuperación de fin de semana} cuya OF es el faltante, con la dotación que trabajaría ese día. De esa jornada se mide cuántas horas-hombre hacen falta para completarlo, y esas horas se valorizan \textbf{al doble del valor de la hora normal}. Se pueden encadenar varias jornadas (por ejemplo, una semana de lunes a viernes) para acumular el faltante semanal que se recupera el fin de semana.
+
+\subsection{Evaluación de escenarios}
+
+Cada escenario (dotación actual, más empleados de una especialidad, reorganización de áreas o puestos, personal de reserva polivalente, cambio en la secuencia de la OF) se corre varias veces, porque tiempos y ausencias son aleatorios. En cada escenario se compara el \textbf{costo total}: horas normales, más horas extra de fin de semana al doble, más el costo de las contrataciones o de la reorganización.
+
+\section{Colas}
+
+\begin{itemize}
+  \item \textbf{Cola de unidades liberadas por la OF:} unidades esperando que haya un operario disponible para iniciar el viaje a Depósito y su primer puesto. Es FIFO dentro de cada modelo, salvo que un escenario defina otra prioridad de secuenciación.
+  \item \textbf{Cola en el rack de depósito:} el rack de materiales es único para los 5 modelos, así que los operarios que van a retirar material pueden coincidir y esperar turno.
+  \item \textbf{Colas por puesto:} cada celda de Armado, Ajuste, Control Final y Embalaje acumula unidades mientras su operario está ocupado \textbf{o mientras el puesto está vacante sin cobertura}. Son FIFO con capacidad ilimitada.
+  \item \textbf{Cola en el rack de espera de calidad:} equipos embalados esperando el control del inspector, o el paso a stock si no forman parte de la inspección.
+\end{itemize}
+
+\section{Variables}
+
+\begin{longtable}{@{}P{\dimexpr0.305\linewidth-2\tabcolsep\relax}P{\dimexpr0.148\linewidth-2\tabcolsep\relax}P{\dimexpr0.547\linewidth-2\tabcolsep\relax}@{}}
+\rowcolor{kretzazul}\textcolor{white}{\textbf{Variable}} & \textcolor{white}{\textbf{Tipo}} & \textcolor{white}{\textbf{Descripción}} \\
+\endfirsthead
+\rowcolor{kretzazul}\textcolor{white}{\textbf{Variable}} & \textcolor{white}{\textbf{Tipo}} & \textcolor{white}{\textbf{Descripción}} \\
+\endhead
+\arrayrulecolor{kretzgris}\hline
+\endlastfoot
+Producción acumulada por modelo & Entera, dinámica & Unidades terminadas en la jornada, por modelo \\
+\rowcolor{kretzfila}Faltante por modelo & Entera, calculada & Cantidad pedida por la OF menos la producción acumulada, al cierre \\
+Empleados ausentes del día & Entera, aleatoria & Cantidad (y cuáles) de operarios ausentes, según la planilla de asistencia \\
+\rowcolor{kretzfila}Puestos vacantes & Entera, dinámica & Puestos sin operario en cada instante (sin cubrir) \\
+Coberturas realizadas & Entera, acumulada & Cantidad de veces que un operario dejó su puesto para cubrir otro \\
+\rowcolor{kretzfila}Tiempo de puesto vacante & Continua & Minutos que cada puesto estuvo sin operario durante la jornada \\
+Ocupación de operarios por especialidad & Continua [0,1] & Fracción del turno en que cada especialidad está trabajando o caminando \\
+\rowcolor{kretzfila}Longitud de cola por puesto & Entera, dinámica & Unidades esperando en cada puesto en un instante dado \\
+Tiempo de traslado acumulado & Continua & Tiempo total que los operarios pasan caminando entre depósito y puestos \\
+\rowcolor{kretzfila}Horas extra de fin de semana requeridas & Continua & Horas-hombre necesarias para recuperar el faltante \\
+Costo de horas extra & Continua (\$) & Horas extra \(\times\) valor hora \(\times\) 2 \\
+\rowcolor{kretzfila}Costo total del escenario & Continua (\$) & Horas normales + horas extra + contrataciones / reorganización \\
+Resultado del muestreo de calidad & Categórica & Aprobado o rechazado, para el primer y el último equipo de cada muestra por modelo \\
+\end{longtable}
+
+\section{Parámetros}
+
+\begin{itemize}
+  \item \textbf{Tiempos de tarea:} tiempos medios por modelo, celda y puesto, según \texttt{Datos/\allowbreak{}tiempos\_\allowbreak{}proceso.csv}. Se usan como parámetro de una distribución estadística por tarea, no como valor fijo.
+  \item \textbf{Estructura de planta:} 6 líneas (4 de Armado y 2 de Control Final), con 5 puestos cada una.
+  \item \textbf{Dotación:} operarios por especialidad y por línea (51 empleados en total, incluido 1 inspector de calidad). Es la variable de decisión de los escenarios de contratación.
+  \item \textbf{Ausentismo:} probabilidad de ausencia por empleado, especialidad o día de la semana, estimada a partir de la planilla de asistencia.
+  \item \textbf{Regla de cobertura:} qué especialidades pueden cubrir qué puestos, y en qué orden de prioridad.
+  \item \textbf{OF del día:} modelos y cantidades objetivo (al menos 2 o 3 ejemplos de OF real para comparar escenarios).
+  \item \textbf{Muestra de calidad:} tamaño de la muestra por tipo de equipo producido en el día.
+  \item \textbf{Desplazamiento:} velocidad peatonal de los operarios y ubicación de los nodos base (home location) de cada puesto.
+  \item \textbf{Jornada:} duración del turno normal y de la jornada de recuperación de fin de semana.
+  \item \textbf{Costos:} valor de la hora normal por especialidad; recargo de fin de semana (\textbf{factor 2}, se paga el doble); costo de incorporar un empleado (sueldo más cargas, prorrateado al horizonte simulado); costo de una reorganización de áreas o puestos.
+\end{itemize}
+
+\section{Eventos}
+
+\begin{longtable}{@{}P{\dimexpr0.397\linewidth-2\tabcolsep\relax}P{\dimexpr0.603\linewidth-2\tabcolsep\relax}@{}}
+\rowcolor{kretzazul}\textcolor{white}{\textbf{Evento}} & \textcolor{white}{\textbf{Descripción}} \\
+\endfirsthead
+\rowcolor{kretzazul}\textcolor{white}{\textbf{Evento}} & \textcolor{white}{\textbf{Descripción}} \\
+\endhead
+\arrayrulecolor{kretzgris}\hline
+\endlastfoot
+Inicio de jornada & Se carga la OF del día y se determina la asistencia de cada empleado. \\
+\rowcolor{kretzfila}Ausencia de un empleado & El puesto habitual del ausente queda vacante. \\
+Cobertura de un puesto & Un operario presente deja su puesto para cubrir uno vacante, según la regla de cobertura. \\
+\rowcolor{kretzfila}Liberación de una unidad & Una unidad de la OF queda disponible para iniciar su secuencia. \\
+Llegada del operario al depósito / a un puesto & El operario (peatón) termina su desplazamiento al rack o al puesto asignado. \\
+\rowcolor{kretzfila}Fin de tarea en un puesto & Termina el tiempo de servicio de un puesto y la unidad sigue su secuencia. \\
+Ingreso al rack de espera de calidad & Un equipo embalado llega al rack. Se decide si es el primero o el último de la muestra de su modelo. \\
+\rowcolor{kretzfila}Inspección de calidad & El inspector controla el equipo seleccionado, que pasa a stock (o se registra como rechazado). \\
+Cierre de jornada & Termina el turno. Se congelan los contadores y se calcula el faltante contra la OF. \\
+\rowcolor{kretzfila}Jornada de recuperación de fin de semana & Se produce el faltante acumulado y se registran las horas extra y su costo. \\
+\end{longtable}
+
+\section{Estados}
+
+\begin{itemize}
+  \item \textbf{Puesto de trabajo:} ocupado y trabajando / ocupado y ocioso (sin unidades para procesar) / vacante (sin operario) / cubierto por otro operario.
+  \item \textbf{Operario:} ausente / presente y libre / caminando al depósito o a un puesto / trabajando en su puesto / cubriendo otro puesto.
+  \item \textbf{OF del día:} para cada modelo, cantidad pedida, cantidad producida y cantidad pendiente.
+  \item \textbf{Rack de fabricación:} libre u ocupado por un operario que retira material (se asume que siempre hay stock de materiales).
+  \item \textbf{Muestra de calidad por modelo:} unidades producidas respecto del tamaño de la muestra, para saber si la próxima es la primera, la última o ninguna.
+  \item \textbf{Semana (si se encadenan jornadas):} faltante acumulado a recuperar el fin de semana.
+\end{itemize}
+
+\section{Relaciones entre componentes}
+
+\textbf{Flujo de la unidad.} La OF del día alimenta la cola de unidades a producir, y el modelo de cada unidad determina su secuencia de puestos y tiempos. Todas empiezan por el viaje a Depósito. El operario que atiende la unidad se toma de un \emph{ResourcePool} de su especialidad, cuyo agente es de tipo Operario (peatón). Ese mismo operario queda asignado con un único \emph{Seize} durante todo el tramo depósito\(\rightarrow\)primer puesto.
+
+\textbf{Disponibilidad de operarios.} La planilla de asistencia define qué operarios están presentes al inicio de la jornada. Eso determina qué puestos están vacantes y qué coberturas hacen falta, y por lo tanto qué capacidad real tiene cada línea ese día. El componente de ruteo usa esa disponibilidad para asignar cada unidad a una de las líneas equivalentes.
+
+\textbf{Calidad y stock.} Después del Control Final y el Embalaje, la unidad pasa al rack de espera de calidad. Ahí el componente de muestreo decide si la inspecciona el inspector, y luego la unidad pasa a stock.
+
+\textbf{Cierre y costos.} Cada unidad terminada suma al contador de producción de su modelo. El cierre de jornada lo compara con la OF y, si hay faltante, calcula las horas extra de fin de semana y su costo. Ese costo es la base para comparar los escenarios de contratación, reorganización y personal de reserva. Cada escenario, a su vez, modifica los parámetros de dotación, layout o secuencia de entrada del modelo (ver diagrama, sección 17).
+
+\section{Datos de entrada}
+
+\begin{itemize}
+  \item \texttt{Datos/\allowbreak{}tiempos\_\allowbreak{}proceso.csv}\textbf{:} una fila por paso de proceso y equipo (Equipo, Secuencia, Linea\_tipo, Celda, Puesto, Tarea, Tiempo\_min, Tiempo\_seg, Cantidad\_operarios, Nota). El paso 1 de los 5 equipos es el viaje a Depósito (Linea\_tipo = Deposito); su Tiempo\_min es solo el retiro en el rack, sin los traslados. Es la fuente de las secuencias y los tiempos medios de la sección 6.
+  \item \textbf{Planilla de asistencia de los empleados:} registro de presencias y ausencias. Con ella se estima la probabilidad de ausencia por empleado, especialidad y día de la semana, y la frecuencia de ausencias simultáneas.
+  \item \texttt{Datos/\allowbreak{}dotacion\_\allowbreak{}lineas.csv}\textbf{:} dotación y especializaciones por línea.
+\end{itemize}
+
+\begin{itemize}
+  \item Ejemplos concretos de OF real para comparar corridas.
+  \item \textbf{Datos de costo:} valor de la hora, costo total de un empleado adicional (sueldo más cargas) y costo estimado de reorganizar áreas o puestos.
+  \item Historial de horas extra de fin de semana trabajadas y pagadas.
+  \item Ubicación del rack de fabricación, del rack de espera de calidad y de cada puesto sobre el plano a escala.
+\end{itemize}
+
+\section{Indicadores de desempeño}
+
+\begin{longtable}{@{}P{\dimexpr0.402\linewidth-2\tabcolsep\relax}P{\dimexpr0.598\linewidth-2\tabcolsep\relax}@{}}
+\rowcolor{kretzazul}\textcolor{white}{\textbf{Indicador}} & \textcolor{white}{\textbf{Qué mide}} \\
+\endfirsthead
+\rowcolor{kretzazul}\textcolor{white}{\textbf{Indicador}} & \textcolor{white}{\textbf{Qué mide}} \\
+\endhead
+\arrayrulecolor{kretzgris}\hline
+\endlastfoot
+\% de cumplimiento de la OF (por modelo y total) & Producción real / cantidad pedida, al cierre de la jornada \\
+\rowcolor{kretzfila}Unidades faltantes por modelo y por línea & Dónde se concentra el incumplimiento \\
+Horas extra de fin de semana requeridas & Horas-hombre necesarias para recuperar el faltante \\
+\rowcolor{kretzfila}\textbf{Costo de horas extra} & Horas extra \(\times\) valor hora \(\times\) 2 \\
+\textbf{Costo total por escenario} & Horas normales + horas extra + contrataciones / reorganización, para comparar alternativas \\
+\rowcolor{kretzfila}\textbf{Ahorro neto frente al escenario actual} & Diferencia de costo total entre cada alternativa y la situación actual (dotación actual con horas extra) \\
+Producción perdida por ausentismo & Diferencia de producción entre jornadas con y sin ausencias, y tiempo de puestos vacantes \\
+\rowcolor{kretzfila}Coberturas por jornada & Cuántas veces hubo que mover un operario para cubrir un puesto, y qué puesto quedó descubierto \\
+Utilización de operarios por especialidad & \% del turno ocupado (trabajando o caminando) frente a libre u ocioso \\
+\rowcolor{kretzfila}Tiempo de espera en cola por puesto & Tiempo medio y máximo de espera en cada puesto (identifica cuellos de botella) \\
+Tiempo total en sistema por modelo & Desde el viaje a Depósito hasta el ingreso a stock \\
+\rowcolor{kretzfila}Tiempo de traslado peatonal & Fracción del tiempo de los operarios que se va en desplazamientos \\
+Tasa de rechazo en la muestra de calidad & \% de equipos inspeccionados que no aprueban, por modelo \\
+\end{longtable}
+
+\section{Supuestos}
+
+\begin{itemize}
+  \item Los 5 modelos seleccionados son representativos de la carga de la planta. Durante la jornada simulada, las líneas solo procesan la OF de esos 5 modelos.
+  \item El rack único de materiales nunca se queda sin stock durante la jornada.
+  \item La asistencia se determina al inicio de la jornada.
+  \item Las probabilidades de ausencia de la planilla de asistencia histórica son representativas de lo que va a pasar en las jornadas simuladas.
+  \item Los tiempos de SAP son valores medios. La variabilidad real de cada tarea se aproxima con una distribución estadística a definir a partir de esos promedios.
+  \item El tiempo de SAP del viaje a Depósito (2 min) corresponde solo al retiro de materiales en el rack. Los traslados de ida y vuelta surgen de la simulación peatonal.
+  \item El operario que hace el viaje a Depósito para una unidad es siempre el mismo que ejecuta el primer puesto de esa unidad, cualquiera sea su especialidad.
+  \item El Control Final lo hace el Controlador sobre el 100\% de las unidades. El inspector de calidad inspecciona solo el primer y el último equipo de la muestra de cada modelo.
+  \item La jornada de fin de semana rinde lo mismo por hora que una jornada normal. Solo cambia el costo de la hora (factor 2).
+\end{itemize}
+
+\section{Preguntas de simulación}
+
+\begin{itemize}
+  \item ¿Con la dotación y la organización actuales, cuántas jornadas no se cumple la OF? ¿En qué equipos, líneas o puestos se concentra el faltante?
+  \item ¿Cuántas horas extra de fin de semana se necesitan para recuperar ese faltante y \textbf{cuánto cuestan}, pagadas al doble?
+  \item ¿\textbf{Conviene en costo contratar más empleados} que seguir pagando horas extra de fin de semana? ¿Cuántos y de qué especialidad (Ajustador, Controlador, Embalador), o en qué línea?
+  \item ¿\textbf{Conviene reorganizar las áreas} (redistribuir operarios entre líneas o puestos, ampliar o agregar puestos) para cumplir la OF sin contratar? ¿Cuánto se ahorra frente al escenario actual?
+  \item ¿Conviene tener personal de reserva para cubrir ausencias, en vez de pagar horas extra?
+  \item ¿Conviene cambiar el orden o la prioridad de fabricación dentro del día (por ejemplo, empezar por los equipos con procesos más largos) para evitar faltantes?
+\end{itemize}
+
+\section{Diagrama conceptual final}
+
+El esquema resume el patrón común a los 5 modelos:
+
+\begin{enumerate}
+  \item Una unidad se libera según la OF del día.
+  \item Todas empiezan con el viaje a Depósito. El mismo operario retira los materiales y sigue hasta su primer puesto.
+  \item La unidad se asigna a una de las líneas equivalentes de Armado, o va directo a Ajuste en el caso de LURA.
+  \item Pasa por Control Final y Embalaje, espera en el rack de calidad (donde se inspeccionan el primer y el último equipo de cada muestra) y entra a stock.
+\end{enumerate}
+
+La disponibilidad de operarios sale de la planilla de asistencia (ausencias, puestos vacantes y coberturas). Al cierre, el faltante se traduce en horas extra de fin de semana al doble. Ese costo se usa para comparar los escenarios, y cada escenario vuelve a alimentar el modelo con otra dotación, layout o secuencia.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{diagrama_conceptual.png}
+  \caption{Diagrama conceptual}
+\end{figure}
+
+\end{document}

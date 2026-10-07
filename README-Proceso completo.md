@@ -34,13 +34,13 @@ La planta física consta de dos naves:
 
 ## Productos a simular
 
-La simulación contempla **5 tipos de equipos** (modelos de balanza). Ya están cargados los 5, con el detalle completo de puestos y tiempos:
+La simulación contempla **5 tipos de equipos** (modelos de balanza). Ya están cargados los 5, con el detalle completo de puestos y tiempos. **Todos los equipos, sin excepción, comienzan con el viaje a Depósito (Secuencia 1)** a buscar los materiales al rack único de fabricación; recién después el operario va a su primer puesto de trabajo:
 
 ### EQUIPO AILA 30KG (puestos y tiempos, según SAP)
 
 | Secuencia | Línea | Celda | Puesto | Tarea | Tiempo (min) |
 |---|---|---|---|---|---|
-| 1 | Armado | Depósito | Salida Depósito (retiro de materiales) | Armador | 2 |
+| 1 | Depósito | Depósito | Viaje a Depósito (retiro de materiales) | Armador | 2 |
 | 2 | Armado | Celda 1 | Armado Puesto 1 | Armador | 3,5 |
 | 3 | Armado | Celda 1 | Armado Puesto 2 | Armador | 7 |
 | 4 | Armado | Celda 1 | Armado Puesto 3 | Armador | 7 |
@@ -53,7 +53,7 @@ La simulación contempla **5 tipos de equipos** (modelos de balanza). Ya están 
 
 | Secuencia | Línea | Celda | Puesto | Tarea | Tiempo (min) |
 |---|---|---|---|---|---|
-| 1 | Armado | Depósito | Salida Depósito (retiro de materiales) | Armador | 2 |
+| 1 | Depósito | Depósito | Viaje a Depósito (retiro de materiales) | Armador | 2 |
 | 2 | Armado | Celda 1 | Armado | Armador | 11 |
 | 3 | Armado | Celda 3 | Ensamble Final, Calibrado y Cierre de Equipo | Ajustador | 12 |
 | 4 | Control Final | Control Final | Control Final y Metrológico | Controlador | 12 |
@@ -64,7 +64,7 @@ La simulación contempla **5 tipos de equipos** (modelos de balanza). Ya están 
 
 | Secuencia | Línea | Celda | Puesto | Tarea | Tiempo (min) |
 |---|---|---|---|---|---|
-| 1 | Armado | Depósito | Salida Depósito (retiro de materiales) | Armador | 2 |
+| 1 | Depósito | Depósito | Viaje a Depósito (retiro de materiales) | Armador | 2 |
 | 2 | Armado | Celda 1 | Armado | Armador | 3,15 |
 | 3 | Armado | Celda 2 | Ajuste | Ajustador | 3 |
 | 4 | Control Final | Control Final | Control Final | Controlador | 2,25 |
@@ -74,24 +74,24 @@ La simulación contempla **5 tipos de equipos** (modelos de balanza). Ya están 
 
 | Secuencia | Línea | Celda | Puesto | Tarea | Tiempo (min) |
 |---|---|---|---|---|---|
-| 1 | Armado | Depósito | Salida Depósito (retiro de materiales) | Ajustador | 2 |
+| 1 | Depósito | Depósito | Viaje a Depósito (retiro de materiales) | Ajustador | 2 |
 | 2 | Armado | Celda 2 | Ajuste | Ajustador | 4 |
 | 3 | Control Final | Control Final | Control Final | Controlador | 3,15 |
 | 4 | Control Final | Embalaje | Embalaje | Embalador | 3,15 |
 
-**Caso particular — sin Celda 1:** este equipo llega ya armado desde China, así que no pasa por Armado/Celda 1. Por eso el viaje a Depósito no lo hace un Armador sino el **Ajustador**, que es quien realiza el primer puesto real de este equipo (Ajuste en Celda 2). El que retira el material en Depósito es siempre el mismo operario que va a hacer el paso siguiente, sea cual sea su especialidad.
+**Caso particular — sin Celda 1:** este equipo llega ya armado desde China, así que no pasa por Armado/Celda 1. Por eso el viaje a Depósito (que igual es el primer paso, como en todos los equipos) no lo hace un Armador sino el **Ajustador**, que es quien realiza el primer puesto real de este equipo (Ajuste en Celda 2). El que retira el material en Depósito es siempre el mismo operario que va a hacer el paso siguiente, sea cual sea su especialidad.
 
 ### BALANZA AURA (gama media)
 
 | Secuencia | Línea | Celda | Puesto | Tarea | Tiempo (min) |
 |---|---|---|---|---|---|
-| 1 | Armado | Depósito | Salida Depósito (retiro de materiales) | Armador | 2 |
+| 1 | Depósito | Depósito | Viaje a Depósito (retiro de materiales) | Armador | 2 |
 | 2 | Armado | Celda 1 | Armado | Armador | 3,15 |
 | 3 | Armado | Celda 2 | Ajuste | Ajustador | 3 |
 | 4 | Control Final | Control Final | Control Final | Controlador | 2,5 |
 | 5 | Control Final | Embalaje | Embalaje | Embalador | 2,88 |
 
-**Viaje a Depósito:** el primer paso de todos los equipos es caminar hasta el Depósito a buscar los materiales que necesita para armar, y después va a Celda 1. No hay una dotación de Depósito dedicada a esto. Como el Armador es un `Operario` (peatón), esto además sirve para validar que el movimiento peatonal entre las dos naves funciona bien. Los materiales se retiran de un **rack único de fabricación**: todos los elementos para los 5 equipos están en el mismo rack, no hay racks separados por equipo. El resto de los racks se utilizan para guardar los equipos terminados. Una vez que se terminan pasan a un rack en el cual quedan a la espera de control de calidad para finalmente pasar a stock.
+**Viaje a Depósito:** el primer paso de **todos** los equipos es que el operario camine hasta el Depósito a buscar los materiales que necesita, y después vaya a su primer puesto de trabajo (Celda 1 en AILA 30KG, REPORT LT, NOVEL ECO y AURA; Celda 2 en LURA). Lo hace siempre el mismo operario que va a realizar ese primer puesto; no hay una dotación de Depósito dedicada a esto. Como ese operario es un `Operario` (peatón), esto además sirve para validar que el movimiento peatonal entre las dos naves funciona bien. Los materiales se retiran de un **rack único de fabricación**: todos los elementos para los 5 equipos están en el mismo rack, no hay racks separados por equipo. El resto de los racks se utilizan para guardar los equipos terminados. Una vez que se terminan pasan a un rack en el cual quedan a la espera de control de calidad para finalmente pasar a stock.
 
 Con esto los 5 equipos ya tienen sus tiempos cargados en `Datos/tiempos_proceso.csv`.
 
@@ -145,7 +145,7 @@ Y esto es lo que las decisiones de diseño de la sección anterior todavía **no
 - `Operario` es un `Agent` genérico: no extiende `Pedestrian`, no hay `Wall` ni `Rectangular Node` en el piso, y la Pedestrian Library no está en uso — los operarios no caminan, son recursos abstractos como en cualquier `ResourcePool` estándar.
 - El único flujo armado corresponde a la secuencia de 7 puestos del AILA 30KG. Los otros 4 equipos (REPORT LT, NOVEL ECO, LURA, AURA), con sus propias celdas y secuencias, todavía no están representados ni diferenciados por `modelo`.
 - El flujo actual asume una sola línea fija; todavía no hay ruteo entre las 4 líneas de Armado ni las 2 de Control Final. Como ninguna línea es exclusiva de un equipo, falta la lógica que envíe cada unidad a una línea/puesto disponible (de cualquiera de las líneas del tipo que corresponda) en vez de a un camino único.
-- No existe el paso "Salida Depósito" ni el patrón Seize único + Delays encadenados: cada `Service` es un bloque independiente, así que hoy el modelo podría asignar el traslado y el armado a operarios distintos.
+- No existe el paso "Viaje a Depósito" ni el patrón Seize único + Delays encadenados: cada `Service` es un bloque independiente, así que hoy el modelo podría asignar el traslado y el armado a operarios distintos.
 - Los 7 `ResourcePool` quedaron con la configuración por defecto de la librería (sin `capacity` ni dotación cargada) — todavía no toman los números de `dotacion_lineas.csv`.
 - `tiempos_proceso.csv` y `dotacion_lineas.csv` no están importados a la Database de AnyLogic; nada en el modelo lee esos CSV todavía.
 - La tasa de arribo del `Source` sigue siendo una constante provisoria (no hay ninguna OF real cargada ni forma de elegir entre OFs de ejemplo).
@@ -158,7 +158,7 @@ Lo construido hasta ahora es un esqueleto de proceso de una sola línea con recu
 
 1. Importar `tiempos_proceso.csv` y `dotacion_lineas.csv` a la Database de AnyLogic y parametrizar `Service`/`ResourcePool` desde esas tablas (tiempos, cantidad de operarios, especialidad requerida) en vez de valores fijos por puesto.
 2. Extender el flujo de `Main` para cubrir los 5 equipos según `modelo` (usando la tabla importada), incluyendo el caso particular de LURA (sin Celda 1, primer traslado a cargo del Ajustador) y confirmando si Celda 3 (REPORT LT) es física o un alias de Celda 1/2. Esto incluye modelar las 4 líneas de Armado y las 2 de Control Final como líneas equivalentes (no dedicadas a un equipo) y agregar la lógica de ruteo que asigna cada unidad a una línea/puesto disponible.
-3. Implementar el paso "Salida Depósito" con el patrón Seize único + Delays encadenados ya decidido, para los 5 equipos.
+3. Implementar el paso "Viaje a Depósito" con el patrón Seize único + Delays encadenados ya decidido, para los 5 equipos.
 4. Implementar en `ControlFinal` la regla de muestreo real (por cada tipo de equipo fabricado en el día, tomar una muestra de la producción y controlar solo el primer y el último equipo de esa muestra), en vez del control al 100% que hay hoy.
 5. Convertir `Operario` en un `Pedestrian` real: sumar la Pedestrian Library, agregar `Wall`/`Rectangular Node` sobre el piso ya escalado con `fondoplanta.jpg`, y ligar el shape 3D `worker.dae` a la animación peatonal (hoy ese asset está cargado pero no conectado a movimiento real).
 6. Modelar el depósito: decidir si el flujo de gente se resuelve con recursos (como en la línea) o con bloques propios de Pedestrian Library, y ubicar el rack único de fabricación con Warehousing/Material Handling Library.

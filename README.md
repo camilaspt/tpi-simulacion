@@ -10,54 +10,56 @@ Construir un modelo de simulación de eventos discretos + peatonal en AnyLogic q
 2. El **depósito**: recepción, almacenamiento y despacho de producto terminado.
 3. El **movimiento real de las personas** (operarios) dentro de la planta, no solo los tiempos de proceso — se optó por modelar a los operarios como peatones (Pedestrian Library) desde el arranque, en vez de una animación simplificada.
 
-El entregable es el **modelo funcional en AnyLogic** (no se pide informe escrito formal como parte de la cátedra).
-
 ## La planta
-
-El plano de fondo (`fondoplanta.jpg`) se armó a partir de una captura satelital (Google Maps/Earth) de la planta real, editada para que los techos de ambas naves queden lisos y de color gris uniforme (sin el detalle de tanques, rejillas, chapas, etc. que tiene la foto original), de forma que sirva como plano de referencia limpio dentro de AnyLogic.
 
 La planta física consta de dos naves:
 
-| Nave | Dimensión aproximada | Uso |
-|---|---|---|
-| Planta de producción | 20 m × 25 m | Líneas de Armado y Control Final |
-| Depósito | 22 m × 25 m | Almacenamiento y despacho de producto terminado |
 
-**Nota sobre la escala:** la foto satelital es una vista oblicua (no un plano cenital puro), por lo que calcar el contorno fotografiado píxel a píxel introduce distorsión. Se optó por dibujar el piso como rectángulos a escala real (usando el `ScaleRuler` de AnyLogic) ubicados visualmente sobre la foto, en vez de perseguir el contorno exacto de la imagen. En la práctica, el piso quedó armado como un único rectángulo de ~40 m × 25 m, dividido con una pared interna en las dos zonas (producción / depósito).
+| Nave                 | Dimensión aproximada | Uso                                             |
+| -------------------- | -------------------- | ----------------------------------------------- |
+| Planta de producción | 20 m × 25 m          | Líneas de Armado y Control Final                |
+| Depósito             | 22 m × 25 m          | Almacenamiento y despacho de producto terminado |
+
+
+Se optó por dibujar el piso como rectángulos a escala real (usando el `ScaleRuler` de AnyLogic) ubicados visualmente sobre la foto de la planta.
 
 ## Estructura organizativa
 
-- **6 líneas de producción**: 3 de Armado + 2 de Control Final (la composición exacta de la 6ª línea está pendiente de confirmar con el dato real de SAP).
+- **6 líneas de producción**: 4 de Armado + 2 de Control Final.
 - **5 puestos de trabajo por línea**.
 - **50 empleados en total**: ~30 asignados a las 6 líneas de producción (5 por línea) y ~20 al depósito.
 - Los empleados pueden especializarse en: **Ajustador**, **Controlador**, **Embalador** (los puestos de armado propiamente dicho no requieren una especialización particular).
 
 ## Productos a simular
 
-La simulación contempla **5 tipos de equipos** (modelos de balanza). Ya están cargados los 5, con el detalle completo de puestos y tiempos:
+La simulación contempla **5 tipos de equipos** (modelos de balanza). 
 
 ### EQUIPO AILA 30KG (puestos y tiempos, según SAP)
 
-| Secuencia | Línea | Celda | Puesto | Tarea | Tiempo (min) |
-|---|---|---|---|---|---|
-| 1 | Armado | Depósito | Salida Depósito (retiro de materiales) | Armador | 2 |
-| 2 | Armado | Celda 1 | Armado Puesto 1 | Armador | 3,5 |
-| 3 | Armado | Celda 1 | Armado Puesto 2 | Armador | 7 |
-| 4 | Armado | Celda 1 | Armado Puesto 3 | Armador | 7 |
-| 5 | Armado | Celda 1 | Armado Puesto 4 | Armador | 7,5 |
-| 6 | Armado | Celda 2 | Ajuste | Ajustador | 5 |
-| 7 | Control Final | Control Final | Control Final | Controlador | 4,5 |
-| 8 | Control Final | Embalaje | Embalaje | Embalador | 10 |
+
+| Secuencia | Línea         | Celda         | Puesto                                 | Tarea       | Tiempo (min) |
+| --------- | ------------- | ------------- | -------------------------------------- | ----------- | ------------ |
+| 1         | Armado        | Depósito      | Salida Depósito (retiro de materiales) | Armador     | 2            |
+| 2         | Armado        | Celda 1       | Armado Puesto 1                        | Armador     | 3,5          |
+| 3         | Armado        | Celda 1       | Armado Puesto 2                        | Armador     | 7            |
+| 4         | Armado        | Celda 1       | Armado Puesto 3                        | Armador     | 7            |
+| 5         | Armado        | Celda 1       | Armado Puesto 4                        | Armador     | 7,5          |
+| 6         | Armado        | Celda 2       | Ajuste                                 | Ajustador   | 5            |
+| 7         | Control Final | Control Final | Control Final                          | Controlador | 4,5          |
+| 8         | Control Final | Embalaje      | Embalaje                               | Embalador   | 10           |
+
 
 ### BALANZA REPORT LT (modelo completo, versión más económica)
 
-| Secuencia | Línea | Celda | Puesto | Tarea | Tiempo (min) |
-|---|---|---|---|---|---|
-| 1 | Armado | Depósito | Salida Depósito (retiro de materiales) | Armador | 2 |
-| 2 | Armado | Celda 1 | Armado | Armador | 11 |
-| 3 | Armado | Celda 3 | Ensamble Final, Calibrado y Cierre de Equipo | Ajustador | 12 |
-| 4 | Control Final | Control Final | Control Final y Metrológico | Controlador | 12 |
-| 5 | Control Final | Embalaje | Embalaje | Embalador | 12 |
+
+| Secuencia | Línea         | Celda         | Puesto                                       | Tarea       | Tiempo (min) |
+| --------- | ------------- | ------------- | -------------------------------------------- | ----------- | ------------ |
+| 1         | Armado        | Depósito      | Salida Depósito (retiro de materiales)       | Armador     | 2            |
+| 2         | Armado        | Celda 1       | Armado                                       | Armador     | 11           |
+| 3         | Armado        | Celda 3       | Ensamble Final, Calibrado y Cierre de Equipo | Ajustador   | 12           |
+| 4         | Control Final | Control Final | Control Final y Metrológico                  | Controlador | 12           |
+| 5         | Control Final | Embalaje      | Embalaje                                     | Embalador   | 12           |
+
 
 **Caso particular — viaje a Depósito:** el primer paso de este equipo no es un puesto/recurso propio: es el mismo Armador que va a hacer el Puesto 2 (Celda 1) el que primero camina hasta el Depósito a buscar los materiales que necesita para armar, y después va a Celda 1. No hay una dotación de Depósito dedicada a esto — por eso, en el modelo, no se representa con un `Service` independiente sino con un único `Seize` del Armador seguido de dos `Delay` encadenados (uno en Depósito, uno en Celda 1) y recién ahí el `Release`. Como el Armador es un `Operario` (peatón), esto además sirve para validar que el movimiento peatonal entre las dos naves funciona bien.
 
@@ -65,34 +67,40 @@ Se confirmaron las dos preguntas abiertas: (a) el viaje a Depósito aplica a **t
 
 ### BALANZA NOVEL ECO (gama media/baja)
 
-| Secuencia | Línea | Celda | Puesto | Tarea | Tiempo (min) |
-|---|---|---|---|---|---|
-| 1 | Armado | Depósito | Salida Depósito (retiro de materiales) | Armador | 2 |
-| 2 | Armado | Celda 1 | Armado | Armador | 3,15 |
-| 3 | Armado | Celda 2 | Ajuste | Ajustador | 3 |
-| 4 | Control Final | Control Final | Control Final | Controlador | 2,25 |
-| 5 | Control Final | Embalaje | Embalaje | Embalador | 3 |
+
+| Secuencia | Línea         | Celda         | Puesto                                 | Tarea       | Tiempo (min) |
+| --------- | ------------- | ------------- | -------------------------------------- | ----------- | ------------ |
+| 1         | Armado        | Depósito      | Salida Depósito (retiro de materiales) | Armador     | 2            |
+| 2         | Armado        | Celda 1       | Armado                                 | Armador     | 3,15         |
+| 3         | Armado        | Celda 2       | Ajuste                                 | Ajustador   | 3            |
+| 4         | Control Final | Control Final | Control Final                          | Controlador | 2,25         |
+| 5         | Control Final | Embalaje      | Embalaje                               | Embalador   | 3            |
+
 
 ### BALANZA LURA (traída de China)
 
-| Secuencia | Línea | Celda | Puesto | Tarea | Tiempo (min) |
-|---|---|---|---|---|---|
-| 1 | Armado | Depósito | Salida Depósito (retiro de materiales) | Ajustador | 2 |
-| 2 | Armado | Celda 2 | Ajuste | Ajustador | 4 |
-| 3 | Control Final | Control Final | Control Final | Controlador | 3,15 |
-| 4 | Control Final | Embalaje | Embalaje | Embalador | 3,15 |
+
+| Secuencia | Línea         | Celda         | Puesto                                 | Tarea       | Tiempo (min) |
+| --------- | ------------- | ------------- | -------------------------------------- | ----------- | ------------ |
+| 1         | Armado        | Depósito      | Salida Depósito (retiro de materiales) | Ajustador   | 2            |
+| 2         | Armado        | Celda 2       | Ajuste                                 | Ajustador   | 4            |
+| 3         | Control Final | Control Final | Control Final                          | Controlador | 3,15         |
+| 4         | Control Final | Embalaje      | Embalaje                               | Embalador   | 3,15         |
+
 
 **Caso particular — sin Celda 1:** este equipo llega ya armado desde China, así que no pasa por Armado/Celda 1. Por eso el viaje a Depósito no lo hace un Armador sino el **Ajustador**, que es quien realiza el primer puesto real de este equipo (Ajuste en Celda 2). Confirma la regla general: el que retira el material en Depósito es siempre el mismo operario que va a hacer el paso siguiente, sea cual sea su especialidad.
 
 ### BALANZA AURA (gama media)
 
-| Secuencia | Línea | Celda | Puesto | Tarea | Tiempo (min) |
-|---|---|---|---|---|---|
-| 1 | Armado | Depósito | Salida Depósito (retiro de materiales) | Armador | 2 |
-| 2 | Armado | Celda 1 | Armado | Armador | 3,15 |
-| 3 | Armado | Celda 2 | Ajuste | Ajustador | 3 |
-| 4 | Control Final | Control Final | Control Final | Controlador | 2,5 |
-| 5 | Control Final | Embalaje | Embalaje | Embalador | 2,88 |
+
+| Secuencia | Línea         | Celda         | Puesto                                 | Tarea       | Tiempo (min) |
+| --------- | ------------- | ------------- | -------------------------------------- | ----------- | ------------ |
+| 1         | Armado        | Depósito      | Salida Depósito (retiro de materiales) | Armador     | 2            |
+| 2         | Armado        | Celda 1       | Armado                                 | Armador     | 3,15         |
+| 3         | Armado        | Celda 2       | Ajuste                                 | Ajustador   | 3            |
+| 4         | Control Final | Control Final | Control Final                          | Controlador | 2,5          |
+| 5         | Control Final | Embalaje      | Embalaje                               | Embalador   | 2,88         |
+
 
 Con esto los 5 equipos ya tienen sus tiempos cargados en `Datos/tiempos_proceso.csv`. Sigue pendiente el dato de Celda 3 para REPORT LT (si es una celda física distinta o un alias) y la pregunta (b) de arriba sobre el retiro puntual de material en Depósito.
 
@@ -139,3 +147,4 @@ TPI-Simulacion-KRETZ/
     ├── tiempos_proceso.csv
     └── dotacion_lineas.csv
 ```
+

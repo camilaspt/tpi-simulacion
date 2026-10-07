@@ -1,0 +1,4 @@
+[1006/155826.031:INFO:CONSOLE(7)] "THREE.ColladaLoader: File version 1.4.0", source: file:///C:/Program%20Files/AnyLogic%208.9%20Personal%20Learning%20Edition/plugins/com.anylogic.graphics3d_8.9.9.202606170507/static/init.js (7)
+[1006/155826.111:INFO:CONSOLE(13)] "Loaded: file:C:/Users/cspitale/Desktop/Cami/TPI-Simulacion-KRETZ/3d/worker.dae", source: file:///C:/Program%20Files/AnyLogic%208.9%20Personal%20Learning%20Edition/plugins/com.anylogic.graphics3d_8.9.9.202606170507/static/init.js (13)
+[1006/155826.119:INFO:CONSOLE(13)] "Loaded: file:C:/Users/cspitale/Desktop/Cami/TPI-Simulacion-KRETZ/3d/worker.dae", source: file:///C:/Program%20Files/AnyLogic%208.9%20Personal%20Learning%20Edition/plugins/com.anylogic.graphics3d_8.9.9.202606170507/static/init.js (13)
+[1006/160023.114:ERROR:gpu_init.cc(523)] Passthrough is not supported, GL is disabled, ANGLE is 
