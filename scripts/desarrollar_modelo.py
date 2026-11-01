@@ -23,13 +23,17 @@ import modelo_java as J  # noqa: E402
 
 PAQUETE = "tpi_simulacion_kretz"
 PML = "com.anylogic.libraries.processmodeling"
+PED = "com.anylogic.libraries.pedestrian"
 
-# Id del parámetro genérico de cada bloque de la Process Modeling Library 8.9
+# Id del parámetro genérico de cada bloque (Process Modeling y Pedestrian Library 8.9)
 GENERICOS = {
     "Source": "1412336242928", "Sink": "1412336242929", "Delay": "1412336242930",
     "SelectOutput": "1412336242931", "Seize": "1412336243147", "Release": "1412336243154",
-    "Wait": "1412336243169", "ResourcePool": "1412336243135",
+    "Wait": "1412336243169", "ResourcePool": "1412336243135", "Enter": "1412336242933",
+    "PedEnter": "1412464601088", "PedGoTo": "1412464601103", "PedSelectOutput": "1412464601215",
+    "PedWait": "1412464601107",
 }
+PAQUETES = {c: PED if c.startswith("Ped") else PML for c in GENERICOS}
 
 # ---------------------------------------------------------------------------
 # Diagrama de flujo. Cada parámetro: nombre -> (clase de valor, código, unidad)
@@ -37,6 +41,8 @@ GENERICOS = {
 # ---------------------------------------------------------------------------
 AG = [("agent", "Balanza")]
 AG_UNIT = [("agent", "Balanza"), ("unit", "Agent")]
+OP = [("agent", "Operario")]
+PEATON = [("ped", "Operario")]
 
 
 def codigo(c, kind=None):
@@ -74,16 +80,13 @@ BLOQUES = [
         "onSeizeUnit": accion("alTomarOperario(agent, (Operario) unit);", AG_UNIT),
         "onExit": accion("planificarDespuesDeTomar(agent);"),
     }),
-    ("caminar", "Delay", 240, Y2, {
-        "delayTime": tiempo("iniciarTramo(agent)"),
+    # La unidad espera a que su operario llegue caminando (lo libera alLlegarPeaton)
+    ("caminar", "Wait", 240, Y2, {
         "maximumCapacity": codigo("true"),
-        "onExit": accion("finTramo(agent);"),
+        "onEnter": accion("iniciarCaminata(agent);"),
+        "onExit": accion("finCaminata(agent);"),
     }),
-    ("masTramos", "SelectOutput", 340, Y2, {
-        "conditionIsProbabilistic": codigo("false"),
-        "condition": expr("!agent.tramos.isEmpty()", "boolean"),
-    }),
-    ("irAlRack", "SelectOutput", 430, Y2, {
+    ("irAlRack", "SelectOutput", 380, Y2, {
         "conditionIsProbabilistic": codigo("false"),
         "condition": expr("agent.fase == 1", "boolean"),
     }),
@@ -100,7 +103,7 @@ BLOQUES = [
     ("liberarRack", "Release", 720, Y1, {
         "releaseMode": codigo("self.SPECIFIED_RESOURCES"),
         "resources": expr("{ rackMateriales }", "ResourcePool[]"),
-        "onEnter": accion("agent.fase = 2;\nplanificarCaminata(agent, pX[agent.puestoActual], pY[agent.puestoActual]);"),
+        "onEnter": accion("agent.fase = 2;\nagent.destX = pX[agent.puestoActual];\nagent.destY = pY[agent.puestoActual];"),
     }),
     ("tarea", "Delay", 520, Y2, {
         "delayTime": tiempo("tiempoTarea(agent)"),
@@ -146,11 +149,11 @@ BLOQUES = [
     ("stock", "Sink", 1400, Y2, {
         "onEnter": accion("alIngresarStock(agent);"),
     }),
+    # Recurso estático: el pool solo asigna operarios; los mueve el circuito peatonal
     ("operarios", "ResourcePool", 130, 1250, {
+        "type": codigo("self.RESOURCE_STATIC"),
         "capacity": expr("cantidadOperarios()", "int", []),
         "newUnit": ("Entity", "Operario", None, None),
-        "speed": ("CodeUnitValue", "velocidadOperario", ("SpeedUnits", "MPS"), ("expr", "double", [])),
-        "homeNode": expr("zonaIngreso", "com.anylogic.engine.markup.INode", []),
         "forceStatisticsCollection": codigo("true"),
         "onNewUnit": accion("registrarOperario(unit);", [("unit", "Operario")]),
     }),
@@ -166,13 +169,54 @@ BLOQUES = [
     }),
 ]
 
+# ---------------------------------------------------------------------------
+# Circuito peatonal de los operarios (Pedestrian Library). Cada operario entra
+# una vez y queda en el lazo pedIr -> pedLlego -> pedEnPuesto -> pedIr: espera en
+# su lugar hasta que enviarPeaton le cambia el destino y lo libera.
+# ---------------------------------------------------------------------------
+YP = 1340
+VELOCIDAD = ("CodeUnitValue", "velocidadOperario", ("SpeedUnits", "MPS"), ("expr", "double", PEATON))
+BLOQUES_PEATONES = [
+    ("entrarPlanta", "Enter", 520, YP, {}),
+    ("pedEntrada", "PedEnter", 620, YP, {
+        "locationType": codigo("self.LOCATION_POINT"),
+        "level": expr("level", "Level", PEATON),
+        "locationX": expr("ped.destX", "double", PEATON),
+        "locationY": expr("ped.destY", "double", PEATON),
+        "comfortableSpeed": VELOCIDAD,
+        "initialSpeed": VELOCIDAD,
+        "diameter": ("CodeUnitValue", "0.5", ("LengthUnits", "METER"), ("expr", "double", PEATON)),
+        "onExit": accion("ped.enPlanta = true;", PEATON),
+    }),
+    ("pedIr", "PedGoTo", 720, YP, {
+        "mode": codigo("self.MODE_REACH_TARGET"),
+        "locationType": codigo("self.LOCATION_POINT"),
+        "locationX": expr("ped.destX", "double", PEATON),
+        "locationY": expr("ped.destY", "double", PEATON),
+    }),
+    # Si el destino cambió mientras caminaba, vuelve a pedIr (salidas 2 y 5)
+    ("pedLlego", "PedSelectOutput", 820, YP, {
+        "type": codigo("self.TYPE_CONDITIONS"),
+        "condition1": expr("llegoADestino(ped)", "boolean", PEATON),
+        "condition2": expr("true", "boolean", PEATON),
+        "condition3": expr("false", "boolean", PEATON),
+        "condition4": expr("false", "boolean", PEATON),
+    }),
+    ("pedEnPuesto", "PedWait", 920, YP, {
+        "locationType": codigo("self.LOCATION_POINT"),
+        "locationX": expr("ped.destX", "double", PEATON),
+        "locationY": expr("ped.destY", "double", PEATON),
+        "delayType": codigo("self.DELAY_MANUAL"),
+        "maximumCapacity": codigo("true"),
+        "onEnter": accion("alLlegarPeaton(ped);", PEATON),
+    }),
+]
+
 # (bloque destino, puerto de entrada, bloque origen, puerto de salida)
 CONEXIONES = [
     ("tomarOperario", "in", "fuenteOF", "out"),
     ("caminar", "in", "tomarOperario", "out"),
-    ("masTramos", "in", "caminar", "out"),
-    ("caminar", "in", "masTramos", "outT"),
-    ("irAlRack", "in", "masTramos", "outF"),
+    ("irAlRack", "in", "caminar", "out"),
     ("tomarRack", "in", "irAlRack", "outT"),
     ("retirarMateriales", "in", "tomarRack", "out"),
     ("liberarRack", "in", "retirarMateriales", "out"),
@@ -190,7 +234,27 @@ CONEXIONES = [
     ("inspeccion", "in", "tomarInspector", "out"),
     ("liberarInspector", "in", "inspeccion", "out"),
     ("stock", "in", "liberarInspector", "out"),
+    ("pedEntrada", "in", "entrarPlanta", "out"),
+    ("pedIr", "in", "pedEntrada", "out"),
+    ("pedLlego", "in", "pedIr", "out"),
+    ("pedLlego", "in", "pedIr", "ccl"),
+    ("pedEnPuesto", "in", "pedLlego", "out1"),
+    ("pedIr", "in", "pedLlego", "out2"),
+    ("pedIr", "in", "pedLlego", "out5"),
+    ("pedIr", "in", "pedEnPuesto", "out"),
 ]
+
+# Paredes de la planta (px, 16 px = 1 m): contorno con la entrada lateral izquierda,
+# dos puertas al patio en el frente y la pared entre naves con el paso de 5,6 m
+PAREDES = {
+    "wall": [(948, 170.4), (1592, 170.4), (1592, 561), (1467, 561)],
+    "wall1": [(1442.8, 561), (1178.4, 561)],
+    "wall2": [(1121.2, 561), (948, 561)],
+    "wall3": [(948, 170.4), (948, 336)],
+    "wall4": [(948, 420), (948, 561)],
+    "wall5": [(1281.6, 170.4), (1281.6, 470.4)],
+}
+ALTO_PAREDES = 48  # 3 m
 
 # Experimentos de comparación de escenarios: nombre -> (título, {parámetro: valor})
 EXPERIMENTOS = {
@@ -328,21 +392,21 @@ class Generador:
         self.el(e, "Action", accion_code, cdata=True)
         self.el(e, "Logging", "false")
 
-    # --- bloques de la Process Modeling Library -----------------------------
-    def bloque(self, container, name, clase, x, y, params, entidades):
+    # --- bloques de la Process Modeling y la Pedestrian Library -------------
+    def bloque(self, container, name, clase, x, y, params, entidades, tipo_agente="Balanza"):
         eo = self.el(container, "EmbeddedObject")
         self.comunes(eo, name, x, y, label=(-5, -12), public=False, show_label=True)
         aoc = self.el(eo, "ActiveObjectClass")
-        self.el(aoc, "PackageName", PML, cdata=True)
+        self.el(aoc, "PackageName", PAQUETES[clase], cdata=True)
         self.el(aoc, "ClassName", clase, cdata=True)
         gps = self.el(eo, "GenericParameterSubstitute")
         ref = self.el(gps, "GenericParameterSubstituteReference")
-        self.el(ref, "PackageName", PML, cdata=True)
+        self.el(ref, "PackageName", PAQUETES[clase], cdata=True)
         self.el(ref, "ClassName", clase, cdata=True)
         self.el(ref, "ItemName", GENERICOS[clase], cdata=True)
         if clase not in ("Source", "ResourcePool"):
             val = self.el(gps, "GenericParameterSubstituteValue", attrs={"Class": "CodeValue"})
-            self.el(val, "Code", "Balanza", cdata=True)
+            self.el(val, "Code", tipo_agente, cdata=True)
         ps = self.el(eo, "Parameters")
         for pname, (vclass, code, unit, _) in params.items():
             par = self.el(ps, "Parameter")
@@ -382,7 +446,7 @@ class Generador:
         for tag, blk, port in (("SourceConnectableItemReference", destino, puerto_in),
                                ("TargetConnectableItemReference", origen, puerto_out)):
             r = self.el(c, tag)
-            self.el(r, "PackageName", PML, cdata=True)
+            self.el(r, "PackageName", PAQUETES[clases[blk]], cdata=True)
             self.el(r, "ClassName", clases[blk], cdata=True)
             self.el(r, "ItemName", port, cdata=True)
         pts = self.el(c, "Points")
@@ -516,9 +580,7 @@ class Generador:
         main.removeChild(viejos)
         main.removeChild(self.hijo(main, "Connectors"))
         level, plano = self.presentacion_nivel(main)
-        nodos = self.hijos(plano, "RectangleNode")
-        plantilla_nodo = nodos[0].cloneNode(True)
-        for n in nodos:
+        for n in self.hijos(plano, "RectangleNode"):
             plano.removeChild(n)
 
         # Código de arranque (va justo después del nombre, como lo guarda AnyLogic)
@@ -541,26 +603,17 @@ class Generador:
         bloques = self.insertar_antes(main, self.el(None, "EmbeddedObjects"), ["Presentation"])
         clases = {}
         posiciones = {}
-        for name, cls, x, y, params in BLOQUES:
-            self.bloque(bloques, name, cls, x, y, params, entidades)
-            clases[name] = cls
-            posiciones[name] = (x, y)
+        for lista, tipo_agente in ((BLOQUES, "Balanza"), (BLOQUES_PEATONES, "Operario")):
+            for name, cls, x, y, params in lista:
+                self.bloque(bloques, name, cls, x, y, params, entidades, tipo_agente)
+                clases[name] = cls
+                posiciones[name] = (x, y)
         for i, con in enumerate(CONEXIONES):
             self.conector(conectores, i, *con, clases, posiciones)
 
-        # Nodo de ingreso (home del ResourcePool), a partir de un nodo del modelo base
-        nodo = plantilla_nodo
-        self.renovar_ids(nodo)
-        self.hijo(nodo, "Name").firstChild.data = "zonaIngreso"
-        self.hijo(nodo, "X").firstChild.data = "1128"
-        self.hijo(nodo, "Y").firstChild.data = "530"
-        for slope in nodo.getElementsByTagName("Slope"):
-            self.hijo(slope, "Name").firstChild.data = "zonaIngresoPendiente"
-        self.hijo(nodo, "Width").firstChild.data = "80"
-        self.hijo(nodo, "Height").firstChild.data = "26"
-        plano.appendChild(nodo)
-
+        self.paredes(plano)
         self.presentacion_main(plano)
+        self.requerir_libreria(PED, (8, 0, 5))
 
         # Balanza y Operario
         vb = self.hijo(balanza, "Variables")
@@ -586,6 +639,36 @@ class Generador:
         limpiar(self.doc)
         salida.write_bytes(self.doc.toprettyxml(indent="\t", encoding="UTF-8").replace(b"\n", b"\r\n"))
         print(f"Modelo escrito: {salida}")
+
+    def paredes(self, plano):
+        # Las paredes del modelo base se dibujaron con clics de más (tramos que vuelven
+        # sobre sí mismos y una diagonal en el depósito); para los peatones son
+        # obstáculos reales, así que se reescriben con el trazado limpio
+        for w in self.hijos(plano, "Wall"):
+            puntos = PAREDES[self.hijo(w, "Name").firstChild.data]
+            x0, y0 = puntos[0]
+            self.hijo(w, "X").firstChild.data = str(x0)
+            self.hijo(w, "Y").firstChild.data = str(y0)
+            self.hijo(w, "ZHeight").firstChild.data = str(ALTO_PAREDES)
+            lista = self.hijo(w, "Points")
+            for p in self.hijos(lista):
+                lista.removeChild(p)
+            for x, y in puntos:
+                p = self.el(lista, "Point")
+                self.el(p, "X", round(x - x0, 3))
+                self.el(p, "Y", round(y - y0, 3))
+                self.el(p, "Z", 0)
+
+    def requerir_libreria(self, nombre, version):
+        refs = self.doc.getElementsByTagName("RequiredLibraryReference")
+        if any(self.hijo(r, "LibraryName").firstChild.data == nombre for r in refs):
+            return
+        ref = self.el(None, "RequiredLibraryReference")
+        self.el(ref, "LibraryName", nombre, cdata=True)
+        for tag, v in zip(("VersionMajor", "VersionMinor", "VersionBuild"), version):
+            self.el(ref, tag, v)
+        ultima = refs[-1]
+        ultima.parentNode.insertBefore(ref, ultima.nextSibling)
 
     def presentacion_main(self, plano):
         # Tablero de indicadores sobre la parte izquierda del plano
@@ -642,6 +725,8 @@ class Generador:
                    " borde = especialidad (azul Armador, violeta Ajustador, verde azulado Controlador, marrón Embalador)",
                    size=9, color="0F172A")
         self.texto(plano, "rotuloFlujo", 40, 960, "Flujo del proceso (Process Modeling Library)", size=14, bold=True, color="0F172A")
+        self.texto(plano, "rotuloPeatones", 500, YP - 40, "Circuito peatonal de los operarios (Pedestrian Library)",
+                   size=14, bold=True, color="0F172A")
 
     def experimentos(self, main_id):
         exps = self.doc.getElementsByTagName("Experiments")[0]
@@ -677,6 +762,7 @@ def arnes(destino):
     pkg.mkdir(exist_ok=True)
     imports = ("package %s;\nimport java.util.*;\nimport java.awt.Color;\nimport com.anylogic.engine.*;\n"
                "import com.anylogic.engine.markup.*;\nimport com.anylogic.libraries.processmodeling.*;\n"
+               "import com.anylogic.libraries.pedestrian.*;\n"
                "import static com.anylogic.engine.Utilities.*;\n" % PAQUETE)
     (pkg / "Especialidad.java").write_text(imports + "public enum Especialidad { Armador, Ajustador, Controlador, Embalador, Polivalente }\n", encoding="utf-8")
 
@@ -702,18 +788,15 @@ def arnes(destino):
     m += "".join(f"  public {t} {n} = {v};\n" for n, t, v, _ in J.PARAMETROS)
     m += campos(J.VARIABLES_MAIN)
     m += "".join(f"  public EventTimeout {n};\n" for n, _ in J.EVENTOS)
-    m += "  public RectangularNode zonaIngreso;\n"
     m += "  public Level level;\n"
-    tipos = {"Source": "Source<Balanza>", "Seize": "Seize<Balanza>", "Delay": "Delay<Balanza>",
-             "Release": "Release<Balanza>", "SelectOutput": "SelectOutput<Balanza>", "Wait": "Wait<Balanza>",
-             "Sink": "Sink<Balanza>", "ResourcePool": "ResourcePool<Agent>"}
-    m += "".join(f"  public {tipos[c]} {n};\n" for n, c, _, _, _ in BLOQUES)
+    todos = [(b, "Balanza") for b in BLOQUES] + [(b, "Operario") for b in BLOQUES_PEATONES]
+    m += "".join(f"  public {c}<{'Agent' if c == 'ResourcePool' else t}> {n};\n" for (n, c, _, _, _), t in todos)
     m += metodos(J.FUNCIONES_MAIN)
     m += f"  void startup() {{\n{J.STARTUP}\n  }}\n"
     for n, a in J.EVENTOS:
         m += f"  void accion_{n}() {{\n{a}\n  }}\n"
     k = 0
-    for n, c, _, _, params in BLOQUES:
+    for (n, c, _, _, params), _ in todos:
         for pn, (_, code, _, kind) in params.items():
             if kind is None:
                 continue
@@ -747,6 +830,7 @@ def verificar(destino):
     plugins = instalacion / "plugins"
     jars = [str(p) for p in plugins.glob("com.anylogic.engine*/*.jar")]
     jars += [str(p) for p in plugins.glob("com.anylogic.process_modeling_library_*/lib/*.jar")]
+    jars += [str(p) for p in plugins.glob("com.anylogic.pedestrian_library_*/lib/*.jar")]
     pkg = arnes(destino)
     fuentes = [str(p) for p in pkg.glob("*.java")]
     salida = destino / "clases"
