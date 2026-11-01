@@ -260,6 +260,9 @@ ALTO_PAREDES = 48  # 3 m
 EXPERIMENTOS = {
     "Simulation": ("Escenario actual", {}),
     "EscenarioContratacion": ("Contratar 2 Ajustadores", {"extraAjustadores": "2"}),
+    "EscenarioContratacionArmadores": ("Contratar 2 Armadores", {"extraArmadores": "2"}),
+    "EscenarioContratacionControlador": ("Contratar 1 Controlador", {"extraControladores": "1"}),
+    "EscenarioContratacionEmbalador": ("Contratar 1 Embalador", {"extraEmbaladores": "1"}),
     "EscenarioReserva": ("Personal de reserva polivalente (2)", {"operariosReserva": "2"}),
     "EscenarioReorganizacion": ("Reorganización: 3 armadores + 2 ajustadores por línea",
                                 {"armadoresPorLinea": "3", "ajustadoresPorLinea": "2",
@@ -734,6 +737,7 @@ class Generador:
         plantilla = base.cloneNode(True)
         exps.removeChild(base)
         for nombre, (titulo, valores) in EXPERIMENTOS.items():
+            valores = {**valores, "nombreEscenario": f'"{titulo}"'}
             e = plantilla.cloneNode(True)
             self.renovar_ids(e)
             self.hijo(e, "Name").firstChild.data = nombre

@@ -51,7 +51,10 @@
 			<ActiveObjectClass>
 				<Id>1787949286571</Id>
 				<Name><![CDATA[Main]]></Name>
-				<StartupCode><![CDATA[// La primera jornada arranca cuando los operarios están creados y dentro de la planta
+				<StartupCode><![CDATA[// Semilla de la corrida: la elegida o una al azar, que queda registrada para poder repetirla
+semillaUsada = semilla != 0 ? semilla : 1 + (long) (Math.random() * 999999999L);
+getDefaultRandomGenerator().setSeed(semillaUsada);
+// La primera jornada arranca cuando los operarios están creados y dentro de la planta
 eventoInicioJornada.restart(0.01);]]></StartupCode>
 				<Generic>false</Generic>
 				<GenericParameter>
@@ -1195,8 +1198,95 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 							</ParameterEditor>
 						</Properties>
 					</Variable>
-					<Variable Class="PlainVariable">
+					<Variable Class="Parameter">
 						<Id>1796000000073</Id>
+						<Name><![CDATA[nombreEscenario]]></Name>
+						<X>2080</X>
+						<Y>392</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+							<Type><![CDATA[String]]></Type>
+							<UnitType><![CDATA[NONE]]></UnitType>
+							<SdArray>false</SdArray>
+							<DefaultValue Class="CodeValue">
+								<Code><![CDATA["Escenario actual"]]></Code>
+							</DefaultValue>
+							<ParameterEditor>
+								<Id>1796000000074</Id>
+								<Label><![CDATA[Nombre del escenario (para los resultados)]]></Label>
+								<EditorContolType>TEXT_BOX</EditorContolType>
+								<MinSliderValue><![CDATA[0]]></MinSliderValue>
+								<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+								<DelimeterType>NO_DELIMETER</DelimeterType>
+							</ParameterEditor>
+						</Properties>
+					</Variable>
+					<Variable Class="Parameter">
+						<Id>1796000000075</Id>
+						<Name><![CDATA[semilla]]></Name>
+						<X>2080</X>
+						<Y>414</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+							<Type><![CDATA[long]]></Type>
+							<UnitType><![CDATA[NONE]]></UnitType>
+							<SdArray>false</SdArray>
+							<DefaultValue Class="CodeValue">
+								<Code><![CDATA[0]]></Code>
+							</DefaultValue>
+							<ParameterEditor>
+								<Id>1796000000076</Id>
+								<Label><![CDATA[Semilla (0 = aleatoria; la usada queda registrada)]]></Label>
+								<EditorContolType>TEXT_BOX</EditorContolType>
+								<MinSliderValue><![CDATA[0]]></MinSliderValue>
+								<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+								<DelimeterType>NO_DELIMETER</DelimeterType>
+							</ParameterEditor>
+						</Properties>
+					</Variable>
+					<Variable Class="Parameter">
+						<Id>1796000000077</Id>
+						<Name><![CDATA[guardarResultados]]></Name>
+						<X>2080</X>
+						<Y>436</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+							<Type><![CDATA[boolean]]></Type>
+							<UnitType><![CDATA[NONE]]></UnitType>
+							<SdArray>false</SdArray>
+							<DefaultValue Class="CodeValue">
+								<Code><![CDATA[true]]></Code>
+							</DefaultValue>
+							<ParameterEditor>
+								<Id>1796000000078</Id>
+								<Label><![CDATA[Guardar resultados en Resultados/*.csv]]></Label>
+								<EditorContolType>CHECK_BOX</EditorContolType>
+								<MinSliderValue><![CDATA[0]]></MinSliderValue>
+								<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+								<DelimeterType>NO_DELIMETER</DelimeterType>
+							</ParameterEditor>
+						</Properties>
+					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000079</Id>
 						<Name><![CDATA[T_ARMADO]]></Name>
 						<X>2340</X>
 						<Y>40</Y>
@@ -1215,7 +1305,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000074</Id>
+						<Id>1796000000080</Id>
 						<Name><![CDATA[T_AJUSTE]]></Name>
 						<X>2340</X>
 						<Y>62</Y>
@@ -1234,7 +1324,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000075</Id>
+						<Id>1796000000081</Id>
 						<Name><![CDATA[T_CONTROL]]></Name>
 						<X>2340</X>
 						<Y>84</Y>
@@ -1253,7 +1343,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000076</Id>
+						<Id>1796000000082</Id>
 						<Name><![CDATA[T_EMBALAJE]]></Name>
 						<X>2340</X>
 						<Y>106</Y>
@@ -1272,7 +1362,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000077</Id>
+						<Id>1796000000083</Id>
 						<Name><![CDATA[pxPorMetro]]></Name>
 						<X>2340</X>
 						<Y>128</Y>
@@ -1291,7 +1381,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000078</Id>
+						<Id>1796000000084</Id>
 						<Name><![CDATA[origenPuestosX]]></Name>
 						<X>2340</X>
 						<Y>150</Y>
@@ -1310,7 +1400,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000079</Id>
+						<Id>1796000000085</Id>
 						<Name><![CDATA[origenPuestosY]]></Name>
 						<X>2340</X>
 						<Y>172</Y>
@@ -1329,7 +1419,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000080</Id>
+						<Id>1796000000086</Id>
 						<Name><![CDATA[separacionPuestosX]]></Name>
 						<X>2340</X>
 						<Y>194</Y>
@@ -1348,7 +1438,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000081</Id>
+						<Id>1796000000087</Id>
 						<Name><![CDATA[separacionLineasY]]></Name>
 						<X>2340</X>
 						<Y>216</Y>
@@ -1367,7 +1457,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000082</Id>
+						<Id>1796000000088</Id>
 						<Name><![CDATA[rackX]]></Name>
 						<X>2340</X>
 						<Y>238</Y>
@@ -1386,7 +1476,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000083</Id>
+						<Id>1796000000089</Id>
 						<Name><![CDATA[rackY]]></Name>
 						<X>2340</X>
 						<Y>260</Y>
@@ -1405,7 +1495,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000084</Id>
+						<Id>1796000000090</Id>
 						<Name><![CDATA[zonaAusentesX]]></Name>
 						<X>2340</X>
 						<Y>282</Y>
@@ -1424,7 +1514,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000085</Id>
+						<Id>1796000000091</Id>
 						<Name><![CDATA[zonaAusentesY]]></Name>
 						<X>2340</X>
 						<Y>304</Y>
@@ -1443,7 +1533,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000086</Id>
+						<Id>1796000000092</Id>
 						<Name><![CDATA[zonaReservaX]]></Name>
 						<X>2340</X>
 						<Y>326</Y>
@@ -1462,7 +1552,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000087</Id>
+						<Id>1796000000093</Id>
 						<Name><![CDATA[zonaReservaY]]></Name>
 						<X>2340</X>
 						<Y>348</Y>
@@ -1481,7 +1571,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000088</Id>
+						<Id>1796000000094</Id>
 						<Name><![CDATA[nombresModelo]]></Name>
 						<X>2340</X>
 						<Y>370</Y>
@@ -1500,7 +1590,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000089</Id>
+						<Id>1796000000095</Id>
 						<Name><![CDATA[abreviaturas]]></Name>
 						<X>2340</X>
 						<Y>392</Y>
@@ -1519,7 +1609,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000090</Id>
+						<Id>1796000000096</Id>
 						<Name><![CDATA[recLen]]></Name>
 						<X>2340</X>
 						<Y>414</Y>
@@ -1538,7 +1628,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000091</Id>
+						<Id>1796000000097</Id>
 						<Name><![CDATA[recTipo]]></Name>
 						<X>2340</X>
 						<Y>436</Y>
@@ -1557,7 +1647,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000092</Id>
+						<Id>1796000000098</Id>
 						<Name><![CDATA[recNum]]></Name>
 						<X>2340</X>
 						<Y>458</Y>
@@ -1576,7 +1666,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000093</Id>
+						<Id>1796000000099</Id>
 						<Name><![CDATA[recTiempo]]></Name>
 						<X>2340</X>
 						<Y>480</Y>
@@ -1595,7 +1685,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000094</Id>
+						<Id>1796000000100</Id>
 						<Name><![CDATA[tiempoRetiro]]></Name>
 						<X>2340</X>
 						<Y>502</Y>
@@ -1614,7 +1704,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000095</Id>
+						<Id>1796000000101</Id>
 						<Name><![CDATA[fuenteTiempos]]></Name>
 						<X>2340</X>
 						<Y>524</Y>
@@ -1633,7 +1723,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000096</Id>
+						<Id>1796000000102</Id>
 						<Name><![CDATA[plantaConstruida]]></Name>
 						<X>2340</X>
 						<Y>546</Y>
@@ -1652,7 +1742,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000097</Id>
+						<Id>1796000000103</Id>
 						<Name><![CDATA[nPuestos]]></Name>
 						<X>2340</X>
 						<Y>568</Y>
@@ -1671,7 +1761,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000098</Id>
+						<Id>1796000000104</Id>
 						<Name><![CDATA[nArmadoFijos]]></Name>
 						<X>2340</X>
 						<Y>590</Y>
@@ -1690,7 +1780,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000099</Id>
+						<Id>1796000000105</Id>
 						<Name><![CDATA[columnasLinea]]></Name>
 						<X>2340</X>
 						<Y>612</Y>
@@ -1709,7 +1799,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000100</Id>
+						<Id>1796000000106</Id>
 						<Name><![CDATA[pLinea]]></Name>
 						<X>2340</X>
 						<Y>634</Y>
@@ -1728,7 +1818,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000101</Id>
+						<Id>1796000000107</Id>
 						<Name><![CDATA[pTipo]]></Name>
 						<X>2340</X>
 						<Y>656</Y>
@@ -1747,7 +1837,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000102</Id>
+						<Id>1796000000108</Id>
 						<Name><![CDATA[pNum]]></Name>
 						<X>2340</X>
 						<Y>678</Y>
@@ -1766,7 +1856,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000103</Id>
+						<Id>1796000000109</Id>
 						<Name><![CDATA[pX]]></Name>
 						<X>2560</X>
 						<Y>40</Y>
@@ -1785,7 +1875,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000104</Id>
+						<Id>1796000000110</Id>
 						<Name><![CDATA[pY]]></Name>
 						<X>2560</X>
 						<Y>62</Y>
@@ -1804,7 +1894,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000105</Id>
+						<Id>1796000000111</Id>
 						<Name><![CDATA[pTitular]]></Name>
 						<X>2560</X>
 						<Y>84</Y>
@@ -1823,7 +1913,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000106</Id>
+						<Id>1796000000112</Id>
 						<Name><![CDATA[pAtiende]]></Name>
 						<X>2560</X>
 						<Y>106</Y>
@@ -1842,7 +1932,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000107</Id>
+						<Id>1796000000113</Id>
 						<Name><![CDATA[lineaCapaz]]></Name>
 						<X>2560</X>
 						<Y>128</Y>
@@ -1861,7 +1951,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000108</Id>
+						<Id>1796000000114</Id>
 						<Name><![CDATA[ops]]></Name>
 						<X>2560</X>
 						<Y>150</Y>
@@ -1880,7 +1970,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000109</Id>
+						<Id>1796000000115</Id>
 						<Name><![CDATA[colaLiberacion]]></Name>
 						<X>2560</X>
 						<Y>172</Y>
@@ -1899,7 +1989,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000110</Id>
+						<Id>1796000000116</Id>
 						<Name><![CDATA[contadorLiberadas]]></Name>
 						<X>2560</X>
 						<Y>194</Y>
@@ -1918,7 +2008,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000111</Id>
+						<Id>1796000000117</Id>
 						<Name><![CDATA[dia]]></Name>
 						<X>2560</X>
 						<Y>216</Y>
@@ -1937,7 +2027,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000112</Id>
+						<Id>1796000000118</Id>
 						<Name><![CDATA[diaGlobal]]></Name>
 						<X>2560</X>
 						<Y>238</Y>
@@ -1956,7 +2046,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000113</Id>
+						<Id>1796000000119</Id>
 						<Name><![CDATA[semana]]></Name>
 						<X>2560</X>
 						<Y>260</Y>
@@ -1975,7 +2065,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000114</Id>
+						<Id>1796000000120</Id>
 						<Name><![CDATA[enRecuperacion]]></Name>
 						<X>2560</X>
 						<Y>282</Y>
@@ -1994,7 +2084,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000115</Id>
+						<Id>1796000000121</Id>
 						<Name><![CDATA[simulacionTerminada]]></Name>
 						<X>2560</X>
 						<Y>304</Y>
@@ -2013,7 +2103,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000116</Id>
+						<Id>1796000000122</Id>
 						<Name><![CDATA[tInicioJornada]]></Name>
 						<X>2560</X>
 						<Y>326</Y>
@@ -2032,7 +2122,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000117</Id>
+						<Id>1796000000123</Id>
 						<Name><![CDATA[tInicioRecuperacion]]></Name>
 						<X>2560</X>
 						<Y>348</Y>
@@ -2051,7 +2141,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000118</Id>
+						<Id>1796000000124</Id>
 						<Name><![CDATA[factorAusenciaDia]]></Name>
 						<X>2560</X>
 						<Y>370</Y>
@@ -2070,7 +2160,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000119</Id>
+						<Id>1796000000125</Id>
 						<Name><![CDATA[ofDia]]></Name>
 						<X>2560</X>
 						<Y>392</Y>
@@ -2089,7 +2179,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000120</Id>
+						<Id>1796000000126</Id>
 						<Name><![CDATA[aTiempoDia]]></Name>
 						<X>2560</X>
 						<Y>414</Y>
@@ -2108,7 +2198,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000121</Id>
+						<Id>1796000000127</Id>
 						<Name><![CDATA[prodDia]]></Name>
 						<X>2560</X>
 						<Y>436</Y>
@@ -2127,7 +2217,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000122</Id>
+						<Id>1796000000128</Id>
 						<Name><![CDATA[ofSemana]]></Name>
 						<X>2560</X>
 						<Y>458</Y>
@@ -2146,7 +2236,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000123</Id>
+						<Id>1796000000129</Id>
 						<Name><![CDATA[prodSemana]]></Name>
 						<X>2560</X>
 						<Y>480</Y>
@@ -2165,7 +2255,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000124</Id>
+						<Id>1796000000130</Id>
 						<Name><![CDATA[prodTotal]]></Name>
 						<X>2560</X>
 						<Y>502</Y>
@@ -2184,7 +2274,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000125</Id>
+						<Id>1796000000131</Id>
 						<Name><![CDATA[faltanteModelo]]></Name>
 						<X>2560</X>
 						<Y>524</Y>
@@ -2203,7 +2293,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000126</Id>
+						<Id>1796000000132</Id>
 						<Name><![CDATA[liberadasSemana]]></Name>
 						<X>2560</X>
 						<Y>546</Y>
@@ -2222,7 +2312,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000127</Id>
+						<Id>1796000000133</Id>
 						<Name><![CDATA[terminadasSemana]]></Name>
 						<X>2560</X>
 						<Y>568</Y>
@@ -2241,7 +2331,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000128</Id>
+						<Id>1796000000134</Id>
 						<Name><![CDATA[enProceso]]></Name>
 						<X>2560</X>
 						<Y>590</Y>
@@ -2260,7 +2350,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000129</Id>
+						<Id>1796000000135</Id>
 						<Name><![CDATA[ausentesHoy]]></Name>
 						<X>2560</X>
 						<Y>612</Y>
@@ -2279,7 +2369,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000130</Id>
+						<Id>1796000000136</Id>
 						<Name><![CDATA[vacantesHoy]]></Name>
 						<X>2560</X>
 						<Y>634</Y>
@@ -2298,7 +2388,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000131</Id>
+						<Id>1796000000137</Id>
 						<Name><![CDATA[coberturasHoy]]></Name>
 						<X>2560</X>
 						<Y>656</Y>
@@ -2317,7 +2407,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000132</Id>
+						<Id>1796000000138</Id>
 						<Name><![CDATA[vacantesCriticasHoy]]></Name>
 						<X>2560</X>
 						<Y>678</Y>
@@ -2336,7 +2426,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000133</Id>
+						<Id>1796000000139</Id>
 						<Name><![CDATA[coberturasTotal]]></Name>
 						<X>2780</X>
 						<Y>40</Y>
@@ -2355,7 +2445,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000134</Id>
+						<Id>1796000000140</Id>
 						<Name><![CDATA[vacantesCriticasTotal]]></Name>
 						<X>2780</X>
 						<Y>62</Y>
@@ -2374,7 +2464,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000135</Id>
+						<Id>1796000000141</Id>
 						<Name><![CDATA[minutosVacantesTotal]]></Name>
 						<X>2780</X>
 						<Y>84</Y>
@@ -2393,7 +2483,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000136</Id>
+						<Id>1796000000142</Id>
 						<Name><![CDATA[caminataTotalMin]]></Name>
 						<X>2780</X>
 						<Y>106</Y>
@@ -2412,7 +2502,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000137</Id>
+						<Id>1796000000143</Id>
 						<Name><![CDATA[personasRecuperacion]]></Name>
 						<X>2780</X>
 						<Y>128</Y>
@@ -2431,7 +2521,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000138</Id>
+						<Id>1796000000144</Id>
 						<Name><![CDATA[pendientesInicioRecuperacion]]></Name>
 						<X>2780</X>
 						<Y>150</Y>
@@ -2450,7 +2540,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000139</Id>
+						<Id>1796000000145</Id>
 						<Name><![CDATA[diasSimulados]]></Name>
 						<X>2780</X>
 						<Y>172</Y>
@@ -2469,7 +2559,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000140</Id>
+						<Id>1796000000146</Id>
 						<Name><![CDATA[diasSinCumplir]]></Name>
 						<X>2780</X>
 						<Y>194</Y>
@@ -2488,7 +2578,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000141</Id>
+						<Id>1796000000147</Id>
 						<Name><![CDATA[diasConAusencias]]></Name>
 						<X>2780</X>
 						<Y>216</Y>
@@ -2507,7 +2597,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000142</Id>
+						<Id>1796000000148</Id>
 						<Name><![CDATA[diasSinAusencias]]></Name>
 						<X>2780</X>
 						<Y>238</Y>
@@ -2526,7 +2616,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000143</Id>
+						<Id>1796000000149</Id>
 						<Name><![CDATA[faltanteConAusencias]]></Name>
 						<X>2780</X>
 						<Y>260</Y>
@@ -2545,7 +2635,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000144</Id>
+						<Id>1796000000150</Id>
 						<Name><![CDATA[faltanteSinAusencias]]></Name>
 						<X>2780</X>
 						<Y>282</Y>
@@ -2564,7 +2654,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000145</Id>
+						<Id>1796000000151</Id>
 						<Name><![CDATA[horasExtraTotal]]></Name>
 						<X>2780</X>
 						<Y>304</Y>
@@ -2583,7 +2673,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000146</Id>
+						<Id>1796000000152</Id>
 						<Name><![CDATA[costoHorasExtraTotal]]></Name>
 						<X>2780</X>
 						<Y>326</Y>
@@ -2602,7 +2692,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000147</Id>
+						<Id>1796000000153</Id>
 						<Name><![CDATA[historial]]></Name>
 						<X>2780</X>
 						<Y>348</Y>
@@ -2621,7 +2711,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000148</Id>
+						<Id>1796000000154</Id>
 						<Name><![CDATA[inspeccionadas]]></Name>
 						<X>2780</X>
 						<Y>370</Y>
@@ -2640,7 +2730,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000149</Id>
+						<Id>1796000000155</Id>
 						<Name><![CDATA[rechazadas]]></Name>
 						<X>2780</X>
 						<Y>392</Y>
@@ -2659,7 +2749,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000150</Id>
+						<Id>1796000000156</Id>
 						<Name><![CDATA[enStock]]></Name>
 						<X>2780</X>
 						<Y>414</Y>
@@ -2678,7 +2768,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000151</Id>
+						<Id>1796000000157</Id>
 						<Name><![CDATA[sumaTiempoSistema]]></Name>
 						<X>2780</X>
 						<Y>436</Y>
@@ -2697,7 +2787,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000152</Id>
+						<Id>1796000000158</Id>
 						<Name><![CDATA[sumaEspera]]></Name>
 						<X>2780</X>
 						<Y>458</Y>
@@ -2715,10 +2805,219 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 							</InitialValue>
 						</Properties>
 					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000159</Id>
+						<Name><![CDATA[semillaUsada]]></Name>
+						<X>2780</X>
+						<Y>480</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+							<Type><![CDATA[long]]></Type>
+							<InitialValue Class="CodeValue">
+								<Code><![CDATA[0]]></Code>
+							</InitialValue>
+						</Properties>
+					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000160</Id>
+						<Name><![CDATA[ofTotal]]></Name>
+						<X>2780</X>
+						<Y>502</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+							<Type><![CDATA[int[]]]></Type>
+							<InitialValue Class="CodeValue">
+								<Code><![CDATA[new int[5]]]></Code>
+							</InitialValue>
+						</Properties>
+					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000161</Id>
+						<Name><![CDATA[aTiempoTotal]]></Name>
+						<X>2780</X>
+						<Y>524</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+							<Type><![CDATA[int[]]]></Type>
+							<InitialValue Class="CodeValue">
+								<Code><![CDATA[new int[5]]]></Code>
+							</InitialValue>
+						</Properties>
+					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000162</Id>
+						<Name><![CDATA[sumaEsperaTipo]]></Name>
+						<X>2780</X>
+						<Y>546</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+							<Type><![CDATA[double[]]]></Type>
+							<InitialValue Class="CodeValue">
+								<Code><![CDATA[new double[4]]]></Code>
+							</InitialValue>
+						</Properties>
+					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000163</Id>
+						<Name><![CDATA[maxEsperaTipo]]></Name>
+						<X>2780</X>
+						<Y>568</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+							<Type><![CDATA[double[]]]></Type>
+							<InitialValue Class="CodeValue">
+								<Code><![CDATA[new double[4]]]></Code>
+							</InitialValue>
+						</Properties>
+					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000164</Id>
+						<Name><![CDATA[nEsperaTipo]]></Name>
+						<X>2780</X>
+						<Y>590</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+							<Type><![CDATA[int[]]]></Type>
+							<InitialValue Class="CodeValue">
+								<Code><![CDATA[new int[4]]]></Code>
+							</InitialValue>
+						</Properties>
+					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000165</Id>
+						<Name><![CDATA[unidadesLinea]]></Name>
+						<X>2780</X>
+						<Y>612</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+							<Type><![CDATA[int[]]]></Type>
+							<InitialValue Class="CodeValue">
+								<Code><![CDATA[new int[12]]]></Code>
+							</InitialValue>
+						</Properties>
+					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000166</Id>
+						<Name><![CDATA[faltanteSemana]]></Name>
+						<X>2780</X>
+						<Y>634</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+							<Type><![CDATA[int]]></Type>
+							<InitialValue Class="CodeValue">
+								<Code><![CDATA[0]]></Code>
+							</InitialValue>
+						</Properties>
+					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000167</Id>
+						<Name><![CDATA[horasExtraSemana]]></Name>
+						<X>2780</X>
+						<Y>656</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+							<Type><![CDATA[double]]></Type>
+							<InitialValue Class="CodeValue">
+								<Code><![CDATA[0]]></Code>
+							</InitialValue>
+						</Properties>
+					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000168</Id>
+						<Name><![CDATA[costoExtraSemana]]></Name>
+						<X>2780</X>
+						<Y>678</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+							<Type><![CDATA[double]]></Type>
+							<InitialValue Class="CodeValue">
+								<Code><![CDATA[0]]></Code>
+							</InitialValue>
+						</Properties>
+					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000169</Id>
+						<Name><![CDATA[pendientesSemana]]></Name>
+						<X>3000</X>
+						<Y>40</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+							<Type><![CDATA[int]]></Type>
+							<InitialValue Class="CodeValue">
+								<Code><![CDATA[0]]></Code>
+							</InitialValue>
+						</Properties>
+					</Variable>
 				</Variables>
 				<Connectors>
 					<Connector>
-						<Id>1796000000283</Id>
+						<Id>1796000000306</Id>
 						<Name><![CDATA[conector0]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -2761,7 +3060,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000284</Id>
+						<Id>1796000000307</Id>
 						<Name><![CDATA[conector1]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -2804,7 +3103,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000285</Id>
+						<Id>1796000000308</Id>
 						<Name><![CDATA[conector2]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -2847,7 +3146,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000286</Id>
+						<Id>1796000000309</Id>
 						<Name><![CDATA[conector3]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -2890,7 +3189,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000287</Id>
+						<Id>1796000000310</Id>
 						<Name><![CDATA[conector4]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -2933,7 +3232,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000288</Id>
+						<Id>1796000000311</Id>
 						<Name><![CDATA[conector5]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -2976,7 +3275,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000289</Id>
+						<Id>1796000000312</Id>
 						<Name><![CDATA[conector6]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3019,7 +3318,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000290</Id>
+						<Id>1796000000313</Id>
 						<Name><![CDATA[conector7]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3062,7 +3361,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000291</Id>
+						<Id>1796000000314</Id>
 						<Name><![CDATA[conector8]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3105,7 +3404,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000292</Id>
+						<Id>1796000000315</Id>
 						<Name><![CDATA[conector9]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3148,7 +3447,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000293</Id>
+						<Id>1796000000316</Id>
 						<Name><![CDATA[conector10]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3191,7 +3490,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000294</Id>
+						<Id>1796000000317</Id>
 						<Name><![CDATA[conector11]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3234,7 +3533,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000295</Id>
+						<Id>1796000000318</Id>
 						<Name><![CDATA[conector12]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3277,7 +3576,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000296</Id>
+						<Id>1796000000319</Id>
 						<Name><![CDATA[conector13]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3320,7 +3619,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000297</Id>
+						<Id>1796000000320</Id>
 						<Name><![CDATA[conector14]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3363,7 +3662,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000298</Id>
+						<Id>1796000000321</Id>
 						<Name><![CDATA[conector15]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3406,7 +3705,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000299</Id>
+						<Id>1796000000322</Id>
 						<Name><![CDATA[conector16]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3449,7 +3748,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000300</Id>
+						<Id>1796000000323</Id>
 						<Name><![CDATA[conector17]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3492,7 +3791,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000301</Id>
+						<Id>1796000000324</Id>
 						<Name><![CDATA[conector18]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3535,7 +3834,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000302</Id>
+						<Id>1796000000325</Id>
 						<Name><![CDATA[conector19]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3578,7 +3877,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000303</Id>
+						<Id>1796000000326</Id>
 						<Name><![CDATA[conector20]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3621,7 +3920,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000304</Id>
+						<Id>1796000000327</Id>
 						<Name><![CDATA[conector21]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3664,7 +3963,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000305</Id>
+						<Id>1796000000328</Id>
 						<Name><![CDATA[conector22]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3707,7 +4006,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000306</Id>
+						<Id>1796000000329</Id>
 						<Name><![CDATA[conector23]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3750,7 +4049,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000307</Id>
+						<Id>1796000000330</Id>
 						<Name><![CDATA[conector24]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3793,7 +4092,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000308</Id>
+						<Id>1796000000331</Id>
 						<Name><![CDATA[conector25]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3836,7 +4135,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000309</Id>
+						<Id>1796000000332</Id>
 						<Name><![CDATA[conector26]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3879,7 +4178,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000310</Id>
+						<Id>1796000000333</Id>
 						<Name><![CDATA[conector27]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3924,7 +4223,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 				</Connectors>
 				<Events>
 					<Event>
-						<Id>1796000000153</Id>
+						<Id>1796000000170</Id>
 						<Name><![CDATA[eventoInicioJornada]]></Name>
 						<X>1820</X>
 						<Y>520</Y>
@@ -3944,7 +4243,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 								<Code><![CDATA[1]]></Code>
 								<Unit Class="RateUnits"><![CDATA[PER_MINUTE]]></Unit>
 							</Rate>
-							<Id>1796000000154</Id>
+							<Id>1796000000171</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1787990400000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -3961,7 +4260,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						<Logging>false</Logging>
 					</Event>
 					<Event>
-						<Id>1796000000155</Id>
+						<Id>1796000000172</Id>
 						<Name><![CDATA[eventoCierreJornada]]></Name>
 						<X>1820</X>
 						<Y>545</Y>
@@ -3981,7 +4280,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 								<Code><![CDATA[1]]></Code>
 								<Unit Class="RateUnits"><![CDATA[PER_MINUTE]]></Unit>
 							</Rate>
-							<Id>1796000000156</Id>
+							<Id>1796000000173</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1787990400000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -3999,7 +4298,7 @@ else cerrarJornada();]]></Action>
 						<Logging>false</Logging>
 					</Event>
 					<Event>
-						<Id>1796000000157</Id>
+						<Id>1796000000174</Id>
 						<Name><![CDATA[eventoFinRecuperacion]]></Name>
 						<X>1820</X>
 						<Y>570</Y>
@@ -4019,7 +4318,7 @@ else cerrarJornada();]]></Action>
 								<Code><![CDATA[1]]></Code>
 								<Unit Class="RateUnits"><![CDATA[PER_MINUTE]]></Unit>
 							</Rate>
-							<Id>1796000000158</Id>
+							<Id>1796000000175</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1787990400000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -4040,7 +4339,7 @@ else cerrarJornada();]]></Action>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[int]]></ReturnType>
-						<Id>1796000000159</Id>
+						<Id>1796000000176</Id>
 						<Name><![CDATA[cantidadOperarios]]></Name>
 						<X>2800</X>
 						<Y>40</Y>
@@ -4057,7 +4356,7 @@ return nPuestos + operariosReserva;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000160</Id>
+						<Id>1796000000177</Id>
 						<Name><![CDATA[construirPlanta]]></Name>
 						<X>2800</X>
 						<Y>62</Y>
@@ -4097,7 +4396,7 @@ plantaConstruida = true;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000161</Id>
+						<Id>1796000000178</Id>
 						<Name><![CDATA[agregarPuesto]]></Name>
 						<X>2800</X>
 						<Y>84</Y>
@@ -4143,7 +4442,7 @@ pAtiende[p] = -1;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000162</Id>
+						<Id>1796000000179</Id>
 						<Name><![CDATA[pasoReceta]]></Name>
 						<X>2800</X>
 						<Y>106</Y>
@@ -4178,7 +4477,7 @@ recTiempo[m][k] = tiempo;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000163</Id>
+						<Id>1796000000180</Id>
 						<Name><![CDATA[cargarRecetas]]></Name>
 						<X>2800</X>
 						<Y>128</Y>
@@ -4261,7 +4560,7 @@ fuenteTiempos = "Datos/tiempos_proceso.csv";]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[int]]></ReturnType>
-						<Id>1796000000164</Id>
+						<Id>1796000000181</Id>
 						<Name><![CDATA[indiceModelo]]></Name>
 						<X>2800</X>
 						<Y>150</Y>
@@ -4287,7 +4586,7 @@ return -1;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[Especialidad]]></ReturnType>
-						<Id>1796000000165</Id>
+						<Id>1796000000182</Id>
 						<Name><![CDATA[especialidadDeTipo]]></Name>
 						<X>2800</X>
 						<Y>172</Y>
@@ -4310,7 +4609,7 @@ return Especialidad.Embalador;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000166</Id>
+						<Id>1796000000183</Id>
 						<Name><![CDATA[registrarOperario]]></Name>
 						<X>2800</X>
 						<Y>194</Y>
@@ -4346,7 +4645,7 @@ if (o.idOp < nPuestos) {
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[int]]></ReturnType>
-						<Id>1796000000167</Id>
+						<Id>1796000000184</Id>
 						<Name><![CDATA[ofEjemplo]]></Name>
 						<X>2800</X>
 						<Y>216</Y>
@@ -4381,7 +4680,7 @@ return ejemplos[Math.max(1, Math.min(3, of)) - 1][m];]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[double]]></ReturnType>
-						<Id>1796000000168</Id>
+						<Id>1796000000185</Id>
 						<Name><![CDATA[tiempoTotalModelo]]></Name>
 						<X>2800</X>
 						<Y>238</Y>
@@ -4403,7 +4702,7 @@ return total;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[String]]></ReturnType>
-						<Id>1796000000169</Id>
+						<Id>1796000000186</Id>
 						<Name><![CDATA[nombreDia]]></Name>
 						<X>2800</X>
 						<Y>260</Y>
@@ -4424,7 +4723,7 @@ return dias[d % 7];]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[int]]></ReturnType>
-						<Id>1796000000170</Id>
+						<Id>1796000000187</Id>
 						<Name><![CDATA[sumar]]></Name>
 						<X>2800</X>
 						<Y>282</Y>
@@ -4446,7 +4745,7 @@ return total;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000171</Id>
+						<Id>1796000000188</Id>
 						<Name><![CDATA[iniciarJornada]]></Name>
 						<X>2800</X>
 						<Y>304</Y>
@@ -4469,6 +4768,7 @@ tInicioJornada = time();
 for (int m = 0; m < 5; m++) {
 	ofDia[m] = ofEjemplo(ofSeleccionada, m);
 	ofSemana[m] += ofDia[m];
+	ofTotal[m] += ofDia[m];
 	prodDia[m] = 0;
 	aTiempoDia[m] = 0;
 }
@@ -4481,7 +4781,7 @@ eventoCierreJornada.restart(duracionTurnoMin);]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000172</Id>
+						<Id>1796000000189</Id>
 						<Name><![CDATA[asignarAsistencia]]></Name>
 						<X>2800</X>
 						<Y>326</Y>
@@ -4505,7 +4805,7 @@ for (Operario o : ops) {
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000173</Id>
+						<Id>1796000000190</Id>
 						<Name><![CDATA[asignarCoberturas]]></Name>
 						<X>2800</X>
 						<Y>348</Y>
@@ -4556,7 +4856,7 @@ tomarOperario.recalculateResourceChoiceConditions();]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[boolean]]></ReturnType>
-						<Id>1796000000174</Id>
+						<Id>1796000000191</Id>
 						<Name><![CDATA[esPuestoCritico]]></Name>
 						<X>2800</X>
 						<Y>370</Y>
@@ -4581,7 +4881,7 @@ return true;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[boolean]]></ReturnType>
-						<Id>1796000000175</Id>
+						<Id>1796000000192</Id>
 						<Name><![CDATA[puedeCubrir]]></Name>
 						<X>2800</X>
 						<Y>392</Y>
@@ -4602,7 +4902,7 @@ return true;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[int]]></ReturnType>
-						<Id>1796000000176</Id>
+						<Id>1796000000193</Id>
 						<Name><![CDATA[cargaCobertura]]></Name>
 						<X>2800</X>
 						<Y>414</Y>
@@ -4625,7 +4925,7 @@ return carga;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[Operario]]></ReturnType>
-						<Id>1796000000177</Id>
+						<Id>1796000000194</Id>
 						<Name><![CDATA[mejorCandidato]]></Name>
 						<X>2800</X>
 						<Y>436</Y>
@@ -4650,7 +4950,7 @@ return cargaCobertura(candidato) < cargaCobertura(actual) ? candidato : actual;]
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[Operario]]></ReturnType>
-						<Id>1796000000178</Id>
+						<Id>1796000000195</Id>
 						<Name><![CDATA[buscarCobertura]]></Name>
 						<X>2800</X>
 						<Y>458</Y>
@@ -4693,7 +4993,7 @@ return mejor;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000179</Id>
+						<Id>1796000000196</Id>
 						<Name><![CDATA[asegurarEspacio]]></Name>
 						<X>2800</X>
 						<Y>480</Y>
@@ -4716,7 +5016,7 @@ if (o.getLevel() == null) o.setLevel(level);]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[boolean]]></ReturnType>
-						<Id>1796000000180</Id>
+						<Id>1796000000197</Id>
 						<Name><![CDATA[operariosEnPlanta]]></Name>
 						<X>2800</X>
 						<Y>502</Y>
@@ -4749,7 +5049,7 @@ return listos;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[double]]></ReturnType>
-						<Id>1796000000181</Id>
+						<Id>1796000000198</Id>
 						<Name><![CDATA[lugarAusenteX]]></Name>
 						<X>2800</X>
 						<Y>524</Y>
@@ -4769,7 +5069,7 @@ return listos;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[double]]></ReturnType>
-						<Id>1796000000182</Id>
+						<Id>1796000000199</Id>
 						<Name><![CDATA[lugarAusenteY]]></Name>
 						<X>2800</X>
 						<Y>546</Y>
@@ -4789,7 +5089,7 @@ return listos;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[double]]></ReturnType>
-						<Id>1796000000183</Id>
+						<Id>1796000000200</Id>
 						<Name><![CDATA[lugarReservaX]]></Name>
 						<X>2800</X>
 						<Y>568</Y>
@@ -4809,7 +5109,7 @@ return listos;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[double]]></ReturnType>
-						<Id>1796000000184</Id>
+						<Id>1796000000201</Id>
 						<Name><![CDATA[lugarReservaY]]></Name>
 						<X>2800</X>
 						<Y>590</Y>
@@ -4829,7 +5129,7 @@ return listos;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[double]]></ReturnType>
-						<Id>1796000000185</Id>
+						<Id>1796000000202</Id>
 						<Name><![CDATA[lugarRackX]]></Name>
 						<X>2800</X>
 						<Y>612</Y>
@@ -4849,7 +5149,7 @@ return listos;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[double]]></ReturnType>
-						<Id>1796000000186</Id>
+						<Id>1796000000203</Id>
 						<Name><![CDATA[lugarRackY]]></Name>
 						<X>2800</X>
 						<Y>634</Y>
@@ -4869,7 +5169,7 @@ return listos;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000187</Id>
+						<Id>1796000000204</Id>
 						<Name><![CDATA[irALugarDelDia]]></Name>
 						<X>2800</X>
 						<Y>656</Y>
@@ -4901,7 +5201,7 @@ enviarPeaton(o, pX[p], pY[p]);]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000188</Id>
+						<Id>1796000000205</Id>
 						<Name><![CDATA[ubicarOperarios]]></Name>
 						<X>2800</X>
 						<Y>678</Y>
@@ -4918,7 +5218,7 @@ enviarPeaton(o, pX[p], pY[p]);]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000189</Id>
+						<Id>1796000000206</Id>
 						<Name><![CDATA[enviarPeaton]]></Name>
 						<X>3020</X>
 						<Y>40</Y>
@@ -4956,7 +5256,7 @@ if (pedEnPuesto.contains(o)) {
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[boolean]]></ReturnType>
-						<Id>1796000000190</Id>
+						<Id>1796000000207</Id>
 						<Name><![CDATA[llegoADestino]]></Name>
 						<X>3020</X>
 						<Y>62</Y>
@@ -4976,7 +5276,7 @@ if (pedEnPuesto.contains(o)) {
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000191</Id>
+						<Id>1796000000208</Id>
 						<Name><![CDATA[alLlegarPeaton]]></Name>
 						<X>3020</X>
 						<Y>84</Y>
@@ -5000,7 +5300,7 @@ if (!caminar.free(b)) traceln("Aviso: la unidad " + b.ordenLiberacion + " no est
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000192</Id>
+						<Id>1796000000209</Id>
 						<Name><![CDATA[liberarUnidadesOF]]></Name>
 						<X>3020</X>
 						<Y>106</Y>
@@ -5041,7 +5341,7 @@ fuenteOF.inject(orden.size());]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000193</Id>
+						<Id>1796000000210</Id>
 						<Name><![CDATA[prepararUnidad]]></Name>
 						<X>3020</X>
 						<Y>128</Y>
@@ -5070,7 +5370,7 @@ enProceso++;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[double]]></ReturnType>
-						<Id>1796000000194</Id>
+						<Id>1796000000211</Id>
 						<Name><![CDATA[prioridad]]></Name>
 						<X>3020</X>
 						<Y>150</Y>
@@ -5091,7 +5391,7 @@ return b.paso * 100000.0 - b.ordenLiberacion;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[boolean]]></ReturnType>
-						<Id>1796000000195</Id>
+						<Id>1796000000212</Id>
 						<Name><![CDATA[puestoSirvePaso]]></Name>
 						<X>3020</X>
 						<Y>172</Y>
@@ -5122,7 +5422,7 @@ return pNum[p] == ((num - 1) % nArmadoFijos) + 1;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[boolean]]></ReturnType>
-						<Id>1796000000196</Id>
+						<Id>1796000000213</Id>
 						<Name><![CDATA[lineaPuedeProcesar]]></Name>
 						<X>3020</X>
 						<Y>194</Y>
@@ -5158,7 +5458,7 @@ return true;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[int]]></ReturnType>
-						<Id>1796000000197</Id>
+						<Id>1796000000214</Id>
 						<Name><![CDATA[puestoParaPaso]]></Name>
 						<X>3020</X>
 						<Y>216</Y>
@@ -5195,7 +5495,7 @@ return -1;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000198</Id>
+						<Id>1796000000215</Id>
 						<Name><![CDATA[alTomarOperario]]></Name>
 						<X>3020</X>
 						<Y>238</Y>
@@ -5228,7 +5528,7 @@ o.tInicioOcupado = time();]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000199</Id>
+						<Id>1796000000216</Id>
 						<Name><![CDATA[planificarDespuesDeTomar]]></Name>
 						<X>3020</X>
 						<Y>260</Y>
@@ -5243,7 +5543,13 @@ o.tInicioOcupado = time();]]></Body>
 							<Name><![CDATA[b]]></Name>
 							<Type><![CDATA[Balanza]]></Type>
 						</Parameter>
-						<Body><![CDATA[b.esperaTotal += time() - b.tInicioEspera;
+						<Body><![CDATA[double espera = time() - b.tInicioEspera;
+b.esperaTotal += espera;
+// Espera en cola por tipo de puesto (identifica cuellos de botella)
+int tipo = recTipo[b.tipoModelo][b.paso];
+sumaEsperaTipo[tipo] += espera;
+maxEsperaTipo[tipo] = Math.max(maxEsperaTipo[tipo], espera);
+nEsperaTipo[tipo]++;
 if (b.paso == 0) {
 	// Primer paso: el mismo operario va al rack único de materiales y después a su puesto
 	b.fase = 1;
@@ -5258,7 +5564,7 @@ if (b.paso == 0) {
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000200</Id>
+						<Id>1796000000217</Id>
 						<Name><![CDATA[iniciarCaminata]]></Name>
 						<X>3020</X>
 						<Y>282</Y>
@@ -5284,7 +5590,7 @@ enviarPeaton(o, b.destX, b.destY);]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000201</Id>
+						<Id>1796000000218</Id>
 						<Name><![CDATA[finCaminata]]></Name>
 						<X>3020</X>
 						<Y>304</Y>
@@ -5307,7 +5613,7 @@ caminataTotalMin += minutos;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[double]]></ReturnType>
-						<Id>1796000000202</Id>
+						<Id>1796000000219</Id>
 						<Name><![CDATA[tiempoAleatorio]]></Name>
 						<X>3020</X>
 						<Y>326</Y>
@@ -5330,7 +5636,7 @@ return triangular(media * (1 - 0.2 * k), media * (1 + 0.3 * k), media * (1 - 0.1
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[double]]></ReturnType>
-						<Id>1796000000203</Id>
+						<Id>1796000000220</Id>
 						<Name><![CDATA[tiempoTarea]]></Name>
 						<X>3020</X>
 						<Y>348</Y>
@@ -5350,7 +5656,7 @@ return triangular(media * (1 - 0.2 * k), media * (1 + 0.3 * k), media * (1 - 0.1
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000204</Id>
+						<Id>1796000000221</Id>
 						<Name><![CDATA[alLiberarOperario]]></Name>
 						<X>3020</X>
 						<Y>370</Y>
@@ -5376,7 +5682,7 @@ b.opActual = null;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[boolean]]></ReturnType>
-						<Id>1796000000205</Id>
+						<Id>1796000000222</Id>
 						<Name><![CDATA[registrarTerminada]]></Name>
 						<X>3020</X>
 						<Y>392</Y>
@@ -5400,7 +5706,12 @@ terminadasSemana++;
 prodDia[m]++;
 prodSemana[m]++;
 prodTotal[m]++;
-if (!enRecuperacion && b.diaOF == diaGlobal) aTiempoDia[m]++;
+if (!enRecuperacion && b.diaOF == diaGlobal) {
+	aTiempoDia[m]++;
+	aTiempoTotal[m]++;
+}
+if (b.lineaArmado >= 0) unidadesLinea[b.lineaArmado]++;
+if (b.lineaCF >= 0) unidadesLinea[b.lineaCF]++;
 // Muestra de calidad: el primer equipo de cada modelo de la jornada se inspecciona enseguida
 b.inspeccionar = prodDia[m] == 1;
 b.posMuestra = b.inspeccionar ? 1 : 0;
@@ -5411,7 +5722,7 @@ return b.inspeccionar;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000206</Id>
+						<Id>1796000000223</Id>
 						<Name><![CDATA[registrarPresencia]]></Name>
 						<X>3020</X>
 						<Y>414</Y>
@@ -5431,7 +5742,7 @@ return b.inspeccionar;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000207</Id>
+						<Id>1796000000224</Id>
 						<Name><![CDATA[cerrarMuestras]]></Name>
 						<X>3020</X>
 						<Y>436</Y>
@@ -5458,7 +5769,7 @@ rackCalidad.freeAll();]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000208</Id>
+						<Id>1796000000225</Id>
 						<Name><![CDATA[cerrarJornada]]></Name>
 						<X>3020</X>
 						<Y>458</Y>
@@ -5479,6 +5790,7 @@ for (int m = 0; m < 5; m++) {
 	if (f > 0) detalle += " " + abreviaturas[m] + ":" + f;
 }
 int faltante = objetivo - aTiempo;
+faltanteSemana += faltante;
 diasSimulados++;
 if (faltante > 0) diasSinCumplir++;
 if (ausentesHoy > 0) {
@@ -5501,7 +5813,7 @@ else iniciarRecuperacion();]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000209</Id>
+						<Id>1796000000226</Id>
 						<Name><![CDATA[iniciarRecuperacion]]></Name>
 						<X>3020</X>
 						<Y>480</Y>
@@ -5514,6 +5826,7 @@ else iniciarRecuperacion();]]></Body>
 						<ShowLabel>true</ShowLabel>
 						<Body><![CDATA[int pendientes = liberadasSemana - terminadasSemana;
 if (pendientes <= 0) {
+	pendientesSemana = 0;
 	historial.add(String.format("S%d Fin de semana: no hace falta recuperar", semana + 1));
 	traceln(historial.get(historial.size() - 1));
 	finSemana();
@@ -5534,7 +5847,7 @@ eventoCierreJornada.restart(maxHorasRecuperacion * 60);]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000210</Id>
+						<Id>1796000000227</Id>
 						<Name><![CDATA[finRecuperacion]]></Name>
 						<X>3020</X>
 						<Y>502</Y>
@@ -5554,6 +5867,9 @@ double costo = horasHombre * valorHoraNormal * recargoFinDeSemana;
 registrarPresencia(minutos);
 horasExtraTotal += horasHombre;
 costoHorasExtraTotal += costo;
+horasExtraSemana = horasHombre;
+costoExtraSemana = costo;
+pendientesSemana = pendientesInicioRecuperacion;
 int sinRecuperar = liberadasSemana - terminadasSemana;
 historial.add(String.format("S%d Fin de semana: %d pendientes, %d personas, %.1f h -> %.0f h-hombre ($ %,.0f)%s",
 	semana + 1, pendientesInicioRecuperacion, personasRecuperacion, minutos / 60.0, horasHombre, costo,
@@ -5566,7 +5882,7 @@ finSemana();]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000211</Id>
+						<Id>1796000000228</Id>
 						<Name><![CDATA[finSemana]]></Name>
 						<X>3020</X>
 						<Y>524</Y>
@@ -5577,7 +5893,12 @@ finSemana();]]></Body>
 						<PublicFlag>false</PublicFlag>
 						<PresentationFlag>true</PresentationFlag>
 						<ShowLabel>true</ShowLabel>
-						<Body><![CDATA[semana++;
+						<Body><![CDATA[exportarSemana();
+faltanteSemana = 0;
+horasExtraSemana = 0;
+costoExtraSemana = 0;
+pendientesSemana = 0;
+semana++;
 liberadasSemana -= terminadasSemana; // lo no recuperado pasa a la semana siguiente
 terminadasSemana = 0;
 for (int m = 0; m < 5; m++) {
@@ -5590,13 +5911,14 @@ if (semana < semanasSimuladas) {
 } else {
 	simulacionTerminada = true;
 	traceln(resumenTexto());
+	exportarCorrida();
 	if (detenerAlFinal) finishSimulation();
 }]]></Body>
 					</Function>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000212</Id>
+						<Id>1796000000229</Id>
 						<Name><![CDATA[alFinalizarInspeccion]]></Name>
 						<X>3020</X>
 						<Y>546</Y>
@@ -5619,7 +5941,7 @@ if (b.rechazada) rechazadas[m]++; // se registra; el retrabajo queda fuera del a
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000213</Id>
+						<Id>1796000000230</Id>
 						<Name><![CDATA[alIngresarStock]]></Name>
 						<X>3020</X>
 						<Y>568</Y>
@@ -5642,7 +5964,7 @@ sumaEspera[m] += b.esperaTotal;]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[double]]></ReturnType>
-						<Id>1796000000214</Id>
+						<Id>1796000000231</Id>
 						<Name><![CDATA[costoHorasNormales]]></Name>
 						<X>3020</X>
 						<Y>590</Y>
@@ -5659,7 +5981,7 @@ return empleados * duracionTurnoMin / 60.0 * diasSimulados * valorHoraNormal;]]>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[double]]></ReturnType>
-						<Id>1796000000215</Id>
+						<Id>1796000000232</Id>
 						<Name><![CDATA[costoTotal]]></Name>
 						<X>3020</X>
 						<Y>612</Y>
@@ -5675,7 +5997,7 @@ return empleados * duracionTurnoMin / 60.0 * diasSimulados * valorHoraNormal;]]>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[double]]></ReturnType>
-						<Id>1796000000216</Id>
+						<Id>1796000000233</Id>
 						<Name><![CDATA[utilizacion]]></Name>
 						<X>3020</X>
 						<Y>634</Y>
@@ -5701,12 +6023,186 @@ for (Operario o : ops) {
 return disponible > 0 ? Math.min(1, ocupado / disponible) : 0;]]></Body>
 					</Function>
 					<Function AccessType="public" StaticFunction="false">
-						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
-						<ReturnType><![CDATA[String]]></ReturnType>
-						<Id>1796000000217</Id>
-						<Name><![CDATA[textoReloj]]></Name>
+						<ReturnModificator>VOID</ReturnModificator>
+						<ReturnType><![CDATA[void]]></ReturnType>
+						<Id>1796000000234</Id>
+						<Name><![CDATA[anexarCSV]]></Name>
 						<X>3020</X>
 						<Y>656</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Parameter>
+							<Name><![CDATA[archivo]]></Name>
+							<Type><![CDATA[String]]></Type>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[encabezado]]></Name>
+							<Type><![CDATA[String]]></Type>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[fila]]></Name>
+							<Type><![CDATA[String]]></Type>
+						</Parameter>
+						<Body><![CDATA[// Separador ; y coma decimal, como Datos/*.csv (Excel con configuración argentina)
+if (!guardarResultados) return;
+try {
+	java.io.File f = new java.io.File(archivo);
+	if (f.getParentFile() != null) f.getParentFile().mkdirs();
+	boolean nuevo = !f.exists() || f.length() == 0;
+	try (java.io.PrintWriter w = new java.io.PrintWriter(new java.io.OutputStreamWriter(
+			new java.io.FileOutputStream(f, true), java.nio.charset.StandardCharsets.UTF_8))) {
+		if (nuevo) w.println(encabezado);
+		w.println(fila);
+	}
+} catch (Exception e) {
+	traceln("No se pudo escribir " + archivo + ": " + e.getMessage());
+}]]></Body>
+					</Function>
+					<Function AccessType="public" StaticFunction="false">
+						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+						<ReturnType><![CDATA[String]]></ReturnType>
+						<Id>1796000000235</Id>
+						<Name><![CDATA[num]]></Name>
+						<X>3020</X>
+						<Y>678</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Parameter>
+							<Name><![CDATA[v]]></Name>
+							<Type><![CDATA[double]]></Type>
+						</Parameter>
+						<Body><![CDATA[return String.format(java.util.Locale.forLanguageTag("es-AR"), "%.4f", v);]]></Body>
+					</Function>
+					<Function AccessType="public" StaticFunction="false">
+						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+						<ReturnType><![CDATA[String]]></ReturnType>
+						<Id>1796000000236</Id>
+						<Name><![CDATA[columnasEscenario]]></Name>
+						<X>3240</X>
+						<Y>40</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Body><![CDATA[return "escenario;semilla;of;regla_secuencia;lineas_armado;lineas_cf;armadores_linea;ajustadores_linea;"
+	+ "controladores_linea_cf;embaladores_linea_cf;extra_armadores;extra_ajustadores;extra_controladores;"
+	+ "extra_embaladores;reserva;cobertura_entre_especialidades;prob_ausencia;costo_reorganizacion";]]></Body>
+					</Function>
+					<Function AccessType="public" StaticFunction="false">
+						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+						<ReturnType><![CDATA[String]]></ReturnType>
+						<Id>1796000000237</Id>
+						<Name><![CDATA[valoresEscenario]]></Name>
+						<X>3240</X>
+						<Y>62</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Body><![CDATA[return nombreEscenario + ";" + semillaUsada + ";" + ofSeleccionada + ";" + reglaSecuencia + ";" + lineasArmado + ";"
+	+ lineasCF + ";" + armadoresPorLinea + ";" + ajustadoresPorLinea + ";" + controladoresPorLineaCF + ";"
+	+ embaladoresPorLineaCF + ";" + extraArmadores + ";" + extraAjustadores + ";" + extraControladores + ";"
+	+ extraEmbaladores + ";" + operariosReserva + ";" + (coberturaEntreEspecialidades ? 1 : 0) + ";"
+	+ num(probAusencia) + ";" + num(costoReorganizacion);]]></Body>
+					</Function>
+					<Function AccessType="public" StaticFunction="false">
+						<ReturnModificator>VOID</ReturnModificator>
+						<ReturnType><![CDATA[void]]></ReturnType>
+						<Id>1796000000238</Id>
+						<Name><![CDATA[exportarSemana]]></Name>
+						<X>3240</X>
+						<Y>84</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Body><![CDATA[int of = sumar(ofSemana);
+anexarCSV("Resultados/resultados_semanas.csv",
+	columnasEscenario() + ";semana;of_semana;faltante_jornadas;pendientes_recuperacion;horas_extra;costo_horas_extra",
+	valoresEscenario() + ";" + (semana + 1) + ";" + of + ";" + faltanteSemana + ";" + pendientesSemana + ";"
+		+ num(horasExtraSemana) + ";" + num(costoExtraSemana));]]></Body>
+					</Function>
+					<Function AccessType="public" StaticFunction="false">
+						<ReturnModificator>VOID</ReturnModificator>
+						<ReturnType><![CDATA[void]]></ReturnType>
+						<Id>1796000000239</Id>
+						<Name><![CDATA[exportarCorrida]]></Name>
+						<X>3240</X>
+						<Y>106</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Body><![CDATA[StringBuilder h = new StringBuilder(columnasEscenario());
+StringBuilder v = new StringBuilder(valoresEscenario());
+int of = sumar(ofTotal), aTiempo = sumar(aTiempoTotal);
+h.append(";semanas;jornadas;jornadas_sin_cumplir;of_total;a_tiempo_total;cumplimiento");
+v.append(";" + semana + ";" + diasSimulados + ";" + diasSinCumplir + ";" + of + ";" + aTiempo + ";"
+	+ num(of > 0 ? (double) aTiempo / of : 1));
+for (int m = 0; m < 5; m++) {
+	h.append(";faltante_" + abreviaturas[m].toLowerCase() + ";cumplimiento_" + abreviaturas[m].toLowerCase());
+	v.append(";" + (ofTotal[m] - aTiempoTotal[m]) + ";" + num(ofTotal[m] > 0 ? (double) aTiempoTotal[m] / ofTotal[m] : 1));
+}
+h.append(";horas_extra;costo_horas_extra;costo_horas_normales;costo_total;sin_recuperar");
+v.append(";" + num(horasExtraTotal) + ";" + num(costoHorasExtraTotal) + ";" + num(costoHorasNormales()) + ";"
+	+ num(costoTotal()) + ";" + (liberadasSemana - terminadasSemana));
+h.append(";coberturas;vacantes_criticas;puesto_min_vacantes;faltante_medio_con_ausencias;faltante_medio_sin_ausencias");
+v.append(";" + coberturasTotal + ";" + vacantesCriticasTotal + ";" + num(minutosVacantesTotal) + ";"
+	+ num(diasConAusencias > 0 ? faltanteConAusencias / diasConAusencias : 0) + ";"
+	+ num(diasSinAusencias > 0 ? faltanteSinAusencias / diasSinAusencias : 0));
+h.append(";util_armador;util_ajustador;util_controlador;util_embalador;caminata_min;caminata_fraccion");
+double ocupado = 0;
+for (Operario o : ops) ocupado += o.tOcupado;
+v.append(";" + num(utilizacion(Especialidad.Armador)) + ";" + num(utilizacion(Especialidad.Ajustador)) + ";"
+	+ num(utilizacion(Especialidad.Controlador)) + ";" + num(utilizacion(Especialidad.Embalador)) + ";"
+	+ num(caminataTotalMin) + ";" + num(ocupado > 0 ? caminataTotalMin / ocupado : 0));
+String[] tipos = { "armado", "ajuste", "control", "embalaje" };
+for (int t = 0; t < 4; t++) {
+	h.append(";espera_media_" + tipos[t] + ";espera_max_" + tipos[t]);
+	v.append(";" + num(nEsperaTipo[t] > 0 ? sumaEsperaTipo[t] / nEsperaTipo[t] : 0) + ";" + num(maxEsperaTipo[t]));
+}
+for (int m = 0; m < 5; m++) {
+	h.append(";t_sistema_" + abreviaturas[m].toLowerCase());
+	v.append(";" + num(enStock[m] > 0 ? sumaTiempoSistema[m] / enStock[m] : 0));
+}
+for (int l = 0; l < lineasArmado + lineasCF && l < unidadesLinea.length; l++) {
+	h.append(";unidades_" + nombreLinea(l).toLowerCase().replace(' ', '_'));
+	v.append(";" + unidadesLinea[l]);
+}
+h.append(";inspeccionadas;rechazadas");
+v.append(";" + sumar(inspeccionadas) + ";" + sumar(rechazadas));
+anexarCSV("Resultados/resultados_corridas.csv", h.toString(), v.toString());
+traceln("Resultados guardados en Resultados/resultados_corridas.csv (semilla " + semillaUsada + ")");]]></Body>
+					</Function>
+					<Function AccessType="public" StaticFunction="false">
+						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+						<ReturnType><![CDATA[String]]></ReturnType>
+						<Id>1796000000240</Id>
+						<Name><![CDATA[textoReloj]]></Name>
+						<X>3240</X>
+						<Y>128</Y>
 						<Label>
 							<X>10</X>
 							<Y>0</Y>
@@ -5727,10 +6223,10 @@ return String.format("Semana %d · %s · %02d:%02d h de un turno de %.0f h · ti
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[String]]></ReturnType>
-						<Id>1796000000218</Id>
+						<Id>1796000000241</Id>
 						<Name><![CDATA[textoOF]]></Name>
-						<X>3020</X>
-						<Y>678</Y>
+						<X>3240</X>
+						<Y>150</Y>
 						<Label>
 							<X>10</X>
 							<Y>0</Y>
@@ -5751,10 +6247,10 @@ return s.toString();]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[String]]></ReturnType>
-						<Id>1796000000219</Id>
+						<Id>1796000000242</Id>
 						<Name><![CDATA[textoPersonal]]></Name>
 						<X>3240</X>
-						<Y>40</Y>
+						<Y>172</Y>
 						<Label>
 							<X>10</X>
 							<Y>0</Y>
@@ -5780,10 +6276,10 @@ return String.format("Operarios de línea %d + reserva %d | presentes %d | ausen
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[String]]></ReturnType>
-						<Id>1796000000220</Id>
+						<Id>1796000000243</Id>
 						<Name><![CDATA[textoColas]]></Name>
 						<X>3240</X>
-						<Y>62</Y>
+						<Y>194</Y>
 						<Label>
 							<X>10</X>
 							<Y>0</Y>
@@ -5806,10 +6302,10 @@ return String.format("Esperando operario: sin iniciar %d | armado %d | ajuste %d
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[String]]></ReturnType>
-						<Id>1796000000221</Id>
+						<Id>1796000000244</Id>
 						<Name><![CDATA[textoCalidad]]></Name>
 						<X>3240</X>
-						<Y>84</Y>
+						<Y>216</Y>
 						<Label>
 							<X>10</X>
 							<Y>0</Y>
@@ -5827,10 +6323,10 @@ return s.toString().trim();]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[String]]></ReturnType>
-						<Id>1796000000222</Id>
+						<Id>1796000000245</Id>
 						<Name><![CDATA[textoCostos]]></Name>
 						<X>3240</X>
-						<Y>106</Y>
+						<Y>238</Y>
 						<Label>
 							<X>10</X>
 							<Y>0</Y>
@@ -5851,10 +6347,10 @@ return s.toString().trim();]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[String]]></ReturnType>
-						<Id>1796000000223</Id>
+						<Id>1796000000246</Id>
 						<Name><![CDATA[textoHistorial]]></Name>
 						<X>3240</X>
-						<Y>128</Y>
+						<Y>260</Y>
 						<Label>
 							<X>10</X>
 							<Y>0</Y>
@@ -5869,10 +6365,10 @@ return historial.isEmpty() ? "Todavía no cerró ninguna jornada." : s.toString(
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[String]]></ReturnType>
-						<Id>1796000000224</Id>
+						<Id>1796000000247</Id>
 						<Name><![CDATA[textoEscenario]]></Name>
 						<X>3240</X>
-						<Y>150</Y>
+						<Y>282</Y>
 						<Label>
 							<X>10</X>
 							<Y>0</Y>
@@ -5880,17 +6376,17 @@ return historial.isEmpty() ? "Todavía no cerró ninguna jornada." : s.toString(
 						<PublicFlag>false</PublicFlag>
 						<PresentationFlag>true</PresentationFlag>
 						<ShowLabel>true</ShowLabel>
-						<Body><![CDATA[return String.format("Escenario: OF %d | secuencia %d | %d+%d líneas | extra A/J/C/E %d/%d/%d/%d | reserva %d | coberturas entre especialidades: %s",
-	ofSeleccionada, reglaSecuencia, lineasArmado, lineasCF, extraArmadores, extraAjustadores, extraControladores,
+						<Body><![CDATA[return String.format("%s (semilla %d) | OF %d | secuencia %d | %d+%d líneas | extra A/J/C/E %d/%d/%d/%d | reserva %d | coberturas entre especialidades: %s",
+	nombreEscenario, semillaUsada, ofSeleccionada, reglaSecuencia, lineasArmado, lineasCF, extraArmadores, extraAjustadores, extraControladores,
 	extraEmbaladores, operariosReserva, coberturaEntreEspecialidades ? "sí" : "no");]]></Body>
 					</Function>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[String]]></ReturnType>
-						<Id>1796000000225</Id>
+						<Id>1796000000248</Id>
 						<Name><![CDATA[resumenTexto]]></Name>
 						<X>3240</X>
-						<Y>172</Y>
+						<Y>304</Y>
 						<Label>
 							<X>10</X>
 							<Y>0</Y>
@@ -5912,10 +6408,10 @@ return s.toString();]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[Color]]></ReturnType>
-						<Id>1796000000226</Id>
+						<Id>1796000000249</Id>
 						<Name><![CDATA[colorPuesto]]></Name>
 						<X>3240</X>
-						<Y>194</Y>
+						<Y>326</Y>
 						<Label>
 							<X>10</X>
 							<Y>0</Y>
@@ -5936,10 +6432,10 @@ return trabajando ? new Color(34, 160, 80) : new Color(175, 225, 190); // trabaj
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[String]]></ReturnType>
-						<Id>1796000000227</Id>
+						<Id>1796000000250</Id>
 						<Name><![CDATA[etiquetaPuesto]]></Name>
 						<X>3240</X>
-						<Y>216</Y>
+						<Y>348</Y>
 						<Label>
 							<X>10</X>
 							<Y>0</Y>
@@ -5957,10 +6453,10 @@ return siglas[pTipo[p]] + (pTipo[p] == T_ARMADO && pNum[p] > 0 ? String.valueOf(
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[String]]></ReturnType>
-						<Id>1796000000228</Id>
+						<Id>1796000000251</Id>
 						<Name><![CDATA[nombreLinea]]></Name>
 						<X>3240</X>
-						<Y>238</Y>
+						<Y>370</Y>
 						<Label>
 							<X>10</X>
 							<Y>0</Y>
@@ -6003,7 +6499,7 @@ return l < lineasArmado ? "ARM " + (l + 1) : "CF " + (l - lineasArmado + 1);]]><
 				</AgentLinks>
 				<EmbeddedObjects>
 					<EmbeddedObject>
-						<Id>1796000000229</Id>
+						<Id>1796000000252</Id>
 						<Name><![CDATA[fuenteOF]]></Name>
 						<X>40</X>
 						<Y>1080</Y>
@@ -6037,7 +6533,7 @@ return l < lineasArmado ? "ARM " + (l + 1) : "CF " + (l - lineasArmado + 1);]]><
 								<Value Class="EntityCodeValue">
 									<IsAgentEntity>true</IsAgentEntity>
 									<EntityEmbeddedObject>
-										<Id>1796000000230</Id>
+										<Id>1796000000253</Id>
 										<ActiveObjectClass>
 											<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 											<ClassName><![CDATA[Balanza]]></ClassName>
@@ -6067,7 +6563,7 @@ return l < lineasArmado ? "ARM " + (l + 1) : "CF " + (l - lineasArmado + 1);]]><
 										</LocationNameCode>
 										<InitializationType>LOAD_FROM_DATABASE</InitializationType>
 										<InitializationDatabaseTableQuery>
-											<Id>1796000000231</Id>
+											<Id>1796000000254</Id>
 											<TableReference/>
 										</InitializationDatabaseTableQuery>
 										<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
@@ -6099,14 +6595,14 @@ return l < lineasArmado ? "ARM " + (l + 1) : "CF " + (l - lineasArmado + 1);]]><
 						</LocationNameCode>
 						<InitializationType>SPECIFIED_NUMBER</InitializationType>
 						<InitializationDatabaseTableQuery>
-							<Id>1796000000232</Id>
+							<Id>1796000000255</Id>
 							<TableReference/>
 						</InitializationDatabaseTableQuery>
 						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 						<QuantityColumn/>
 					</EmbeddedObject>
 					<EmbeddedObject>
-						<Id>1796000000233</Id>
+						<Id>1796000000256</Id>
 						<Name><![CDATA[tomarOperario]]></Name>
 						<X>130</X>
 						<Y>1080</Y>
@@ -6204,14 +6700,14 @@ return l < lineasArmado ? "ARM " + (l + 1) : "CF " + (l - lineasArmado + 1);]]><
 						</LocationNameCode>
 						<InitializationType>SPECIFIED_NUMBER</InitializationType>
 						<InitializationDatabaseTableQuery>
-							<Id>1796000000234</Id>
+							<Id>1796000000257</Id>
 							<TableReference/>
 						</InitializationDatabaseTableQuery>
 						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 						<QuantityColumn/>
 					</EmbeddedObject>
 					<EmbeddedObject>
-						<Id>1796000000235</Id>
+						<Id>1796000000258</Id>
 						<Name><![CDATA[caminar]]></Name>
 						<X>240</X>
 						<Y>1080</Y>
@@ -6273,14 +6769,14 @@ return l < lineasArmado ? "ARM " + (l + 1) : "CF " + (l - lineasArmado + 1);]]><
 						</LocationNameCode>
 						<InitializationType>SPECIFIED_NUMBER</InitializationType>
 						<InitializationDatabaseTableQuery>
-							<Id>1796000000236</Id>
+							<Id>1796000000259</Id>
 							<TableReference/>
 						</InitializationDatabaseTableQuery>
 						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 						<QuantityColumn/>
 					</EmbeddedObject>
 					<EmbeddedObject>
-						<Id>1796000000237</Id>
+						<Id>1796000000260</Id>
 						<Name><![CDATA[irAlRack]]></Name>
 						<X>380</X>
 						<Y>1080</Y>
@@ -6336,14 +6832,14 @@ return l < lineasArmado ? "ARM " + (l + 1) : "CF " + (l - lineasArmado + 1);]]><
 						</LocationNameCode>
 						<InitializationType>SPECIFIED_NUMBER</InitializationType>
 						<InitializationDatabaseTableQuery>
-							<Id>1796000000238</Id>
+							<Id>1796000000261</Id>
 							<TableReference/>
 						</InitializationDatabaseTableQuery>
 						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 						<QuantityColumn/>
 					</EmbeddedObject>
 					<EmbeddedObject>
-						<Id>1796000000239</Id>
+						<Id>1796000000262</Id>
 						<Name><![CDATA[tomarRack]]></Name>
 						<X>520</X>
 						<Y>1000</Y>
@@ -6405,14 +6901,14 @@ return l < lineasArmado ? "ARM " + (l + 1) : "CF " + (l - lineasArmado + 1);]]><
 						</LocationNameCode>
 						<InitializationType>SPECIFIED_NUMBER</InitializationType>
 						<InitializationDatabaseTableQuery>
-							<Id>1796000000240</Id>
+							<Id>1796000000263</Id>
 							<TableReference/>
 						</InitializationDatabaseTableQuery>
 						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 						<QuantityColumn/>
 					</EmbeddedObject>
 					<EmbeddedObject>
-						<Id>1796000000241</Id>
+						<Id>1796000000264</Id>
 						<Name><![CDATA[retirarMateriales]]></Name>
 						<X>620</X>
 						<Y>1000</Y>
@@ -6475,14 +6971,14 @@ return l < lineasArmado ? "ARM " + (l + 1) : "CF " + (l - lineasArmado + 1);]]><
 						</LocationNameCode>
 						<InitializationType>SPECIFIED_NUMBER</InitializationType>
 						<InitializationDatabaseTableQuery>
-							<Id>1796000000242</Id>
+							<Id>1796000000265</Id>
 							<TableReference/>
 						</InitializationDatabaseTableQuery>
 						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 						<QuantityColumn/>
 					</EmbeddedObject>
 					<EmbeddedObject>
-						<Id>1796000000243</Id>
+						<Id>1796000000266</Id>
 						<Name><![CDATA[liberarRack]]></Name>
 						<X>720</X>
 						<Y>1000</Y>
@@ -6546,14 +7042,14 @@ agent.destY = pY[agent.puestoActual];]]></Code>
 						</LocationNameCode>
 						<InitializationType>SPECIFIED_NUMBER</InitializationType>
 						<InitializationDatabaseTableQuery>
-							<Id>1796000000244</Id>
+							<Id>1796000000267</Id>
 							<TableReference/>
 						</InitializationDatabaseTableQuery>
 						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 						<QuantityColumn/>
 					</EmbeddedObject>
 					<EmbeddedObject>
-						<Id>1796000000245</Id>
+						<Id>1796000000268</Id>
 						<Name><![CDATA[tarea]]></Name>
 						<X>520</X>
 						<Y>1080</Y>
@@ -6617,14 +7113,14 @@ agent.paso++;]]></Code>
 						</LocationNameCode>
 						<InitializationType>SPECIFIED_NUMBER</InitializationType>
 						<InitializationDatabaseTableQuery>
-							<Id>1796000000246</Id>
+							<Id>1796000000269</Id>
 							<TableReference/>
 						</InitializationDatabaseTableQuery>
 						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 						<QuantityColumn/>
 					</EmbeddedObject>
 					<EmbeddedObject>
-						<Id>1796000000247</Id>
+						<Id>1796000000270</Id>
 						<Name><![CDATA[liberarOperario]]></Name>
 						<X>620</X>
 						<Y>1080</Y>
@@ -6692,14 +7188,14 @@ agent.paso++;]]></Code>
 						</LocationNameCode>
 						<InitializationType>SPECIFIED_NUMBER</InitializationType>
 						<InitializationDatabaseTableQuery>
-							<Id>1796000000248</Id>
+							<Id>1796000000271</Id>
 							<TableReference/>
 						</InitializationDatabaseTableQuery>
 						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 						<QuantityColumn/>
 					</EmbeddedObject>
 					<EmbeddedObject>
-						<Id>1796000000249</Id>
+						<Id>1796000000272</Id>
 						<Name><![CDATA[quedanPasos]]></Name>
 						<X>720</X>
 						<Y>1080</Y>
@@ -6755,14 +7251,14 @@ agent.paso++;]]></Code>
 						</LocationNameCode>
 						<InitializationType>SPECIFIED_NUMBER</InitializationType>
 						<InitializationDatabaseTableQuery>
-							<Id>1796000000250</Id>
+							<Id>1796000000273</Id>
 							<TableReference/>
 						</InitializationDatabaseTableQuery>
 						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 						<QuantityColumn/>
 					</EmbeddedObject>
 					<EmbeddedObject>
-						<Id>1796000000251</Id>
+						<Id>1796000000274</Id>
 						<Name><![CDATA[esPrimero]]></Name>
 						<X>810</X>
 						<Y>1080</Y>
@@ -6818,14 +7314,14 @@ agent.paso++;]]></Code>
 						</LocationNameCode>
 						<InitializationType>SPECIFIED_NUMBER</InitializationType>
 						<InitializationDatabaseTableQuery>
-							<Id>1796000000252</Id>
+							<Id>1796000000275</Id>
 							<TableReference/>
 						</InitializationDatabaseTableQuery>
 						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 						<QuantityColumn/>
 					</EmbeddedObject>
 					<EmbeddedObject>
-						<Id>1796000000253</Id>
+						<Id>1796000000276</Id>
 						<Name><![CDATA[rackCalidad]]></Name>
 						<X>900</X>
 						<Y>1160</Y>
@@ -6875,14 +7371,14 @@ agent.paso++;]]></Code>
 						</LocationNameCode>
 						<InitializationType>SPECIFIED_NUMBER</InitializationType>
 						<InitializationDatabaseTableQuery>
-							<Id>1796000000254</Id>
+							<Id>1796000000277</Id>
 							<TableReference/>
 						</InitializationDatabaseTableQuery>
 						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 						<QuantityColumn/>
 					</EmbeddedObject>
 					<EmbeddedObject>
-						<Id>1796000000255</Id>
+						<Id>1796000000278</Id>
 						<Name><![CDATA[aInspeccion]]></Name>
 						<X>1000</X>
 						<Y>1160</Y>
@@ -6938,14 +7434,14 @@ agent.paso++;]]></Code>
 						</LocationNameCode>
 						<InitializationType>SPECIFIED_NUMBER</InitializationType>
 						<InitializationDatabaseTableQuery>
-							<Id>1796000000256</Id>
+							<Id>1796000000279</Id>
 							<TableReference/>
 						</InitializationDatabaseTableQuery>
 						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 						<QuantityColumn/>
 					</EmbeddedObject>
 					<EmbeddedObject>
-						<Id>1796000000257</Id>
+						<Id>1796000000280</Id>
 						<Name><![CDATA[tomarInspector]]></Name>
 						<X>1100</X>
 						<Y>1080</Y>
@@ -7007,14 +7503,14 @@ agent.paso++;]]></Code>
 						</LocationNameCode>
 						<InitializationType>SPECIFIED_NUMBER</InitializationType>
 						<InitializationDatabaseTableQuery>
-							<Id>1796000000258</Id>
+							<Id>1796000000281</Id>
 							<TableReference/>
 						</InitializationDatabaseTableQuery>
 						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 						<QuantityColumn/>
 					</EmbeddedObject>
 					<EmbeddedObject>
-						<Id>1796000000259</Id>
+						<Id>1796000000282</Id>
 						<Name><![CDATA[inspeccion]]></Name>
 						<X>1200</X>
 						<Y>1080</Y>
@@ -7077,14 +7573,14 @@ agent.paso++;]]></Code>
 						</LocationNameCode>
 						<InitializationType>SPECIFIED_NUMBER</InitializationType>
 						<InitializationDatabaseTableQuery>
-							<Id>1796000000260</Id>
+							<Id>1796000000283</Id>
 							<TableReference/>
 						</InitializationDatabaseTableQuery>
 						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 						<QuantityColumn/>
 					</EmbeddedObject>
 					<EmbeddedObject>
-						<Id>1796000000261</Id>
+						<Id>1796000000284</Id>
 						<Name><![CDATA[liberarInspector]]></Name>
 						<X>1300</X>
 						<Y>1080</Y>
@@ -7140,14 +7636,14 @@ agent.paso++;]]></Code>
 						</LocationNameCode>
 						<InitializationType>SPECIFIED_NUMBER</InitializationType>
 						<InitializationDatabaseTableQuery>
-							<Id>1796000000262</Id>
+							<Id>1796000000285</Id>
 							<TableReference/>
 						</InitializationDatabaseTableQuery>
 						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 						<QuantityColumn/>
 					</EmbeddedObject>
 					<EmbeddedObject>
-						<Id>1796000000263</Id>
+						<Id>1796000000286</Id>
 						<Name><![CDATA[stock]]></Name>
 						<X>1400</X>
 						<Y>1080</Y>
@@ -7197,14 +7693,14 @@ agent.paso++;]]></Code>
 						</LocationNameCode>
 						<InitializationType>SPECIFIED_NUMBER</InitializationType>
 						<InitializationDatabaseTableQuery>
-							<Id>1796000000264</Id>
+							<Id>1796000000287</Id>
 							<TableReference/>
 						</InitializationDatabaseTableQuery>
 						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 						<QuantityColumn/>
 					</EmbeddedObject>
 					<EmbeddedObject>
-						<Id>1796000000265</Id>
+						<Id>1796000000288</Id>
 						<Name><![CDATA[operarios]]></Name>
 						<X>130</X>
 						<Y>1250</Y>
@@ -7244,7 +7740,7 @@ agent.paso++;]]></Code>
 								<Value Class="EntityCodeValue">
 									<IsAgentEntity>true</IsAgentEntity>
 									<EntityEmbeddedObject>
-										<Id>1796000000266</Id>
+										<Id>1796000000289</Id>
 										<ActiveObjectClass>
 											<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 											<ClassName><![CDATA[Operario]]></ClassName>
@@ -7274,7 +7770,7 @@ agent.paso++;]]></Code>
 										</LocationNameCode>
 										<InitializationType>LOAD_FROM_DATABASE</InitializationType>
 										<InitializationDatabaseTableQuery>
-											<Id>1796000000267</Id>
+											<Id>1796000000290</Id>
 											<TableReference/>
 										</InitializationDatabaseTableQuery>
 										<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
@@ -7312,14 +7808,14 @@ agent.paso++;]]></Code>
 						</LocationNameCode>
 						<InitializationType>SPECIFIED_NUMBER</InitializationType>
 						<InitializationDatabaseTableQuery>
-							<Id>1796000000268</Id>
+							<Id>1796000000291</Id>
 							<TableReference/>
 						</InitializationDatabaseTableQuery>
 						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 						<QuantityColumn/>
 					</EmbeddedObject>
 					<EmbeddedObject>
-						<Id>1796000000269</Id>
+						<Id>1796000000292</Id>
 						<Name><![CDATA[rackMateriales]]></Name>
 						<X>520</X>
 						<Y>1250</Y>
@@ -7378,14 +7874,14 @@ agent.paso++;]]></Code>
 						</LocationNameCode>
 						<InitializationType>SPECIFIED_NUMBER</InitializationType>
 						<InitializationDatabaseTableQuery>
-							<Id>1796000000270</Id>
+							<Id>1796000000293</Id>
 							<TableReference/>
 						</InitializationDatabaseTableQuery>
 						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 						<QuantityColumn/>
 					</EmbeddedObject>
 					<EmbeddedObject>
-						<Id>1796000000271</Id>
+						<Id>1796000000294</Id>
 						<Name><![CDATA[inspector]]></Name>
 						<X>1100</X>
 						<Y>1250</Y>
@@ -7444,14 +7940,14 @@ agent.paso++;]]></Code>
 						</LocationNameCode>
 						<InitializationType>SPECIFIED_NUMBER</InitializationType>
 						<InitializationDatabaseTableQuery>
-							<Id>1796000000272</Id>
+							<Id>1796000000295</Id>
 							<TableReference/>
 						</InitializationDatabaseTableQuery>
 						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 						<QuantityColumn/>
 					</EmbeddedObject>
 					<EmbeddedObject>
-						<Id>1796000000273</Id>
+						<Id>1796000000296</Id>
 						<Name><![CDATA[entrarPlanta]]></Name>
 						<X>520</X>
 						<Y>1340</Y>
@@ -7494,14 +7990,14 @@ agent.paso++;]]></Code>
 						</LocationNameCode>
 						<InitializationType>SPECIFIED_NUMBER</InitializationType>
 						<InitializationDatabaseTableQuery>
-							<Id>1796000000274</Id>
+							<Id>1796000000297</Id>
 							<TableReference/>
 						</InitializationDatabaseTableQuery>
 						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 						<QuantityColumn/>
 					</EmbeddedObject>
 					<EmbeddedObject>
-						<Id>1796000000275</Id>
+						<Id>1796000000298</Id>
 						<Name><![CDATA[pedEntrada]]></Name>
 						<X>620</X>
 						<Y>1340</Y>
@@ -7596,14 +8092,14 @@ agent.paso++;]]></Code>
 						</LocationNameCode>
 						<InitializationType>SPECIFIED_NUMBER</InitializationType>
 						<InitializationDatabaseTableQuery>
-							<Id>1796000000276</Id>
+							<Id>1796000000299</Id>
 							<TableReference/>
 						</InitializationDatabaseTableQuery>
 						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 						<QuantityColumn/>
 					</EmbeddedObject>
 					<EmbeddedObject>
-						<Id>1796000000277</Id>
+						<Id>1796000000300</Id>
 						<Name><![CDATA[pedIr]]></Name>
 						<X>720</X>
 						<Y>1340</Y>
@@ -7671,14 +8167,14 @@ agent.paso++;]]></Code>
 						</LocationNameCode>
 						<InitializationType>SPECIFIED_NUMBER</InitializationType>
 						<InitializationDatabaseTableQuery>
-							<Id>1796000000278</Id>
+							<Id>1796000000301</Id>
 							<TableReference/>
 						</InitializationDatabaseTableQuery>
 						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 						<QuantityColumn/>
 					</EmbeddedObject>
 					<EmbeddedObject>
-						<Id>1796000000279</Id>
+						<Id>1796000000302</Id>
 						<Name><![CDATA[pedLlego]]></Name>
 						<X>820</X>
 						<Y>1340</Y>
@@ -7752,14 +8248,14 @@ agent.paso++;]]></Code>
 						</LocationNameCode>
 						<InitializationType>SPECIFIED_NUMBER</InitializationType>
 						<InitializationDatabaseTableQuery>
-							<Id>1796000000280</Id>
+							<Id>1796000000303</Id>
 							<TableReference/>
 						</InitializationDatabaseTableQuery>
 						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 						<QuantityColumn/>
 					</EmbeddedObject>
 					<EmbeddedObject>
-						<Id>1796000000281</Id>
+						<Id>1796000000304</Id>
 						<Name><![CDATA[pedEnPuesto]]></Name>
 						<X>920</X>
 						<Y>1340</Y>
@@ -7839,7 +8335,7 @@ agent.paso++;]]></Code>
 						</LocationNameCode>
 						<InitializationType>SPECIFIED_NUMBER</InitializationType>
 						<InitializationDatabaseTableQuery>
-							<Id>1796000000282</Id>
+							<Id>1796000000305</Id>
 							<TableReference/>
 						</InitializationDatabaseTableQuery>
 						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
@@ -8130,7 +8626,7 @@ agent.paso++;]]></Code>
 								<RotationZ>-45.0</RotationZ>
 							</Camera3D>
 							<Rectangle>
-								<Id>1796000000311</Id>
+								<Id>1796000000334</Id>
 								<Name><![CDATA[fondoTablero]]></Name>
 								<X>15</X>
 								<Y>15</Y>
@@ -8156,7 +8652,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000312</Id>
+								<Id>1796000000335</Id>
 								<Name><![CDATA[tituloTablero]]></Name>
 								<X>35</X>
 								<Y>28</Y>
@@ -8182,7 +8678,7 @@ agent.paso++;]]></Code>
 							</Text>
 							<Control Type="Button">
 								<EmbeddedIcon>false</EmbeddedIcon>
-								<Id>1796000000313</Id>
+								<Id>1796000000336</Id>
 								<Name><![CDATA[botonResumen]]></Name>
 								<X>735</X>
 								<Y>26</Y>
@@ -8207,7 +8703,7 @@ agent.paso++;]]></Code>
 								</ExtendedProperties>
 							</Control>
 							<Text>
-								<Id>1796000000314</Id>
+								<Id>1796000000337</Id>
 								<Name><![CDATA[reloj]]></Name>
 								<X>35</X>
 								<Y>64</Y>
@@ -8233,7 +8729,7 @@ agent.paso++;]]></Code>
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000000315</Id>
+								<Id>1796000000338</Id>
 								<Name><![CDATA[escenario]]></Name>
 								<X>35</X>
 								<Y>86</Y>
@@ -8259,7 +8755,7 @@ agent.paso++;]]></Code>
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000000316</Id>
+								<Id>1796000000339</Id>
 								<Name><![CDATA[tituloOF]]></Name>
 								<X>35</X>
 								<Y>112</Y>
@@ -8284,7 +8780,7 @@ agent.paso++;]]></Code>
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000000317</Id>
+								<Id>1796000000340</Id>
 								<Name><![CDATA[panelOF]]></Name>
 								<X>35</X>
 								<Y>136</Y>
@@ -8310,7 +8806,7 @@ agent.paso++;]]></Code>
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000000318</Id>
+								<Id>1796000000341</Id>
 								<Name><![CDATA[tituloPersonal]]></Name>
 								<X>35</X>
 								<Y>262</Y>
@@ -8335,7 +8831,7 @@ agent.paso++;]]></Code>
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000000319</Id>
+								<Id>1796000000342</Id>
 								<Name><![CDATA[panelPersonal]]></Name>
 								<X>35</X>
 								<Y>286</Y>
@@ -8361,7 +8857,7 @@ agent.paso++;]]></Code>
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000000320</Id>
+								<Id>1796000000343</Id>
 								<Name><![CDATA[tituloColas]]></Name>
 								<X>35</X>
 								<Y>362</Y>
@@ -8386,7 +8882,7 @@ agent.paso++;]]></Code>
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000000321</Id>
+								<Id>1796000000344</Id>
 								<Name><![CDATA[panelColas]]></Name>
 								<X>35</X>
 								<Y>386</Y>
@@ -8412,7 +8908,7 @@ agent.paso++;]]></Code>
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000000322</Id>
+								<Id>1796000000345</Id>
 								<Name><![CDATA[tituloCalidad]]></Name>
 								<X>35</X>
 								<Y>428</Y>
@@ -8437,7 +8933,7 @@ agent.paso++;]]></Code>
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000000323</Id>
+								<Id>1796000000346</Id>
 								<Name><![CDATA[panelCalidad]]></Name>
 								<X>35</X>
 								<Y>452</Y>
@@ -8463,7 +8959,7 @@ agent.paso++;]]></Code>
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000000324</Id>
+								<Id>1796000000347</Id>
 								<Name><![CDATA[tituloCostos]]></Name>
 								<X>35</X>
 								<Y>548</Y>
@@ -8488,7 +8984,7 @@ agent.paso++;]]></Code>
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000000325</Id>
+								<Id>1796000000348</Id>
 								<Name><![CDATA[panelCostos]]></Name>
 								<X>35</X>
 								<Y>572</Y>
@@ -8514,7 +9010,7 @@ agent.paso++;]]></Code>
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000000326</Id>
+								<Id>1796000000349</Id>
 								<Name><![CDATA[tituloHistorial]]></Name>
 								<X>35</X>
 								<Y>652</Y>
@@ -8539,7 +9035,7 @@ agent.paso++;]]></Code>
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000000327</Id>
+								<Id>1796000000350</Id>
 								<Name><![CDATA[panelHistorial]]></Name>
 								<X>35</X>
 								<Y>676</Y>
@@ -8565,7 +9061,7 @@ agent.paso++;]]></Code>
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000000328</Id>
+								<Id>1796000000351</Id>
 								<Name><![CDATA[rotuloProduccion]]></Name>
 								<X>955</X>
 								<Y>150</Y>
@@ -8590,7 +9086,7 @@ agent.paso++;]]></Code>
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000000329</Id>
+								<Id>1796000000352</Id>
 								<Name><![CDATA[rotuloDeposito]]></Name>
 								<X>1290</X>
 								<Y>150</Y>
@@ -8615,7 +9111,7 @@ agent.paso++;]]></Code>
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000000330</Id>
+								<Id>1796000000353</Id>
 								<Name><![CDATA[rotuloLinea0]]></Name>
 								<X>951</X>
 								<Y>201</Y>
@@ -8642,7 +9138,7 @@ agent.paso++;]]></Code>
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000000331</Id>
+								<Id>1796000000354</Id>
 								<Name><![CDATA[rotuloLinea1]]></Name>
 								<X>951</X>
 								<Y>259</Y>
@@ -8669,7 +9165,7 @@ agent.paso++;]]></Code>
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000000332</Id>
+								<Id>1796000000355</Id>
 								<Name><![CDATA[rotuloLinea2]]></Name>
 								<X>951</X>
 								<Y>317</Y>
@@ -8696,7 +9192,7 @@ agent.paso++;]]></Code>
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000000333</Id>
+								<Id>1796000000356</Id>
 								<Name><![CDATA[rotuloLinea3]]></Name>
 								<X>951</X>
 								<Y>375</Y>
@@ -8723,7 +9219,7 @@ agent.paso++;]]></Code>
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000000334</Id>
+								<Id>1796000000357</Id>
 								<Name><![CDATA[rotuloLinea4]]></Name>
 								<X>951</X>
 								<Y>433</Y>
@@ -8750,7 +9246,7 @@ agent.paso++;]]></Code>
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000000335</Id>
+								<Id>1796000000358</Id>
 								<Name><![CDATA[rotuloLinea5]]></Name>
 								<X>951</X>
 								<Y>491</Y>
@@ -8777,7 +9273,7 @@ agent.paso++;]]></Code>
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000336</Id>
+								<Id>1796000000359</Id>
 								<Name><![CDATA[puesto0]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -8807,7 +9303,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000337</Id>
+								<Id>1796000000360</Id>
 								<Name><![CDATA[siglaPuesto0]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -8836,7 +9332,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000338</Id>
+								<Id>1796000000361</Id>
 								<Name><![CDATA[puesto1]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -8866,7 +9362,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000339</Id>
+								<Id>1796000000362</Id>
 								<Name><![CDATA[siglaPuesto1]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -8895,7 +9391,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000340</Id>
+								<Id>1796000000363</Id>
 								<Name><![CDATA[puesto2]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -8925,7 +9421,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000341</Id>
+								<Id>1796000000364</Id>
 								<Name><![CDATA[siglaPuesto2]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -8954,7 +9450,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000342</Id>
+								<Id>1796000000365</Id>
 								<Name><![CDATA[puesto3]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -8984,7 +9480,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000343</Id>
+								<Id>1796000000366</Id>
 								<Name><![CDATA[siglaPuesto3]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -9013,7 +9509,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000344</Id>
+								<Id>1796000000367</Id>
 								<Name><![CDATA[puesto4]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -9043,7 +9539,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000345</Id>
+								<Id>1796000000368</Id>
 								<Name><![CDATA[siglaPuesto4]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -9072,7 +9568,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000346</Id>
+								<Id>1796000000369</Id>
 								<Name><![CDATA[puesto5]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -9102,7 +9598,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000347</Id>
+								<Id>1796000000370</Id>
 								<Name><![CDATA[siglaPuesto5]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -9131,7 +9627,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000348</Id>
+								<Id>1796000000371</Id>
 								<Name><![CDATA[puesto6]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -9161,7 +9657,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000349</Id>
+								<Id>1796000000372</Id>
 								<Name><![CDATA[siglaPuesto6]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -9190,7 +9686,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000350</Id>
+								<Id>1796000000373</Id>
 								<Name><![CDATA[puesto7]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -9220,7 +9716,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000351</Id>
+								<Id>1796000000374</Id>
 								<Name><![CDATA[siglaPuesto7]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -9249,7 +9745,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000352</Id>
+								<Id>1796000000375</Id>
 								<Name><![CDATA[puesto8]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -9279,7 +9775,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000353</Id>
+								<Id>1796000000376</Id>
 								<Name><![CDATA[siglaPuesto8]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -9308,7 +9804,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000354</Id>
+								<Id>1796000000377</Id>
 								<Name><![CDATA[puesto9]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -9338,7 +9834,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000355</Id>
+								<Id>1796000000378</Id>
 								<Name><![CDATA[siglaPuesto9]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -9367,7 +9863,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000356</Id>
+								<Id>1796000000379</Id>
 								<Name><![CDATA[puesto10]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -9397,7 +9893,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000357</Id>
+								<Id>1796000000380</Id>
 								<Name><![CDATA[siglaPuesto10]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -9426,7 +9922,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000358</Id>
+								<Id>1796000000381</Id>
 								<Name><![CDATA[puesto11]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -9456,7 +9952,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000359</Id>
+								<Id>1796000000382</Id>
 								<Name><![CDATA[siglaPuesto11]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -9485,7 +9981,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000360</Id>
+								<Id>1796000000383</Id>
 								<Name><![CDATA[puesto12]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -9515,7 +10011,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000361</Id>
+								<Id>1796000000384</Id>
 								<Name><![CDATA[siglaPuesto12]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -9544,7 +10040,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000362</Id>
+								<Id>1796000000385</Id>
 								<Name><![CDATA[puesto13]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -9574,7 +10070,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000363</Id>
+								<Id>1796000000386</Id>
 								<Name><![CDATA[siglaPuesto13]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -9603,7 +10099,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000364</Id>
+								<Id>1796000000387</Id>
 								<Name><![CDATA[puesto14]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -9633,7 +10129,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000365</Id>
+								<Id>1796000000388</Id>
 								<Name><![CDATA[siglaPuesto14]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -9662,7 +10158,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000366</Id>
+								<Id>1796000000389</Id>
 								<Name><![CDATA[puesto15]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -9692,7 +10188,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000367</Id>
+								<Id>1796000000390</Id>
 								<Name><![CDATA[siglaPuesto15]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -9721,7 +10217,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000368</Id>
+								<Id>1796000000391</Id>
 								<Name><![CDATA[puesto16]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -9751,7 +10247,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000369</Id>
+								<Id>1796000000392</Id>
 								<Name><![CDATA[siglaPuesto16]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -9780,7 +10276,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000370</Id>
+								<Id>1796000000393</Id>
 								<Name><![CDATA[puesto17]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -9810,7 +10306,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000371</Id>
+								<Id>1796000000394</Id>
 								<Name><![CDATA[siglaPuesto17]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -9839,7 +10335,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000372</Id>
+								<Id>1796000000395</Id>
 								<Name><![CDATA[puesto18]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -9869,7 +10365,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000373</Id>
+								<Id>1796000000396</Id>
 								<Name><![CDATA[siglaPuesto18]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -9898,7 +10394,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000374</Id>
+								<Id>1796000000397</Id>
 								<Name><![CDATA[puesto19]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -9928,7 +10424,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000375</Id>
+								<Id>1796000000398</Id>
 								<Name><![CDATA[siglaPuesto19]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -9957,7 +10453,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000376</Id>
+								<Id>1796000000399</Id>
 								<Name><![CDATA[puesto20]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -9987,7 +10483,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000377</Id>
+								<Id>1796000000400</Id>
 								<Name><![CDATA[siglaPuesto20]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -10016,7 +10512,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000378</Id>
+								<Id>1796000000401</Id>
 								<Name><![CDATA[puesto21]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -10046,7 +10542,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000379</Id>
+								<Id>1796000000402</Id>
 								<Name><![CDATA[siglaPuesto21]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -10075,7 +10571,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000380</Id>
+								<Id>1796000000403</Id>
 								<Name><![CDATA[puesto22]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -10105,7 +10601,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000381</Id>
+								<Id>1796000000404</Id>
 								<Name><![CDATA[siglaPuesto22]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -10134,7 +10630,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000382</Id>
+								<Id>1796000000405</Id>
 								<Name><![CDATA[puesto23]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -10164,7 +10660,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000383</Id>
+								<Id>1796000000406</Id>
 								<Name><![CDATA[siglaPuesto23]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -10193,7 +10689,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000384</Id>
+								<Id>1796000000407</Id>
 								<Name><![CDATA[puesto24]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -10223,7 +10719,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000385</Id>
+								<Id>1796000000408</Id>
 								<Name><![CDATA[siglaPuesto24]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -10252,7 +10748,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000386</Id>
+								<Id>1796000000409</Id>
 								<Name><![CDATA[puesto25]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -10282,7 +10778,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000387</Id>
+								<Id>1796000000410</Id>
 								<Name><![CDATA[siglaPuesto25]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -10311,7 +10807,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000388</Id>
+								<Id>1796000000411</Id>
 								<Name><![CDATA[puesto26]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -10341,7 +10837,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000389</Id>
+								<Id>1796000000412</Id>
 								<Name><![CDATA[siglaPuesto26]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -10370,7 +10866,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000390</Id>
+								<Id>1796000000413</Id>
 								<Name><![CDATA[puesto27]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -10400,7 +10896,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000391</Id>
+								<Id>1796000000414</Id>
 								<Name><![CDATA[siglaPuesto27]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -10429,7 +10925,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000392</Id>
+								<Id>1796000000415</Id>
 								<Name><![CDATA[puesto28]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -10459,7 +10955,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000393</Id>
+								<Id>1796000000416</Id>
 								<Name><![CDATA[siglaPuesto28]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -10488,7 +10984,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000394</Id>
+								<Id>1796000000417</Id>
 								<Name><![CDATA[puesto29]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -10518,7 +11014,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000395</Id>
+								<Id>1796000000418</Id>
 								<Name><![CDATA[siglaPuesto29]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -10547,7 +11043,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000396</Id>
+								<Id>1796000000419</Id>
 								<Name><![CDATA[puesto30]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -10577,7 +11073,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000397</Id>
+								<Id>1796000000420</Id>
 								<Name><![CDATA[siglaPuesto30]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -10606,7 +11102,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000398</Id>
+								<Id>1796000000421</Id>
 								<Name><![CDATA[puesto31]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -10636,7 +11132,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000399</Id>
+								<Id>1796000000422</Id>
 								<Name><![CDATA[siglaPuesto31]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -10665,7 +11161,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000400</Id>
+								<Id>1796000000423</Id>
 								<Name><![CDATA[puesto32]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -10695,7 +11191,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000401</Id>
+								<Id>1796000000424</Id>
 								<Name><![CDATA[siglaPuesto32]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -10724,7 +11220,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000402</Id>
+								<Id>1796000000425</Id>
 								<Name><![CDATA[puesto33]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -10754,7 +11250,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000403</Id>
+								<Id>1796000000426</Id>
 								<Name><![CDATA[siglaPuesto33]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -10783,7 +11279,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000404</Id>
+								<Id>1796000000427</Id>
 								<Name><![CDATA[puesto34]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -10813,7 +11309,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000405</Id>
+								<Id>1796000000428</Id>
 								<Name><![CDATA[siglaPuesto34]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -10842,7 +11338,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000406</Id>
+								<Id>1796000000429</Id>
 								<Name><![CDATA[puesto35]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -10872,7 +11368,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000407</Id>
+								<Id>1796000000430</Id>
 								<Name><![CDATA[siglaPuesto35]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -10901,7 +11397,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000408</Id>
+								<Id>1796000000431</Id>
 								<Name><![CDATA[puesto36]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -10931,7 +11427,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000409</Id>
+								<Id>1796000000432</Id>
 								<Name><![CDATA[siglaPuesto36]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -10960,7 +11456,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000410</Id>
+								<Id>1796000000433</Id>
 								<Name><![CDATA[puesto37]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -10990,7 +11486,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000411</Id>
+								<Id>1796000000434</Id>
 								<Name><![CDATA[siglaPuesto37]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -11019,7 +11515,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000412</Id>
+								<Id>1796000000435</Id>
 								<Name><![CDATA[puesto38]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -11049,7 +11545,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000413</Id>
+								<Id>1796000000436</Id>
 								<Name><![CDATA[siglaPuesto38]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -11078,7 +11574,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000414</Id>
+								<Id>1796000000437</Id>
 								<Name><![CDATA[puesto39]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -11108,7 +11604,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000415</Id>
+								<Id>1796000000438</Id>
 								<Name><![CDATA[siglaPuesto39]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -11137,7 +11633,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000416</Id>
+								<Id>1796000000439</Id>
 								<Name><![CDATA[puesto40]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -11167,7 +11663,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000417</Id>
+								<Id>1796000000440</Id>
 								<Name><![CDATA[siglaPuesto40]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -11196,7 +11692,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000418</Id>
+								<Id>1796000000441</Id>
 								<Name><![CDATA[puesto41]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -11226,7 +11722,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000419</Id>
+								<Id>1796000000442</Id>
 								<Name><![CDATA[siglaPuesto41]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -11255,7 +11751,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000420</Id>
+								<Id>1796000000443</Id>
 								<Name><![CDATA[puesto42]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -11285,7 +11781,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000421</Id>
+								<Id>1796000000444</Id>
 								<Name><![CDATA[siglaPuesto42]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -11314,7 +11810,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000422</Id>
+								<Id>1796000000445</Id>
 								<Name><![CDATA[puesto43]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -11344,7 +11840,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000423</Id>
+								<Id>1796000000446</Id>
 								<Name><![CDATA[siglaPuesto43]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -11373,7 +11869,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000424</Id>
+								<Id>1796000000447</Id>
 								<Name><![CDATA[puesto44]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -11403,7 +11899,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000425</Id>
+								<Id>1796000000448</Id>
 								<Name><![CDATA[siglaPuesto44]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -11432,7 +11928,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000426</Id>
+								<Id>1796000000449</Id>
 								<Name><![CDATA[puesto45]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -11462,7 +11958,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000427</Id>
+								<Id>1796000000450</Id>
 								<Name><![CDATA[siglaPuesto45]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -11491,7 +11987,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000428</Id>
+								<Id>1796000000451</Id>
 								<Name><![CDATA[puesto46]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -11521,7 +12017,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000429</Id>
+								<Id>1796000000452</Id>
 								<Name><![CDATA[siglaPuesto46]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -11550,7 +12046,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000430</Id>
+								<Id>1796000000453</Id>
 								<Name><![CDATA[puesto47]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -11580,7 +12076,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000431</Id>
+								<Id>1796000000454</Id>
 								<Name><![CDATA[siglaPuesto47]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -11609,7 +12105,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000432</Id>
+								<Id>1796000000455</Id>
 								<Name><![CDATA[puesto48]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -11639,7 +12135,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000433</Id>
+								<Id>1796000000456</Id>
 								<Name><![CDATA[siglaPuesto48]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -11668,7 +12164,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000434</Id>
+								<Id>1796000000457</Id>
 								<Name><![CDATA[puesto49]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -11698,7 +12194,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000435</Id>
+								<Id>1796000000458</Id>
 								<Name><![CDATA[siglaPuesto49]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -11727,7 +12223,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000436</Id>
+								<Id>1796000000459</Id>
 								<Name><![CDATA[puesto50]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -11757,7 +12253,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000437</Id>
+								<Id>1796000000460</Id>
 								<Name><![CDATA[siglaPuesto50]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -11786,7 +12282,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000438</Id>
+								<Id>1796000000461</Id>
 								<Name><![CDATA[puesto51]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -11816,7 +12312,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000439</Id>
+								<Id>1796000000462</Id>
 								<Name><![CDATA[siglaPuesto51]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -11845,7 +12341,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000440</Id>
+								<Id>1796000000463</Id>
 								<Name><![CDATA[puesto52]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -11875,7 +12371,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000441</Id>
+								<Id>1796000000464</Id>
 								<Name><![CDATA[siglaPuesto52]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -11904,7 +12400,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000442</Id>
+								<Id>1796000000465</Id>
 								<Name><![CDATA[puesto53]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -11934,7 +12430,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000443</Id>
+								<Id>1796000000466</Id>
 								<Name><![CDATA[siglaPuesto53]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -11963,7 +12459,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000444</Id>
+								<Id>1796000000467</Id>
 								<Name><![CDATA[puesto54]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -11993,7 +12489,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000445</Id>
+								<Id>1796000000468</Id>
 								<Name><![CDATA[siglaPuesto54]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -12022,7 +12518,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000446</Id>
+								<Id>1796000000469</Id>
 								<Name><![CDATA[puesto55]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -12052,7 +12548,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000447</Id>
+								<Id>1796000000470</Id>
 								<Name><![CDATA[siglaPuesto55]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -12081,7 +12577,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000448</Id>
+								<Id>1796000000471</Id>
 								<Name><![CDATA[puesto56]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -12111,7 +12607,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000449</Id>
+								<Id>1796000000472</Id>
 								<Name><![CDATA[siglaPuesto56]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -12140,7 +12636,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000450</Id>
+								<Id>1796000000473</Id>
 								<Name><![CDATA[puesto57]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -12170,7 +12666,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000451</Id>
+								<Id>1796000000474</Id>
 								<Name><![CDATA[siglaPuesto57]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -12199,7 +12695,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000452</Id>
+								<Id>1796000000475</Id>
 								<Name><![CDATA[puesto58]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -12229,7 +12725,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000453</Id>
+								<Id>1796000000476</Id>
 								<Name><![CDATA[siglaPuesto58]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -12258,7 +12754,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000454</Id>
+								<Id>1796000000477</Id>
 								<Name><![CDATA[puesto59]]></Name>
 								<X>980</X>
 								<Y>196</Y>
@@ -12288,7 +12784,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000455</Id>
+								<Id>1796000000478</Id>
 								<Name><![CDATA[siglaPuesto59]]></Name>
 								<X>995</X>
 								<Y>200</Y>
@@ -12317,7 +12813,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000456</Id>
+								<Id>1796000000479</Id>
 								<Name><![CDATA[rackDeMateriales]]></Name>
 								<X>1425</X>
 								<Y>210</Y>
@@ -12343,7 +12839,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000457</Id>
+								<Id>1796000000480</Id>
 								<Name><![CDATA[rotuloRack]]></Name>
 								<X>1460</X>
 								<Y>196</Y>
@@ -12368,7 +12864,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000000458</Id>
+								<Id>1796000000481</Id>
 								<Name><![CDATA[usoRack]]></Name>
 								<X>1460</X>
 								<Y>256</Y>
@@ -12394,7 +12890,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000459</Id>
+								<Id>1796000000482</Id>
 								<Name><![CDATA[rackDeCalidad]]></Name>
 								<X>1455</X>
 								<Y>470</Y>
@@ -12420,7 +12916,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000460</Id>
+								<Id>1796000000483</Id>
 								<Name><![CDATA[rotuloRackCalidad]]></Name>
 								<X>1500</X>
 								<Y>500</Y>
@@ -12446,7 +12942,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000461</Id>
+								<Id>1796000000484</Id>
 								<Name><![CDATA[puestoInspector]]></Name>
 								<X>1488</X>
 								<Y>430</Y>
@@ -12473,7 +12969,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000462</Id>
+								<Id>1796000000485</Id>
 								<Name><![CDATA[rotuloInspector]]></Name>
 								<X>1500</X>
 								<Y>416</Y>
@@ -12498,7 +12994,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000463</Id>
+								<Id>1796000000486</Id>
 								<Name><![CDATA[stockProductoTerminado]]></Name>
 								<X>1520</X>
 								<Y>290</Y>
@@ -12524,7 +13020,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000464</Id>
+								<Id>1796000000487</Id>
 								<Name><![CDATA[rotuloStock]]></Name>
 								<X>1547</X>
 								<Y>386</Y>
@@ -12550,7 +13046,7 @@ agent.paso++;]]></Code>
 								<Alignment>CENTER</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000465</Id>
+								<Id>1796000000488</Id>
 								<Name><![CDATA[zonaAusentes]]></Name>
 								<X>950</X>
 								<Y>588</Y>
@@ -12576,7 +13072,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000466</Id>
+								<Id>1796000000489</Id>
 								<Name><![CDATA[rotuloAusentes]]></Name>
 								<X>952</X>
 								<Y>576</Y>
@@ -12601,7 +13097,7 @@ agent.paso++;]]></Code>
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000000467</Id>
+								<Id>1796000000490</Id>
 								<Name><![CDATA[zonaReserva]]></Name>
 								<X>1128</X>
 								<Y>530</Y>
@@ -12627,7 +13123,7 @@ agent.paso++;]]></Code>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000000468</Id>
+								<Id>1796000000491</Id>
 								<Name><![CDATA[rotuloReserva]]></Name>
 								<X>1130</X>
 								<Y>518</Y>
@@ -12652,7 +13148,7 @@ agent.paso++;]]></Code>
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000000469</Id>
+								<Id>1796000000492</Id>
 								<Name><![CDATA[leyenda]]></Name>
 								<X>1150</X>
 								<Y>600</Y>
@@ -12678,7 +13174,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000000470</Id>
+								<Id>1796000000493</Id>
 								<Name><![CDATA[rotuloFlujo]]></Name>
 								<X>40</X>
 								<Y>960</Y>
@@ -12703,7 +13199,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000000471</Id>
+								<Id>1796000000494</Id>
 								<Name><![CDATA[rotuloPeatones]]></Name>
 								<X>500</X>
 								<Y>1300</Y>
@@ -12861,7 +13357,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000472</Id>
+						<Id>1796000000495</Id>
 						<Name><![CDATA[tipoModelo]]></Name>
 						<X>50</X>
 						<Y>90</Y>
@@ -12880,7 +13376,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000473</Id>
+						<Id>1796000000496</Id>
 						<Name><![CDATA[paso]]></Name>
 						<X>50</X>
 						<Y>112</Y>
@@ -12899,7 +13395,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000474</Id>
+						<Id>1796000000497</Id>
 						<Name><![CDATA[lineaArmado]]></Name>
 						<X>50</X>
 						<Y>134</Y>
@@ -12918,7 +13414,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000475</Id>
+						<Id>1796000000498</Id>
 						<Name><![CDATA[lineaCF]]></Name>
 						<X>50</X>
 						<Y>156</Y>
@@ -12937,7 +13433,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000476</Id>
+						<Id>1796000000499</Id>
 						<Name><![CDATA[puestoActual]]></Name>
 						<X>50</X>
 						<Y>178</Y>
@@ -12956,7 +13452,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000477</Id>
+						<Id>1796000000500</Id>
 						<Name><![CDATA[opActual]]></Name>
 						<X>50</X>
 						<Y>200</Y>
@@ -12975,7 +13471,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000478</Id>
+						<Id>1796000000501</Id>
 						<Name><![CDATA[fase]]></Name>
 						<X>50</X>
 						<Y>222</Y>
@@ -12994,7 +13490,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000479</Id>
+						<Id>1796000000502</Id>
 						<Name><![CDATA[destX]]></Name>
 						<X>50</X>
 						<Y>244</Y>
@@ -13013,7 +13509,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000480</Id>
+						<Id>1796000000503</Id>
 						<Name><![CDATA[destY]]></Name>
 						<X>50</X>
 						<Y>266</Y>
@@ -13032,7 +13528,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000481</Id>
+						<Id>1796000000504</Id>
 						<Name><![CDATA[tInicioCaminata]]></Name>
 						<X>50</X>
 						<Y>288</Y>
@@ -13051,7 +13547,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000482</Id>
+						<Id>1796000000505</Id>
 						<Name><![CDATA[tIngreso]]></Name>
 						<X>50</X>
 						<Y>310</Y>
@@ -13070,7 +13566,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000483</Id>
+						<Id>1796000000506</Id>
 						<Name><![CDATA[tInicioEspera]]></Name>
 						<X>50</X>
 						<Y>332</Y>
@@ -13089,7 +13585,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000484</Id>
+						<Id>1796000000507</Id>
 						<Name><![CDATA[esperaTotal]]></Name>
 						<X>50</X>
 						<Y>354</Y>
@@ -13108,7 +13604,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000485</Id>
+						<Id>1796000000508</Id>
 						<Name><![CDATA[tCaminata]]></Name>
 						<X>50</X>
 						<Y>376</Y>
@@ -13127,7 +13623,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000486</Id>
+						<Id>1796000000509</Id>
 						<Name><![CDATA[diaOF]]></Name>
 						<X>50</X>
 						<Y>398</Y>
@@ -13146,7 +13642,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000487</Id>
+						<Id>1796000000510</Id>
 						<Name><![CDATA[ordenLiberacion]]></Name>
 						<X>250</X>
 						<Y>90</Y>
@@ -13165,7 +13661,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000488</Id>
+						<Id>1796000000511</Id>
 						<Name><![CDATA[inspeccionar]]></Name>
 						<X>250</X>
 						<Y>112</Y>
@@ -13184,7 +13680,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000489</Id>
+						<Id>1796000000512</Id>
 						<Name><![CDATA[posMuestra]]></Name>
 						<X>250</X>
 						<Y>134</Y>
@@ -13203,7 +13699,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000490</Id>
+						<Id>1796000000513</Id>
 						<Name><![CDATA[rechazada]]></Name>
 						<X>250</X>
 						<Y>156</Y>
@@ -13222,7 +13718,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000491</Id>
+						<Id>1796000000514</Id>
 						<Name><![CDATA[tIngresoRack]]></Name>
 						<X>250</X>
 						<Y>178</Y>
@@ -13416,7 +13912,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000492</Id>
+						<Id>1796000000515</Id>
 						<Name><![CDATA[idOp]]></Name>
 						<X>50</X>
 						<Y>90</Y>
@@ -13435,7 +13931,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000493</Id>
+						<Id>1796000000516</Id>
 						<Name><![CDATA[lineaHabitual]]></Name>
 						<X>50</X>
 						<Y>112</Y>
@@ -13454,7 +13950,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000494</Id>
+						<Id>1796000000517</Id>
 						<Name><![CDATA[puestoHabitual]]></Name>
 						<X>50</X>
 						<Y>134</Y>
@@ -13473,7 +13969,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000495</Id>
+						<Id>1796000000518</Id>
 						<Name><![CDATA[presente]]></Name>
 						<X>50</X>
 						<Y>156</Y>
@@ -13492,7 +13988,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000496</Id>
+						<Id>1796000000519</Id>
 						<Name><![CDATA[esReserva]]></Name>
 						<X>50</X>
 						<Y>178</Y>
@@ -13511,7 +14007,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000497</Id>
+						<Id>1796000000520</Id>
 						<Name><![CDATA[puestosAtendidos]]></Name>
 						<X>50</X>
 						<Y>200</Y>
@@ -13530,7 +14026,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000498</Id>
+						<Id>1796000000521</Id>
 						<Name><![CDATA[estado]]></Name>
 						<X>50</X>
 						<Y>222</Y>
@@ -13549,7 +14045,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000499</Id>
+						<Id>1796000000522</Id>
 						<Name><![CDATA[puestoTrabajo]]></Name>
 						<X>50</X>
 						<Y>244</Y>
@@ -13568,7 +14064,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000500</Id>
+						<Id>1796000000523</Id>
 						<Name><![CDATA[tInicioOcupado]]></Name>
 						<X>50</X>
 						<Y>266</Y>
@@ -13587,7 +14083,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000501</Id>
+						<Id>1796000000524</Id>
 						<Name><![CDATA[tOcupado]]></Name>
 						<X>50</X>
 						<Y>288</Y>
@@ -13606,7 +14102,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000502</Id>
+						<Id>1796000000525</Id>
 						<Name><![CDATA[tCaminando]]></Name>
 						<X>50</X>
 						<Y>310</Y>
@@ -13625,7 +14121,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000503</Id>
+						<Id>1796000000526</Id>
 						<Name><![CDATA[minPresente]]></Name>
 						<X>50</X>
 						<Y>332</Y>
@@ -13644,7 +14140,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000504</Id>
+						<Id>1796000000527</Id>
 						<Name><![CDATA[destX]]></Name>
 						<X>50</X>
 						<Y>354</Y>
@@ -13663,7 +14159,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000505</Id>
+						<Id>1796000000528</Id>
 						<Name><![CDATA[destY]]></Name>
 						<X>50</X>
 						<Y>376</Y>
@@ -13682,7 +14178,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000506</Id>
+						<Id>1796000000529</Id>
 						<Name><![CDATA[balanzaEnCamino]]></Name>
 						<X>50</X>
 						<Y>398</Y>
@@ -13701,7 +14197,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000507</Id>
+						<Id>1796000000530</Id>
 						<Name><![CDATA[ingresoPedido]]></Name>
 						<X>250</X>
 						<Y>90</Y>
@@ -13720,7 +14216,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						</Properties>
 					</Variable>
 					<Variable Class="PlainVariable">
-						<Id>1796000000508</Id>
+						<Id>1796000000531</Id>
 						<Name><![CDATA[enPlanta]]></Name>
 						<X>250</X>
 						<Y>112</Y>
@@ -13743,7 +14239,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[Color]]></ReturnType>
-						<Id>1796000000509</Id>
+						<Id>1796000000532</Id>
 						<Name><![CDATA[colorEstado]]></Name>
 						<X>300</X>
 						<Y>90</Y>
@@ -13763,7 +14259,7 @@ return new Color(160, 168, 180);]]></Body>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 						<ReturnType><![CDATA[Color]]></ReturnType>
-						<Id>1796000000510</Id>
+						<Id>1796000000533</Id>
 						<Name><![CDATA[colorEspecialidad]]></Name>
 						<X>300</X>
 						<Y>112</Y>
@@ -13884,7 +14380,7 @@ return new Color(15, 23, 42);]]></Body>
 								<IgnoreSceneLights>false</IgnoreSceneLights>
 							</Figure3D>
 							<Oval>
-								<Id>1796000000511</Id>
+								<Id>1796000000534</Id>
 								<Name><![CDATA[marcaOperario]]></Name>
 								<X>0</X>
 								<Y>0</Y>
@@ -13961,7 +14457,7 @@ return new Color(15, 23, 42);]]></Body>
 		<Experiments>
 			<!--   =========   Simulation Experiment   ========  -->
 			<SimulationExperiment ActiveObjectClassId="1787949286571">
-				<Id>1796000000512</Id>
+				<Id>1796000000535</Id>
 				<Name><![CDATA[Simulation]]></Name>
 				<CommandLineArguments/>
 				<MaximumMemory>512</MaximumMemory>
@@ -13973,7 +14469,7 @@ return new Color(15, 23, 42);]]></Body>
 				<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
 				<Presentation>
 					<Text>
-						<Id>1796000000513</Id>
+						<Id>1796000000536</Id>
 						<Name><![CDATA[text]]></Name>
 						<X>50</X>
 						<Y>30</Y>
@@ -14107,6 +14603,18 @@ return new Color(15, 23, 42);]]></Body>
 					<Parameter>
 						<ParameterName><![CDATA[costoReorganizacion]]></ParameterName>
 					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[nombreEscenario]]></ParameterName>
+						<ParameterValue Class="CodeValue">
+							<Code><![CDATA["Escenario actual"]]></Code>
+						</ParameterValue>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[semilla]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[guardarResultados]]></ParameterName>
+					</Parameter>
 				</Parameters>
 				<PresentationProperties>
 					<EnableZoomAndPanning>true</EnableZoomAndPanning>
@@ -14126,7 +14634,7 @@ return new Color(15, 23, 42);]]></Body>
 				<BypassInitialScreen>true</BypassInitialScreen>
 			</SimulationExperiment>
 			<SimulationExperiment ActiveObjectClassId="1787949286571">
-				<Id>1796000000514</Id>
+				<Id>1796000000537</Id>
 				<Name><![CDATA[EscenarioContratacion]]></Name>
 				<CommandLineArguments/>
 				<MaximumMemory>512</MaximumMemory>
@@ -14138,7 +14646,7 @@ return new Color(15, 23, 42);]]></Body>
 				<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
 				<Presentation>
 					<Text>
-						<Id>1796000000515</Id>
+						<Id>1796000000538</Id>
 						<Name><![CDATA[text]]></Name>
 						<X>50</X>
 						<Y>30</Y>
@@ -14275,6 +14783,18 @@ return new Color(15, 23, 42);]]></Body>
 					<Parameter>
 						<ParameterName><![CDATA[costoReorganizacion]]></ParameterName>
 					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[nombreEscenario]]></ParameterName>
+						<ParameterValue Class="CodeValue">
+							<Code><![CDATA["Contratar 2 Ajustadores"]]></Code>
+						</ParameterValue>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[semilla]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[guardarResultados]]></ParameterName>
+					</Parameter>
 				</Parameters>
 				<PresentationProperties>
 					<EnableZoomAndPanning>true</EnableZoomAndPanning>
@@ -14294,7 +14814,547 @@ return new Color(15, 23, 42);]]></Body>
 				<BypassInitialScreen>true</BypassInitialScreen>
 			</SimulationExperiment>
 			<SimulationExperiment ActiveObjectClassId="1787949286571">
-				<Id>1796000000516</Id>
+				<Id>1796000000539</Id>
+				<Name><![CDATA[EscenarioContratacionArmadores]]></Name>
+				<CommandLineArguments/>
+				<MaximumMemory>512</MaximumMemory>
+				<RandomNumberGenerationType>fixedSeed</RandomNumberGenerationType>
+				<CustomGeneratorCode>new Random()</CustomGeneratorCode>
+				<SeedValue>1</SeedValue>
+				<SelectionModeForSimultaneousEvents>LIFO</SelectionModeForSimultaneousEvents>
+				<VmArgs/>
+				<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
+				<Presentation>
+					<Text>
+						<Id>1796000000540</Id>
+						<Name><![CDATA[text]]></Name>
+						<X>50</X>
+						<Y>30</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>true</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>false</ShowLabel>
+						<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+						<EmbeddedIcon>false</EmbeddedIcon>
+						<Z>0</Z>
+						<Rotation>0.0</Rotation>
+						<Color>-12490271</Color>
+						<Text><![CDATA[KRETZ | Contratar 2 Armadores]]></Text>
+						<Font>
+							<Name>SansSerif</Name>
+							<Size>24</Size>
+							<Style>0</Style>
+						</Font>
+						<Alignment>LEFT</Alignment>
+					</Text>
+				</Presentation>
+				<Parameters>
+					<Parameter>
+						<ParameterName><![CDATA[ofSeleccionada]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[cantidadAILA]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[cantidadREPORT]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[cantidadNOVEL]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[cantidadLURA]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[cantidadAURA]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[reglaSecuencia]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[diasPorSemana]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[semanasSimuladas]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[duracionTurnoMin]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[maxHorasRecuperacion]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[detenerAlFinal]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[lineasArmado]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[lineasCF]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[armadoresPorLinea]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[ajustadoresPorLinea]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[controladoresPorLineaCF]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[embaladoresPorLineaCF]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[extraArmadores]]></ParameterName>
+						<ParameterValue Class="CodeValue">
+							<Code><![CDATA[2]]></Code>
+						</ParameterValue>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[extraAjustadores]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[extraControladores]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[extraEmbaladores]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[operariosReserva]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[empleadosDeposito]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[probAusencia]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[probAusenciaFinDeSemana]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[coberturaEntreEspecialidades]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[maxPuestosPorOperario]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[variabilidadTiempos]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[velocidadOperario]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[capacidadRackMateriales]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[tiempoInspeccionMin]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[probRechazo]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[valorHoraNormal]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[recargoFinDeSemana]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[costoReorganizacion]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[nombreEscenario]]></ParameterName>
+						<ParameterValue Class="CodeValue">
+							<Code><![CDATA["Contratar 2 Armadores"]]></Code>
+						</ParameterValue>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[semilla]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[guardarResultados]]></ParameterName>
+					</Parameter>
+				</Parameters>
+				<PresentationProperties>
+					<EnableZoomAndPanning>true</EnableZoomAndPanning>
+					<ExecutionMode><![CDATA[realTimeScaled]]></ExecutionMode>
+					<Title><![CDATA[KRETZ | Contratar 2 Armadores]]></Title>
+					<EnableDeveloperPanel>true</EnableDeveloperPanel>
+					<ShowDeveloperPanelOnStart>false</ShowDeveloperPanelOnStart>
+					<RealTimeScale>30.0</RealTimeScale>
+				</PresentationProperties>
+				<ModelTimeProperties>
+					<StopOption><![CDATA[Never]]></StopOption>
+					<InitialDate><![CDATA[1787875200000]]></InitialDate>
+					<InitialTime><![CDATA[0.0]]></InitialTime>
+					<FinalDate><![CDATA[1790553600000]]></FinalDate>
+					<FinalTime><![CDATA[100.0]]></FinalTime>
+				</ModelTimeProperties>
+				<BypassInitialScreen>true</BypassInitialScreen>
+			</SimulationExperiment>
+			<SimulationExperiment ActiveObjectClassId="1787949286571">
+				<Id>1796000000541</Id>
+				<Name><![CDATA[EscenarioContratacionControlador]]></Name>
+				<CommandLineArguments/>
+				<MaximumMemory>512</MaximumMemory>
+				<RandomNumberGenerationType>fixedSeed</RandomNumberGenerationType>
+				<CustomGeneratorCode>new Random()</CustomGeneratorCode>
+				<SeedValue>1</SeedValue>
+				<SelectionModeForSimultaneousEvents>LIFO</SelectionModeForSimultaneousEvents>
+				<VmArgs/>
+				<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
+				<Presentation>
+					<Text>
+						<Id>1796000000542</Id>
+						<Name><![CDATA[text]]></Name>
+						<X>50</X>
+						<Y>30</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>true</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>false</ShowLabel>
+						<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+						<EmbeddedIcon>false</EmbeddedIcon>
+						<Z>0</Z>
+						<Rotation>0.0</Rotation>
+						<Color>-12490271</Color>
+						<Text><![CDATA[KRETZ | Contratar 1 Controlador]]></Text>
+						<Font>
+							<Name>SansSerif</Name>
+							<Size>24</Size>
+							<Style>0</Style>
+						</Font>
+						<Alignment>LEFT</Alignment>
+					</Text>
+				</Presentation>
+				<Parameters>
+					<Parameter>
+						<ParameterName><![CDATA[ofSeleccionada]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[cantidadAILA]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[cantidadREPORT]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[cantidadNOVEL]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[cantidadLURA]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[cantidadAURA]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[reglaSecuencia]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[diasPorSemana]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[semanasSimuladas]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[duracionTurnoMin]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[maxHorasRecuperacion]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[detenerAlFinal]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[lineasArmado]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[lineasCF]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[armadoresPorLinea]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[ajustadoresPorLinea]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[controladoresPorLineaCF]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[embaladoresPorLineaCF]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[extraArmadores]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[extraAjustadores]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[extraControladores]]></ParameterName>
+						<ParameterValue Class="CodeValue">
+							<Code><![CDATA[1]]></Code>
+						</ParameterValue>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[extraEmbaladores]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[operariosReserva]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[empleadosDeposito]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[probAusencia]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[probAusenciaFinDeSemana]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[coberturaEntreEspecialidades]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[maxPuestosPorOperario]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[variabilidadTiempos]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[velocidadOperario]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[capacidadRackMateriales]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[tiempoInspeccionMin]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[probRechazo]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[valorHoraNormal]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[recargoFinDeSemana]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[costoReorganizacion]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[nombreEscenario]]></ParameterName>
+						<ParameterValue Class="CodeValue">
+							<Code><![CDATA["Contratar 1 Controlador"]]></Code>
+						</ParameterValue>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[semilla]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[guardarResultados]]></ParameterName>
+					</Parameter>
+				</Parameters>
+				<PresentationProperties>
+					<EnableZoomAndPanning>true</EnableZoomAndPanning>
+					<ExecutionMode><![CDATA[realTimeScaled]]></ExecutionMode>
+					<Title><![CDATA[KRETZ | Contratar 1 Controlador]]></Title>
+					<EnableDeveloperPanel>true</EnableDeveloperPanel>
+					<ShowDeveloperPanelOnStart>false</ShowDeveloperPanelOnStart>
+					<RealTimeScale>30.0</RealTimeScale>
+				</PresentationProperties>
+				<ModelTimeProperties>
+					<StopOption><![CDATA[Never]]></StopOption>
+					<InitialDate><![CDATA[1787875200000]]></InitialDate>
+					<InitialTime><![CDATA[0.0]]></InitialTime>
+					<FinalDate><![CDATA[1790553600000]]></FinalDate>
+					<FinalTime><![CDATA[100.0]]></FinalTime>
+				</ModelTimeProperties>
+				<BypassInitialScreen>true</BypassInitialScreen>
+			</SimulationExperiment>
+			<SimulationExperiment ActiveObjectClassId="1787949286571">
+				<Id>1796000000543</Id>
+				<Name><![CDATA[EscenarioContratacionEmbalador]]></Name>
+				<CommandLineArguments/>
+				<MaximumMemory>512</MaximumMemory>
+				<RandomNumberGenerationType>fixedSeed</RandomNumberGenerationType>
+				<CustomGeneratorCode>new Random()</CustomGeneratorCode>
+				<SeedValue>1</SeedValue>
+				<SelectionModeForSimultaneousEvents>LIFO</SelectionModeForSimultaneousEvents>
+				<VmArgs/>
+				<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
+				<Presentation>
+					<Text>
+						<Id>1796000000544</Id>
+						<Name><![CDATA[text]]></Name>
+						<X>50</X>
+						<Y>30</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>true</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>false</ShowLabel>
+						<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+						<EmbeddedIcon>false</EmbeddedIcon>
+						<Z>0</Z>
+						<Rotation>0.0</Rotation>
+						<Color>-12490271</Color>
+						<Text><![CDATA[KRETZ | Contratar 1 Embalador]]></Text>
+						<Font>
+							<Name>SansSerif</Name>
+							<Size>24</Size>
+							<Style>0</Style>
+						</Font>
+						<Alignment>LEFT</Alignment>
+					</Text>
+				</Presentation>
+				<Parameters>
+					<Parameter>
+						<ParameterName><![CDATA[ofSeleccionada]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[cantidadAILA]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[cantidadREPORT]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[cantidadNOVEL]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[cantidadLURA]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[cantidadAURA]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[reglaSecuencia]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[diasPorSemana]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[semanasSimuladas]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[duracionTurnoMin]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[maxHorasRecuperacion]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[detenerAlFinal]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[lineasArmado]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[lineasCF]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[armadoresPorLinea]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[ajustadoresPorLinea]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[controladoresPorLineaCF]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[embaladoresPorLineaCF]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[extraArmadores]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[extraAjustadores]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[extraControladores]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[extraEmbaladores]]></ParameterName>
+						<ParameterValue Class="CodeValue">
+							<Code><![CDATA[1]]></Code>
+						</ParameterValue>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[operariosReserva]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[empleadosDeposito]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[probAusencia]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[probAusenciaFinDeSemana]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[coberturaEntreEspecialidades]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[maxPuestosPorOperario]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[variabilidadTiempos]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[velocidadOperario]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[capacidadRackMateriales]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[tiempoInspeccionMin]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[probRechazo]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[valorHoraNormal]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[recargoFinDeSemana]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[costoReorganizacion]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[nombreEscenario]]></ParameterName>
+						<ParameterValue Class="CodeValue">
+							<Code><![CDATA["Contratar 1 Embalador"]]></Code>
+						</ParameterValue>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[semilla]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[guardarResultados]]></ParameterName>
+					</Parameter>
+				</Parameters>
+				<PresentationProperties>
+					<EnableZoomAndPanning>true</EnableZoomAndPanning>
+					<ExecutionMode><![CDATA[realTimeScaled]]></ExecutionMode>
+					<Title><![CDATA[KRETZ | Contratar 1 Embalador]]></Title>
+					<EnableDeveloperPanel>true</EnableDeveloperPanel>
+					<ShowDeveloperPanelOnStart>false</ShowDeveloperPanelOnStart>
+					<RealTimeScale>30.0</RealTimeScale>
+				</PresentationProperties>
+				<ModelTimeProperties>
+					<StopOption><![CDATA[Never]]></StopOption>
+					<InitialDate><![CDATA[1787875200000]]></InitialDate>
+					<InitialTime><![CDATA[0.0]]></InitialTime>
+					<FinalDate><![CDATA[1790553600000]]></FinalDate>
+					<FinalTime><![CDATA[100.0]]></FinalTime>
+				</ModelTimeProperties>
+				<BypassInitialScreen>true</BypassInitialScreen>
+			</SimulationExperiment>
+			<SimulationExperiment ActiveObjectClassId="1787949286571">
+				<Id>1796000000545</Id>
 				<Name><![CDATA[EscenarioReserva]]></Name>
 				<CommandLineArguments/>
 				<MaximumMemory>512</MaximumMemory>
@@ -14306,7 +15366,7 @@ return new Color(15, 23, 42);]]></Body>
 				<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
 				<Presentation>
 					<Text>
-						<Id>1796000000517</Id>
+						<Id>1796000000546</Id>
 						<Name><![CDATA[text]]></Name>
 						<X>50</X>
 						<Y>30</Y>
@@ -14443,6 +15503,18 @@ return new Color(15, 23, 42);]]></Body>
 					<Parameter>
 						<ParameterName><![CDATA[costoReorganizacion]]></ParameterName>
 					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[nombreEscenario]]></ParameterName>
+						<ParameterValue Class="CodeValue">
+							<Code><![CDATA["Personal de reserva polivalente (2)"]]></Code>
+						</ParameterValue>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[semilla]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[guardarResultados]]></ParameterName>
+					</Parameter>
 				</Parameters>
 				<PresentationProperties>
 					<EnableZoomAndPanning>true</EnableZoomAndPanning>
@@ -14462,7 +15534,7 @@ return new Color(15, 23, 42);]]></Body>
 				<BypassInitialScreen>true</BypassInitialScreen>
 			</SimulationExperiment>
 			<SimulationExperiment ActiveObjectClassId="1787949286571">
-				<Id>1796000000518</Id>
+				<Id>1796000000547</Id>
 				<Name><![CDATA[EscenarioReorganizacion]]></Name>
 				<CommandLineArguments/>
 				<MaximumMemory>512</MaximumMemory>
@@ -14474,7 +15546,7 @@ return new Color(15, 23, 42);]]></Body>
 				<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
 				<Presentation>
 					<Text>
-						<Id>1796000000519</Id>
+						<Id>1796000000548</Id>
 						<Name><![CDATA[text]]></Name>
 						<X>50</X>
 						<Y>30</Y>
@@ -14620,6 +15692,18 @@ return new Color(15, 23, 42);]]></Body>
 							<Code><![CDATA[1500000]]></Code>
 						</ParameterValue>
 					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[nombreEscenario]]></ParameterName>
+						<ParameterValue Class="CodeValue">
+							<Code><![CDATA["Reorganización: 3 armadores + 2 ajustadores por línea"]]></Code>
+						</ParameterValue>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[semilla]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[guardarResultados]]></ParameterName>
+					</Parameter>
 				</Parameters>
 				<PresentationProperties>
 					<EnableZoomAndPanning>true</EnableZoomAndPanning>
@@ -14639,7 +15723,7 @@ return new Color(15, 23, 42);]]></Body>
 				<BypassInitialScreen>true</BypassInitialScreen>
 			</SimulationExperiment>
 			<SimulationExperiment ActiveObjectClassId="1787949286571">
-				<Id>1796000000520</Id>
+				<Id>1796000000549</Id>
 				<Name><![CDATA[EscenarioSecuencia]]></Name>
 				<CommandLineArguments/>
 				<MaximumMemory>512</MaximumMemory>
@@ -14651,7 +15735,7 @@ return new Color(15, 23, 42);]]></Body>
 				<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
 				<Presentation>
 					<Text>
-						<Id>1796000000521</Id>
+						<Id>1796000000550</Id>
 						<Name><![CDATA[text]]></Name>
 						<X>50</X>
 						<Y>30</Y>
@@ -14787,6 +15871,18 @@ return new Color(15, 23, 42);]]></Body>
 					</Parameter>
 					<Parameter>
 						<ParameterName><![CDATA[costoReorganizacion]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[nombreEscenario]]></ParameterName>
+						<ParameterValue Class="CodeValue">
+							<Code><![CDATA["Secuencia: procesos largos primero"]]></Code>
+						</ParameterValue>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[semilla]]></ParameterName>
+					</Parameter>
+					<Parameter>
+						<ParameterName><![CDATA[guardarResultados]]></ParameterName>
 					</Parameter>
 				</Parameters>
 				<PresentationProperties>

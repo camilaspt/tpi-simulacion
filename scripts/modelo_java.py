@@ -50,6 +50,10 @@ PARAMETROS = [
     ("valorHoraNormal", "double", "6500", "Costo hora normal por empleado ($/h, con cargas)"),
     ("recargoFinDeSemana", "double", "2", "Recargo de la hora extra de fin de semana"),
     ("costoReorganizacion", "double", "0", "Costo de la reorganización ($)"),
+    # Réplicas y resultados
+    ("nombreEscenario", "String", '"Escenario actual"', "Nombre del escenario (para los resultados)"),
+    ("semilla", "long", "0", "Semilla (0 = aleatoria; la usada queda registrada)"),
+    ("guardarResultados", "boolean", "true", "Guardar resultados en Resultados/*.csv"),
 ]
 
 # ---------------------------------------------------------------------------
@@ -144,6 +148,18 @@ VARIABLES_MAIN = [
     ("enStock", "int[]", "new int[5]"),
     ("sumaTiempoSistema", "double[]", "new double[5]"),
     ("sumaEspera", "double[]", "new double[5]"),
+    # Indicadores acumulados para la exportación de resultados
+    ("semillaUsada", "long", "0"),
+    ("ofTotal", "int[]", "new int[5]"),
+    ("aTiempoTotal", "int[]", "new int[5]"),
+    ("sumaEsperaTipo", "double[]", "new double[4]"),
+    ("maxEsperaTipo", "double[]", "new double[4]"),
+    ("nEsperaTipo", "int[]", "new int[4]"),
+    ("unidadesLinea", "int[]", "new int[12]"),
+    ("faltanteSemana", "int", "0"),
+    ("horasExtraSemana", "double", "0"),
+    ("costoExtraSemana", "double", "0"),
+    ("pendientesSemana", "int", "0"),
 ]
 
 VARIABLES_BALANZA = [
@@ -431,6 +447,7 @@ tInicioJornada = time();
 for (int m = 0; m < 5; m++) {
 	ofDia[m] = ofEjemplo(ofSeleccionada, m);
 	ofSemana[m] += ofDia[m];
+	ofTotal[m] += ofDia[m];
 	prodDia[m] = 0;
 	aTiempoDia[m] = 0;
 }
@@ -740,7 +757,13 @@ o.tInicioOcupado = time();
 """)
 
 funcion("planificarDespuesDeTomar", "void", [("b", "Balanza")], """
-b.esperaTotal += time() - b.tInicioEspera;
+double espera = time() - b.tInicioEspera;
+b.esperaTotal += espera;
+// Espera en cola por tipo de puesto (identifica cuellos de botella)
+int tipo = recTipo[b.tipoModelo][b.paso];
+sumaEsperaTipo[tipo] += espera;
+maxEsperaTipo[tipo] = Math.max(maxEsperaTipo[tipo], espera);
+nEsperaTipo[tipo]++;
 if (b.paso == 0) {
 	// Primer paso: el mismo operario va al rack único de materiales y después a su puesto
 	b.fase = 1;
@@ -801,7 +824,12 @@ terminadasSemana++;
 prodDia[m]++;
 prodSemana[m]++;
 prodTotal[m]++;
-if (!enRecuperacion && b.diaOF == diaGlobal) aTiempoDia[m]++;
+if (!enRecuperacion && b.diaOF == diaGlobal) {
+	aTiempoDia[m]++;
+	aTiempoTotal[m]++;
+}
+if (b.lineaArmado >= 0) unidadesLinea[b.lineaArmado]++;
+if (b.lineaCF >= 0) unidadesLinea[b.lineaCF]++;
 // Muestra de calidad: el primer equipo de cada modelo de la jornada se inspecciona enseguida
 b.inspeccionar = prodDia[m] == 1;
 b.posMuestra = b.inspeccionar ? 1 : 0;
@@ -841,6 +869,7 @@ for (int m = 0; m < 5; m++) {
 	if (f > 0) detalle += " " + abreviaturas[m] + ":" + f;
 }
 int faltante = objetivo - aTiempo;
+faltanteSemana += faltante;
 diasSimulados++;
 if (faltante > 0) diasSinCumplir++;
 if (ausentesHoy > 0) {
@@ -864,6 +893,7 @@ else iniciarRecuperacion();
 funcion("iniciarRecuperacion", "void", [], """
 int pendientes = liberadasSemana - terminadasSemana;
 if (pendientes <= 0) {
+	pendientesSemana = 0;
 	historial.add(String.format("S%d Fin de semana: no hace falta recuperar", semana + 1));
 	traceln(historial.get(historial.size() - 1));
 	finSemana();
@@ -892,6 +922,9 @@ double costo = horasHombre * valorHoraNormal * recargoFinDeSemana;
 registrarPresencia(minutos);
 horasExtraTotal += horasHombre;
 costoHorasExtraTotal += costo;
+horasExtraSemana = horasHombre;
+costoExtraSemana = costo;
+pendientesSemana = pendientesInicioRecuperacion;
 int sinRecuperar = liberadasSemana - terminadasSemana;
 historial.add(String.format("S%d Fin de semana: %d pendientes, %d personas, %.1f h -> %.0f h-hombre ($ %,.0f)%s",
 	semana + 1, pendientesInicioRecuperacion, personasRecuperacion, minutos / 60.0, horasHombre, costo,
@@ -903,6 +936,11 @@ finSemana();
 """)
 
 funcion("finSemana", "void", [], """
+exportarSemana();
+faltanteSemana = 0;
+horasExtraSemana = 0;
+costoExtraSemana = 0;
+pendientesSemana = 0;
 semana++;
 liberadasSemana -= terminadasSemana; // lo no recuperado pasa a la semana siguiente
 terminadasSemana = 0;
@@ -916,6 +954,7 @@ if (semana < semanasSimuladas) {
 } else {
 	simulacionTerminada = true;
 	traceln(resumenTexto());
+	exportarCorrida();
 	if (detenerAlFinal) finishSimulation();
 }
 """)
@@ -953,6 +992,93 @@ for (Operario o : ops) {
 	disponible += o.minPresente + (o.presente ? transcurrido : 0);
 }
 return disponible > 0 ? Math.min(1, ocupado / disponible) : 0;
+""")
+
+# --- Exportación de resultados (una fila por corrida y una por semana) -------
+funcion("anexarCSV", "void", [("archivo", "String"), ("encabezado", "String"), ("fila", "String")], """
+// Separador ; y coma decimal, como Datos/*.csv (Excel con configuración argentina)
+if (!guardarResultados) return;
+try {
+	java.io.File f = new java.io.File(archivo);
+	if (f.getParentFile() != null) f.getParentFile().mkdirs();
+	boolean nuevo = !f.exists() || f.length() == 0;
+	try (java.io.PrintWriter w = new java.io.PrintWriter(new java.io.OutputStreamWriter(
+			new java.io.FileOutputStream(f, true), java.nio.charset.StandardCharsets.UTF_8))) {
+		if (nuevo) w.println(encabezado);
+		w.println(fila);
+	}
+} catch (Exception e) {
+	traceln("No se pudo escribir " + archivo + ": " + e.getMessage());
+}
+""")
+
+funcion("num", "String", [("v", "double")], """
+return String.format(java.util.Locale.forLanguageTag("es-AR"), "%.4f", v);
+""")
+
+funcion("columnasEscenario", "String", [], """
+return "escenario;semilla;of;regla_secuencia;lineas_armado;lineas_cf;armadores_linea;ajustadores_linea;"
+	+ "controladores_linea_cf;embaladores_linea_cf;extra_armadores;extra_ajustadores;extra_controladores;"
+	+ "extra_embaladores;reserva;cobertura_entre_especialidades;prob_ausencia;costo_reorganizacion";
+""")
+
+funcion("valoresEscenario", "String", [], """
+return nombreEscenario + ";" + semillaUsada + ";" + ofSeleccionada + ";" + reglaSecuencia + ";" + lineasArmado + ";"
+	+ lineasCF + ";" + armadoresPorLinea + ";" + ajustadoresPorLinea + ";" + controladoresPorLineaCF + ";"
+	+ embaladoresPorLineaCF + ";" + extraArmadores + ";" + extraAjustadores + ";" + extraControladores + ";"
+	+ extraEmbaladores + ";" + operariosReserva + ";" + (coberturaEntreEspecialidades ? 1 : 0) + ";"
+	+ num(probAusencia) + ";" + num(costoReorganizacion);
+""")
+
+funcion("exportarSemana", "void", [], """
+int of = sumar(ofSemana);
+anexarCSV("Resultados/resultados_semanas.csv",
+	columnasEscenario() + ";semana;of_semana;faltante_jornadas;pendientes_recuperacion;horas_extra;costo_horas_extra",
+	valoresEscenario() + ";" + (semana + 1) + ";" + of + ";" + faltanteSemana + ";" + pendientesSemana + ";"
+		+ num(horasExtraSemana) + ";" + num(costoExtraSemana));
+""")
+
+funcion("exportarCorrida", "void", [], """
+StringBuilder h = new StringBuilder(columnasEscenario());
+StringBuilder v = new StringBuilder(valoresEscenario());
+int of = sumar(ofTotal), aTiempo = sumar(aTiempoTotal);
+h.append(";semanas;jornadas;jornadas_sin_cumplir;of_total;a_tiempo_total;cumplimiento");
+v.append(";" + semana + ";" + diasSimulados + ";" + diasSinCumplir + ";" + of + ";" + aTiempo + ";"
+	+ num(of > 0 ? (double) aTiempo / of : 1));
+for (int m = 0; m < 5; m++) {
+	h.append(";faltante_" + abreviaturas[m].toLowerCase() + ";cumplimiento_" + abreviaturas[m].toLowerCase());
+	v.append(";" + (ofTotal[m] - aTiempoTotal[m]) + ";" + num(ofTotal[m] > 0 ? (double) aTiempoTotal[m] / ofTotal[m] : 1));
+}
+h.append(";horas_extra;costo_horas_extra;costo_horas_normales;costo_total;sin_recuperar");
+v.append(";" + num(horasExtraTotal) + ";" + num(costoHorasExtraTotal) + ";" + num(costoHorasNormales()) + ";"
+	+ num(costoTotal()) + ";" + (liberadasSemana - terminadasSemana));
+h.append(";coberturas;vacantes_criticas;puesto_min_vacantes;faltante_medio_con_ausencias;faltante_medio_sin_ausencias");
+v.append(";" + coberturasTotal + ";" + vacantesCriticasTotal + ";" + num(minutosVacantesTotal) + ";"
+	+ num(diasConAusencias > 0 ? faltanteConAusencias / diasConAusencias : 0) + ";"
+	+ num(diasSinAusencias > 0 ? faltanteSinAusencias / diasSinAusencias : 0));
+h.append(";util_armador;util_ajustador;util_controlador;util_embalador;caminata_min;caminata_fraccion");
+double ocupado = 0;
+for (Operario o : ops) ocupado += o.tOcupado;
+v.append(";" + num(utilizacion(Especialidad.Armador)) + ";" + num(utilizacion(Especialidad.Ajustador)) + ";"
+	+ num(utilizacion(Especialidad.Controlador)) + ";" + num(utilizacion(Especialidad.Embalador)) + ";"
+	+ num(caminataTotalMin) + ";" + num(ocupado > 0 ? caminataTotalMin / ocupado : 0));
+String[] tipos = { "armado", "ajuste", "control", "embalaje" };
+for (int t = 0; t < 4; t++) {
+	h.append(";espera_media_" + tipos[t] + ";espera_max_" + tipos[t]);
+	v.append(";" + num(nEsperaTipo[t] > 0 ? sumaEsperaTipo[t] / nEsperaTipo[t] : 0) + ";" + num(maxEsperaTipo[t]));
+}
+for (int m = 0; m < 5; m++) {
+	h.append(";t_sistema_" + abreviaturas[m].toLowerCase());
+	v.append(";" + num(enStock[m] > 0 ? sumaTiempoSistema[m] / enStock[m] : 0));
+}
+for (int l = 0; l < lineasArmado + lineasCF && l < unidadesLinea.length; l++) {
+	h.append(";unidades_" + nombreLinea(l).toLowerCase().replace(' ', '_'));
+	v.append(";" + unidadesLinea[l]);
+}
+h.append(";inspeccionadas;rechazadas");
+v.append(";" + sumar(inspeccionadas) + ";" + sumar(rechazadas));
+anexarCSV("Resultados/resultados_corridas.csv", h.toString(), v.toString());
+traceln("Resultados guardados en Resultados/resultados_corridas.csv (semilla " + semillaUsada + ")");
 """)
 
 # --- Textos y colores del tablero -------------------------------------------
@@ -1039,8 +1165,8 @@ return historial.isEmpty() ? "Todavía no cerró ninguna jornada." : s.toString(
 """)
 
 funcion("textoEscenario", "String", [], """
-return String.format("Escenario: OF %d | secuencia %d | %d+%d líneas | extra A/J/C/E %d/%d/%d/%d | reserva %d | coberturas entre especialidades: %s",
-	ofSeleccionada, reglaSecuencia, lineasArmado, lineasCF, extraArmadores, extraAjustadores, extraControladores,
+return String.format("%s (semilla %d) | OF %d | secuencia %d | %d+%d líneas | extra A/J/C/E %d/%d/%d/%d | reserva %d | coberturas entre especialidades: %s",
+	nombreEscenario, semillaUsada, ofSeleccionada, reglaSecuencia, lineasArmado, lineasCF, extraArmadores, extraAjustadores, extraControladores,
 	extraEmbaladores, operariosReserva, coberturaEntreEspecialidades ? "sí" : "no");
 """)
 
@@ -1078,7 +1204,10 @@ return l < lineasArmado ? "ARM " + (l + 1) : "CF " + (l - lineasArmado + 1);
 # ---------------------------------------------------------------------------
 # Código de arranque y eventos
 # ---------------------------------------------------------------------------
-STARTUP = """// La primera jornada arranca cuando los operarios están creados y dentro de la planta
+STARTUP = """// Semilla de la corrida: la elegida o una al azar, que queda registrada para poder repetirla
+semillaUsada = semilla != 0 ? semilla : 1 + (long) (Math.random() * 999999999L);
+getDefaultRandomGenerator().setSeed(semillaUsada);
+// La primera jornada arranca cuando los operarios están creados y dentro de la planta
 eventoInicioJornada.restart(0.01);"""
 
 EVENTOS = [
