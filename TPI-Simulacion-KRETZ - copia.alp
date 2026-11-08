@@ -8489,22 +8489,62 @@ agent.paso++;]]></Code>
 								<Points>
 									<Point>
 										<X>0</X>
-										<Y>0.0</Y>
+										<Y>0</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>-25</X>
+										<Y>0</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>25</X>
+										<Y>0</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>643.2</X>
+										<Y>0</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>618.2</X>
+										<Y>0</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>643.251</X>
+										<Y>25</Y>
 										<Z>0</Z>
 									</Point>
 									<Point>
 										<X>644</X>
-										<Y>0.0</Y>
+										<Y>391.2</Y>
 										<Z>0</Z>
 									</Point>
 									<Point>
-										<X>644</X>
-										<Y>390.6</Y>
+										<X>643.949</X>
+										<Y>366.2</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>619</X>
+										<Y>391.2</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>544</X>
+										<Y>391.2</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>569</X>
+										<Y>391.2</Y>
 										<Z>0</Z>
 									</Point>
 									<Point>
 										<X>519</X>
-										<Y>390.6</Y>
+										<Y>391.2</Y>
 										<Z>0</Z>
 									</Point>
 								</Points>
@@ -8512,8 +8552,8 @@ agent.paso++;]]></Code>
 							<Wall>
 								<Id>1788019043474</Id>
 								<Name><![CDATA[wall1]]></Name>
-								<X>1442.8</X>
-								<Y>561</Y>
+								<X>1372.8</X>
+								<Y>560.8</Y>
 								<Label>
 									<X>10</X>
 									<Y>0</Y>
@@ -8531,12 +8571,32 @@ agent.paso++;]]></Code>
 								<Closed>false</Closed>
 								<Points>
 									<Point>
-										<X>0.0</X>
+										<X>0</X>
 										<Y>0</Y>
 										<Z>0</Z>
 									</Point>
 									<Point>
-										<X>-264.4</X>
+										<X>25</X>
+										<Y>0</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>-25</X>
+										<Y>0</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>-194.4</X>
+										<Y>0</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>-169.4</X>
+										<Y>0</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>70</X>
 										<Y>0</Y>
 										<Z>0</Z>
 									</Point>
@@ -8545,8 +8605,8 @@ agent.paso++;]]></Code>
 							<Wall>
 								<Id>1788019050698</Id>
 								<Name><![CDATA[wall2]]></Name>
-								<X>1121.2</X>
-								<Y>561</Y>
+								<X>1051.2</X>
+								<Y>560</Y>
 								<Label>
 									<X>10</X>
 									<Y>0</Y>
@@ -8564,12 +8624,32 @@ agent.paso++;]]></Code>
 								<Closed>false</Closed>
 								<Points>
 									<Point>
-										<X>0.0</X>
+										<X>0</X>
 										<Y>0</Y>
 										<Z>0</Z>
 									</Point>
 									<Point>
-										<X>-173.2</X>
+										<X>25</X>
+										<Y>0</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>-25</X>
+										<Y>0</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>-102.4</X>
+										<Y>0</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>-77.4</X>
+										<Y>0</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>70</X>
 										<Y>0</Y>
 										<Z>0</Z>
 									</Point>
@@ -8579,40 +8659,7 @@ agent.paso++;]]></Code>
 								<Id>1788019069035</Id>
 								<Name><![CDATA[wall3]]></Name>
 								<X>948</X>
-								<Y>170.4</Y>
-								<Label>
-									<X>10</X>
-									<Y>0</Y>
-								</Label>
-								<PublicFlag>true</PublicFlag>
-								<PresentationFlag>true</PresentationFlag>
-								<ShowLabel>false</ShowLabel>
-								<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-								<Z>0</Z>
-								<LineColor>-3308225</LineColor>
-								<LineWidth>2</LineWidth>
-								<LineMaterial>null</LineMaterial>
-								<FillingType>HATCHED_AREA</FillingType>
-								<ZHeight>48</ZHeight>
-								<Closed>false</Closed>
-								<Points>
-									<Point>
-										<X>0</X>
-										<Y>0.0</Y>
-										<Z>0</Z>
-									</Point>
-									<Point>
-										<X>0</X>
-										<Y>165.6</Y>
-										<Z>0</Z>
-									</Point>
-								</Points>
-							</Wall>
-							<Wall>
-								<Id>1788019081800</Id>
-								<Name><![CDATA[wall4]]></Name>
-								<X>948</X>
-								<Y>420</Y>
+								<Y>336</Y>
 								<Label>
 									<X>10</X>
 									<Y>0</Y>
@@ -8636,16 +8683,36 @@ agent.paso++;]]></Code>
 									</Point>
 									<Point>
 										<X>0</X>
-										<Y>141</Y>
+										<Y>25</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>0</X>
+										<Y>-25</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>0</X>
+										<Y>-165.6</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>0</X>
+										<Y>-140.6</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>25</X>
+										<Y>-165.6</Y>
 										<Z>0</Z>
 									</Point>
 								</Points>
 							</Wall>
 							<Wall>
-								<Id>1788019116231</Id>
-								<Name><![CDATA[wall5]]></Name>
-								<X>1281.6</X>
-								<Y>170.4</Y>
+								<Id>1788019081800</Id>
+								<Name><![CDATA[wall4]]></Name>
+								<X>948.8</X>
+								<Y>444.8</Y>
 								<Label>
 									<X>10</X>
 									<Y>0</Y>
@@ -8663,13 +8730,86 @@ agent.paso++;]]></Code>
 								<Closed>false</Closed>
 								<Points>
 									<Point>
-										<X>0.0</X>
-										<Y>0.0</Y>
+										<X>0</X>
+										<Y>0</Y>
 										<Z>0</Z>
 									</Point>
 									<Point>
-										<X>0.0</X>
-										<Y>300.0</Y>
+										<X>0</X>
+										<Y>-25</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>0</X>
+										<Y>25</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>0</X>
+										<Y>115.2</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>0</X>
+										<Y>90.2</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>-25</X>
+										<Y>115.2</Y>
+										<Z>0</Z>
+									</Point>
+								</Points>
+							</Wall>
+							<Wall>
+								<Id>1788019116231</Id>
+								<Name><![CDATA[wall5]]></Name>
+								<X>1281.6</X>
+								<Y>172</Y>
+								<Label>
+									<X>10</X>
+									<Y>0</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+								<Z>0</Z>
+								<LineColor>-3308225</LineColor>
+								<LineWidth>2</LineWidth>
+								<LineMaterial>null</LineMaterial>
+								<FillingType>HATCHED_AREA</FillingType>
+								<ZHeight>48</ZHeight>
+								<Closed>false</Closed>
+								<Points>
+									<Point>
+										<X>0</X>
+										<Y>0</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>0</X>
+										<Y>-25</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>0</X>
+										<Y>25</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>0</X>
+										<Y>298.4</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>0</X>
+										<Y>273.4</Y>
+										<Z>0</Z>
+									</Point>
+									<Point>
+										<X>70</X>
+										<Y>0</Y>
 										<Z>0</Z>
 									</Point>
 								</Points>

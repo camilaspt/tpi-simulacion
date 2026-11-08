@@ -244,17 +244,7 @@ CONEXIONES = [
     ("pedIr", "in", "pedEnPuesto", "out"),
 ]
 
-# Paredes de la planta (px, 16 px = 1 m): contorno con la entrada lateral izquierda,
-# dos puertas al patio en el frente y la pared entre naves con el paso de 5,6 m
-PAREDES = {
-    "wall": [(948, 170.4), (1592, 170.4), (1592, 561), (1467, 561)],
-    "wall1": [(1442.8, 561), (1178.4, 561)],
-    "wall2": [(1121.2, 561), (948, 561)],
-    "wall3": [(948, 170.4), (948, 336)],
-    "wall4": [(948, 420), (948, 561)],
-    "wall5": [(1281.6, 170.4), (1281.6, 470.4)],
-}
-ALTO_PAREDES = 48  # 3 m
+ALTO_PAREDES = 48  # 3 m (16 px = 1 m)
 
 # Experimentos de comparación de escenarios: nombre -> (título, {parámetro: valor})
 EXPERIMENTOS = {
@@ -644,23 +634,12 @@ class Generador:
         print(f"Modelo escrito: {salida}")
 
     def paredes(self, plano):
-        # Las paredes del modelo base se dibujaron con clics de más (tramos que vuelven
-        # sobre sí mismos y una diagonal en el depósito); para los peatones son
-        # obstáculos reales, así que se reescriben con el trazado limpio
+        # Las paredes del modelo base se dejan como están: AnyLogic guarda cada vértice
+        # como tres puntos (el vértice y sus dos manijas de curvatura), y una lista que
+        # no respeta ese formato hace fallar la apertura del modelo. Solo se las sube
+        # a 3 m de alto para la vista 3D
         for w in self.hijos(plano, "Wall"):
-            puntos = PAREDES[self.hijo(w, "Name").firstChild.data]
-            x0, y0 = puntos[0]
-            self.hijo(w, "X").firstChild.data = str(x0)
-            self.hijo(w, "Y").firstChild.data = str(y0)
             self.hijo(w, "ZHeight").firstChild.data = str(ALTO_PAREDES)
-            lista = self.hijo(w, "Points")
-            for p in self.hijos(lista):
-                lista.removeChild(p)
-            for x, y in puntos:
-                p = self.el(lista, "Point")
-                self.el(p, "X", round(x - x0, 3))
-                self.el(p, "Y", round(y - y0, 3))
-                self.el(p, "Z", 0)
 
     def requerir_libreria(self, nombre, version):
         refs = self.doc.getElementsByTagName("RequiredLibraryReference")
