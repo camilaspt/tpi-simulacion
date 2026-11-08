@@ -32,7 +32,7 @@ import desarrollar_modelo as D  # noqa: E402
 
 # Elementos que generaba el script y ya no se usan
 VARIABLES_OBSOLETAS = {"rackCalidadX", "rackCalidadY", "contadorRackCalidad", "despachoX", "despachoY"}
-FUNCIONES_OBSOLETAS = {"ubicarEnRackCalidad"}
+FUNCIONES_OBSOLETAS = {"ubicarEnRackCalidad", "liberarCargador"}
 # Gráficos agregados por el script en versiones anteriores (se reemplazan por las plantillas)
 GRAFICOS_VIEJOS = re.compile(r"^(mesa\d+|mesaInspector|rackDeMateriales.*|rackDeCalidad.*|stockProductoTerminado.*)$")
 PLANTILLAS = {"table": "Figure3D", "box_1_closed": "Figure3D", "storage": "RackStorage"}
@@ -286,6 +286,21 @@ class Editor(D.Generador):
             self.el(ref, tag, val)
         refs[-1].parentNode.insertBefore(ref, refs[-1].nextSibling)
 
+    def verificar_nombres(self):
+        # AnyLogic no abre el modelo si dos elementos de un agente comparten nombre
+        for clase in (self.main, self.balanza, self.operario):
+            nombres = []
+            for tag in ("Variables", "Functions", "Events", "EmbeddedObjects"):
+                cont = self.hijo(clase, tag)
+                if cont is not None:
+                    nombres += [self.nombre(n) for n in self.hijos(cont)]
+            _, plano = self.presentacion_nivel(clase)
+            if plano is not None:
+                nombres += [self.nombre(n) for n in self.hijos(plano)]
+            repetidos = sorted({n for n in nombres if n and nombres.count(n) > 1})
+            if repetidos:
+                sys.exit(f"Nombres repetidos en {self.nombre(clase)}: {', '.join(repetidos)}. No se guardó el modelo.")
+
     def guardar(self, salida):
         def limpiar(node):
             for ch in list(node.childNodes):
@@ -312,6 +327,7 @@ def main():
     if args.plano:
         e.armar_plano()
     e.requerir_libreria(D.MHL, (8, 3, 0))
+    e.verificar_nombres()
     respaldo = args.modelo.with_suffix(".antes.alp")
     shutil.copy2(args.modelo, respaldo)
     e.guardar(args.modelo)

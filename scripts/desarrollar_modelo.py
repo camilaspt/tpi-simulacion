@@ -218,7 +218,7 @@ BLOQUES = [
     ("liberarCargador", "Release", 2100, Y2, {
         "releaseMode": codigo("self.SPECIFIED_RESOURCES"),
         "resources": expr("{ cargadores }", "ResourcePool[]"),
-        "onEnter": accion("liberarCargador(agent);"),
+        "onEnter": accion("alLiberarCargador(agent);"),
     }),
     # Las cajas cargadas esperan arriba del camión y se van con él (despacharCamion)
     ("enCamion", "Wait", 2200, Y2, {

@@ -3580,7 +3580,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 				</Variables>
 				<Connectors>
 					<Connector>
-						<Id>1796000000957</Id>
+						<Id>1796000000864</Id>
 						<Name><![CDATA[conector0]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3623,7 +3623,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000958</Id>
+						<Id>1796000000865</Id>
 						<Name><![CDATA[conector1]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3666,7 +3666,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000959</Id>
+						<Id>1796000000866</Id>
 						<Name><![CDATA[conector2]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3709,7 +3709,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000960</Id>
+						<Id>1796000000867</Id>
 						<Name><![CDATA[conector3]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3752,7 +3752,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000961</Id>
+						<Id>1796000000868</Id>
 						<Name><![CDATA[conector4]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3795,7 +3795,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000962</Id>
+						<Id>1796000000869</Id>
 						<Name><![CDATA[conector5]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3838,7 +3838,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000963</Id>
+						<Id>1796000000870</Id>
 						<Name><![CDATA[conector6]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3881,7 +3881,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000964</Id>
+						<Id>1796000000871</Id>
 						<Name><![CDATA[conector7]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3924,7 +3924,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000965</Id>
+						<Id>1796000000872</Id>
 						<Name><![CDATA[conector8]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3967,7 +3967,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000966</Id>
+						<Id>1796000000873</Id>
 						<Name><![CDATA[conector9]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4010,7 +4010,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000967</Id>
+						<Id>1796000000874</Id>
 						<Name><![CDATA[conector10]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4053,7 +4053,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000968</Id>
+						<Id>1796000000875</Id>
 						<Name><![CDATA[conector11]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4096,7 +4096,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000969</Id>
+						<Id>1796000000876</Id>
 						<Name><![CDATA[conector12]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4139,7 +4139,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000970</Id>
+						<Id>1796000000877</Id>
 						<Name><![CDATA[conector13]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4182,7 +4182,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000971</Id>
+						<Id>1796000000928</Id>
 						<Name><![CDATA[conector14]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4225,7 +4225,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000972</Id>
+						<Id>1796000000929</Id>
 						<Name><![CDATA[conector15]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4268,7 +4268,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000973</Id>
+						<Id>1796000000930</Id>
 						<Name><![CDATA[conector16]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4311,7 +4311,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000974</Id>
+						<Id>1796000000931</Id>
 						<Name><![CDATA[conector17]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4354,7 +4354,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000975</Id>
+						<Id>1796000000932</Id>
 						<Name><![CDATA[conector18]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4397,7 +4397,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000976</Id>
+						<Id>1796000000933</Id>
 						<Name><![CDATA[conector19]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4440,7 +4440,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000977</Id>
+						<Id>1796000000934</Id>
 						<Name><![CDATA[conector20]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4483,7 +4483,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000978</Id>
+						<Id>1796000000935</Id>
 						<Name><![CDATA[conector21]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4526,7 +4526,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000979</Id>
+						<Id>1796000000936</Id>
 						<Name><![CDATA[conector22]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4569,7 +4569,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000980</Id>
+						<Id>1796000000937</Id>
 						<Name><![CDATA[conector23]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4612,7 +4612,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000981</Id>
+						<Id>1796000000938</Id>
 						<Name><![CDATA[conector24]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4655,7 +4655,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000982</Id>
+						<Id>1796000000939</Id>
 						<Name><![CDATA[conector25]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4698,7 +4698,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000983</Id>
+						<Id>1796000000940</Id>
 						<Name><![CDATA[conector26]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4741,7 +4741,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000984</Id>
+						<Id>1796000000941</Id>
 						<Name><![CDATA[conector27]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4784,7 +4784,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000985</Id>
+						<Id>1796000000942</Id>
 						<Name><![CDATA[conector28]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4827,7 +4827,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000986</Id>
+						<Id>1796000000943</Id>
 						<Name><![CDATA[conector29]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4870,7 +4870,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000987</Id>
+						<Id>1796000000944</Id>
 						<Name><![CDATA[conector30]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4913,7 +4913,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000988</Id>
+						<Id>1796000000945</Id>
 						<Name><![CDATA[conector31]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4956,7 +4956,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000989</Id>
+						<Id>1796000000948</Id>
 						<Name><![CDATA[conector32]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4999,7 +4999,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000990</Id>
+						<Id>1796000000949</Id>
 						<Name><![CDATA[conector33]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5042,7 +5042,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000991</Id>
+						<Id>1796000000952</Id>
 						<Name><![CDATA[conector34]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5085,7 +5085,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000992</Id>
+						<Id>1796000000953</Id>
 						<Name><![CDATA[conector35]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5128,7 +5128,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000993</Id>
+						<Id>1796000000954</Id>
 						<Name><![CDATA[conector36]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5171,7 +5171,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000994</Id>
+						<Id>1796000000955</Id>
 						<Name><![CDATA[conector37]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5214,7 +5214,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000995</Id>
+						<Id>1796000000956</Id>
 						<Name><![CDATA[conector38]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -7846,10 +7846,10 @@ b.jumpTo(andenX - 28 + (k % 8) * 8, andenY - 6 + (k / 8 % 2) * 8, 16 + (k / 16) 
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
 						<ReturnType><![CDATA[void]]></ReturnType>
-						<Id>1796000000628</Id>
-						<Name><![CDATA[liberarCargador]]></Name>
+						<Id>1796000000649</Id>
+						<Name><![CDATA[alLiberarCargador]]></Name>
 						<X>3020</X>
-						<Y>282</Y>
+						<Y>40</Y>
 						<Label>
 							<X>10</X>
 							<Y>0</Y>
@@ -7926,7 +7926,7 @@ b.cargador = null;]]></Body>
 								<Value Class="EntityCodeValue">
 									<IsAgentEntity>true</IsAgentEntity>
 									<EntityEmbeddedObject>
-										<Id>1796000000738</Id>
+										<Id>1796000000736</Id>
 										<ActiveObjectClass>
 											<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 											<ClassName><![CDATA[Balanza]]></ClassName>
@@ -7960,7 +7960,7 @@ b.cargador = null;]]></Body>
 										</LocationNameCode>
 										<InitializationType>LOAD_FROM_DATABASE</InitializationType>
 										<InitializationDatabaseTableQuery>
-											<Id>1796000000739</Id>
+											<Id>1796000000737</Id>
 											<TableReference/>
 										</InitializationDatabaseTableQuery>
 										<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
@@ -9195,7 +9195,7 @@ agent.paso++;]]></Code>
 								<Value Class="EntityCodeValue">
 									<IsAgentEntity>true</IsAgentEntity>
 									<EntityEmbeddedObject>
-										<Id>1796000000950</Id>
+										<Id>1796000000857</Id>
 										<ActiveObjectClass>
 											<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 											<ClassName><![CDATA[Operario]]></ClassName>
@@ -9229,7 +9229,7 @@ agent.paso++;]]></Code>
 										</LocationNameCode>
 										<InitializationType>LOAD_FROM_DATABASE</InitializationType>
 										<InitializationDatabaseTableQuery>
-											<Id>1796000000951</Id>
+											<Id>1796000000858</Id>
 											<TableReference/>
 										</InitializationDatabaseTableQuery>
 										<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
@@ -10241,7 +10241,7 @@ alIngresarStock(agent);]]></Code>
 							<Parameter>
 								<Name><![CDATA[onEnter]]></Name>
 								<Value Class="CodeValue">
-									<Code><![CDATA[liberarCargador(agent);]]></Code>
+									<Code><![CDATA[alLiberarCargador(agent);]]></Code>
 								</Value>
 							</Parameter>
 						</Parameters>
@@ -10366,7 +10366,7 @@ alIngresarStock(agent);]]></Code>
 								<Value Class="EntityCodeValue">
 									<IsAgentEntity>true</IsAgentEntity>
 									<EntityEmbeddedObject>
-										<Id>1796000000878</Id>
+										<Id>1796000000841</Id>
 										<ActiveObjectClass>
 											<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 											<ClassName><![CDATA[CamionRetiro]]></ClassName>
@@ -10396,7 +10396,7 @@ alIngresarStock(agent);]]></Code>
 										</LocationNameCode>
 										<InitializationType>LOAD_FROM_DATABASE</InitializationType>
 										<InitializationDatabaseTableQuery>
-											<Id>1796000000879</Id>
+											<Id>1796000000842</Id>
 											<TableReference/>
 										</InitializationDatabaseTableQuery>
 										<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
@@ -10716,7 +10716,7 @@ alIngresarStock(agent);]]></Code>
 								<Value Class="EntityCodeValue">
 									<IsAgentEntity>true</IsAgentEntity>
 									<EntityEmbeddedObject>
-										<Id>1796000000946</Id>
+										<Id>1796000000853</Id>
 										<ActiveObjectClass>
 											<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 											<ClassName><![CDATA[Operario]]></ClassName>
@@ -10750,7 +10750,7 @@ alIngresarStock(agent);]]></Code>
 										</LocationNameCode>
 										<InitializationType>LOAD_FROM_DATABASE</InitializationType>
 										<InitializationDatabaseTableQuery>
-											<Id>1796000000947</Id>
+											<Id>1796000000854</Id>
 											<TableReference/>
 										</InitializationDatabaseTableQuery>
 										<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>

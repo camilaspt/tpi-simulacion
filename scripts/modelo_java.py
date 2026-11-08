@@ -784,7 +784,7 @@ int k = cajasEnCamion++;
 b.jumpTo(andenX - 28 + (k % 8) * 8, andenY - 6 + (k / 8 % 2) * 8, 16 + (k / 16) * 8);
 """)
 
-funcion("liberarCargador", "void", [("b", "Balanza")], """
+funcion("alLiberarCargador", "void", [("b", "Balanza")], """
 b.cargador.estado = 0;
 b.cargador = null;
 """)
