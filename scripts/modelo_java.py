@@ -132,6 +132,7 @@ VARIABLES_MAIN = [
     ("caminataTotalMin", "double", "0"),
     ("personasRecuperacion", "int", "0"),
     ("pendientesInicioRecuperacion", "int", "0"),
+    ("llegadasPendientes", "java.util.LinkedList<Balanza>", "new java.util.LinkedList<Balanza>()"),
     # Indicadores de cierre
     ("diasSimulados", "int", "0"),
     ("diasSinCumplir", "int", "0"),
@@ -652,11 +653,23 @@ return Math.hypot(o.getX() - o.destX, o.getY() - o.destY) < 0.5 * pxPorMetro;
 """)
 
 funcion("alLlegarPeaton", "void", [("o", "Operario")], """
-// El operario llegó a su destino: si una unidad lo esperaba, la unidad sigue su proceso
+// El operario llegó a su destino: si una unidad lo esperaba, la unidad sigue su proceso.
+// No se la libera acá: si el operario ya estaba en el lugar, la Pedestrian Library avisa la
+// llegada dentro del mismo evento en que la unidad está pasando por los SelectOutput, y
+// liberarla en ese momento cambia sus condiciones (paso, fase) antes de que salga del bloque
 Balanza b = o.balanzaEnCamino;
 if (b == null) return;
 o.balanzaEnCamino = null;
-if (!caminar.free(b)) traceln("Aviso: la unidad " + b.ordenLiberacion + " no estaba esperando a su operario.");
+llegadasPendientes.add(b);
+eventoLlegadas.restart(0);
+""")
+
+funcion("procesarLlegadas", "void", [], """
+// Mismo instante simulado, pero en un evento propio, cuando ya terminó el anterior
+while (!llegadasPendientes.isEmpty()) {
+	Balanza b = llegadasPendientes.removeFirst();
+	if (!caminar.free(b)) traceln("Aviso: la unidad " + b.ordenLiberacion + " no estaba esperando a su operario.");
+}
 """)
 
 funcion("liberarUnidadesOF", "void", [], """
@@ -1214,4 +1227,5 @@ EVENTOS = [
     ("eventoInicioJornada", "iniciarJornada();"),
     ("eventoCierreJornada", "if (enRecuperacion) finRecuperacion();\nelse cerrarJornada();"),
     ("eventoFinRecuperacion", "finRecuperacion();"),
+    ("eventoLlegadas", "procesarLlegadas();"),
 ]
