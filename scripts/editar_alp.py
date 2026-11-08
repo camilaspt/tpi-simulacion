@@ -338,6 +338,10 @@ class Editor(D.Generador):
                 self.poner(it, "PointStyle", "CIRCLE" if tipo == "Plot" else "NONE")
                 self.poner(it, "LineWidth", "2.0")
             g.insertBefore(it, ref)
+        if tipo != "BarChart":
+            # Con actualización automática, el gráfico llama a update() de cada data set y este le agrega
+            # (time(), 0) cada minuto, que desplaza a los datos reales. Los data sets los llena el modelo.
+            self.poner(g, "AutoUpdate", "false")
         if tipo == "TimePlot":
             self.poner_cdata(g, "TimeWindowExpression", opciones.get("ventana", 2400))
             self.poner(g, "SamplesToKeep", 3000)
