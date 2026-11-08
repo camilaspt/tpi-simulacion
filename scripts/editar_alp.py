@@ -92,7 +92,12 @@ class Editor(D.Generador):
             cont.removeChild(actuales.pop(n))
         y = 40 + 22 * len(actuales)
         for n, t, v, etiqueta in parametros:
-            if n not in actuales:
+            if n in actuales:
+                # El valor por defecto y la etiqueta salen de modelo_java.py
+                props = self.hijo(actuales[n], "Properties")
+                self.hijo(self.hijo(props, "DefaultValue"), "Code").firstChild.data = v
+                self.hijo(self.hijo(props, "ParameterEditor"), "Label").firstChild.data = etiqueta
+            else:
                 self.parametro(cont, n, t, v, etiqueta, 1820, y)
                 y += 22
         for n, t, v in variables:

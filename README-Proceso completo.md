@@ -28,7 +28,7 @@ La planta física consta de dos naves:
 
 - **6 líneas de producción**: 4 de Armado + 2 de Control Final.
 - **5 puestos de trabajo por línea**.
-- **51 empleados en total**: ~30 asignados a las 6 líneas de producción (5 por línea) y ~20 al depósito.
+- **41 empleados en total**: 30 asignados a las 6 líneas de producción (5 por línea), 10 al depósito y 1 inspector de calidad.
 - Los empleados pueden especializarse en: **Ajustador**, **Controlador**, **Embalador** (los puestos de armado propiamente dicho no requieren una especialización particular). 1 inspector de calidad.
 - **Las líneas y los puestos no son exclusivos de un equipo**: ninguna de las 4 líneas de Armado ni las 2 de Control Final está dedicada a un modelo de balanza en particular. Cualquier línea de Armado puede recibir cualquiera de los 5 equipos (y lo mismo para Control Final), así que el modelo tiene que resolver a qué línea/puesto se dirige cada unidad según disponibilidad, no según una asignación fija equipo→línea.
 

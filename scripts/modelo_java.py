@@ -34,7 +34,7 @@ PARAMETROS = [
     ("extraControladores", "int", "0", "Contratación: Controladores adicionales"),
     ("extraEmbaladores", "int", "0", "Contratación: Embaladores adicionales"),
     ("operariosReserva", "int", "0", "Personal de reserva polivalente"),
-    ("empleadosDeposito", "int", "20", "Empleados de depósito (solo para costos)"),
+    ("empleadosDeposito", "int", "10", "Empleados de depósito (solo para costos)"),
     # Ausentismo y coberturas
     ("probAusencia", "double", "0.06", "Probabilidad de ausencia por empleado y día"),
     ("probAusenciaFinDeSemana", "double", "0.10", "Probabilidad de no asistir a la recuperación"),
