@@ -20,7 +20,7 @@ Sirve como guía para controlar que el informe los cubra sin nombrarlos como pas
 2. Objetivos y plan del estudio → objetivos y escenarios a comparar.
 3. Modelo conceptual → metodología: sistema, entidades, recursos, supuestos y diagrama conceptual.
 4. Recolección de datos → metodología: tiempos de SAP, dotación, OF y ausentismo.
-5. Construcción del modelo → metodología: AnyLogic, Process Modeling y Pedestrian Library.
+5. Construcción del modelo → metodología: AnyLogic y Process Modeling Library (explicar por qué no se usó la Pedestrian Library: la edición Personal Learning limita a 5 horas).
 6. Verificación → metodología: el modelo hace lo que dice la especificación.
 7. Validación → metodología o resultados: el escenario actual se parece a la realidad de la planta.
 8. Diseño de experimentos → metodología: escenarios, réplicas, semillas y horizonte simulado.
@@ -40,20 +40,17 @@ El modelo (`TPI-Simulacion-KRETZ - copia.alp`, generado con `scripts/desarrollar
 - Los 5 equipos con sus recetas, el viaje a Depósito (rack único) y el ruteo entre líneas equivalentes.
 - Ausentismo y coberturas, muestreo de calidad (primer y último equipo por modelo).
 - Cierre de jornada, recuperación de fin de semana con horas extra al doble y costos.
-- Operarios como peatones (Pedestrian Library).
+- Operarios que caminan por el plano a escala (línea recta y puerta entre naves). La Pedestrian Library se descartó: en la edición Personal Learning solo permite simular 5 horas.
 - 8 escenarios, réplicas con semilla registrada, exportación de resultados a `Resultados/*.csv` e informe automático (`scripts/analizar_resultados.py`).
 
 ## Lo que falta, en orden
 
-1. **Probar el modelo en AnyLogic y corregir errores.** El código compila, pero todavía no se ejecutó. La parte peatonal es la más riesgosa. Para probarlo:
+1. **Probar el modelo en AnyLogic y corregir errores.** El código compila, pero todavía no se ejecutó completo. Para probarlo:
    - cerrar el modelo y borrar `TPI-Simulacion-KRETZ - copia.alp.autosave`;
    - abrir `TPI-Simulacion-KRETZ - copia.alp` y correr `Simulation`;
    - anotar los errores de la consola o de la pantalla.
 
    Qué puede aparecer:
-   - un error al arrancar en `entrarPlanta`: un operario del pool no puede entrar al circuito peatonal;
-   - peatones trabados cerca de un puesto o del rack: hay que separar más los lugares fijos;
-   - el aviso «la unidad … no estaba esperando a su operario»;
    - lentitud: si tarda demasiado, bajar `semanasSimuladas`.
 2. **Crear el experimento de réplicas (Variación de parámetros) a mano en AnyLogic**, con *Replications* en 10 o más, y guardar el modelo. Después se usa como plantilla en el script para generarlo en los 8 escenarios.
 3. **Cargar datos reales:**

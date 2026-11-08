@@ -71,12 +71,15 @@ VARIABLES_MAIN = [
     ("origenPuestosY", "double", "205"),
     ("separacionPuestosX", "double", "52"),
     ("separacionLineasY", "double", "58"),
+    ("paredNavesX", "double", "1281.6"),
+    ("puertaX", "double", "1281.6"),
+    ("puertaY", "double", "515"),
     ("rackX", "double", "1460"),
     ("rackY", "double", "245"),
     ("zonaAusentesX", "double", "962"),
     ("zonaAusentesY", "double", "603"),
     ("zonaReservaX", "double", "1142"),
-    ("zonaReservaY", "double", "538"),
+    ("zonaReservaY", "double", "543"),
     # Recetas de proceso (paso 0 = primer puesto; el viaje a Depósito va aparte)
     ("nombresModelo", "String[]", '{ "AILA 30KG", "REPORT LT", "NOVEL ECO", "LURA", "AURA" }'),
     ("abreviaturas", "String[]", '{ "AILA", "REP", "NOV", "LUR", "AUR" }'),
@@ -132,7 +135,6 @@ VARIABLES_MAIN = [
     ("caminataTotalMin", "double", "0"),
     ("personasRecuperacion", "int", "0"),
     ("pendientesInicioRecuperacion", "int", "0"),
-    ("llegadasPendientes", "java.util.LinkedList<Balanza>", "new java.util.LinkedList<Balanza>()"),
     # Indicadores de cierre
     ("diasSimulados", "int", "0"),
     ("diasSinCumplir", "int", "0"),
@@ -171,9 +173,7 @@ VARIABLES_BALANZA = [
     ("puestoActual", "int", "-1"),
     ("opActual", "Operario", "null"),
     ("fase", "int", "0"),
-    ("destX", "double", "0"),
-    ("destY", "double", "0"),
-    ("tInicioCaminata", "double", "0"),
+    ("tramos", "java.util.LinkedList<double[]>", "new java.util.LinkedList<double[]>()"),
     ("tIngreso", "double", "0"),
     ("tInicioEspera", "double", "0"),
     ("esperaTotal", "double", "0"),
@@ -199,12 +199,6 @@ VARIABLES_OPERARIO = [
     ("tOcupado", "double", "0"),
     ("tCaminando", "double", "0"),
     ("minPresente", "double", "0"),
-    # Peatón: destino actual, unidad que espera su llegada y si ya entró a la planta
-    ("destX", "double", "0"),
-    ("destY", "double", "0"),
-    ("balanzaEnCamino", "Balanza", "null"),
-    ("ingresoPedido", "boolean", "false"),
-    ("enPlanta", "boolean", "false"),
 ]
 
 FUNCIONES_OPERARIO = {
@@ -386,6 +380,7 @@ funcion("registrarOperario", "void", [("o", "Operario")], """
 construirPlanta();
 o.idOp = ops.size();
 ops.add(o);
+o.setSpeed(velocidadOperario);
 if (o.idOp < nPuestos) {
 	// Titular de un puesto: su especialidad sale del tipo de puesto
 	int p = o.idOp;
@@ -436,9 +431,8 @@ return total;
 
 # --- Jornada: asistencia, coberturas y liberación de la OF ------------------
 funcion("iniciarJornada", "void", [], """
-// Los operarios los crea el ResourcePool y después entran como peatones a la planta;
-// hasta que estén todos adentro se reintenta enseguida
-if (ops.size() < nPuestos + operariosReserva || !operariosEnPlanta()) {
+// Los operarios los crea el ResourcePool; si todavía no están, se reintenta enseguida
+if (ops.size() < nPuestos + operariosReserva) {
 	eventoInicioJornada.restart(0.01);
 	return;
 }
@@ -560,115 +554,27 @@ return mejor;
 """)
 
 funcion("asegurarEspacio", "void", [("o", "Operario")], """
-// El ResourcePool crea a los operarios sin espacio asignado; antes de entrar
-// como peatones se los incorpora al espacio y nivel de Main
+// El ResourcePool crea a los operarios sin espacio asignado (solo los ubica al moverlos él);
+// como el modelo los mueve por código, se los incorpora al espacio y nivel de Main
 if (o.getSpace() == null) o.setSpace(this);
 if (o.getLevel() == null) o.setLevel(level);
 """)
 
-funcion("operariosEnPlanta", "boolean", [], """
-// Cada operario entra una sola vez al espacio peatonal, directamente en su lugar habitual
-boolean listos = true;
-for (Operario o : ops) {
-	if (o.enPlanta) continue;
-	listos = false;
-	if (o.ingresoPedido) continue;
-	o.ingresoPedido = true;
-	asegurarEspacio(o);
-	if (o.puestoHabitual >= 0) {
-		o.destX = pX[o.puestoHabitual];
-		o.destY = pY[o.puestoHabitual];
-	} else {
-		o.destX = lugarReservaX(o);
-		o.destY = lugarReservaY(o);
-	}
-	entrarPlanta.take(o);
-}
-return listos;
-""")
-
-# Lugares fijos por operario: dos peatones nunca tienen el mismo destino
-funcion("lugarAusenteX", "double", [("o", "Operario")], """
-return zonaAusentesX + (o.idOp % 11) * 14;
-""")
-
-funcion("lugarAusenteY", "double", [("o", "Operario")], """
-return zonaAusentesY + (o.idOp / 11 % 4) * 10;
-""")
-
-funcion("lugarReservaX", "double", [("o", "Operario")], """
-return zonaReservaX + (Math.max(0, o.idOp - nPuestos) % 5) * 14;
-""")
-
-funcion("lugarReservaY", "double", [("o", "Operario")], """
-return zonaReservaY + (Math.max(0, o.idOp - nPuestos) / 5 % 2) * 10;
-""")
-
-funcion("lugarRackX", "double", [("o", "Operario")], """
-return rackX - 35 + (o.idOp % 8) * 10;
-""")
-
-funcion("lugarRackY", "double", [("o", "Operario")], """
-return rackY + (o.idOp / 8 % 5) * 10;
-""")
-
-funcion("irALugarDelDia", "void", [("o", "Operario")], """
-// Ausentes a su zona, reservas libres a la suya y el resto a un puesto que atiende hoy
-if (!o.presente) {
-	enviarPeaton(o, lugarAusenteX(o), lugarAusenteY(o));
-	return;
-}
-if (o.puestosAtendidos.isEmpty()) {
-	enviarPeaton(o, lugarReservaX(o), lugarReservaY(o));
-	return;
-}
-for (int p : o.puestosAtendidos)
-	if (Math.hypot(o.destX - pX[p], o.destY - pY[p]) < 1) return; // ya está en uno de sus puestos
-int p = o.puestosAtendidos.get(0);
-enviarPeaton(o, pX[p], pY[p]);
-""")
-
 funcion("ubicarOperarios", "void", [], """
-for (Operario o : ops)
-	if (o.estado == 0) irALugarDelDia(o); // quien está trabajando termina su tarea donde está
-""")
-
-# --- Movimiento peatonal (Pedestrian Library) --------------------------------
-funcion("enviarPeaton", "void", [("o", "Operario"), ("x", "double"), ("y", "double")], """
-// Cambia el destino del operario; el circuito peatonal (pedIr -> pedLlego -> pedEnPuesto) lo lleva
-boolean cambia = Math.hypot(x - o.destX, y - o.destY) > 1;
-o.destX = x;
-o.destY = y;
-if (!o.enPlanta) return; // pedEntrada lo ubica directamente en su destino
-if (pedEnPuesto.contains(o)) {
-	// Si lo espera una unidad hay que pasar por pedLlego para avisarle, aunque ya esté en el lugar
-	if (cambia || o.balanzaEnCamino != null) pedEnPuesto.free(o);
-} else if (cambia && pedIr.contains(o)) {
-	pedIr.cancel(o); // sale por ccl y vuelve a pedIr con el destino nuevo
-}
-""")
-
-funcion("llegoADestino", "boolean", [("o", "Operario")], """
-return Math.hypot(o.getX() - o.destX, o.getY() - o.destY) < 0.5 * pxPorMetro;
-""")
-
-funcion("alLlegarPeaton", "void", [("o", "Operario")], """
-// El operario llegó a su destino: si una unidad lo esperaba, la unidad sigue su proceso.
-// No se la libera acá: si el operario ya estaba en el lugar, la Pedestrian Library avisa la
-// llegada dentro del mismo evento en que la unidad está pasando por los SelectOutput, y
-// liberarla en ese momento cambia sus condiciones (paso, fase) antes de que salga del bloque
-Balanza b = o.balanzaEnCamino;
-if (b == null) return;
-o.balanzaEnCamino = null;
-llegadasPendientes.add(b);
-eventoLlegadas.restart(0);
-""")
-
-funcion("procesarLlegadas", "void", [], """
-// Mismo instante simulado, pero en un evento propio, cuando ya terminó el anterior
-while (!llegadasPendientes.isEmpty()) {
-	Balanza b = llegadasPendientes.removeFirst();
-	if (!caminar.free(b)) traceln("Aviso: la unidad " + b.ordenLiberacion + " no estaba esperando a su operario.");
+int ausentes = 0, reservas = 0;
+for (Operario o : ops) asegurarEspacio(o);
+for (Operario o : ops) {
+	if (o.estado != 0) continue; // quien está trabajando termina su tarea donde está
+	if (!o.presente) {
+		o.jumpTo(zonaAusentesX + (ausentes % 10) * 14, zonaAusentesY + (ausentes / 10) * 14);
+		ausentes++;
+	} else if (!o.puestosAtendidos.isEmpty()) {
+		int p = o.puestosAtendidos.get(0);
+		o.jumpTo(pX[p], pY[p]);
+	} else {
+		o.jumpTo(zonaReservaX + (reservas % 5) * 14, zonaReservaY);
+		reservas++;
+	}
 }
 """)
 
@@ -780,30 +686,42 @@ nEsperaTipo[tipo]++;
 if (b.paso == 0) {
 	// Primer paso: el mismo operario va al rack único de materiales y después a su puesto
 	b.fase = 1;
-	b.destX = lugarRackX(b.opActual);
-	b.destY = lugarRackY(b.opActual);
+	planificarCaminata(b, rackX, rackY);
 } else {
 	b.fase = 2;
-	b.destX = pX[b.puestoActual];
-	b.destY = pY[b.puestoActual];
+	planificarCaminata(b, pX[b.puestoActual], pY[b.puestoActual]);
 }
 """)
 
-funcion("iniciarCaminata", "void", [("b", "Balanza")], """
-// La unidad queda en el Wait caminar hasta que su operario llega caminando (alLlegarPeaton);
-// el tiempo de traslado sale de la simulación peatonal
+funcion("planificarCaminata", "void", [("b", "Balanza"), ("destinoX", "double"), ("destinoY", "double")], """
+b.tramos.clear();
 Operario o = b.opActual;
-b.tInicioCaminata = time();
-o.estado = 1;
-o.balanzaEnCamino = b;
-enviarPeaton(o, b.destX, b.destY);
+boolean origenEnProduccion = o.getX() < paredNavesX;
+boolean destinoEnProduccion = destinoX < paredNavesX;
+// Entre naves se pasa por la puerta de la pared interna
+if (origenEnProduccion != destinoEnProduccion) b.tramos.add(new double[] { puertaX, puertaY });
+b.tramos.add(new double[] { destinoX, destinoY });
 """)
 
-funcion("finCaminata", "void", [("b", "Balanza")], """
-double minutos = time() - b.tInicioCaminata;
+funcion("iniciarTramo", "double", [("b", "Balanza")], """
+// El tramo se saca de la lista al empezar a caminar: asi la condicion de masTramos
+// no cambia entre que se evalua y que la unidad sale del Delay
+double[] destino = b.tramos.removeFirst();
+Operario o = b.opActual;
+double metros = Math.hypot(destino[0] - o.getX(), destino[1] - o.getY()) / pxPorMetro;
+double minutos = metros / velocidadOperario / 60.0;
+if (metros > 0.05) o.moveTo(destino[0], destino[1]);
+o.estado = 1;
 b.tCaminata += minutos;
-b.opActual.tCaminando += minutos;
+o.tCaminando += minutos;
 caminataTotalMin += minutos;
+return minutos;
+""")
+
+funcion("finTramo", "void", [("b", "Balanza")], """
+// Asegura que el operario quede exactamente en el destino del tramo
+Operario o = b.opActual;
+if (o.isMoving()) o.jumpTo(o.getTargetX(), o.getTargetY());
 """)
 
 funcion("tiempoAleatorio", "double", [("media", "double")], """
@@ -823,7 +741,7 @@ Operario o = b.opActual;
 o.tOcupado += time() - o.tInicioOcupado;
 o.estado = 0;
 o.puestoTrabajo = -1;
-irALugarDelDia(o); // por ejemplo, quien cubrió un puesto ayer vuelve al suyo
+if (!o.presente) o.jumpTo(zonaAusentesX, zonaAusentesY);
 b.opActual = null;
 """)
 
@@ -1220,12 +1138,11 @@ return l < lineasArmado ? "ARM " + (l + 1) : "CF " + (l - lineasArmado + 1);
 STARTUP = """// Semilla de la corrida: la elegida o una al azar, que queda registrada para poder repetirla
 semillaUsada = semilla != 0 ? semilla : 1 + (long) (Math.random() * 999999999L);
 getDefaultRandomGenerator().setSeed(semillaUsada);
-// La primera jornada arranca cuando los operarios están creados y dentro de la planta
+// La primera jornada arranca apenas el ResourcePool crea a los operarios
 eventoInicioJornada.restart(0.01);"""
 
 EVENTOS = [
     ("eventoInicioJornada", "iniciarJornada();"),
     ("eventoCierreJornada", "if (enRecuperacion) finRecuperacion();\nelse cerrarJornada();"),
     ("eventoFinRecuperacion", "finRecuperacion();"),
-    ("eventoLlegadas", "procesarLlegadas();"),
 ]

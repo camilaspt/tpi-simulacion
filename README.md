@@ -4,11 +4,11 @@ Trabajo práctico de simulación (AnyLogic) de la línea de producción y el dep
 
 ## Objetivo
 
-Construir un modelo de simulación de eventos discretos + peatonal en AnyLogic que represente:
+Construir un modelo de simulación de eventos discretos en AnyLogic que represente:
 
 1. El **armado** de las balanzas a lo largo de sus puestos de trabajo (líneas de Armado y de Control Final).
 2. El **depósito**: recepción, almacenamiento y despacho de producto terminado.
-3. El **movimiento real de las personas** (operarios) dentro de la planta, no solo los tiempos de proceso — se optó por modelar a los operarios como peatones (Pedestrian Library) desde el arranque, en vez de una animación simplificada.
+3. El **movimiento real de las personas** (operarios) dentro de la planta, no solo los tiempos de proceso: los operarios son agentes que caminan por el plano a escala y el tiempo de traslado forma parte del proceso. Se evaluó la Pedestrian Library, pero en la edición Personal Learning de AnyLogic limita la simulación a 5 horas, y el estudio necesita semanas completas.
 
 ## La planta
 
@@ -61,7 +61,7 @@ La simulación contempla **5 tipos de equipos** (modelos de balanza).
 | 5         | Control Final | Embalaje      | Embalaje                                     | Embalador   | 12           |
 
 
-**Caso particular — viaje a Depósito:** el primer paso de este equipo no es un puesto/recurso propio: es el mismo Armador que va a hacer el Puesto 2 (Celda 1) el que primero camina hasta el Depósito a buscar los materiales que necesita para armar, y después va a Celda 1. No hay una dotación de Depósito dedicada a esto — por eso, en el modelo, no se representa con un `Service` independiente sino con un único `Seize` del Armador seguido de dos `Delay` encadenados (uno en Depósito, uno en Celda 1) y recién ahí el `Release`. Como el Armador es un `Operario` (peatón), esto además sirve para validar que el movimiento peatonal entre las dos naves funciona bien.
+**Caso particular — viaje a Depósito:** el primer paso de este equipo no es un puesto/recurso propio: es el mismo Armador que va a hacer el Puesto 2 (Celda 1) el que primero camina hasta el Depósito a buscar los materiales que necesita para armar, y después va a Celda 1. No hay una dotación de Depósito dedicada a esto — por eso, en el modelo, no se representa con un `Service` independiente sino con un único `Seize` del Armador seguido de dos `Delay` encadenados (uno en Depósito, uno en Celda 1) y recién ahí el `Release`. Como el Armador es un `Operario` que camina por el plano, esto además sirve para validar el traslado entre las dos naves.
 
 Se confirmaron las dos preguntas abiertas: (a) el viaje a Depósito aplica a **todos** los equipos (ya se agregó como Secuencia 1 en las tablas de esta sección, incluido AILA 30KG), y (b) los materiales se retiran de un **rack único de fabricación**: todos los elementos para los 5 equipos están en el mismo rack, no hay racks separados por equipo. Esto simplifica el modelado del depósito: alcanza con un solo punto/rack de referencia para esta operación, en vez de una red de racks distintos según el equipo.
 
@@ -125,9 +125,9 @@ Hay que cerrar el modelo en AnyLogic antes de regenerarlo (y borrar el `.autosav
 ### Decisiones de diseño
 
 - **Unidad de tiempo**: minutos. Escala del plano: 16 px = 1 m.
-- **Proceso (Process Modeling Library)**: un único flujo para los 5 modelos. Cada unidad (`Balanza`) sigue su receta (`Datos/tiempos_proceso.csv`): `Seize` del operario → `caminar` (espera a que llegue) → retiro en el rack (solo el primer paso) → `tarea` → `Release`, y se repite por cada paso. Así el mismo operario que retira los materiales hace el primer puesto.
+- **Proceso (Process Modeling Library)**: un único flujo para los 5 modelos. Cada unidad (`Balanza`) sigue su receta (`Datos/tiempos_proceso.csv`): `Seize` del operario → `caminar` (traslado, en uno o dos tramos) → retiro en el rack (solo el primer paso) → `tarea` → `Release`, y se repite por cada paso. Así el mismo operario que retira los materiales hace el primer puesto.
 - **Ruteo entre líneas equivalentes**: la condición de elección del `Seize` busca un operario que atienda un puesto apto para el paso, en la línea ya asignada a la unidad o en cualquier línea capaz de completar el equipo con el personal del día.
-- **Operarios como peatones (Pedestrian Library)**: el `ResourcePool` (estático) solo asigna operarios. Cada operario entra al espacio peatonal (`Enter → PedEnter`) y se mueve en el lazo `PedGoTo → PedSelectOutput → PedWait`. El traslado a Depósito y entre puestos sale de la simulación peatonal, con las paredes como obstáculos; la unidad espera en `caminar` hasta que su operario llega.
+- **Traslado de los operarios**: el operario camina en línea recta (`moveTo`) a 1,3 m/s y, si cambia de nave, pasa por la puerta de la pared interna. El tiempo de cada tramo es distancia ÷ velocidad. Se probó la Pedestrian Library (peatones con paredes como obstáculos), pero en la edición Personal Learning de AnyLogic solo permite simular 5 horas, y cada réplica necesita 4 semanas; por eso se descartó.
 - **Ausentismo y coberturas**: al inicio de cada jornada se sortea la asistencia; los puestos vacantes que frenan una línea se cubren con reserva polivalente, misma especialidad u otro operario (armado).
 - **Control de calidad por muestreo**: el primer equipo de cada modelo se inspecciona al llegar al rack de calidad y el último al cierre de la jornada.
 - **Cierre de jornada y fin de semana**: se compara lo producido a tiempo contra la OF; el faltante de la semana se recupera en una jornada de fin de semana cuyas horas-hombre se pagan al doble.
@@ -162,7 +162,7 @@ genera `Resultados/informe_resultados.md` (cumplimiento, faltantes, costos con i
 
 ## Pendiente
 
-- Probar el modelo con Pedestrian Library en AnyLogic y corregir lo que aparezca.
+- Probar el modelo en AnyLogic y corregir lo que aparezca.
 - Correr las réplicas de los 8 escenarios y generar el informe final.
 - Reemplazar las 3 OF de ejemplo por OF reales de KRETZ, y la probabilidad de ausencia por la de la planilla de asistencia.
 
