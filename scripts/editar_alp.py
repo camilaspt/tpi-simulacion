@@ -230,27 +230,12 @@ class Editor(D.Generador):
             self.plano.appendChild(self.figura(p["table"], f"mesa{k}", x - v["mesaOffset"] + D.CORRECCION_MESA_X, y,
                                                giro, visible=f"nPuestos > {k}"))
         self.plano.appendChild(self.figura(p["table"], "mesaInspector", ix + D.CORRECCION_MESA_X, iy, giro))
-        # Racks del depósito: copias de la plantilla Storage con más estantes y cajas por celda
-        for nombre, (x, y) in D.ALMACENES.items():
+        # Racks del depósito: copias de la plantilla Storage (el tamaño lo fija ajustar_racks)
+        for nombre in D.ALMACENES:
             r = p["storage"].cloneNode(True)
             self.renovar_ids(r)
             self.hijo(r, "Name").firstChild.data = nombre
-            self.posicion(r, x, y)
-            self.poner(r, "NumberOfShelves", D.ESTANTES_POR_RACK)
-            for par in r.getElementsByTagName("Parameter"):
-                if self.nombre(par) == "cellCapacity":
-                    for h in self.hijos(par, "Value"):
-                        par.removeChild(h)
-                    val = self.el(par, "Value", attrs={"Class": "CodeValue"})
-                    self.el(val, "Code", D.CAJAS_POR_CELDA, cdata=True)
             self.plano.appendChild(r)
-        # Rótulos de los racks y del inspector
-        xm, ym = D.ALMACENES["almacenMateriales"]
-        xc, yc = D.ALMACENES["almacenCalidad"]
-        self.posicion(textos["rotuloRack"], xm + 48, ym - 8)
-        self.posicion(textos["usoRack"], v["rackX"], v["rackY"] + 14)
-        self.posicion(textos["rotuloRackCalidad"], xc + 48, yc + 92)
-        self.posicion(textos["rotuloStock"], v["stockFrenteX"], v["stockFrenteY"] + 14)
         self.posicion(textos["rotuloInspector"], ix, iy - 28)
         # Caja de cada unidad: la plantilla box_1_closed y una marca con el color del modelo
         _, plano_b = self.presentacion_nivel(self.balanza)
@@ -265,6 +250,38 @@ class Editor(D.Generador):
             self.plano.removeChild(nodo)
         self.registrar_recurso("3d/box_1_closed.dae")
         self.registrar_recurso("3d/table.dae")
+
+    def ajustar_racks(self):
+        """Posición y tamaño de los racks Storage según D.ALMACENES, y sus rótulos.
+
+        Cada celda de un Storage guarda una sola caja (la "capacidad de celda" de AnyLogic
+        solo admite 1), así que la capacidad sale de unidades x bahías x estantes x celdas.
+        """
+        racks = {self.nombre(n): n for n in self.hijos(self.plano, "RackStorage")}
+        for nombre, c in D.ALMACENES.items():
+            if nombre not in racks:
+                sys.exit(f"No está el rack «{nombre}» en Main.")
+            r = racks[nombre]
+            self.posicion(r, c["x"], c["y"])
+            self.poner(r, "NumberOfBays", c["bahias"])
+            self.poner(r, "NumberOfShelves", c["estantes"])
+            for tag, valor in (("CellWidth", c["ancho_celda"]), ("ShelfHeight", c["alto_estante"]),
+                               ("Width", c["bahias"] * c["celdas"] * c["ancho_celda"])):
+                self.hijo(self.hijo(r, tag), "Value").firstChild.data = str(valor)
+            for par in r.getElementsByTagName("Parameter"):
+                if self.nombre(par) in ("cellCapacity", "numberOfCellsPerSlot"):
+                    for h in self.hijos(par, "Value"):
+                        par.removeChild(h)
+                if self.nombre(par) == "numberOfCellsPerSlot":
+                    val = self.el(par, "Value", attrs={"Class": "CodeValue"})
+                    self.el(val, "Code", c["celdas"], cdata=True)
+        v = {n: float(val) for n, t, val in J.VARIABLES_MAIN if t in ("int", "double")}
+        textos = self.por_nombre(self.plano, "Text")
+        m, q = D.ALMACENES["almacenMateriales"], D.ALMACENES["almacenCalidad"]
+        self.posicion(textos["rotuloRack"], m["x"] + 48, m["y"] - 8)
+        self.posicion(textos["usoRack"], v["rackX"], v["rackY"] + 14)
+        self.posicion(textos["rotuloRackCalidad"], q["x"] + 80, q["y"] - 8)
+        self.posicion(textos["rotuloStock"], v["stockFrenteX"], v["stockFrenteY"] + 14)
 
     def registrar_recurso(self, ruta):
         recursos = self.doc.getElementsByTagName("ModelResources")[0]
@@ -326,6 +343,7 @@ def main():
     e.sincronizar_flujo()
     if args.plano:
         e.armar_plano()
+    e.ajustar_racks()
     e.requerir_libreria(D.MHL, (8, 3, 0))
     e.verificar_nombres()
     respaldo = args.modelo.with_suffix(".antes.alp")

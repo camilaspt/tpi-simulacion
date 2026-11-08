@@ -87,8 +87,14 @@ VARIABLES_MAIN = [
     # Mesa del inspector y puntos de entrega (los racks son elementos Storage del plano)
     ("inspectorX", "double", "1330"),
     ("inspectorY", "double", "420"),
-    ("stockFrenteX", "double", "1528"),
-    ("stockFrenteY", "double", "392"),
+    ("stockFrenteX", "double", "1380"),
+    ("stockFrenteY", "double", "395"),
+    # Pie de los racks: si un rack se llenara, las cajas quedan en el piso delante de él
+    ("pieCalidadX", "double", "1480"),
+    ("pieCalidadY", "double", "532"),
+    ("pieStockX", "double", "1440"),
+    ("pieStockY", "double", "395"),
+    ("contadorPie", "int", "0"),
     # Recorrido del camión por el camino de afuera y andén frente a la puerta del depósito
     ("camionEntradaX", "double", "1720"),
     ("camionEntradaY", "double", "660"),
@@ -218,6 +224,9 @@ VARIABLES_BALANZA = [
     ("color", "Color", "new Color(160, 120, 60)"),
     ("mostrarCaja", "boolean", "true"),
     ("cajaEnRack", "boolean", "false"),
+    ("cajaAlPie", "boolean", "false"),
+    ("decisionRack", "int", "0"),
+    ("retirarDeRack", "boolean", "false"),
     ("cargador", "Operario", "null"),
 ]
 
@@ -649,6 +658,7 @@ if (reglaSecuencia == 3) {
 colaLiberacion.addAll(orden);
 liberadasSemana += orden.size();
 fuenteOF.inject(orden.size());
+eventoReponerKits.restart(0);
 """)
 
 funcion("prepararUnidad", "void", [("b", "Balanza")], """
@@ -662,10 +672,11 @@ b.tIngreso = time();
 b.diaOF = diaGlobal;
 b.ordenLiberacion = contadorLiberadas++;
 enProceso++;
-// La caja del kit se guarda en el rack de materiales (guardarKit) hasta que el operario la retira
+// La caja del kit entra al rack de materiales cuando hay una celda libre (reponerKits) y queda
+// ahí hasta que el operario la retira; mientras espera lugar no se dibuja
 asegurarEspacio(b);
 b.color = colorModelo(m);
-b.mostrarCaja = true;
+b.mostrarCaja = false;
 """)
 
 funcion("colorModelo", "Color", [("m", "int")], """
@@ -682,8 +693,8 @@ b.jumpTo(b.opActual.getX(), b.opActual.getY() + 6, alturaCajaEnMano);
 
 funcion("moverCaja", "void", [("b", "Balanza"), ("x", "double"), ("y", "double"), ("minutos", "double")], """
 // La caja llega a las manos del operario al mismo tiempo que él: desde el rack la lleva
-// encima; entre pasos viaja desde la mesa anterior. Mientras está en un rack no se mueve
-if (b.cajaEnRack) return;
+// encima; entre pasos viaja desde la mesa anterior. Mientras está en un rack o al pie no se mueve
+if (b.cajaEnRack || b.cajaAlPie) return;
 double metros = Math.hypot(x - b.getX(), y + 6 - b.getY()) / pxPorMetro;
 if (metros <= 0.05 || minutos <= 0) {
 	b.jumpTo(x, y + 6, alturaCajaEnMano);
@@ -700,6 +711,37 @@ if (p >= 0) b.jumpTo(pX[p] - mesaOffset, pY[p], alturaMesa);
 
 funcion("llevarAInspeccion", "void", [("b", "Balanza")], """
 b.jumpTo(inspectorX, inspectorY, alturaMesa);
+""")
+
+# --- Capacidad de los racks ----------------------------------------------------
+funcion("hayLugar", "boolean", [("s", "Storage")], """
+// Cada celda de un Storage guarda una sola caja; se deja una de margen
+return s.nFreeCells() > 1;
+""")
+
+funcion("reponerKits", "void", [], """
+// Los kits de la OF entran al rack de materiales a medida que se liberan celdas. Se cuentan
+// antes de liberar: no depende de cuándo reserva su celda cada Store
+int entran = Math.min(esperaLugarKit.size(), almacenMateriales.nFreeCells() - 1);
+for (int k = 0; k < entran; k++) esperaLugarKit.free(esperaLugarKit.get(0));
+""")
+
+funcion("decidirRack", "boolean", [("b", "Balanza"), ("s", "Storage")], """
+// Se decide una sola vez por rack (AnyLogic puede evaluar dos veces la condición de un
+// SelectOutput, y guardar la caja cambia las celdas libres antes de la segunda evaluación)
+if (b.decisionRack == 0) b.decisionRack = hayLugar(s) ? 1 : 2;
+return b.decisionRack == 1;
+""")
+
+funcion("llegarAlRack", "void", [("b", "Balanza"), ("pieX", "double"), ("pieY", "double")], """
+// Si el rack estaba lleno la caja queda en el piso, delante de él. retirarDeRack no cambia hasta
+// el próximo rack: lo usan los SelectOutput que deciden si hay que pasar por el Retrieve
+b.decisionRack = 0;
+b.retirarDeRack = b.cajaEnRack;
+if (b.cajaEnRack) return;
+b.cajaAlPie = true;
+int k = contadorPie++;
+b.jumpTo(pieX - 20 + (k % 6) * 8, pieY + (k / 6 % 3) * 8, (k / 18 % 4) * 8);
 """)
 
 # --- Despacho: camión y cargadores de depósito -------------------------------
@@ -774,7 +816,11 @@ return minutos;
 funcion("finCaminataCargador", "void", [("b", "Balanza")], """
 Operario o = b.cargador;
 if (o.isMoving()) o.jumpTo(o.getTargetX(), o.getTargetY());
-if (!b.cajaEnRack) b.jumpTo(o.getX(), o.getY() + 6, alturaCajaEnMano);
+if (!b.cajaEnRack) {
+	// Si la caja estaba al pie del rack, el cargador la levanta acá
+	b.cajaAlPie = false;
+	b.jumpTo(o.getX(), o.getY() + 6, alturaCajaEnMano);
+}
 """)
 
 funcion("subirCaja", "void", [("b", "Balanza")], """
@@ -1321,4 +1367,5 @@ EVENTOS = [
     ("eventoCamion1", "llegaCamion.inject(1);"),
     ("eventoCamion2", "llegaCamion.inject(1);"),
     ("eventoSalidaCamion", "despacharCamion();"),
+    ("eventoReponerKits", "reponerKits();"),
 ]

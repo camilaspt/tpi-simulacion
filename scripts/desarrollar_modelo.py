@@ -68,11 +68,15 @@ BLOQUES = [
         "onAtExit": accion("prepararUnidad((Balanza) agent);", [("agent", "Agent")]),
     }),
     # Racks (Space Markup -> Storage) con la Material Handling Library, sin recursos: la caja
-    # entra y sale de la celda al instante, así que no cambian los tiempos del proceso
+    # entra y sale de la celda al instante, así que no cambian los tiempos del proceso.
+    # Cada celda guarda una caja: los kits de la OF esperan acá hasta que haya celda (reponerKits)
+    ("esperaLugarKit", "Wait", 40, 920, {
+        "maximumCapacity": codigo("true"),
+    }),
     ("guardarKit", "Store", 40, Y1, {
         "resourceType": codigo("self.RESOURCE_NONE"),
         "storage": expr("almacenMateriales", "RackUnitAggregator"),
-        "onEnter": accion("agent.cajaEnRack = true;"),
+        "onEnter": accion("agent.cajaEnRack = true;\nagent.mostrarCaja = true;"),
     }),
     ("tomarOperario", "Seize", 130, Y2, {
         "seizeFromOnePool": codigo("true"),
@@ -114,6 +118,7 @@ BLOQUES = [
         "resourceType": codigo("self.RESOURCE_NONE"),
         "destinationType": codigo("self.DEST_AGENT"),
         "destinationAgent": expr("agent.opActual", "Agent"),
+        "onExit": accion("eventoReponerKits.restart(0);"),
     }),
     ("liberarRack", "Release", 720, Y1, {
         "releaseMode": codigo("self.SPECIFIED_RESOURCES"),
@@ -141,6 +146,10 @@ BLOQUES = [
         "conditionIsProbabilistic": codigo("false"),
         "condition": expr("registrarTerminada(agent)", "boolean"),
     }),
+    ("haySitioCalidad", "SelectOutput", 840, 1320, {
+        "conditionIsProbabilistic": codigo("false"),
+        "condition": expr("decidirRack(agent, almacenCalidad)", "boolean"),
+    }),
     ("guardarCalidad", "Store", 860, 1240, {
         "resourceType": codigo("self.RESOURCE_NONE"),
         "storage": expr("almacenCalidad", "RackUnitAggregator"),
@@ -149,6 +158,11 @@ BLOQUES = [
     # Las unidades quedan en el rack hasta el cierre de la jornada (cerrarMuestras)
     ("rackCalidad", "Wait", 900, Y3, {
         "maximumCapacity": codigo("true"),
+        "onEnter": accion("llegarAlRack(agent, pieCalidadX, pieCalidadY);"),
+    }),
+    ("enRackCalidad", "SelectOutput", 940, 1320, {
+        "conditionIsProbabilistic": codigo("false"),
+        "condition": expr("agent.retirarDeRack", "boolean"),
     }),
     # Salen a la mesa del inspector o al frente del rack de stock
     ("retirarCalidad", "Retrieve", 950, 1240, {
@@ -178,14 +192,19 @@ BLOQUES = [
         "releaseMode": codigo("self.SPECIFIED_RESOURCES"),
         "resources": expr("{ inspector }", "ResourcePool[]"),
     }),
+    ("haySitioStock", "SelectOutput", 1350, 1320, {
+        "conditionIsProbabilistic": codigo("false"),
+        "condition": expr("decidirRack(agent, almacenStock)", "boolean"),
+    }),
     ("guardarStock", "Store", 1400, Y2, {
         "resourceType": codigo("self.RESOURCE_NONE"),
         "storage": expr("almacenStock", "RackUnitAggregator"),
-        "onEnter": accion("agent.cajaEnRack = true;\nalIngresarStock(agent);"),
+        "onEnter": accion("agent.cajaEnRack = true;"),
     }),
     # Producto terminado esperando el camión (lo libera iniciarCarga cuando llega)
     ("esperaDespacho", "Wait", 1500, Y2, {
         "maximumCapacity": codigo("true"),
+        "onEnter": accion("alIngresarStock(agent);\nllegarAlRack(agent, pieStockX, pieStockY);"),
     }),
     # Carga: un cargador de depósito va al rack, retira la caja, la lleva al camión y la sube
     ("tomarCargador", "Seize", 1600, Y2, {
@@ -198,6 +217,10 @@ BLOQUES = [
         "delayTime": tiempo("caminarCargador(agent, stockFrenteX, stockFrenteY)"),
         "maximumCapacity": codigo("true"),
         "onExit": accion("finCaminataCargador(agent);"),
+    }),
+    ("enRackStock", "SelectOutput", 1750, 1320, {
+        "conditionIsProbabilistic": codigo("false"),
+        "condition": expr("agent.retirarDeRack", "boolean"),
     }),
     ("retirarStock", "Retrieve", 1800, Y2, {
         "resourceType": codigo("self.RESOURCE_NONE"),
@@ -275,7 +298,8 @@ BLOQUES = [
 
 # (bloque destino, puerto de entrada, bloque origen, puerto de salida)
 CONEXIONES = [
-    ("guardarKit", "in", "fuenteOF", "out"),
+    ("esperaLugarKit", "in", "fuenteOF", "out"),
+    ("guardarKit", "in", "esperaLugarKit", "out"),
     ("tomarOperario", "in", "guardarKit", "out"),
     ("caminar", "in", "tomarOperario", "out"),
     ("masTramos", "in", "caminar", "out"),
@@ -292,19 +316,27 @@ CONEXIONES = [
     ("tomarOperario", "in", "quedanPasos", "outT"),
     ("esPrimero", "in", "quedanPasos", "outF"),
     ("tomarInspector", "in", "esPrimero", "outT"),
-    ("guardarCalidad", "in", "esPrimero", "outF"),
+    ("haySitioCalidad", "in", "esPrimero", "outF"),
+    ("guardarCalidad", "in", "haySitioCalidad", "outT"),
+    ("rackCalidad", "in", "haySitioCalidad", "outF"),
     ("rackCalidad", "in", "guardarCalidad", "out"),
-    ("retirarCalidad", "in", "rackCalidad", "out"),
+    ("enRackCalidad", "in", "rackCalidad", "out"),
+    ("retirarCalidad", "in", "enRackCalidad", "outT"),
+    ("aInspeccion", "in", "enRackCalidad", "outF"),
     ("aInspeccion", "in", "retirarCalidad", "out"),
     ("tomarInspector", "in", "aInspeccion", "outT"),
-    ("guardarStock", "in", "aInspeccion", "outF"),
+    ("haySitioStock", "in", "aInspeccion", "outF"),
     ("inspeccion", "in", "tomarInspector", "out"),
     ("liberarInspector", "in", "inspeccion", "out"),
-    ("guardarStock", "in", "liberarInspector", "out"),
+    ("haySitioStock", "in", "liberarInspector", "out"),
+    ("guardarStock", "in", "haySitioStock", "outT"),
+    ("esperaDespacho", "in", "haySitioStock", "outF"),
     ("esperaDespacho", "in", "guardarStock", "out"),
     ("tomarCargador", "in", "esperaDespacho", "out"),
     ("irPorCaja", "in", "tomarCargador", "out"),
-    ("retirarStock", "in", "irPorCaja", "out"),
+    ("enRackStock", "in", "irPorCaja", "out"),
+    ("retirarStock", "in", "enRackStock", "outT"),
+    ("llevarAlCamion", "in", "enRackStock", "outF"),
     ("llevarAlCamion", "in", "retirarStock", "out"),
     ("subirAlCamion", "in", "llevarAlCamion", "out"),
     ("liberarCargador", "in", "subirAlCamion", "out"),
@@ -322,14 +354,14 @@ TIPO_AGENTE = {n: "CamionRetiro" for n in ("llegaCamion", "irAlAnden", "cargando
 
 ALTO_PAREDES = 48  # 3 m (16 px = 1 m)
 
-# Racks del depósito (Space Markup -> Storage): nombre -> (x, y) en el plano
+# Racks del depósito (Space Markup -> Storage). Cada celda guarda una sola caja, así que las
+# celdas son unidades x bahías x estantes x celdas por bahía. Materiales se repone de a poco
+# (60 celdas); calidad y stock guardan lo de una jornada o más (400 celdas, ~10 m de largo)
 ALMACENES = {
-    "almacenMateriales": (1400, 185),
-    "almacenCalidad": (1400, 440),
-    "almacenStock": (1480, 300),
+    "almacenMateriales": dict(x=1400, y=185, bahias=5, estantes=3, celdas=1, ancho_celda=1.0, alto_estante=1.0),
+    "almacenCalidad": dict(x=1400, y=440, bahias=10, estantes=5, celdas=2, ancho_celda=0.5, alto_estante=0.6),
+    "almacenStock": dict(x=1300, y=300, bahias=10, estantes=5, celdas=2, ancho_celda=0.5, alto_estante=0.6),
 }
-CAJAS_POR_CELDA = 20
-ESTANTES_POR_RACK = 3
 
 # Experimentos de comparación de escenarios: nombre -> (título, {parámetro: valor})
 EXPERIMENTOS = {

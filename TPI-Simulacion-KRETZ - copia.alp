@@ -2069,7 +2069,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 							<Type><![CDATA[double]]></Type>
 							<InitialValue Class="CodeValue">
-								<Code><![CDATA[1528]]></Code>
+								<Code><![CDATA[1380]]></Code>
 							</InitialValue>
 						</Properties>
 					</Variable>
@@ -2088,7 +2088,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 							<Type><![CDATA[double]]></Type>
 							<InitialValue Class="CodeValue">
-								<Code><![CDATA[392]]></Code>
+								<Code><![CDATA[395]]></Code>
 							</InitialValue>
 						</Properties>
 					</Variable>
@@ -3577,11 +3577,149 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 							</InitialValue>
 						</Properties>
 					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000378</Id>
+						<Name><![CDATA[pieCalidadX]]></Name>
+						<X>2560</X>
+						<Y>3494</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+							<Type><![CDATA[double]]></Type>
+							<InitialValue Class="CodeValue">
+								<Code><![CDATA[1480]]></Code>
+							</InitialValue>
+						</Properties>
+					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000381</Id>
+						<Name><![CDATA[pieCalidadY]]></Name>
+						<X>2560</X>
+						<Y>3516</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+							<Type><![CDATA[double]]></Type>
+							<InitialValue Class="CodeValue">
+								<Code><![CDATA[532]]></Code>
+							</InitialValue>
+						</Properties>
+					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000384</Id>
+						<Name><![CDATA[pieStockX]]></Name>
+						<X>2560</X>
+						<Y>3538</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+							<Type><![CDATA[double]]></Type>
+							<InitialValue Class="CodeValue">
+								<Code><![CDATA[1440]]></Code>
+							</InitialValue>
+						</Properties>
+					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000387</Id>
+						<Name><![CDATA[pieStockY]]></Name>
+						<X>2560</X>
+						<Y>3560</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+							<Type><![CDATA[double]]></Type>
+							<InitialValue Class="CodeValue">
+								<Code><![CDATA[395]]></Code>
+							</InitialValue>
+						</Properties>
+					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000390</Id>
+						<Name><![CDATA[contadorPie]]></Name>
+						<X>2560</X>
+						<Y>3582</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+							<Type><![CDATA[int]]></Type>
+							<InitialValue Class="CodeValue">
+								<Code><![CDATA[0]]></Code>
+							</InitialValue>
+						</Properties>
+					</Variable>
 				</Variables>
 				<Connectors>
 					<Connector>
-						<Id>1796000000864</Id>
+						<Id>1796000000981</Id>
 						<Name><![CDATA[conector0]]></Name>
+						<X>0</X>
+						<Y>0</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>false</ShowLabel>
+						<SourceEmbeddedObjectReference>
+							<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
+							<ClassName><![CDATA[Main]]></ClassName>
+							<ItemName><![CDATA[esperaLugarKit]]></ItemName>
+						</SourceEmbeddedObjectReference>
+						<TargetEmbeddedObjectReference>
+							<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
+							<ClassName><![CDATA[Main]]></ClassName>
+							<ItemName><![CDATA[fuenteOF]]></ItemName>
+						</TargetEmbeddedObjectReference>
+						<SourceConnectableItemReference>
+							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+							<ClassName><![CDATA[Wait]]></ClassName>
+							<ItemName><![CDATA[in]]></ItemName>
+						</SourceConnectableItemReference>
+						<TargetConnectableItemReference>
+							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+							<ClassName><![CDATA[Source]]></ClassName>
+							<ItemName><![CDATA[out]]></ItemName>
+						</TargetConnectableItemReference>
+						<Points>
+							<Point>
+								<X>40</X>
+								<Y>930</Y>
+							</Point>
+							<Point>
+								<X>80.0</X>
+								<Y>1090.0</Y>
+							</Point>
+						</Points>
+					</Connector>
+					<Connector>
+						<Id>1796000000982</Id>
+						<Name><![CDATA[conector1]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -3599,7 +3737,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						<TargetEmbeddedObjectReference>
 							<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 							<ClassName><![CDATA[Main]]></ClassName>
-							<ItemName><![CDATA[fuenteOF]]></ItemName>
+							<ItemName><![CDATA[esperaLugarKit]]></ItemName>
 						</TargetEmbeddedObjectReference>
 						<SourceConnectableItemReference>
 							<PackageName><![CDATA[com.anylogic.libraries.material_handling]]></PackageName>
@@ -3608,7 +3746,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</SourceConnectableItemReference>
 						<TargetConnectableItemReference>
 							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
-							<ClassName><![CDATA[Source]]></ClassName>
+							<ClassName><![CDATA[Wait]]></ClassName>
 							<ItemName><![CDATA[out]]></ItemName>
 						</TargetConnectableItemReference>
 						<Points>
@@ -3617,14 +3755,14 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 								<Y>1010.0</Y>
 							</Point>
 							<Point>
-								<X>80.0</X>
-								<Y>1090.0</Y>
+								<X>80</X>
+								<Y>930</Y>
 							</Point>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000865</Id>
-						<Name><![CDATA[conector1]]></Name>
+						<Id>1796000000983</Id>
+						<Name><![CDATA[conector2]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -3666,8 +3804,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000866</Id>
-						<Name><![CDATA[conector2]]></Name>
+						<Id>1796000000984</Id>
+						<Name><![CDATA[conector3]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -3709,8 +3847,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000867</Id>
-						<Name><![CDATA[conector3]]></Name>
+						<Id>1796000000985</Id>
+						<Name><![CDATA[conector4]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -3752,8 +3890,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000868</Id>
-						<Name><![CDATA[conector4]]></Name>
+						<Id>1796000000986</Id>
+						<Name><![CDATA[conector5]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -3795,8 +3933,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000869</Id>
-						<Name><![CDATA[conector5]]></Name>
+						<Id>1796000000987</Id>
+						<Name><![CDATA[conector6]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -3838,8 +3976,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000870</Id>
-						<Name><![CDATA[conector6]]></Name>
+						<Id>1796000000988</Id>
+						<Name><![CDATA[conector7]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -3881,8 +4019,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000871</Id>
-						<Name><![CDATA[conector7]]></Name>
+						<Id>1796000000989</Id>
+						<Name><![CDATA[conector8]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -3924,8 +4062,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000872</Id>
-						<Name><![CDATA[conector8]]></Name>
+						<Id>1796000000990</Id>
+						<Name><![CDATA[conector9]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -3967,8 +4105,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000873</Id>
-						<Name><![CDATA[conector9]]></Name>
+						<Id>1796000000991</Id>
+						<Name><![CDATA[conector10]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -4010,8 +4148,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000874</Id>
-						<Name><![CDATA[conector10]]></Name>
+						<Id>1796000000992</Id>
+						<Name><![CDATA[conector11]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -4053,8 +4191,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000875</Id>
-						<Name><![CDATA[conector11]]></Name>
+						<Id>1796000000993</Id>
+						<Name><![CDATA[conector12]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -4096,8 +4234,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000876</Id>
-						<Name><![CDATA[conector12]]></Name>
+						<Id>1796000000994</Id>
+						<Name><![CDATA[conector13]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -4139,8 +4277,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000877</Id>
-						<Name><![CDATA[conector13]]></Name>
+						<Id>1796000000995</Id>
+						<Name><![CDATA[conector14]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -4182,8 +4320,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000928</Id>
-						<Name><![CDATA[conector14]]></Name>
+						<Id>1796000000996</Id>
+						<Name><![CDATA[conector15]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -4225,8 +4363,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000929</Id>
-						<Name><![CDATA[conector15]]></Name>
+						<Id>1796000000997</Id>
+						<Name><![CDATA[conector16]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -4268,8 +4406,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000930</Id>
-						<Name><![CDATA[conector16]]></Name>
+						<Id>1796000000998</Id>
+						<Name><![CDATA[conector17]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -4311,8 +4449,51 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000931</Id>
-						<Name><![CDATA[conector17]]></Name>
+						<Id>1796000000999</Id>
+						<Name><![CDATA[conector18]]></Name>
+						<X>0</X>
+						<Y>0</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>false</ShowLabel>
+						<SourceEmbeddedObjectReference>
+							<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
+							<ClassName><![CDATA[Main]]></ClassName>
+							<ItemName><![CDATA[haySitioCalidad]]></ItemName>
+						</SourceEmbeddedObjectReference>
+						<TargetEmbeddedObjectReference>
+							<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
+							<ClassName><![CDATA[Main]]></ClassName>
+							<ItemName><![CDATA[esPrimero]]></ItemName>
+						</TargetEmbeddedObjectReference>
+						<SourceConnectableItemReference>
+							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+							<ClassName><![CDATA[SelectOutput]]></ClassName>
+							<ItemName><![CDATA[in]]></ItemName>
+						</SourceConnectableItemReference>
+						<TargetConnectableItemReference>
+							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+							<ClassName><![CDATA[SelectOutput]]></ClassName>
+							<ItemName><![CDATA[outF]]></ItemName>
+						</TargetConnectableItemReference>
+						<Points>
+							<Point>
+								<X>840</X>
+								<Y>1330</Y>
+							</Point>
+							<Point>
+								<X>850.0</X>
+								<Y>1090.0</Y>
+							</Point>
+						</Points>
+					</Connector>
+					<Connector>
+						<Id>1796000001000</Id>
+						<Name><![CDATA[conector19]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -4330,7 +4511,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						<TargetEmbeddedObjectReference>
 							<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 							<ClassName><![CDATA[Main]]></ClassName>
-							<ItemName><![CDATA[esPrimero]]></ItemName>
+							<ItemName><![CDATA[haySitioCalidad]]></ItemName>
 						</TargetEmbeddedObjectReference>
 						<SourceConnectableItemReference>
 							<PackageName><![CDATA[com.anylogic.libraries.material_handling]]></PackageName>
@@ -4340,7 +4521,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						<TargetConnectableItemReference>
 							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
 							<ClassName><![CDATA[SelectOutput]]></ClassName>
-							<ItemName><![CDATA[outF]]></ItemName>
+							<ItemName><![CDATA[outT]]></ItemName>
 						</TargetConnectableItemReference>
 						<Points>
 							<Point>
@@ -4348,14 +4529,57 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 								<Y>1250.0</Y>
 							</Point>
 							<Point>
-								<X>850.0</X>
-								<Y>1090.0</Y>
+								<X>880</X>
+								<Y>1330</Y>
 							</Point>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000932</Id>
-						<Name><![CDATA[conector18]]></Name>
+						<Id>1796000001001</Id>
+						<Name><![CDATA[conector20]]></Name>
+						<X>0</X>
+						<Y>0</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>false</ShowLabel>
+						<SourceEmbeddedObjectReference>
+							<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
+							<ClassName><![CDATA[Main]]></ClassName>
+							<ItemName><![CDATA[rackCalidad]]></ItemName>
+						</SourceEmbeddedObjectReference>
+						<TargetEmbeddedObjectReference>
+							<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
+							<ClassName><![CDATA[Main]]></ClassName>
+							<ItemName><![CDATA[haySitioCalidad]]></ItemName>
+						</TargetEmbeddedObjectReference>
+						<SourceConnectableItemReference>
+							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+							<ClassName><![CDATA[Wait]]></ClassName>
+							<ItemName><![CDATA[in]]></ItemName>
+						</SourceConnectableItemReference>
+						<TargetConnectableItemReference>
+							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+							<ClassName><![CDATA[SelectOutput]]></ClassName>
+							<ItemName><![CDATA[outF]]></ItemName>
+						</TargetConnectableItemReference>
+						<Points>
+							<Point>
+								<X>900.0</X>
+								<Y>1170.0</Y>
+							</Point>
+							<Point>
+								<X>880</X>
+								<Y>1330</Y>
+							</Point>
+						</Points>
+					</Connector>
+					<Connector>
+						<Id>1796000001002</Id>
+						<Name><![CDATA[conector21]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -4397,8 +4621,51 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000933</Id>
-						<Name><![CDATA[conector19]]></Name>
+						<Id>1796000001003</Id>
+						<Name><![CDATA[conector22]]></Name>
+						<X>0</X>
+						<Y>0</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>false</ShowLabel>
+						<SourceEmbeddedObjectReference>
+							<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
+							<ClassName><![CDATA[Main]]></ClassName>
+							<ItemName><![CDATA[enRackCalidad]]></ItemName>
+						</SourceEmbeddedObjectReference>
+						<TargetEmbeddedObjectReference>
+							<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
+							<ClassName><![CDATA[Main]]></ClassName>
+							<ItemName><![CDATA[rackCalidad]]></ItemName>
+						</TargetEmbeddedObjectReference>
+						<SourceConnectableItemReference>
+							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+							<ClassName><![CDATA[SelectOutput]]></ClassName>
+							<ItemName><![CDATA[in]]></ItemName>
+						</SourceConnectableItemReference>
+						<TargetConnectableItemReference>
+							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+							<ClassName><![CDATA[Wait]]></ClassName>
+							<ItemName><![CDATA[out]]></ItemName>
+						</TargetConnectableItemReference>
+						<Points>
+							<Point>
+								<X>940</X>
+								<Y>1330</Y>
+							</Point>
+							<Point>
+								<X>940.0</X>
+								<Y>1170.0</Y>
+							</Point>
+						</Points>
+					</Connector>
+					<Connector>
+						<Id>1796000001004</Id>
+						<Name><![CDATA[conector23]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -4416,7 +4683,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						<TargetEmbeddedObjectReference>
 							<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 							<ClassName><![CDATA[Main]]></ClassName>
-							<ItemName><![CDATA[rackCalidad]]></ItemName>
+							<ItemName><![CDATA[enRackCalidad]]></ItemName>
 						</TargetEmbeddedObjectReference>
 						<SourceConnectableItemReference>
 							<PackageName><![CDATA[com.anylogic.libraries.material_handling]]></PackageName>
@@ -4425,8 +4692,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</SourceConnectableItemReference>
 						<TargetConnectableItemReference>
 							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
-							<ClassName><![CDATA[Wait]]></ClassName>
-							<ItemName><![CDATA[out]]></ItemName>
+							<ClassName><![CDATA[SelectOutput]]></ClassName>
+							<ItemName><![CDATA[outT]]></ItemName>
 						</TargetConnectableItemReference>
 						<Points>
 							<Point>
@@ -4434,14 +4701,57 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 								<Y>1250.0</Y>
 							</Point>
 							<Point>
-								<X>940.0</X>
-								<Y>1170.0</Y>
+								<X>980</X>
+								<Y>1330</Y>
 							</Point>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000934</Id>
-						<Name><![CDATA[conector20]]></Name>
+						<Id>1796000001005</Id>
+						<Name><![CDATA[conector24]]></Name>
+						<X>0</X>
+						<Y>0</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>false</ShowLabel>
+						<SourceEmbeddedObjectReference>
+							<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
+							<ClassName><![CDATA[Main]]></ClassName>
+							<ItemName><![CDATA[aInspeccion]]></ItemName>
+						</SourceEmbeddedObjectReference>
+						<TargetEmbeddedObjectReference>
+							<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
+							<ClassName><![CDATA[Main]]></ClassName>
+							<ItemName><![CDATA[enRackCalidad]]></ItemName>
+						</TargetEmbeddedObjectReference>
+						<SourceConnectableItemReference>
+							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+							<ClassName><![CDATA[SelectOutput]]></ClassName>
+							<ItemName><![CDATA[in]]></ItemName>
+						</SourceConnectableItemReference>
+						<TargetConnectableItemReference>
+							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+							<ClassName><![CDATA[SelectOutput]]></ClassName>
+							<ItemName><![CDATA[outF]]></ItemName>
+						</TargetConnectableItemReference>
+						<Points>
+							<Point>
+								<X>1000.0</X>
+								<Y>1170.0</Y>
+							</Point>
+							<Point>
+								<X>980</X>
+								<Y>1330</Y>
+							</Point>
+						</Points>
+					</Connector>
+					<Connector>
+						<Id>1796000001006</Id>
+						<Name><![CDATA[conector25]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -4483,8 +4793,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000935</Id>
-						<Name><![CDATA[conector21]]></Name>
+						<Id>1796000001007</Id>
+						<Name><![CDATA[conector26]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -4526,8 +4836,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000936</Id>
-						<Name><![CDATA[conector22]]></Name>
+						<Id>1796000001008</Id>
+						<Name><![CDATA[conector27]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -4540,7 +4850,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						<SourceEmbeddedObjectReference>
 							<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 							<ClassName><![CDATA[Main]]></ClassName>
-							<ItemName><![CDATA[guardarStock]]></ItemName>
+							<ItemName><![CDATA[haySitioStock]]></ItemName>
 						</SourceEmbeddedObjectReference>
 						<TargetEmbeddedObjectReference>
 							<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
@@ -4548,8 +4858,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 							<ItemName><![CDATA[aInspeccion]]></ItemName>
 						</TargetEmbeddedObjectReference>
 						<SourceConnectableItemReference>
-							<PackageName><![CDATA[com.anylogic.libraries.material_handling]]></PackageName>
-							<ClassName><![CDATA[Store]]></ClassName>
+							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+							<ClassName><![CDATA[SelectOutput]]></ClassName>
 							<ItemName><![CDATA[in]]></ItemName>
 						</SourceConnectableItemReference>
 						<TargetConnectableItemReference>
@@ -4559,8 +4869,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</TargetConnectableItemReference>
 						<Points>
 							<Point>
-								<X>1400.0</X>
-								<Y>1090.0</Y>
+								<X>1350</X>
+								<Y>1330</Y>
 							</Point>
 							<Point>
 								<X>1040.0</X>
@@ -4569,8 +4879,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000937</Id>
-						<Name><![CDATA[conector23]]></Name>
+						<Id>1796000001009</Id>
+						<Name><![CDATA[conector28]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -4612,8 +4922,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000938</Id>
-						<Name><![CDATA[conector24]]></Name>
+						<Id>1796000001010</Id>
+						<Name><![CDATA[conector29]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -4655,8 +4965,51 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000939</Id>
-						<Name><![CDATA[conector25]]></Name>
+						<Id>1796000001011</Id>
+						<Name><![CDATA[conector30]]></Name>
+						<X>0</X>
+						<Y>0</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>false</ShowLabel>
+						<SourceEmbeddedObjectReference>
+							<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
+							<ClassName><![CDATA[Main]]></ClassName>
+							<ItemName><![CDATA[haySitioStock]]></ItemName>
+						</SourceEmbeddedObjectReference>
+						<TargetEmbeddedObjectReference>
+							<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
+							<ClassName><![CDATA[Main]]></ClassName>
+							<ItemName><![CDATA[liberarInspector]]></ItemName>
+						</TargetEmbeddedObjectReference>
+						<SourceConnectableItemReference>
+							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+							<ClassName><![CDATA[SelectOutput]]></ClassName>
+							<ItemName><![CDATA[in]]></ItemName>
+						</SourceConnectableItemReference>
+						<TargetConnectableItemReference>
+							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+							<ClassName><![CDATA[Release]]></ClassName>
+							<ItemName><![CDATA[out]]></ItemName>
+						</TargetConnectableItemReference>
+						<Points>
+							<Point>
+								<X>1350</X>
+								<Y>1330</Y>
+							</Point>
+							<Point>
+								<X>1340.0</X>
+								<Y>1090.0</Y>
+							</Point>
+						</Points>
+					</Connector>
+					<Connector>
+						<Id>1796000001012</Id>
+						<Name><![CDATA[conector31]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -4674,7 +5027,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						<TargetEmbeddedObjectReference>
 							<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 							<ClassName><![CDATA[Main]]></ClassName>
-							<ItemName><![CDATA[liberarInspector]]></ItemName>
+							<ItemName><![CDATA[haySitioStock]]></ItemName>
 						</TargetEmbeddedObjectReference>
 						<SourceConnectableItemReference>
 							<PackageName><![CDATA[com.anylogic.libraries.material_handling]]></PackageName>
@@ -4683,8 +5036,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</SourceConnectableItemReference>
 						<TargetConnectableItemReference>
 							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
-							<ClassName><![CDATA[Release]]></ClassName>
-							<ItemName><![CDATA[out]]></ItemName>
+							<ClassName><![CDATA[SelectOutput]]></ClassName>
+							<ItemName><![CDATA[outT]]></ItemName>
 						</TargetConnectableItemReference>
 						<Points>
 							<Point>
@@ -4692,14 +5045,57 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 								<Y>1090.0</Y>
 							</Point>
 							<Point>
-								<X>1340.0</X>
-								<Y>1090.0</Y>
+								<X>1390</X>
+								<Y>1330</Y>
 							</Point>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000940</Id>
-						<Name><![CDATA[conector26]]></Name>
+						<Id>1796000001013</Id>
+						<Name><![CDATA[conector32]]></Name>
+						<X>0</X>
+						<Y>0</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>false</ShowLabel>
+						<SourceEmbeddedObjectReference>
+							<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
+							<ClassName><![CDATA[Main]]></ClassName>
+							<ItemName><![CDATA[esperaDespacho]]></ItemName>
+						</SourceEmbeddedObjectReference>
+						<TargetEmbeddedObjectReference>
+							<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
+							<ClassName><![CDATA[Main]]></ClassName>
+							<ItemName><![CDATA[haySitioStock]]></ItemName>
+						</TargetEmbeddedObjectReference>
+						<SourceConnectableItemReference>
+							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+							<ClassName><![CDATA[Wait]]></ClassName>
+							<ItemName><![CDATA[in]]></ItemName>
+						</SourceConnectableItemReference>
+						<TargetConnectableItemReference>
+							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+							<ClassName><![CDATA[SelectOutput]]></ClassName>
+							<ItemName><![CDATA[outF]]></ItemName>
+						</TargetConnectableItemReference>
+						<Points>
+							<Point>
+								<X>1500.0</X>
+								<Y>1090.0</Y>
+							</Point>
+							<Point>
+								<X>1390</X>
+								<Y>1330</Y>
+							</Point>
+						</Points>
+					</Connector>
+					<Connector>
+						<Id>1796000001014</Id>
+						<Name><![CDATA[conector33]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -4741,8 +5137,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000941</Id>
-						<Name><![CDATA[conector27]]></Name>
+						<Id>1796000001015</Id>
+						<Name><![CDATA[conector34]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -4784,8 +5180,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000942</Id>
-						<Name><![CDATA[conector28]]></Name>
+						<Id>1796000001016</Id>
+						<Name><![CDATA[conector35]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -4827,8 +5223,51 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000943</Id>
-						<Name><![CDATA[conector29]]></Name>
+						<Id>1796000001017</Id>
+						<Name><![CDATA[conector36]]></Name>
+						<X>0</X>
+						<Y>0</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>false</ShowLabel>
+						<SourceEmbeddedObjectReference>
+							<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
+							<ClassName><![CDATA[Main]]></ClassName>
+							<ItemName><![CDATA[enRackStock]]></ItemName>
+						</SourceEmbeddedObjectReference>
+						<TargetEmbeddedObjectReference>
+							<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
+							<ClassName><![CDATA[Main]]></ClassName>
+							<ItemName><![CDATA[irPorCaja]]></ItemName>
+						</TargetEmbeddedObjectReference>
+						<SourceConnectableItemReference>
+							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+							<ClassName><![CDATA[SelectOutput]]></ClassName>
+							<ItemName><![CDATA[in]]></ItemName>
+						</SourceConnectableItemReference>
+						<TargetConnectableItemReference>
+							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+							<ClassName><![CDATA[Delay]]></ClassName>
+							<ItemName><![CDATA[out]]></ItemName>
+						</TargetConnectableItemReference>
+						<Points>
+							<Point>
+								<X>1750</X>
+								<Y>1330</Y>
+							</Point>
+							<Point>
+								<X>1740.0</X>
+								<Y>1090.0</Y>
+							</Point>
+						</Points>
+					</Connector>
+					<Connector>
+						<Id>1796000001018</Id>
+						<Name><![CDATA[conector37]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -4846,7 +5285,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						<TargetEmbeddedObjectReference>
 							<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 							<ClassName><![CDATA[Main]]></ClassName>
-							<ItemName><![CDATA[irPorCaja]]></ItemName>
+							<ItemName><![CDATA[enRackStock]]></ItemName>
 						</TargetEmbeddedObjectReference>
 						<SourceConnectableItemReference>
 							<PackageName><![CDATA[com.anylogic.libraries.material_handling]]></PackageName>
@@ -4855,8 +5294,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</SourceConnectableItemReference>
 						<TargetConnectableItemReference>
 							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
-							<ClassName><![CDATA[Delay]]></ClassName>
-							<ItemName><![CDATA[out]]></ItemName>
+							<ClassName><![CDATA[SelectOutput]]></ClassName>
+							<ItemName><![CDATA[outT]]></ItemName>
 						</TargetConnectableItemReference>
 						<Points>
 							<Point>
@@ -4864,14 +5303,57 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 								<Y>1090.0</Y>
 							</Point>
 							<Point>
-								<X>1740.0</X>
-								<Y>1090.0</Y>
+								<X>1790</X>
+								<Y>1330</Y>
 							</Point>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000944</Id>
-						<Name><![CDATA[conector30]]></Name>
+						<Id>1796000001019</Id>
+						<Name><![CDATA[conector38]]></Name>
+						<X>0</X>
+						<Y>0</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>false</ShowLabel>
+						<SourceEmbeddedObjectReference>
+							<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
+							<ClassName><![CDATA[Main]]></ClassName>
+							<ItemName><![CDATA[llevarAlCamion]]></ItemName>
+						</SourceEmbeddedObjectReference>
+						<TargetEmbeddedObjectReference>
+							<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
+							<ClassName><![CDATA[Main]]></ClassName>
+							<ItemName><![CDATA[enRackStock]]></ItemName>
+						</TargetEmbeddedObjectReference>
+						<SourceConnectableItemReference>
+							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+							<ClassName><![CDATA[Delay]]></ClassName>
+							<ItemName><![CDATA[in]]></ItemName>
+						</SourceConnectableItemReference>
+						<TargetConnectableItemReference>
+							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+							<ClassName><![CDATA[SelectOutput]]></ClassName>
+							<ItemName><![CDATA[outF]]></ItemName>
+						</TargetConnectableItemReference>
+						<Points>
+							<Point>
+								<X>1900.0</X>
+								<Y>1090.0</Y>
+							</Point>
+							<Point>
+								<X>1790</X>
+								<Y>1330</Y>
+							</Point>
+						</Points>
+					</Connector>
+					<Connector>
+						<Id>1796000001020</Id>
+						<Name><![CDATA[conector39]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -4913,8 +5395,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000945</Id>
-						<Name><![CDATA[conector31]]></Name>
+						<Id>1796000001021</Id>
+						<Name><![CDATA[conector40]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -4956,8 +5438,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000948</Id>
-						<Name><![CDATA[conector32]]></Name>
+						<Id>1796000001022</Id>
+						<Name><![CDATA[conector41]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -4999,8 +5481,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000949</Id>
-						<Name><![CDATA[conector33]]></Name>
+						<Id>1796000001023</Id>
+						<Name><![CDATA[conector42]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -5042,8 +5524,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000952</Id>
-						<Name><![CDATA[conector34]]></Name>
+						<Id>1796000001024</Id>
+						<Name><![CDATA[conector43]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -5085,8 +5567,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000953</Id>
-						<Name><![CDATA[conector35]]></Name>
+						<Id>1796000001025</Id>
+						<Name><![CDATA[conector44]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -5128,8 +5610,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000954</Id>
-						<Name><![CDATA[conector36]]></Name>
+						<Id>1796000001026</Id>
+						<Name><![CDATA[conector45]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -5171,8 +5653,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000955</Id>
-						<Name><![CDATA[conector37]]></Name>
+						<Id>1796000001027</Id>
+						<Name><![CDATA[conector46]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -5214,8 +5696,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000956</Id>
-						<Name><![CDATA[conector38]]></Name>
+						<Id>1796000001028</Id>
+						<Name><![CDATA[conector47]]></Name>
 						<X>0</X>
 						<Y>0</Y>
 						<Label>
@@ -5479,6 +5961,43 @@ else cerrarJornada();]]></Action>
 							<Condition><![CDATA[false]]></Condition>
 						</Properties>
 						<Action><![CDATA[despacharCamion();]]></Action>
+						<Logging>false</Logging>
+					</Event>
+					<Event>
+						<Id>1796000000749</Id>
+						<Name><![CDATA[eventoReponerKits]]></Name>
+						<X>1820</X>
+						<Y>670</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties TriggerType="timeout" Mode="userControls">
+							<Timeout Class="CodeUnitValue">
+								<Code><![CDATA[1]]></Code>
+								<Unit Class="TimeUnits"><![CDATA[MINUTE]]></Unit>
+							</Timeout>
+							<Rate Class="CodeUnitValue">
+								<Code><![CDATA[1]]></Code>
+								<Unit Class="RateUnits"><![CDATA[PER_MINUTE]]></Unit>
+							</Rate>
+							<Id>1796000000750</Id>
+							<OccurrenceAtTime>true</OccurrenceAtTime>
+							<OccurrenceDate>1787990400000</OccurrenceDate>
+							<OccurrenceTime Class="CodeUnitValue">
+								<Code><![CDATA[0]]></Code>
+								<Unit Class="TimeUnits"><![CDATA[MINUTE]]></Unit>
+							</OccurrenceTime>
+							<RecurrenceCode Class="CodeUnitValue">
+								<Code><![CDATA[1]]></Code>
+								<Unit Class="TimeUnits"><![CDATA[MINUTE]]></Unit>
+							</RecurrenceCode>
+							<Condition><![CDATA[false]]></Condition>
+						</Properties>
+						<Action><![CDATA[reponerKits();]]></Action>
 						<Logging>false</Logging>
 					</Event>
 				</Events>
@@ -6269,7 +6788,8 @@ if (reglaSecuencia == 3) {
 }
 colaLiberacion.addAll(orden);
 liberadasSemana += orden.size();
-fuenteOF.inject(orden.size());]]></Body>
+fuenteOF.inject(orden.size());
+eventoReponerKits.restart(0);]]></Body>
 					</Function>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
@@ -6299,10 +6819,11 @@ b.tIngreso = time();
 b.diaOF = diaGlobal;
 b.ordenLiberacion = contadorLiberadas++;
 enProceso++;
-// La caja del kit se guarda en el rack de materiales (guardarKit) hasta que el operario la retira
+// La caja del kit entra al rack de materiales cuando hay una celda libre (reponerKits) y queda
+// ahí hasta que el operario la retira; mientras espera lugar no se dibuja
 asegurarEspacio(b);
 b.color = colorModelo(m);
-b.mostrarCaja = true;]]></Body>
+b.mostrarCaja = false;]]></Body>
 					</Function>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
@@ -6379,8 +6900,8 @@ b.jumpTo(b.opActual.getX(), b.opActual.getY() + 6, alturaCajaEnMano);]]></Body>
 							<Type><![CDATA[double]]></Type>
 						</Parameter>
 						<Body><![CDATA[// La caja llega a las manos del operario al mismo tiempo que él: desde el rack la lleva
-// encima; entre pasos viaja desde la mesa anterior. Mientras está en un rack no se mueve
-if (b.cajaEnRack) return;
+// encima; entre pasos viaja desde la mesa anterior. Mientras está en un rack o al pie no se mueve
+if (b.cajaEnRack || b.cajaAlPie) return;
 double metros = Math.hypot(x - b.getX(), y + 6 - b.getY()) / pxPorMetro;
 if (metros <= 0.05 || minutos <= 0) {
 	b.jumpTo(x, y + 6, alturaCajaEnMano);
@@ -7818,7 +8339,11 @@ return minutos;]]></Body>
 						</Parameter>
 						<Body><![CDATA[Operario o = b.cargador;
 if (o.isMoving()) o.jumpTo(o.getTargetX(), o.getTargetY());
-if (!b.cajaEnRack) b.jumpTo(o.getX(), o.getY() + 6, alturaCajaEnMano);]]></Body>
+if (!b.cajaEnRack) {
+	// Si la caja estaba al pie del rack, el cargador la levanta acá
+	b.cajaAlPie = false;
+	b.jumpTo(o.getX(), o.getY() + 6, alturaCajaEnMano);
+}]]></Body>
 					</Function>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
@@ -7863,6 +8388,108 @@ b.jumpTo(andenX - 28 + (k % 8) * 8, andenY - 6 + (k / 8 % 2) * 8, 16 + (k / 16) 
 						</Parameter>
 						<Body><![CDATA[b.cargador.estado = 0;
 b.cargador = null;]]></Body>
+					</Function>
+					<Function AccessType="public" StaticFunction="false">
+						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+						<ReturnType><![CDATA[boolean]]></ReturnType>
+						<Id>1796000000642</Id>
+						<Name><![CDATA[hayLugar]]></Name>
+						<X>3020</X>
+						<Y>40</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Parameter>
+							<Name><![CDATA[s]]></Name>
+							<Type><![CDATA[Storage]]></Type>
+						</Parameter>
+						<Body><![CDATA[// Cada celda de un Storage guarda una sola caja; se deja una de margen
+return s.nFreeCells() > 1;]]></Body>
+					</Function>
+					<Function AccessType="public" StaticFunction="false">
+						<ReturnModificator>VOID</ReturnModificator>
+						<ReturnType><![CDATA[void]]></ReturnType>
+						<Id>1796000000643</Id>
+						<Name><![CDATA[reponerKits]]></Name>
+						<X>3020</X>
+						<Y>62</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Body><![CDATA[// Los kits de la OF entran al rack de materiales a medida que se liberan celdas. Se cuentan
+// antes de liberar: no depende de cuándo reserva su celda cada Store
+int entran = Math.min(esperaLugarKit.size(), almacenMateriales.nFreeCells() - 1);
+for (int k = 0; k < entran; k++) esperaLugarKit.free(esperaLugarKit.get(0));]]></Body>
+					</Function>
+					<Function AccessType="public" StaticFunction="false">
+						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+						<ReturnType><![CDATA[boolean]]></ReturnType>
+						<Id>1796000000644</Id>
+						<Name><![CDATA[decidirRack]]></Name>
+						<X>3020</X>
+						<Y>84</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Parameter>
+							<Name><![CDATA[b]]></Name>
+							<Type><![CDATA[Balanza]]></Type>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[s]]></Name>
+							<Type><![CDATA[Storage]]></Type>
+						</Parameter>
+						<Body><![CDATA[// Se decide una sola vez por rack (AnyLogic puede evaluar dos veces la condición de un
+// SelectOutput, y guardar la caja cambia las celdas libres antes de la segunda evaluación)
+if (b.decisionRack == 0) b.decisionRack = hayLugar(s) ? 1 : 2;
+return b.decisionRack == 1;]]></Body>
+					</Function>
+					<Function AccessType="public" StaticFunction="false">
+						<ReturnModificator>VOID</ReturnModificator>
+						<ReturnType><![CDATA[void]]></ReturnType>
+						<Id>1796000000645</Id>
+						<Name><![CDATA[llegarAlRack]]></Name>
+						<X>3020</X>
+						<Y>106</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Parameter>
+							<Name><![CDATA[b]]></Name>
+							<Type><![CDATA[Balanza]]></Type>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[pieX]]></Name>
+							<Type><![CDATA[double]]></Type>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[pieY]]></Name>
+							<Type><![CDATA[double]]></Type>
+						</Parameter>
+						<Body><![CDATA[// Si el rack estaba lleno la caja queda en el piso, delante de él. retirarDeRack no cambia hasta
+// el próximo rack: lo usan los SelectOutput que deciden si hay que pasar por el Retrieve
+b.decisionRack = 0;
+b.retirarDeRack = b.cajaEnRack;
+if (b.cajaEnRack) return;
+b.cajaAlPie = true;
+int k = contadorPie++;
+b.jumpTo(pieX - 20 + (k % 6) * 8, pieY + (k / 6 % 3) * 8, (k / 18 % 4) * 8);]]></Body>
 					</Function>
 				</Functions>
 				<AgentLinks>
@@ -7926,7 +8553,7 @@ b.cargador = null;]]></Body>
 								<Value Class="EntityCodeValue">
 									<IsAgentEntity>true</IsAgentEntity>
 									<EntityEmbeddedObject>
-										<Id>1796000000736</Id>
+										<Id>1796000000752</Id>
 										<ActiveObjectClass>
 											<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 											<ClassName><![CDATA[Balanza]]></ClassName>
@@ -7960,7 +8587,7 @@ b.cargador = null;]]></Body>
 										</LocationNameCode>
 										<InitializationType>LOAD_FROM_DATABASE</InitializationType>
 										<InitializationDatabaseTableQuery>
-											<Id>1796000000737</Id>
+											<Id>1796000000753</Id>
 											<TableReference/>
 										</InitializationDatabaseTableQuery>
 										<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
@@ -8815,6 +9442,12 @@ agent.paso++;]]></Code>
 									<Code><![CDATA[true]]></Code>
 								</Value>
 							</Parameter>
+							<Parameter>
+								<Name><![CDATA[onEnter]]></Name>
+								<Value Class="CodeValue">
+									<Code><![CDATA[llegarAlRack(agent, pieCalidadX, pieCalidadY);]]></Code>
+								</Value>
+							</Parameter>
 						</Parameters>
 						<ReplicationFlag>false</ReplicationFlag>
 						<Replication Class="CodeValue">
@@ -9195,7 +9828,7 @@ agent.paso++;]]></Code>
 								<Value Class="EntityCodeValue">
 									<IsAgentEntity>true</IsAgentEntity>
 									<EntityEmbeddedObject>
-										<Id>1796000000857</Id>
+										<Id>1796000000974</Id>
 										<ActiveObjectClass>
 											<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 											<ClassName><![CDATA[Operario]]></ClassName>
@@ -9229,7 +9862,7 @@ agent.paso++;]]></Code>
 										</LocationNameCode>
 										<InitializationType>LOAD_FROM_DATABASE</InitializationType>
 										<InitializationDatabaseTableQuery>
-											<Id>1796000000858</Id>
+											<Id>1796000000975</Id>
 											<TableReference/>
 										</InitializationDatabaseTableQuery>
 										<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
@@ -9460,7 +10093,8 @@ agent.paso++;]]></Code>
 							<Parameter>
 								<Name><![CDATA[onEnter]]></Name>
 								<Value Class="CodeValue">
-									<Code><![CDATA[agent.cajaEnRack = true;]]></Code>
+									<Code><![CDATA[agent.cajaEnRack = true;
+agent.mostrarCaja = true;]]></Code>
 								</Value>
 							</Parameter>
 						</Parameters>
@@ -9530,6 +10164,12 @@ agent.paso++;]]></Code>
 								<Name><![CDATA[destinationAgent]]></Name>
 								<Value Class="CodeValue">
 									<Code><![CDATA[agent.opActual]]></Code>
+								</Value>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[onExit]]></Name>
+								<Value Class="CodeValue">
+									<Code><![CDATA[eventoReponerKits.restart(0);]]></Code>
 								</Value>
 							</Parameter>
 						</Parameters>
@@ -9754,8 +10394,7 @@ agent.paso++;]]></Code>
 							<Parameter>
 								<Name><![CDATA[onEnter]]></Name>
 								<Value Class="CodeValue">
-									<Code><![CDATA[agent.cajaEnRack = true;
-alIngresarStock(agent);]]></Code>
+									<Code><![CDATA[agent.cajaEnRack = true;]]></Code>
 								</Value>
 							</Parameter>
 						</Parameters>
@@ -9813,6 +10452,13 @@ alIngresarStock(agent);]]></Code>
 								<Name><![CDATA[maximumCapacity]]></Name>
 								<Value Class="CodeValue">
 									<Code><![CDATA[true]]></Code>
+								</Value>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[onEnter]]></Name>
+								<Value Class="CodeValue">
+									<Code><![CDATA[alIngresarStock(agent);
+llegarAlRack(agent, pieStockX, pieStockY);]]></Code>
 								</Value>
 							</Parameter>
 						</Parameters>
@@ -10366,7 +11012,7 @@ alIngresarStock(agent);]]></Code>
 								<Value Class="EntityCodeValue">
 									<IsAgentEntity>true</IsAgentEntity>
 									<EntityEmbeddedObject>
-										<Id>1796000000841</Id>
+										<Id>1796000000958</Id>
 										<ActiveObjectClass>
 											<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 											<ClassName><![CDATA[CamionRetiro]]></ClassName>
@@ -10396,7 +11042,7 @@ alIngresarStock(agent);]]></Code>
 										</LocationNameCode>
 										<InitializationType>LOAD_FROM_DATABASE</InitializationType>
 										<InitializationDatabaseTableQuery>
-											<Id>1796000000842</Id>
+											<Id>1796000000959</Id>
 											<TableReference/>
 										</InitializationDatabaseTableQuery>
 										<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
@@ -10716,7 +11362,7 @@ alIngresarStock(agent);]]></Code>
 								<Value Class="EntityCodeValue">
 									<IsAgentEntity>true</IsAgentEntity>
 									<EntityEmbeddedObject>
-										<Id>1796000000853</Id>
+										<Id>1796000000970</Id>
 										<ActiveObjectClass>
 											<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 											<ClassName><![CDATA[Operario]]></ClassName>
@@ -10750,7 +11396,7 @@ alIngresarStock(agent);]]></Code>
 										</LocationNameCode>
 										<InitializationType>LOAD_FROM_DATABASE</InitializationType>
 										<InitializationDatabaseTableQuery>
-											<Id>1796000000854</Id>
+											<Id>1796000000971</Id>
 											<TableReference/>
 										</InitializationDatabaseTableQuery>
 										<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
@@ -10789,6 +11435,315 @@ alIngresarStock(agent);]]></Code>
 						<InitializationType>SPECIFIED_NUMBER</InitializationType>
 						<InitializationDatabaseTableQuery>
 							<Id>1796000000797</Id>
+							<TableReference/>
+						</InitializationDatabaseTableQuery>
+						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+						<QuantityColumn/>
+					</EmbeddedObject>
+					<EmbeddedObject>
+						<Id>1796000000755</Id>
+						<Name><![CDATA[esperaLugarKit]]></Name>
+						<X>40</X>
+						<Y>920</Y>
+						<Label>
+							<X>-5</X>
+							<Y>-12</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<ActiveObjectClass>
+							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+							<ClassName><![CDATA[Wait]]></ClassName>
+						</ActiveObjectClass>
+						<GenericParameterSubstitute>
+							<GenericParameterSubstituteReference>
+								<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+								<ClassName><![CDATA[Wait]]></ClassName>
+								<ItemName><![CDATA[1412336243169]]></ItemName>
+							</GenericParameterSubstituteReference>
+							<GenericParameterSubstituteValue Class="CodeValue">
+								<Code><![CDATA[Balanza]]></Code>
+							</GenericParameterSubstituteValue>
+						</GenericParameterSubstitute>
+						<Parameters>
+							<Parameter>
+								<Name><![CDATA[maximumCapacity]]></Name>
+								<Value Class="CodeValue">
+									<Code><![CDATA[true]]></Code>
+								</Value>
+							</Parameter>
+						</Parameters>
+						<ReplicationFlag>false</ReplicationFlag>
+						<Replication Class="CodeValue">
+							<Code><![CDATA[100]]></Code>
+						</Replication>
+						<CollectionType>ARRAY_LIST_BASED</CollectionType>
+						<InitialLocationType>XYZ</InitialLocationType>
+						<ColumnCode Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</ColumnCode>
+						<RowCode Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</RowCode>
+						<LocationNameCode Class="CodeValue">
+							<Code><![CDATA[""]]></Code>
+						</LocationNameCode>
+						<InitializationType>SPECIFIED_NUMBER</InitializationType>
+						<InitializationDatabaseTableQuery>
+							<Id>1796000000756</Id>
+							<TableReference/>
+						</InitializationDatabaseTableQuery>
+						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+						<QuantityColumn/>
+					</EmbeddedObject>
+					<EmbeddedObject>
+						<Id>1796000000812</Id>
+						<Name><![CDATA[haySitioCalidad]]></Name>
+						<X>840</X>
+						<Y>1320</Y>
+						<Label>
+							<X>-5</X>
+							<Y>-12</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<ActiveObjectClass>
+							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+							<ClassName><![CDATA[SelectOutput]]></ClassName>
+						</ActiveObjectClass>
+						<GenericParameterSubstitute>
+							<GenericParameterSubstituteReference>
+								<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+								<ClassName><![CDATA[SelectOutput]]></ClassName>
+								<ItemName><![CDATA[1412336242931]]></ItemName>
+							</GenericParameterSubstituteReference>
+							<GenericParameterSubstituteValue Class="CodeValue">
+								<Code><![CDATA[Balanza]]></Code>
+							</GenericParameterSubstituteValue>
+						</GenericParameterSubstitute>
+						<Parameters>
+							<Parameter>
+								<Name><![CDATA[conditionIsProbabilistic]]></Name>
+								<Value Class="CodeValue">
+									<Code><![CDATA[false]]></Code>
+								</Value>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[condition]]></Name>
+								<Value Class="CodeValue">
+									<Code><![CDATA[decidirRack(agent, almacenCalidad)]]></Code>
+								</Value>
+							</Parameter>
+						</Parameters>
+						<ReplicationFlag>false</ReplicationFlag>
+						<Replication Class="CodeValue">
+							<Code><![CDATA[100]]></Code>
+						</Replication>
+						<CollectionType>ARRAY_LIST_BASED</CollectionType>
+						<InitialLocationType>XYZ</InitialLocationType>
+						<ColumnCode Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</ColumnCode>
+						<RowCode Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</RowCode>
+						<LocationNameCode Class="CodeValue">
+							<Code><![CDATA[""]]></Code>
+						</LocationNameCode>
+						<InitializationType>SPECIFIED_NUMBER</InitializationType>
+						<InitializationDatabaseTableQuery>
+							<Id>1796000000813</Id>
+							<TableReference/>
+						</InitializationDatabaseTableQuery>
+						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+						<QuantityColumn/>
+					</EmbeddedObject>
+					<EmbeddedObject>
+						<Id>1796000000818</Id>
+						<Name><![CDATA[enRackCalidad]]></Name>
+						<X>940</X>
+						<Y>1320</Y>
+						<Label>
+							<X>-5</X>
+							<Y>-12</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<ActiveObjectClass>
+							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+							<ClassName><![CDATA[SelectOutput]]></ClassName>
+						</ActiveObjectClass>
+						<GenericParameterSubstitute>
+							<GenericParameterSubstituteReference>
+								<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+								<ClassName><![CDATA[SelectOutput]]></ClassName>
+								<ItemName><![CDATA[1412336242931]]></ItemName>
+							</GenericParameterSubstituteReference>
+							<GenericParameterSubstituteValue Class="CodeValue">
+								<Code><![CDATA[Balanza]]></Code>
+							</GenericParameterSubstituteValue>
+						</GenericParameterSubstitute>
+						<Parameters>
+							<Parameter>
+								<Name><![CDATA[conditionIsProbabilistic]]></Name>
+								<Value Class="CodeValue">
+									<Code><![CDATA[false]]></Code>
+								</Value>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[condition]]></Name>
+								<Value Class="CodeValue">
+									<Code><![CDATA[agent.retirarDeRack]]></Code>
+								</Value>
+							</Parameter>
+						</Parameters>
+						<ReplicationFlag>false</ReplicationFlag>
+						<Replication Class="CodeValue">
+							<Code><![CDATA[100]]></Code>
+						</Replication>
+						<CollectionType>ARRAY_LIST_BASED</CollectionType>
+						<InitialLocationType>XYZ</InitialLocationType>
+						<ColumnCode Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</ColumnCode>
+						<RowCode Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</RowCode>
+						<LocationNameCode Class="CodeValue">
+							<Code><![CDATA[""]]></Code>
+						</LocationNameCode>
+						<InitializationType>SPECIFIED_NUMBER</InitializationType>
+						<InitializationDatabaseTableQuery>
+							<Id>1796000000819</Id>
+							<TableReference/>
+						</InitializationDatabaseTableQuery>
+						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+						<QuantityColumn/>
+					</EmbeddedObject>
+					<EmbeddedObject>
+						<Id>1796000000834</Id>
+						<Name><![CDATA[haySitioStock]]></Name>
+						<X>1350</X>
+						<Y>1320</Y>
+						<Label>
+							<X>-5</X>
+							<Y>-12</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<ActiveObjectClass>
+							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+							<ClassName><![CDATA[SelectOutput]]></ClassName>
+						</ActiveObjectClass>
+						<GenericParameterSubstitute>
+							<GenericParameterSubstituteReference>
+								<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+								<ClassName><![CDATA[SelectOutput]]></ClassName>
+								<ItemName><![CDATA[1412336242931]]></ItemName>
+							</GenericParameterSubstituteReference>
+							<GenericParameterSubstituteValue Class="CodeValue">
+								<Code><![CDATA[Balanza]]></Code>
+							</GenericParameterSubstituteValue>
+						</GenericParameterSubstitute>
+						<Parameters>
+							<Parameter>
+								<Name><![CDATA[conditionIsProbabilistic]]></Name>
+								<Value Class="CodeValue">
+									<Code><![CDATA[false]]></Code>
+								</Value>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[condition]]></Name>
+								<Value Class="CodeValue">
+									<Code><![CDATA[decidirRack(agent, almacenStock)]]></Code>
+								</Value>
+							</Parameter>
+						</Parameters>
+						<ReplicationFlag>false</ReplicationFlag>
+						<Replication Class="CodeValue">
+							<Code><![CDATA[100]]></Code>
+						</Replication>
+						<CollectionType>ARRAY_LIST_BASED</CollectionType>
+						<InitialLocationType>XYZ</InitialLocationType>
+						<ColumnCode Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</ColumnCode>
+						<RowCode Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</RowCode>
+						<LocationNameCode Class="CodeValue">
+							<Code><![CDATA[""]]></Code>
+						</LocationNameCode>
+						<InitializationType>SPECIFIED_NUMBER</InitializationType>
+						<InitializationDatabaseTableQuery>
+							<Id>1796000000843</Id>
+							<TableReference/>
+						</InitializationDatabaseTableQuery>
+						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+						<QuantityColumn/>
+					</EmbeddedObject>
+					<EmbeddedObject>
+						<Id>1796000000852</Id>
+						<Name><![CDATA[enRackStock]]></Name>
+						<X>1750</X>
+						<Y>1320</Y>
+						<Label>
+							<X>-5</X>
+							<Y>-12</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<ActiveObjectClass>
+							<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+							<ClassName><![CDATA[SelectOutput]]></ClassName>
+						</ActiveObjectClass>
+						<GenericParameterSubstitute>
+							<GenericParameterSubstituteReference>
+								<PackageName><![CDATA[com.anylogic.libraries.processmodeling]]></PackageName>
+								<ClassName><![CDATA[SelectOutput]]></ClassName>
+								<ItemName><![CDATA[1412336242931]]></ItemName>
+							</GenericParameterSubstituteReference>
+							<GenericParameterSubstituteValue Class="CodeValue">
+								<Code><![CDATA[Balanza]]></Code>
+							</GenericParameterSubstituteValue>
+						</GenericParameterSubstitute>
+						<Parameters>
+							<Parameter>
+								<Name><![CDATA[conditionIsProbabilistic]]></Name>
+								<Value Class="CodeValue">
+									<Code><![CDATA[false]]></Code>
+								</Value>
+							</Parameter>
+							<Parameter>
+								<Name><![CDATA[condition]]></Name>
+								<Value Class="CodeValue">
+									<Code><![CDATA[agent.retirarDeRack]]></Code>
+								</Value>
+							</Parameter>
+						</Parameters>
+						<ReplicationFlag>false</ReplicationFlag>
+						<Replication Class="CodeValue">
+							<Code><![CDATA[100]]></Code>
+						</Replication>
+						<CollectionType>ARRAY_LIST_BASED</CollectionType>
+						<InitialLocationType>XYZ</InitialLocationType>
+						<ColumnCode Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</ColumnCode>
+						<RowCode Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</RowCode>
+						<LocationNameCode Class="CodeValue">
+							<Code><![CDATA[""]]></Code>
+						</LocationNameCode>
+						<InitializationType>SPECIFIED_NUMBER</InitializationType>
+						<InitializationDatabaseTableQuery>
+							<Id>1796000000855</Id>
 							<TableReference/>
 						</InitializationDatabaseTableQuery>
 						<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
@@ -13978,8 +14933,8 @@ alIngresarStock(agent);]]></Code>
 							<Text>
 								<Id>1796000000486</Id>
 								<Name><![CDATA[usoRack]]></Name>
-								<X>1448</X>
-								<Y>289</Y>
+								<X>1448.0</X>
+								<Y>289.0</Y>
 								<Label>
 									<X>0</X>
 									<Y>-10</Y>
@@ -14004,8 +14959,8 @@ alIngresarStock(agent);]]></Code>
 							<Text>
 								<Id>1796000000495</Id>
 								<Name><![CDATA[rotuloRackCalidad]]></Name>
-								<X>1448</X>
-								<Y>532</Y>
+								<X>1480</X>
+								<Y>432</Y>
 								<Label>
 									<X>0</X>
 									<Y>-10</Y>
@@ -14082,8 +15037,8 @@ alIngresarStock(agent);]]></Code>
 							<Text>
 								<Id>1796000000520</Id>
 								<Name><![CDATA[rotuloStock]]></Name>
-								<X>1528</X>
-								<Y>406</Y>
+								<X>1380.0</X>
+								<Y>409.0</Y>
 								<Label>
 									<X>0</X>
 									<Y>-10</Y>
@@ -15919,15 +16874,15 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 										</Parameter>
 										<Parameter>
 											<Name><![CDATA[numberOfCellsPerSlot]]></Name>
+											<Value Class="CodeValue">
+												<Code><![CDATA[1]]></Code>
+											</Value>
 										</Parameter>
 										<Parameter>
 											<Name><![CDATA[accessSideAdd]]></Name>
 										</Parameter>
 										<Parameter>
 											<Name><![CDATA[cellCapacity]]></Name>
-											<Value Class="CodeValue">
-												<Code><![CDATA[20]]></Code>
-											</Value>
 										</Parameter>
 										<Parameter>
 											<Name><![CDATA[specifiedInslotSpeed]]></Name>
@@ -15982,7 +16937,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 									<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
 								</Height>
 								<Width Class="UnitValue">
-									<Value Class="Double">6</Value>
+									<Value Class="Double">5.0</Value>
 									<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
 								</Width>
 								<LeftPassage Class="UnitValue">
@@ -15998,11 +16953,11 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 									<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
 								</SlotDepth>
 								<CellWidth Class="UnitValue">
-									<Value Class="Double">1</Value>
+									<Value Class="Double">1.0</Value>
 									<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
 								</CellWidth>
 								<ShelfHeight Class="UnitValue">
-									<Value Class="Double">1</Value>
+									<Value Class="Double">1.0</Value>
 									<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
 								</ShelfHeight>
 								<PlaceAtSides>false</PlaceAtSides>
@@ -16060,15 +17015,15 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 										</Parameter>
 										<Parameter>
 											<Name><![CDATA[numberOfCellsPerSlot]]></Name>
+											<Value Class="CodeValue">
+												<Code><![CDATA[2]]></Code>
+											</Value>
 										</Parameter>
 										<Parameter>
 											<Name><![CDATA[accessSideAdd]]></Name>
 										</Parameter>
 										<Parameter>
 											<Name><![CDATA[cellCapacity]]></Name>
-											<Value Class="CodeValue">
-												<Code><![CDATA[20]]></Code>
-											</Value>
 										</Parameter>
 										<Parameter>
 											<Name><![CDATA[specifiedInslotSpeed]]></Name>
@@ -16123,7 +17078,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 									<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
 								</Height>
 								<Width Class="UnitValue">
-									<Value Class="Double">6</Value>
+									<Value Class="Double">10.0</Value>
 									<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
 								</Width>
 								<LeftPassage Class="UnitValue">
@@ -16139,11 +17094,11 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 									<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
 								</SlotDepth>
 								<CellWidth Class="UnitValue">
-									<Value Class="Double">1</Value>
+									<Value Class="Double">0.5</Value>
 									<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
 								</CellWidth>
 								<ShelfHeight Class="UnitValue">
-									<Value Class="Double">1</Value>
+									<Value Class="Double">0.6</Value>
 									<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
 								</ShelfHeight>
 								<PlaceAtSides>false</PlaceAtSides>
@@ -16157,9 +17112,9 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<UnitsDefinition>NUMBER_OF_UNITS</UnitsDefinition>
 								<NumberOfUnits>4</NumberOfUnits>
 								<BaysDefinition>NUMBER_OF_BAYS</BaysDefinition>
-								<NumberOfBays>5</NumberOfBays>
+								<NumberOfBays>10</NumberOfBays>
 								<NumberOfCells>1</NumberOfCells>
-								<NumberOfShelves>3</NumberOfShelves>
+								<NumberOfShelves>5</NumberOfShelves>
 								<RackType>SELECTIVE</RackType>
 								<SkuFlow>LIFO</SkuFlow>
 								<Configuration>BACK_TO_BACK</Configuration>
@@ -16171,7 +17126,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 							<RackStorage>
 								<Id>1796000000923</Id>
 								<Name><![CDATA[almacenStock]]></Name>
-								<X>1480</X>
+								<X>1300</X>
 								<Y>300</Y>
 								<Label>
 									<X>10</X>
@@ -16201,15 +17156,15 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 										</Parameter>
 										<Parameter>
 											<Name><![CDATA[numberOfCellsPerSlot]]></Name>
+											<Value Class="CodeValue">
+												<Code><![CDATA[2]]></Code>
+											</Value>
 										</Parameter>
 										<Parameter>
 											<Name><![CDATA[accessSideAdd]]></Name>
 										</Parameter>
 										<Parameter>
 											<Name><![CDATA[cellCapacity]]></Name>
-											<Value Class="CodeValue">
-												<Code><![CDATA[20]]></Code>
-											</Value>
 										</Parameter>
 										<Parameter>
 											<Name><![CDATA[specifiedInslotSpeed]]></Name>
@@ -16264,7 +17219,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 									<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
 								</Height>
 								<Width Class="UnitValue">
-									<Value Class="Double">6</Value>
+									<Value Class="Double">10.0</Value>
 									<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
 								</Width>
 								<LeftPassage Class="UnitValue">
@@ -16280,11 +17235,11 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 									<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
 								</SlotDepth>
 								<CellWidth Class="UnitValue">
-									<Value Class="Double">1</Value>
+									<Value Class="Double">0.5</Value>
 									<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
 								</CellWidth>
 								<ShelfHeight Class="UnitValue">
-									<Value Class="Double">1</Value>
+									<Value Class="Double">0.6</Value>
 									<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
 								</ShelfHeight>
 								<PlaceAtSides>false</PlaceAtSides>
@@ -16298,9 +17253,9 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<UnitsDefinition>NUMBER_OF_UNITS</UnitsDefinition>
 								<NumberOfUnits>4</NumberOfUnits>
 								<BaysDefinition>NUMBER_OF_BAYS</BaysDefinition>
-								<NumberOfBays>5</NumberOfBays>
+								<NumberOfBays>10</NumberOfBays>
 								<NumberOfCells>1</NumberOfCells>
-								<NumberOfShelves>3</NumberOfShelves>
+								<NumberOfShelves>5</NumberOfShelves>
 								<RackType>SELECTIVE</RackType>
 								<SkuFlow>LIFO</SkuFlow>
 								<Configuration>BACK_TO_BACK</Configuration>
@@ -16857,6 +17812,63 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 							<Type><![CDATA[Operario]]></Type>
 							<InitialValue Class="CodeValue">
 								<Code><![CDATA[null]]></Code>
+							</InitialValue>
+						</Properties>
+					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000729</Id>
+						<Name><![CDATA[cajaAlPie]]></Name>
+						<X>2560</X>
+						<Y>546</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+							<Type><![CDATA[boolean]]></Type>
+							<InitialValue Class="CodeValue">
+								<Code><![CDATA[false]]></Code>
+							</InitialValue>
+						</Properties>
+					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000730</Id>
+						<Name><![CDATA[decisionRack]]></Name>
+						<X>2560</X>
+						<Y>568</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+							<Type><![CDATA[int]]></Type>
+							<InitialValue Class="CodeValue">
+								<Code><![CDATA[0]]></Code>
+							</InitialValue>
+						</Properties>
+					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000731</Id>
+						<Name><![CDATA[retirarDeRack]]></Name>
+						<X>2560</X>
+						<Y>590</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+							<Type><![CDATA[boolean]]></Type>
+							<InitialValue Class="CodeValue">
+								<Code><![CDATA[false]]></Code>
 							</InitialValue>
 						</Properties>
 					</Variable>
