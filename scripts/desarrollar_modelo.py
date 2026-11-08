@@ -24,13 +24,16 @@ import modelo_java as J  # noqa: E402
 
 PAQUETE = "tpi_simulacion_kretz"
 PML = "com.anylogic.libraries.processmodeling"
+MHL = "com.anylogic.libraries.material_handling"
 
-# Id del parámetro genérico de cada bloque de la Process Modeling Library 8.9
+# Id del parámetro genérico de cada bloque (Process Modeling y Material Handling Library 8.9)
 GENERICOS = {
     "Source": "1412336242928", "Sink": "1412336242929", "Delay": "1412336242930",
     "SelectOutput": "1412336242931", "Seize": "1412336243147", "Release": "1412336243154",
     "Wait": "1412336243169", "ResourcePool": "1412336243135",
+    "Store": "1608133547886", "Retrieve": "1608135007245",
 }
+PAQUETES = {c: MHL if c in ("Store", "Retrieve") else PML for c in GENERICOS}
 
 # ---------------------------------------------------------------------------
 # Diagrama de flujo. Cada parámetro: nombre -> (clase de valor, código, unidad)
@@ -62,6 +65,13 @@ BLOQUES = [
         "arrivalType": codigo("self.MANUAL"),
         "newEntity": ("Entity", "Balanza", None, None),
         "onAtExit": accion("prepararUnidad((Balanza) agent);", [("agent", "Agent")]),
+    }),
+    # Racks (Space Markup -> Storage) con la Material Handling Library, sin recursos: la caja
+    # entra y sale de la celda al instante, así que no cambian los tiempos del proceso
+    ("guardarKit", "Store", 40, Y1, {
+        "resourceType": codigo("self.RESOURCE_NONE"),
+        "storage": expr("almacenMateriales", "RackUnitAggregator"),
+        "onEnter": accion("agent.cajaEnRack = true;"),
     }),
     ("tomarOperario", "Seize", 130, Y2, {
         "seizeFromOnePool": codigo("true"),
@@ -98,6 +108,12 @@ BLOQUES = [
         "maximumCapacity": codigo("true"),
         "onEnter": accion("agent.opActual.estado = 2;", [("agent", "Balanza"), ("delayTime", "double")]),
     }),
+    # El kit sale del rack hacia el operario que lo vino a buscar
+    ("retirarKit", "Retrieve", 670, 940, {
+        "resourceType": codigo("self.RESOURCE_NONE"),
+        "destinationType": codigo("self.DEST_AGENT"),
+        "destinationAgent": expr("agent.opActual", "Agent"),
+    }),
     ("liberarRack", "Release", 720, Y1, {
         "releaseMode": codigo("self.SPECIFIED_RESOURCES"),
         "resources": expr("{ rackMateriales }", "ResourcePool[]"),
@@ -124,9 +140,23 @@ BLOQUES = [
         "conditionIsProbabilistic": codigo("false"),
         "condition": expr("registrarTerminada(agent)", "boolean"),
     }),
+    ("guardarCalidad", "Store", 860, 1240, {
+        "resourceType": codigo("self.RESOURCE_NONE"),
+        "storage": expr("almacenCalidad", "RackUnitAggregator"),
+        "onEnter": accion("agent.cajaEnRack = true;"),
+    }),
+    # Las unidades quedan en el rack hasta el cierre de la jornada (cerrarMuestras)
     ("rackCalidad", "Wait", 900, Y3, {
         "maximumCapacity": codigo("true"),
-        "onEnter": accion("ubicarEnRackCalidad(agent);"),
+    }),
+    # Salen a la mesa del inspector o al frente del rack de stock
+    ("retirarCalidad", "Retrieve", 950, 1240, {
+        "resourceType": codigo("self.RESOURCE_NONE"),
+        "destinationType": codigo("self.DEST_XYZ"),
+        "destinationX": expr("agent.inspeccionar ? inspectorX : stockFrenteX", "double"),
+        "destinationY": expr("agent.inspeccionar ? inspectorY : stockFrenteY", "double"),
+        "destinationZ": expr("agent.inspeccionar ? alturaMesa : 0", "double"),
+        "onExit": accion("agent.cajaEnRack = false;"),
     }),
     ("aInspeccion", "SelectOutput", 1000, Y3, {
         "conditionIsProbabilistic": codigo("false"),
@@ -147,9 +177,24 @@ BLOQUES = [
         "releaseMode": codigo("self.SPECIFIED_RESOURCES"),
         "resources": expr("{ inspector }", "ResourcePool[]"),
     }),
-    ("stock", "Sink", 1400, Y2, {
-        "onEnter": accion("alIngresarStock(agent);"),
+    ("guardarStock", "Store", 1400, Y2, {
+        "resourceType": codigo("self.RESOURCE_NONE"),
+        "storage": expr("almacenStock", "RackUnitAggregator"),
+        "onEnter": accion("agent.cajaEnRack = true;\nalIngresarStock(agent);"),
     }),
+    # Producto terminado esperando el despacho (hoy al cierre de cada jornada)
+    ("esperaDespacho", "Wait", 1500, Y2, {
+        "maximumCapacity": codigo("true"),
+    }),
+    ("retirarStock", "Retrieve", 1600, Y2, {
+        "resourceType": codigo("self.RESOURCE_NONE"),
+        "destinationType": codigo("self.DEST_XYZ"),
+        "destinationX": expr("despachoX", "double"),
+        "destinationY": expr("despachoY", "double"),
+        "destinationZ": expr("0", "double"),
+        "onExit": accion("agent.cajaEnRack = false;"),
+    }),
+    ("stock", "Sink", 1700, Y2, {}),
     ("operarios", "ResourcePool", 130, 1250, {
         "capacity": expr("cantidadOperarios()", "int", []),
         "newUnit": ("Entity", "Operario", None, None),
@@ -172,14 +217,16 @@ BLOQUES = [
 
 # (bloque destino, puerto de entrada, bloque origen, puerto de salida)
 CONEXIONES = [
-    ("tomarOperario", "in", "fuenteOF", "out"),
+    ("guardarKit", "in", "fuenteOF", "out"),
+    ("tomarOperario", "in", "guardarKit", "out"),
     ("caminar", "in", "tomarOperario", "out"),
     ("masTramos", "in", "caminar", "out"),
     ("caminar", "in", "masTramos", "outT"),
     ("irAlRack", "in", "masTramos", "outF"),
     ("tomarRack", "in", "irAlRack", "outT"),
     ("retirarMateriales", "in", "tomarRack", "out"),
-    ("liberarRack", "in", "retirarMateriales", "out"),
+    ("retirarKit", "in", "retirarMateriales", "out"),
+    ("liberarRack", "in", "retirarKit", "out"),
     ("caminar", "in", "liberarRack", "out"),
     ("tarea", "in", "irAlRack", "outF"),
     ("liberarOperario", "in", "tarea", "out"),
@@ -187,16 +234,30 @@ CONEXIONES = [
     ("tomarOperario", "in", "quedanPasos", "outT"),
     ("esPrimero", "in", "quedanPasos", "outF"),
     ("tomarInspector", "in", "esPrimero", "outT"),
-    ("rackCalidad", "in", "esPrimero", "outF"),
-    ("aInspeccion", "in", "rackCalidad", "out"),
+    ("guardarCalidad", "in", "esPrimero", "outF"),
+    ("rackCalidad", "in", "guardarCalidad", "out"),
+    ("retirarCalidad", "in", "rackCalidad", "out"),
+    ("aInspeccion", "in", "retirarCalidad", "out"),
     ("tomarInspector", "in", "aInspeccion", "outT"),
-    ("stock", "in", "aInspeccion", "outF"),
+    ("guardarStock", "in", "aInspeccion", "outF"),
     ("inspeccion", "in", "tomarInspector", "out"),
     ("liberarInspector", "in", "inspeccion", "out"),
-    ("stock", "in", "liberarInspector", "out"),
+    ("guardarStock", "in", "liberarInspector", "out"),
+    ("esperaDespacho", "in", "guardarStock", "out"),
+    ("retirarStock", "in", "esperaDespacho", "out"),
+    ("stock", "in", "retirarStock", "out"),
 ]
 
 ALTO_PAREDES = 48  # 3 m (16 px = 1 m)
+
+# Racks del depósito (Space Markup -> Storage): nombre -> (x, y) en el plano
+ALMACENES = {
+    "almacenMateriales": (1400, 185),
+    "almacenCalidad": (1400, 440),
+    "almacenStock": (1480, 300),
+}
+CAJAS_POR_CELDA = 20
+ESTANTES_POR_RACK = 3
 
 # Experimentos de comparación de escenarios: nombre -> (título, {parámetro: valor})
 EXPERIMENTOS = {
@@ -358,11 +419,11 @@ class Generador:
         eo = self.el(container, "EmbeddedObject")
         self.comunes(eo, name, x, y, label=(-5, -12), public=False, show_label=True)
         aoc = self.el(eo, "ActiveObjectClass")
-        self.el(aoc, "PackageName", PML, cdata=True)
+        self.el(aoc, "PackageName", PAQUETES[clase], cdata=True)
         self.el(aoc, "ClassName", clase, cdata=True)
         gps = self.el(eo, "GenericParameterSubstitute")
         ref = self.el(gps, "GenericParameterSubstituteReference")
-        self.el(ref, "PackageName", PML, cdata=True)
+        self.el(ref, "PackageName", PAQUETES[clase], cdata=True)
         self.el(ref, "ClassName", clase, cdata=True)
         self.el(ref, "ItemName", GENERICOS[clase], cdata=True)
         if clase not in ("Source", "ResourcePool"):
@@ -407,7 +468,7 @@ class Generador:
         for tag, blk, port in (("SourceConnectableItemReference", destino, puerto_in),
                                ("TargetConnectableItemReference", origen, puerto_out)):
             r = self.el(c, tag)
-            self.el(r, "PackageName", PML, cdata=True)
+            self.el(r, "PackageName", PAQUETES[clases[blk]], cdata=True)
             self.el(r, "ClassName", clases[blk], cdata=True)
             self.el(r, "ItemName", port, cdata=True)
         pts = self.el(c, "Points")
@@ -781,6 +842,7 @@ def arnes(destino):
     pkg.mkdir(exist_ok=True)
     imports = ("package %s;\nimport java.util.*;\nimport java.awt.Color;\nimport com.anylogic.engine.*;\n"
                "import com.anylogic.engine.markup.*;\nimport com.anylogic.libraries.processmodeling.*;\n"
+               "import com.anylogic.libraries.material_handling.*;\n"
                "import static com.anylogic.engine.Utilities.*;\n" % PAQUETE)
     (pkg / "Especialidad.java").write_text(imports + "public enum Especialidad { Armador, Ajustador, Controlador, Embalador, Polivalente }\n", encoding="utf-8")
 
@@ -809,9 +871,11 @@ def arnes(destino):
     m += "".join(f"  public EventTimeout {n};\n" for n, _ in J.EVENTOS)
     m += "  public RectangularNode zonaIngreso;\n"
     m += "  public Level level;\n"
+    m += "".join(f"  public Storage {n};\n" for n in ALMACENES)
     tipos = {"Source": "Source<Balanza>", "Seize": "Seize<Balanza>", "Delay": "Delay<Balanza>",
              "Release": "Release<Balanza>", "SelectOutput": "SelectOutput<Balanza>", "Wait": "Wait<Balanza>",
-             "Sink": "Sink<Balanza>", "ResourcePool": "ResourcePool<Agent>"}
+             "Sink": "Sink<Balanza>", "ResourcePool": "ResourcePool<Agent>",
+             "Store": "Store<Balanza>", "Retrieve": "Retrieve<Balanza>"}
     m += "".join(f"  public {tipos[c]} {n};\n" for n, c, _, _, _ in BLOQUES)
     m += metodos(J.FUNCIONES_MAIN)
     m += f"  void startup() {{\n{J.STARTUP}\n  }}\n"
@@ -852,6 +916,8 @@ def verificar(destino):
     plugins = instalacion / "plugins"
     jars = [str(p) for p in plugins.glob("com.anylogic.engine*/*.jar")]
     jars += [str(p) for p in plugins.glob("com.anylogic.process_modeling_library_*/lib/*.jar")]
+    jars += [str(p) for p in plugins.glob("com.anylogic.material_handling_library_*/lib/*.jar")]
+    jars += [str(p) for p in plugins.glob("com.anylogic.libraries.modules_*/lib/*/*.jar")]
     pkg = arnes(destino)
     fuentes = [str(p) for p in pkg.glob("*.java")]
     salida = destino / "clases"
@@ -870,11 +936,18 @@ def main():
     parser.add_argument("--salida", type=Path, default=raiz / "TPI-Simulacion-KRETZ - copia.alp")
     parser.add_argument("--verificar", type=Path, metavar="CARPETA",
                         help="compila el código del modelo en CARPETA contra las librerías de AnyLogic")
+    parser.add_argument("--forzar", action="store_true",
+                        help="regenera el modelo desde el base aunque pise lo editado a mano en AnyLogic")
     args = parser.parse_args()
     if args.verificar:
         sys.exit(0 if verificar(args.verificar) else 1)
     if args.entrada.resolve() == args.salida.resolve():
         parser.error("La salida debe ser distinta del modelo base.")
+    # El modelo ahora se edita también en AnyLogic (mesas, cajas y racks): los cambios se
+    # aplican con editar_alp.py, y regenerarlo desde el base perdería esos elementos
+    if args.salida.exists() and not args.forzar:
+        parser.error(f"{args.salida.name} ya existe y puede tener cambios hechos en AnyLogic. "
+                     "Usá scripts/editar_alp.py para actualizarlo, o --forzar para regenerarlo desde cero.")
     Generador(args.entrada).construir(args.salida)
 
 

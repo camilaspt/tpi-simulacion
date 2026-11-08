@@ -78,16 +78,18 @@ VARIABLES_MAIN = [
     # Cajas de producto (alturas en px sobre el piso)
     ("alturaMesa", "double", "14"),
     ("alturaCajaEnMano", "double", "12"),
-    ("rackCalidadX", "double", "1500"),
-    ("rackCalidadY", "double", "482"),
-    ("inspectorX", "double", "1500"),
-    ("inspectorY", "double", "439"),
-    ("contadorRackCalidad", "int", "0"),
+    # Mesa del inspector y puntos de entrega (los racks son elementos Storage del plano)
+    ("inspectorX", "double", "1330"),
+    ("inspectorY", "double", "420"),
+    ("stockFrenteX", "double", "1528"),
+    ("stockFrenteY", "double", "392"),
+    ("despachoX", "double", "1430"),
+    ("despachoY", "double", "600"),
     ("paredNavesX", "double", "1281.6"),
     ("puertaX", "double", "1281.6"),
     ("puertaY", "double", "515"),
-    ("rackX", "double", "1460"),
-    ("rackY", "double", "245"),
+    ("rackX", "double", "1448"),
+    ("rackY", "double", "275"),
     ("zonaAusentesX", "double", "962"),
     ("zonaAusentesY", "double", "603"),
     ("zonaReservaX", "double", "1142"),
@@ -198,7 +200,8 @@ VARIABLES_BALANZA = [
     ("tIngresoRack", "double", "0"),
     # Caja que representa a la unidad en la animación
     ("color", "Color", "new Color(160, 120, 60)"),
-    ("mostrarCaja", "boolean", "false"),
+    ("mostrarCaja", "boolean", "true"),
+    ("cajaEnRack", "boolean", "false"),
 ]
 
 VARIABLES_OPERARIO = [
@@ -640,11 +643,10 @@ b.tIngreso = time();
 b.diaOF = diaGlobal;
 b.ordenLiberacion = contadorLiberadas++;
 enProceso++;
-// La caja aparece recién cuando el operario retira los materiales del rack
+// La caja del kit se guarda en el rack de materiales (guardarKit) hasta que el operario la retira
 asegurarEspacio(b);
 b.color = colorModelo(m);
-b.mostrarCaja = false;
-b.jumpTo(rackX, rackY, alturaCajaEnMano);
+b.mostrarCaja = true;
 """)
 
 funcion("colorModelo", "Color", [("m", "int")], """
@@ -655,14 +657,14 @@ return colores[m];
 
 funcion("recogerCaja", "void", [("b", "Balanza")], """
 // El operario sale del rack con la caja de materiales en la mano
-b.mostrarCaja = true;
+b.cajaEnRack = false;
 b.jumpTo(b.opActual.getX(), b.opActual.getY() + 6, alturaCajaEnMano);
 """)
 
 funcion("moverCaja", "void", [("b", "Balanza"), ("x", "double"), ("y", "double"), ("minutos", "double")], """
 // La caja llega a las manos del operario al mismo tiempo que él: desde el rack la lleva
-// encima; entre pasos viaja desde la mesa anterior
-if (!b.mostrarCaja) return;
+// encima; entre pasos viaja desde la mesa anterior. Mientras está en un rack no se mueve
+if (b.cajaEnRack) return;
 double metros = Math.hypot(x - b.getX(), y + 6 - b.getY()) / pxPorMetro;
 if (metros <= 0.05 || minutos <= 0) {
 	b.jumpTo(x, y + 6, alturaCajaEnMano);
@@ -674,13 +676,7 @@ b.moveTo(x, y + 6, alturaCajaEnMano);
 
 funcion("dejarCajaEnMesa", "void", [("b", "Balanza")], """
 int p = b.puestoActual;
-if (b.mostrarCaja && p >= 0) b.jumpTo(pX[p] - mesaOffset, pY[p], alturaMesa);
-""")
-
-funcion("ubicarEnRackCalidad", "void", [("b", "Balanza")], """
-// Tres estantes de nueve cajas; cuando se llena se vuelve a empezar
-int k = contadorRackCalidad++ % 27;
-b.jumpTo(rackCalidadX - 40 + (k % 9) * 10, rackCalidadY, 2 + (k / 9) * 16);
+if (p >= 0) b.jumpTo(pX[p] - mesaOffset, pY[p], alturaMesa);
 """)
 
 funcion("llevarAInspeccion", "void", [("b", "Balanza")], """
@@ -790,7 +786,7 @@ funcion("finTramo", "void", [("b", "Balanza")], """
 // Asegura que el operario quede exactamente en el destino del tramo
 Operario o = b.opActual;
 if (o.isMoving()) o.jumpTo(o.getTargetX(), o.getTargetY());
-if (b.mostrarCaja) b.jumpTo(o.getX(), o.getY() + 6, alturaCajaEnMano);
+if (!b.cajaEnRack) b.jumpTo(o.getX(), o.getY() + 6, alturaCajaEnMano);
 """)
 
 funcion("tiempoAleatorio", "double", [("media", "double")], """
@@ -855,6 +851,8 @@ for (Balanza b : ultimo)
 		b.inspeccionar = true;
 		b.posMuestra = 2;
 	}
+// Primero se despacha el stock, así no salen también las unidades que entran ahora desde calidad
+esperaDespacho.freeAll();
 rackCalidad.freeAll();
 """)
 

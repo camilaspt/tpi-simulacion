@@ -113,14 +113,17 @@ Los archivos usan `;` como separador y `,` como separador decimal (configuració
 
 ## Modelo en AnyLogic
 
-El modelo completo se genera con un script: `scripts/desarrollar_modelo.py` parte del modelo base `TPI-Simulacion-KRETZ.alp` (que no se modifica) y escribe `TPI-Simulacion-KRETZ - copia.alp`. Todo el código Java del modelo (parámetros, variables, funciones) está en `scripts/modelo_java.py`.
+El modelo es `TPI-Simulacion-KRETZ - copia.alp` y se edita de dos maneras:
+
+- **En AnyLogic**, para lo visual: las plantillas de la mesa, la caja y el rack se agregaron a mano (paleta 3D y Space Markup → Storage).
+- **Con `scripts/editar_alp.py`**, que aplica sobre ese mismo archivo el código Java de `scripts/modelo_java.py` (parámetros, variables, funciones, eventos) y el diagrama de flujo definido en `scripts/desarrollar_modelo.py` (bloques y conectores), sin pisar lo hecho en AnyLogic. Antes de escribir deja una copia en `TPI-Simulacion-KRETZ - copia.antes.alp`.
 
 ```
-py -3 scripts/desarrollar_modelo.py                      # regenera el .alp
-py -3 scripts/desarrollar_modelo.py --verificar CARPETA  # compila el código contra las librerías de AnyLogic
+py -3 scripts/editar_alp.py                                # sincroniza código y flujo con el .alp
+py -3 scripts/desarrollar_modelo.py --verificar CARPETA    # compila el código contra las librerías de AnyLogic
 ```
 
-Hay que cerrar el modelo en AnyLogic antes de regenerarlo (y borrar el `.autosave` si quedó uno).
+Hay que cerrar el modelo en AnyLogic antes de correr `editar_alp.py`. `desarrollar_modelo.py` arma el modelo completo desde el modelo base `TPI-Simulacion-KRETZ.alp`; como pisaría lo hecho en AnyLogic, solo lo hace con `--forzar`.
 
 ### Decisiones de diseño
 
@@ -128,7 +131,8 @@ Hay que cerrar el modelo en AnyLogic antes de regenerarlo (y borrar el `.autosav
 - **Proceso (Process Modeling Library)**: un único flujo para los 5 modelos. Cada unidad (`Balanza`) sigue su receta (`Datos/tiempos_proceso.csv`): `Seize` del operario → `caminar` (traslado, en uno o dos tramos) → retiro en el rack (solo el primer paso) → `tarea` → `Release`, y se repite por cada paso. Así el mismo operario que retira los materiales hace el primer puesto.
 - **Ruteo entre líneas equivalentes**: la condición de elección del `Seize` busca un operario que atienda un puesto apto para el paso, en la línea ya asignada a la unidad o en cualquier línea capaz de completar el equipo con el personal del día.
 - **Traslado de los operarios**: el operario camina en línea recta (`moveTo`) a 1,3 m/s y, si cambia de nave, pasa por la puerta de la pared interna. El tiempo de cada tramo es distancia ÷ velocidad. Se probó la Pedestrian Library (peatones con paredes como obstáculos), pero en la edición Personal Learning de AnyLogic solo permite simular 5 horas, y cada réplica necesita 4 semanas; por eso se descartó.
-- **Plano 3D**: los puestos son mesas 3D (*Table* de la paleta de AnyLogic, `3d/table.dae`) en columnas de 6 mesas pegadas a lo largo del eje Y, con el operario al costado y el estado del puesto como color sobre la mesa. Los racks (materiales, espera de calidad y stock) están armados con formas 3D. Cada unidad se ve como una caja del color de su modelo: aparece cuando el operario retira los materiales del rack, la lleva en la mano, queda sobre la mesa mientras se trabaja, viaja a la mesa siguiente y termina en el rack de calidad.
+- **Plano 3D**: los puestos son mesas 3D (*Table* de la paleta de AnyLogic) en columnas de 6 mesas pegadas a lo largo del eje Y; el estado del puesto (color) y su etiqueta se ven en la vista 2D. Cada unidad es una caja (*box_1_closed*) con una marca del color de su modelo.
+- **Racks (Material Handling Library)**: tres racks *Storage* en el depósito. Los bloques `Store`/`Retrieve`, sin recursos, guardan y retiran las cajas sin agregar tiempo al proceso: los kits de la OF esperan en el rack de materiales hasta que el operario los retira, las unidades terminadas esperan el control en el rack de calidad y el producto terminado espera el despacho en el rack de stock (hoy se despacha al cierre de cada jornada).
 - **Ausentismo y coberturas**: al inicio de cada jornada se sortea la asistencia; los puestos vacantes que frenan una línea se cubren con reserva polivalente, misma especialidad u otro operario (armado).
 - **Control de calidad por muestreo**: el primer equipo de cada modelo se inspecciona al llegar al rack de calidad y el último al cierre de la jornada.
 - **Cierre de jornada y fin de semana**: se compara lo producido a tiempo contra la OF; el faltante de la semana se recupera en una jornada de fin de semana cuyas horas-hombre se pagan al doble.
