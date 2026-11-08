@@ -14,7 +14,7 @@ Formato: separador `;`, decimales con coma, UTF-8 con BOM (se abren directo en E
 
 | Archivo | Una fila por | Contenido |
 |---|---|---|
-| `empleados.csv` | empleado (51) | Legajo, especialidad, línea y puesto habitual. 4 líneas de Armado (4 armadores + 1 ajustador), 2 de Control Final (2 controladores + 3 embaladores), 20 de depósito y 1 inspector. |
+| `empleados.csv` | empleado (41) | Legajo, especialidad, línea y puesto habitual. 4 líneas de Armado (4 armadores + 1 ajustador), 2 de Control Final (2 controladores + 3 embaladores), 10 de depósito y 1 inspector (igual que el modelo). |
 | `planilla_ausencias.csv` | ausencia (empleado y día) | Legajo, especialidad, línea, fecha, día de la semana y motivo (enfermedad, razones particulares, trámite, licencia por examen, sin aviso). Las enfermedades pueden durar varios días seguidos. |
 | `resumen_ausentismo.csv` | especialidad | Porcentaje de ausencia por día de la semana y total. Es lo que se carga en el parámetro `probAusencia` del modelo. |
 | `ordenes_fabricacion.csv` | OF y modelo | Cantidad pedida, producida en el turno, faltante, % de cumplimiento y si se cumplió. |
@@ -23,10 +23,10 @@ Formato: separador `;`, decimales con coma, UTF-8 con BOM (se abren directo en E
 
 ## Resultados del período
 
-- 120 jornadas, de las que **31 (26 %) no cumplieron la OF**.
-- Cumplimiento medio en el turno: **97,3 %**.
+- 120 jornadas, de las que **27 (22 %) no cumplieron la OF**.
+- Cumplimiento medio en el turno: **97,7 %**.
 - Ausentismo de las líneas: alrededor del 6 %, más alto los lunes y viernes.
-- **20 de 26 semanas** necesitaron recuperación de fin de semana, con 24 h-hombre por semana en promedio.
+- **17 de 26 semanas** necesitaron recuperación de fin de semana, con 19 h-hombre por semana en promedio.
 - El cuello de botella casi siempre es **Ajuste**, sobre todo cuando falta uno de los 4 ajustadores.
 
 ## Cómo se generaron

@@ -708,14 +708,14 @@ class Generador:
         self.el(r, "ReferencedFromUserCode", "false")
         self.el(r, "Location", "FILE_SYSTEM")
 
-    def boton(self, container, name, x, y, width, label, action):
+    def boton(self, container, name, x, y, width, label, action, fill="2563EB"):
         b = self.el(container, "Control", attrs={"Type": "Button"})
         self.el(b, "EmbeddedIcon", "false")
         self.comunes(b, name, x, y)
         self.el(b, "DrawMode", "SHAPE_DRAW_2D")
         basic = self.el(b, "BasicProperties", attrs={"Width": width, "Height": 30})
         self.el(basic, "EmbeddedIcon", "false")
-        self.el(basic, "FillColor", self.color("2563EB"))
+        self.el(basic, "FillColor", self.color(fill))
         self.el(basic, "TextColor", -1)
         self.el(basic, "Enabled", "true")
         self.el(basic, "ActionCode", action, cdata=True)
@@ -1017,7 +1017,7 @@ def arnes(destino):
     # Expresiones de la presentación
     m += "  void presentacion() {\n    Object o;\n"
     for e in ["textoReloj()", "textoEscenario()", "textoOF()", "textoPersonal()", "textoColas()", "textoCalidad()",
-              "textoCostos()", "textoHistorial()", "nombreLinea(0)", "lineasArmado + lineasCF > 0",
+              "textoCostos()", "textoAusencias()", "textoHistorial()", "nombreLinea(0)", "lineasArmado + lineasCF > 0",
               "colorPuesto(0)", "pX[0] - mesaOffset - 7", "pY[0] - 18", "pX[0] - mesaOffset + 3", "nPuestos > 0", "etiquetaPuesto(0)",
               '"en uso " + rackMateriales.busy() + "/" + rackMateriales.size()', '"Rack espera calidad: " + rackCalidad.size()',
               "inspector.busy() > 0 ? new Color(13, 148, 136) : new Color(153, 246, 228)", '"Stock: " + sumar(enStock)']:
@@ -1028,7 +1028,7 @@ def arnes(destino):
             m += f"    o = {expresion};\n"
         for ds, _, _ in opciones.get("series", []):
             m += f"    o = {ds};\n"
-    m += "    vistaGraficos.navigateTo();\n    vistaPlanta.navigateTo();\n"
+    m += "".join(f"    {n}.navigateTo();\n" for n in G.VISTAS)
     m += "    traceln(resumenTexto());\n  }\n}\n"
     (pkg / "Main.java").write_text(m, encoding="utf-8")
     # Experimentos de réplicas: data sets, código antes/después y texto de resumen

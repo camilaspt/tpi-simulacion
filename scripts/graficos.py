@@ -4,11 +4,54 @@ Lo usan editar_alp.py (para armar los elementos en el .alp a partir de las plant
 agregadas en AnyLogic) y desarrollar_modelo.py (para compilar las expresiones en el arnés).
 """
 
-# Pestañas (View Areas de Main): nombre -> (x, y, ancho, alto, título)
+# Pestañas (View Areas de Main), en el orden de la barra de navegación:
+# nombre -> (x, y, ancho, alto, título)
 VISTAS = {
-    "vistaPlanta": (0, 0, 1640, 900, "Planta"),
+    "vistaPlanta": (0, 0, 1640, 900, "Simulación"),
+    "vistaVariables": (0, -2000, 1640, 900, "Variables"),
     "vistaGraficos": (0, -1000, 1640, 900, "Gráficos"),
 }
+ALTO_NAVBAR = 56
+ANCHO_BOTON_PESTANA = 140
+
+# Pestaña Variables: el tablero de indicadores en tarjetas.
+# (sufijo, título, función del texto, columna, líneas, tamaño de letra); el título y el panel
+# ya existen en el modelo (tituloX / panelX), salvo Ausencias, que se crea.
+VAR_Y0 = -2000
+VAR_COLUMNAS = {0: (30, 800), 1: (850, 760), 2: (30, 1580)}  # x, ancho (2 = ancho completo)
+VAR_ARRIBA = VAR_Y0 + ALTO_NAVBAR + 50  # debajo de la línea del escenario
+VAR_TARJETAS = [
+    ("OF", "Orden de fabricación del día", "textoOF", 0, 7, 12),
+    ("Personal", "Personal, asistencia y coberturas", "textoPersonal", 0, 4, 11),
+    ("Calidad", "Control de calidad por muestreo y tiempos por modelo", "textoCalidad", 0, 5, 11),
+    ("Costos", "Cumplimiento de la OF y costos", "textoCostos", 1, 4, 11),
+    ("Ausencias", "Efecto de las ausencias (faltante medio por jornada, mismo día de la semana)",
+     "textoAusencias", 1, 7, 11),
+    ("Colas", "Colas y avance", "textoColas", 1, 2, 11),
+    ("Historial", "Historial de jornadas", "textoHistorial", 2, 10, 10),
+]
+
+
+def alto_linea(tamano):
+    return 16 if tamano <= 10 else 19
+
+
+def layout_variables():
+    """Posición de cada tarjeta: sufijo -> (x, y, ancho, alto). Columnas apiladas; la de ancho completo debajo."""
+    pos, y_col = {}, {0: VAR_ARRIBA, 1: VAR_ARRIBA}
+    for sufijo, _, _, col, lineas, tam in VAR_TARJETAS:
+        x, ancho = VAR_COLUMNAS[col]
+        alto = 36 + lineas * alto_linea(tam) + 8
+        if col == 2:
+            y = max(y_col.values())
+        else:
+            y = y_col[col]
+        pos[sufijo] = (x, y, ancho, alto)
+        if col == 2:
+            y_col = {0: y + alto + 10, 1: y + alto + 10}
+        else:
+            y_col[col] = y + alto + 10
+    return pos
 
 # Colores (los mismos de la planta: cajas por modelo y bordes por especialidad)
 COLORES_MODELO = ["2563EB", "EA580C", "16A34A", "9333EA", "DC2626"]

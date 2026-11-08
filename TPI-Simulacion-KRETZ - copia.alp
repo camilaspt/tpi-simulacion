@@ -3658,7 +3658,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 				</Variables>
 				<Connectors>
 					<Connector>
-						<Id>1796000000991</Id>
+						<Id>1796000000984</Id>
 						<Name><![CDATA[conector0]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3701,7 +3701,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000992</Id>
+						<Id>1796000000985</Id>
 						<Name><![CDATA[conector1]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3744,7 +3744,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000993</Id>
+						<Id>1796000000986</Id>
 						<Name><![CDATA[conector2]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3787,7 +3787,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000994</Id>
+						<Id>1796000000987</Id>
 						<Name><![CDATA[conector3]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3830,7 +3830,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000995</Id>
+						<Id>1796000000988</Id>
 						<Name><![CDATA[conector4]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3873,7 +3873,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000996</Id>
+						<Id>1796000000989</Id>
 						<Name><![CDATA[conector5]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3916,7 +3916,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000997</Id>
+						<Id>1796000000990</Id>
 						<Name><![CDATA[conector6]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3959,7 +3959,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000998</Id>
+						<Id>1796000001029</Id>
 						<Name><![CDATA[conector7]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4002,7 +4002,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000999</Id>
+						<Id>1796000001030</Id>
 						<Name><![CDATA[conector8]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4045,7 +4045,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001000</Id>
+						<Id>1796000001031</Id>
 						<Name><![CDATA[conector9]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4088,7 +4088,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001001</Id>
+						<Id>1796000001032</Id>
 						<Name><![CDATA[conector10]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4131,7 +4131,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001002</Id>
+						<Id>1796000001033</Id>
 						<Name><![CDATA[conector11]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4174,7 +4174,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001003</Id>
+						<Id>1796000001034</Id>
 						<Name><![CDATA[conector12]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4217,7 +4217,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001004</Id>
+						<Id>1796000001035</Id>
 						<Name><![CDATA[conector13]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4260,7 +4260,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001005</Id>
+						<Id>1796000001036</Id>
 						<Name><![CDATA[conector14]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4303,7 +4303,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001006</Id>
+						<Id>1796000001037</Id>
 						<Name><![CDATA[conector15]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4346,7 +4346,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001007</Id>
+						<Id>1796000001038</Id>
 						<Name><![CDATA[conector16]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4389,7 +4389,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001008</Id>
+						<Id>1796000001039</Id>
 						<Name><![CDATA[conector17]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4432,7 +4432,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001009</Id>
+						<Id>1796000001040</Id>
 						<Name><![CDATA[conector18]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4475,7 +4475,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001010</Id>
+						<Id>1796000001041</Id>
 						<Name><![CDATA[conector19]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4518,7 +4518,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001011</Id>
+						<Id>1796000001042</Id>
 						<Name><![CDATA[conector20]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4561,7 +4561,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001012</Id>
+						<Id>1796000001043</Id>
 						<Name><![CDATA[conector21]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4604,7 +4604,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001013</Id>
+						<Id>1796000001044</Id>
 						<Name><![CDATA[conector22]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4647,7 +4647,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001014</Id>
+						<Id>1796000001045</Id>
 						<Name><![CDATA[conector23]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4690,7 +4690,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001015</Id>
+						<Id>1796000001046</Id>
 						<Name><![CDATA[conector24]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4733,7 +4733,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001016</Id>
+						<Id>1796000001047</Id>
 						<Name><![CDATA[conector25]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4776,7 +4776,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001017</Id>
+						<Id>1796000001048</Id>
 						<Name><![CDATA[conector26]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4819,7 +4819,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001018</Id>
+						<Id>1796000001049</Id>
 						<Name><![CDATA[conector27]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4862,7 +4862,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001019</Id>
+						<Id>1796000001050</Id>
 						<Name><![CDATA[conector28]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4905,7 +4905,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001020</Id>
+						<Id>1796000001051</Id>
 						<Name><![CDATA[conector29]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4948,7 +4948,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001021</Id>
+						<Id>1796000001052</Id>
 						<Name><![CDATA[conector30]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4991,7 +4991,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001022</Id>
+						<Id>1796000001053</Id>
 						<Name><![CDATA[conector31]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5034,7 +5034,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001023</Id>
+						<Id>1796000001054</Id>
 						<Name><![CDATA[conector32]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5077,7 +5077,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001024</Id>
+						<Id>1796000001055</Id>
 						<Name><![CDATA[conector33]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5120,7 +5120,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001025</Id>
+						<Id>1796000001056</Id>
 						<Name><![CDATA[conector34]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5163,7 +5163,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001026</Id>
+						<Id>1796000001057</Id>
 						<Name><![CDATA[conector35]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5206,7 +5206,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001027</Id>
+						<Id>1796000001058</Id>
 						<Name><![CDATA[conector36]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5249,7 +5249,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001028</Id>
+						<Id>1796000001059</Id>
 						<Name><![CDATA[conector37]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5292,7 +5292,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001064</Id>
+						<Id>1796000001060</Id>
 						<Name><![CDATA[conector38]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5335,7 +5335,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001065</Id>
+						<Id>1796000001061</Id>
 						<Name><![CDATA[conector39]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5378,7 +5378,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001066</Id>
+						<Id>1796000001062</Id>
 						<Name><![CDATA[conector40]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5421,7 +5421,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001067</Id>
+						<Id>1796000001063</Id>
 						<Name><![CDATA[conector41]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5464,7 +5464,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001068</Id>
+						<Id>1796000001071</Id>
 						<Name><![CDATA[conector42]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5507,7 +5507,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001069</Id>
+						<Id>1796000001072</Id>
 						<Name><![CDATA[conector43]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5550,7 +5550,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001070</Id>
+						<Id>1796000001073</Id>
 						<Name><![CDATA[conector44]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5593,7 +5593,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001101</Id>
+						<Id>1796000001074</Id>
 						<Name><![CDATA[conector45]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5636,7 +5636,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001104</Id>
+						<Id>1796000001075</Id>
 						<Name><![CDATA[conector46]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5679,7 +5679,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001105</Id>
+						<Id>1796000001076</Id>
 						<Name><![CDATA[conector47]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5722,7 +5722,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001109</Id>
+						<Id>1796000001077</Id>
 						<Name><![CDATA[conector48]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5765,7 +5765,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001114</Id>
+						<Id>1796000001078</Id>
 						<Name><![CDATA[conector49]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -8725,7 +8725,7 @@ return s.toString();]]></Body>
 				</Functions>
 				<AnalysisData>
 					<DataSet>
-						<Id>1796000001115</Id>
+						<Id>1796000001079</Id>
 						<Name><![CDATA[dsOFJornada]]></Name>
 						<X>1820</X>
 						<Y>-1000</Y>
@@ -8738,7 +8738,7 @@ return s.toString();]]></Body>
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001116</Id>
+							<Id>1796000001080</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -8754,7 +8754,7 @@ return s.toString();]]></Body>
 						<SamplesToKeep>200</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001117</Id>
+						<Id>1796000001081</Id>
 						<Name><![CDATA[dsATiempoJornada]]></Name>
 						<X>1820</X>
 						<Y>-975</Y>
@@ -8767,7 +8767,7 @@ return s.toString();]]></Body>
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001118</Id>
+							<Id>1796000001082</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -8783,7 +8783,7 @@ return s.toString();]]></Body>
 						<SamplesToKeep>200</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001120</Id>
+						<Id>1796000001083</Id>
 						<Name><![CDATA[dsHorasExtraSemana]]></Name>
 						<X>1820</X>
 						<Y>-950</Y>
@@ -8796,7 +8796,7 @@ return s.toString();]]></Body>
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001127</Id>
+							<Id>1796000001084</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -8812,7 +8812,7 @@ return s.toString();]]></Body>
 						<SamplesToKeep>60</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001131</Id>
+						<Id>1796000001085</Id>
 						<Name><![CDATA[dsRackMateriales]]></Name>
 						<X>1820</X>
 						<Y>-925</Y>
@@ -8825,7 +8825,7 @@ return s.toString();]]></Body>
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001132</Id>
+							<Id>1796000001086</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -8841,7 +8841,7 @@ return s.toString();]]></Body>
 						<SamplesToKeep>3000</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001137</Id>
+						<Id>1796000001087</Id>
 						<Name><![CDATA[dsRackCalidad]]></Name>
 						<X>1820</X>
 						<Y>-900</Y>
@@ -8854,7 +8854,7 @@ return s.toString();]]></Body>
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001140</Id>
+							<Id>1796000001088</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -8870,7 +8870,7 @@ return s.toString();]]></Body>
 						<SamplesToKeep>3000</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001141</Id>
+						<Id>1796000001089</Id>
 						<Name><![CDATA[dsRackStock]]></Name>
 						<X>1820</X>
 						<Y>-875</Y>
@@ -8883,7 +8883,7 @@ return s.toString();]]></Body>
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001142</Id>
+							<Id>1796000001090</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -8960,7 +8960,7 @@ return s.toString();]]></Body>
 								<Value Class="EntityCodeValue">
 									<IsAgentEntity>true</IsAgentEntity>
 									<EntityEmbeddedObject>
-										<Id>1796000000805</Id>
+										<Id>1796000000807</Id>
 										<ActiveObjectClass>
 											<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 											<ClassName><![CDATA[Balanza]]></ClassName>
@@ -8994,7 +8994,7 @@ return s.toString();]]></Body>
 										</LocationNameCode>
 										<InitializationType>LOAD_FROM_DATABASE</InitializationType>
 										<InitializationDatabaseTableQuery>
-											<Id>1796000000806</Id>
+											<Id>1796000000808</Id>
 											<TableReference/>
 										</InitializationDatabaseTableQuery>
 										<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
@@ -10235,7 +10235,7 @@ agent.paso++;]]></Code>
 								<Value Class="EntityCodeValue">
 									<IsAgentEntity>true</IsAgentEntity>
 									<EntityEmbeddedObject>
-										<Id>1796000000975</Id>
+										<Id>1796000000977</Id>
 										<ActiveObjectClass>
 											<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 											<ClassName><![CDATA[Operario]]></ClassName>
@@ -10269,7 +10269,7 @@ agent.paso++;]]></Code>
 										</LocationNameCode>
 										<InitializationType>LOAD_FROM_DATABASE</InitializationType>
 										<InitializationDatabaseTableQuery>
-											<Id>1796000000976</Id>
+											<Id>1796000000978</Id>
 											<TableReference/>
 										</InitializationDatabaseTableQuery>
 										<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
@@ -11413,7 +11413,7 @@ llegarAlRack(agent, pieStockX, pieStockY);]]></Code>
 								<Value Class="EntityCodeValue">
 									<IsAgentEntity>true</IsAgentEntity>
 									<EntityEmbeddedObject>
-										<Id>1796000000955</Id>
+										<Id>1796000000957</Id>
 										<ActiveObjectClass>
 											<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 											<ClassName><![CDATA[CamionRetiro]]></ClassName>
@@ -11443,7 +11443,7 @@ llegarAlRack(agent, pieStockX, pieStockY);]]></Code>
 										</LocationNameCode>
 										<InitializationType>LOAD_FROM_DATABASE</InitializationType>
 										<InitializationDatabaseTableQuery>
-											<Id>1796000000956</Id>
+											<Id>1796000000958</Id>
 											<TableReference/>
 										</InitializationDatabaseTableQuery>
 										<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
@@ -11763,7 +11763,7 @@ llegarAlRack(agent, pieStockX, pieStockY);]]></Code>
 								<Value Class="EntityCodeValue">
 									<IsAgentEntity>true</IsAgentEntity>
 									<EntityEmbeddedObject>
-										<Id>1796000000971</Id>
+										<Id>1796000000969</Id>
 										<ActiveObjectClass>
 											<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 											<ClassName><![CDATA[Operario]]></ClassName>
@@ -11797,7 +11797,7 @@ llegarAlRack(agent, pieStockX, pieStockY);]]></Code>
 										</LocationNameCode>
 										<InitializationType>LOAD_FROM_DATABASE</InitializationType>
 										<InitializationDatabaseTableQuery>
-											<Id>1796000000972</Id>
+											<Id>1796000000970</Id>
 											<TableReference/>
 										</InitializationDatabaseTableQuery>
 										<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
@@ -12812,440 +12812,6 @@ llegarAlRack(agent, pieStockX, pieStockY);]]></Code>
 								<Height>26</Height>
 								<Rotation>0.0</Rotation>
 							</RectangleNode>
-							<Rectangle>
-								<Id>1796000000334</Id>
-								<Name><![CDATA[fondoTablero]]></Name>
-								<X>15</X>
-								<Y>15</Y>
-								<Label>
-									<X>10</X>
-									<Y>0</Y>
-								</Label>
-								<PublicFlag>true</PublicFlag>
-								<PresentationFlag>true</PresentationFlag>
-								<ShowLabel>false</ShowLabel>
-								<DrawMode>SHAPE_DRAW_2D</DrawMode>
-								<EmbeddedIcon>false</EmbeddedIcon>
-								<Z>0</Z>
-								<ZHeight>0</ZHeight>
-								<LineWidth>1</LineWidth>
-								<LineColor>-3418655</LineColor>
-								<LineMaterial>null</LineMaterial>
-								<LineStyle>SOLID</LineStyle>
-								<Width>905</Width>
-								<Height>860</Height>
-								<Rotation>0.0</Rotation>
-								<FillColor>-460036</FillColor>
-								<FillMaterial>null</FillMaterial>
-							</Rectangle>
-							<Text>
-								<Id>1796000000335</Id>
-								<Name><![CDATA[tituloTablero]]></Name>
-								<X>35</X>
-								<Y>28</Y>
-								<Label>
-									<X>0</X>
-									<Y>-10</Y>
-								</Label>
-								<PublicFlag>true</PublicFlag>
-								<PresentationFlag>true</PresentationFlag>
-								<ShowLabel>false</ShowLabel>
-								<DrawMode>SHAPE_DRAW_2D</DrawMode>
-								<EmbeddedIcon>false</EmbeddedIcon>
-								<Z>0</Z>
-								<Rotation>0.0</Rotation>
-								<Color>-15788246</Color>
-								<Text><![CDATA[KRETZ | Línea de producción y depósito]]></Text>
-								<Font>
-									<Name>SansSerif</Name>
-									<Size>22</Size>
-									<Style>1</Style>
-								</Font>
-								<Alignment>LEFT</Alignment>
-							</Text>
-							<Control Type="Button">
-								<EmbeddedIcon>false</EmbeddedIcon>
-								<Id>1796000000336</Id>
-								<Name><![CDATA[botonResumen]]></Name>
-								<X>735</X>
-								<Y>26</Y>
-								<Label>
-									<X>10</X>
-									<Y>0</Y>
-								</Label>
-								<PublicFlag>true</PublicFlag>
-								<PresentationFlag>true</PresentationFlag>
-								<ShowLabel>false</ShowLabel>
-								<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-								<BasicProperties Width="165" Height="30">
-									<EmbeddedIcon>false</EmbeddedIcon>
-									<TextColor>-1</TextColor>
-									<Enabled>true</Enabled>
-									<ActionCode><![CDATA[traceln(resumenTexto());]]></ActionCode>
-								</BasicProperties>
-								<ExtendedProperties>
-									<Font Name="SansSerif" Size="13" Style="0"/>
-									<LabelText><![CDATA[Resumen en consola]]></LabelText>
-								</ExtendedProperties>
-							</Control>
-							<Text>
-								<Id>1796000000337</Id>
-								<Name><![CDATA[reloj]]></Name>
-								<X>35</X>
-								<Y>64</Y>
-								<Label>
-									<X>0</X>
-									<Y>-10</Y>
-								</Label>
-								<PublicFlag>true</PublicFlag>
-								<PresentationFlag>true</PresentationFlag>
-								<ShowLabel>false</ShowLabel>
-								<DrawMode>SHAPE_DRAW_2D</DrawMode>
-								<EmbeddedIcon>false</EmbeddedIcon>
-								<Z>0</Z>
-								<Rotation>0.0</Rotation>
-								<Color>-14856488</Color>
-								<Text><![CDATA[Preparando la primera jornada...]]></Text>
-								<TextCode><![CDATA[textoReloj()]]></TextCode>
-								<Font>
-									<Name>SansSerif</Name>
-									<Size>13</Size>
-									<Style>1</Style>
-								</Font>
-								<Alignment>LEFT</Alignment>
-							</Text>
-							<Text>
-								<Id>1796000000338</Id>
-								<Name><![CDATA[escenario]]></Name>
-								<X>35</X>
-								<Y>86</Y>
-								<Label>
-									<X>0</X>
-									<Y>-10</Y>
-								</Label>
-								<PublicFlag>true</PublicFlag>
-								<PresentationFlag>true</PresentationFlag>
-								<ShowLabel>false</ShowLabel>
-								<DrawMode>SHAPE_DRAW_2D</DrawMode>
-								<EmbeddedIcon>false</EmbeddedIcon>
-								<Z>0</Z>
-								<Rotation>0.0</Rotation>
-								<Color>-12102295</Color>
-								<Text><![CDATA[Escenario]]></Text>
-								<TextCode><![CDATA[textoEscenario()]]></TextCode>
-								<Font>
-									<Name>SansSerif</Name>
-									<Size>11</Size>
-									<Style>0</Style>
-								</Font>
-								<Alignment>LEFT</Alignment>
-							</Text>
-							<Text>
-								<Id>1796000000339</Id>
-								<Name><![CDATA[tituloOF]]></Name>
-								<X>35</X>
-								<Y>112</Y>
-								<Label>
-									<X>0</X>
-									<Y>-10</Y>
-								</Label>
-								<PublicFlag>true</PublicFlag>
-								<PresentationFlag>true</PresentationFlag>
-								<ShowLabel>false</ShowLabel>
-								<DrawMode>SHAPE_DRAW_2D</DrawMode>
-								<EmbeddedIcon>false</EmbeddedIcon>
-								<Z>0</Z>
-								<Rotation>0.0</Rotation>
-								<Color>-15788246</Color>
-								<Text><![CDATA[Orden de fabricación del día]]></Text>
-								<Font>
-									<Name>SansSerif</Name>
-									<Size>14</Size>
-									<Style>1</Style>
-								</Font>
-								<Alignment>LEFT</Alignment>
-							</Text>
-							<Text>
-								<Id>1796000000340</Id>
-								<Name><![CDATA[panelOF]]></Name>
-								<X>35</X>
-								<Y>136</Y>
-								<Label>
-									<X>0</X>
-									<Y>-10</Y>
-								</Label>
-								<PublicFlag>true</PublicFlag>
-								<PresentationFlag>true</PresentationFlag>
-								<ShowLabel>false</ShowLabel>
-								<DrawMode>SHAPE_DRAW_2D</DrawMode>
-								<EmbeddedIcon>false</EmbeddedIcon>
-								<Z>0</Z>
-								<Rotation>0.0</Rotation>
-								<Color>-14800581</Color>
-								<Text><![CDATA[-]]></Text>
-								<TextCode><![CDATA[textoOF()]]></TextCode>
-								<Font>
-									<Name>Monospaced</Name>
-									<Size>12</Size>
-									<Style>0</Style>
-								</Font>
-								<Alignment>LEFT</Alignment>
-							</Text>
-							<Text>
-								<Id>1796000000341</Id>
-								<Name><![CDATA[tituloPersonal]]></Name>
-								<X>35</X>
-								<Y>262</Y>
-								<Label>
-									<X>0</X>
-									<Y>-10</Y>
-								</Label>
-								<PublicFlag>true</PublicFlag>
-								<PresentationFlag>true</PresentationFlag>
-								<ShowLabel>false</ShowLabel>
-								<DrawMode>SHAPE_DRAW_2D</DrawMode>
-								<EmbeddedIcon>false</EmbeddedIcon>
-								<Z>0</Z>
-								<Rotation>0.0</Rotation>
-								<Color>-15788246</Color>
-								<Text><![CDATA[Personal, asistencia y coberturas]]></Text>
-								<Font>
-									<Name>SansSerif</Name>
-									<Size>14</Size>
-									<Style>1</Style>
-								</Font>
-								<Alignment>LEFT</Alignment>
-							</Text>
-							<Text>
-								<Id>1796000000342</Id>
-								<Name><![CDATA[panelPersonal]]></Name>
-								<X>35</X>
-								<Y>286</Y>
-								<Label>
-									<X>0</X>
-									<Y>-10</Y>
-								</Label>
-								<PublicFlag>true</PublicFlag>
-								<PresentationFlag>true</PresentationFlag>
-								<ShowLabel>false</ShowLabel>
-								<DrawMode>SHAPE_DRAW_2D</DrawMode>
-								<EmbeddedIcon>false</EmbeddedIcon>
-								<Z>0</Z>
-								<Rotation>0.0</Rotation>
-								<Color>-14800581</Color>
-								<Text><![CDATA[-]]></Text>
-								<TextCode><![CDATA[textoPersonal()]]></TextCode>
-								<Font>
-									<Name>Monospaced</Name>
-									<Size>11</Size>
-									<Style>0</Style>
-								</Font>
-								<Alignment>LEFT</Alignment>
-							</Text>
-							<Text>
-								<Id>1796000000343</Id>
-								<Name><![CDATA[tituloColas]]></Name>
-								<X>35</X>
-								<Y>362</Y>
-								<Label>
-									<X>0</X>
-									<Y>-10</Y>
-								</Label>
-								<PublicFlag>true</PublicFlag>
-								<PresentationFlag>true</PresentationFlag>
-								<ShowLabel>false</ShowLabel>
-								<DrawMode>SHAPE_DRAW_2D</DrawMode>
-								<EmbeddedIcon>false</EmbeddedIcon>
-								<Z>0</Z>
-								<Rotation>0.0</Rotation>
-								<Color>-15788246</Color>
-								<Text><![CDATA[Colas y avance]]></Text>
-								<Font>
-									<Name>SansSerif</Name>
-									<Size>14</Size>
-									<Style>1</Style>
-								</Font>
-								<Alignment>LEFT</Alignment>
-							</Text>
-							<Text>
-								<Id>1796000000344</Id>
-								<Name><![CDATA[panelColas]]></Name>
-								<X>35</X>
-								<Y>386</Y>
-								<Label>
-									<X>0</X>
-									<Y>-10</Y>
-								</Label>
-								<PublicFlag>true</PublicFlag>
-								<PresentationFlag>true</PresentationFlag>
-								<ShowLabel>false</ShowLabel>
-								<DrawMode>SHAPE_DRAW_2D</DrawMode>
-								<EmbeddedIcon>false</EmbeddedIcon>
-								<Z>0</Z>
-								<Rotation>0.0</Rotation>
-								<Color>-14800581</Color>
-								<Text><![CDATA[-]]></Text>
-								<TextCode><![CDATA[textoColas()]]></TextCode>
-								<Font>
-									<Name>Monospaced</Name>
-									<Size>11</Size>
-									<Style>0</Style>
-								</Font>
-								<Alignment>LEFT</Alignment>
-							</Text>
-							<Text>
-								<Id>1796000000345</Id>
-								<Name><![CDATA[tituloCalidad]]></Name>
-								<X>35</X>
-								<Y>428</Y>
-								<Label>
-									<X>0</X>
-									<Y>-10</Y>
-								</Label>
-								<PublicFlag>true</PublicFlag>
-								<PresentationFlag>true</PresentationFlag>
-								<ShowLabel>false</ShowLabel>
-								<DrawMode>SHAPE_DRAW_2D</DrawMode>
-								<EmbeddedIcon>false</EmbeddedIcon>
-								<Z>0</Z>
-								<Rotation>0.0</Rotation>
-								<Color>-15788246</Color>
-								<Text><![CDATA[Control de calidad por muestreo y tiempos por modelo]]></Text>
-								<Font>
-									<Name>SansSerif</Name>
-									<Size>14</Size>
-									<Style>1</Style>
-								</Font>
-								<Alignment>LEFT</Alignment>
-							</Text>
-							<Text>
-								<Id>1796000000346</Id>
-								<Name><![CDATA[panelCalidad]]></Name>
-								<X>35</X>
-								<Y>452</Y>
-								<Label>
-									<X>0</X>
-									<Y>-10</Y>
-								</Label>
-								<PublicFlag>true</PublicFlag>
-								<PresentationFlag>true</PresentationFlag>
-								<ShowLabel>false</ShowLabel>
-								<DrawMode>SHAPE_DRAW_2D</DrawMode>
-								<EmbeddedIcon>false</EmbeddedIcon>
-								<Z>0</Z>
-								<Rotation>0.0</Rotation>
-								<Color>-14800581</Color>
-								<Text><![CDATA[-]]></Text>
-								<TextCode><![CDATA[textoCalidad()]]></TextCode>
-								<Font>
-									<Name>Monospaced</Name>
-									<Size>11</Size>
-									<Style>0</Style>
-								</Font>
-								<Alignment>LEFT</Alignment>
-							</Text>
-							<Text>
-								<Id>1796000000347</Id>
-								<Name><![CDATA[tituloCostos]]></Name>
-								<X>35</X>
-								<Y>548</Y>
-								<Label>
-									<X>0</X>
-									<Y>-10</Y>
-								</Label>
-								<PublicFlag>true</PublicFlag>
-								<PresentationFlag>true</PresentationFlag>
-								<ShowLabel>false</ShowLabel>
-								<DrawMode>SHAPE_DRAW_2D</DrawMode>
-								<EmbeddedIcon>false</EmbeddedIcon>
-								<Z>0</Z>
-								<Rotation>0.0</Rotation>
-								<Color>-15788246</Color>
-								<Text><![CDATA[Cumplimiento de la OF y costos]]></Text>
-								<Font>
-									<Name>SansSerif</Name>
-									<Size>14</Size>
-									<Style>1</Style>
-								</Font>
-								<Alignment>LEFT</Alignment>
-							</Text>
-							<Text>
-								<Id>1796000000348</Id>
-								<Name><![CDATA[panelCostos]]></Name>
-								<X>35</X>
-								<Y>572</Y>
-								<Label>
-									<X>0</X>
-									<Y>-10</Y>
-								</Label>
-								<PublicFlag>true</PublicFlag>
-								<PresentationFlag>true</PresentationFlag>
-								<ShowLabel>false</ShowLabel>
-								<DrawMode>SHAPE_DRAW_2D</DrawMode>
-								<EmbeddedIcon>false</EmbeddedIcon>
-								<Z>0</Z>
-								<Rotation>0.0</Rotation>
-								<Color>-14800581</Color>
-								<Text><![CDATA[-]]></Text>
-								<TextCode><![CDATA[textoCostos()]]></TextCode>
-								<Font>
-									<Name>Monospaced</Name>
-									<Size>11</Size>
-									<Style>0</Style>
-								</Font>
-								<Alignment>LEFT</Alignment>
-							</Text>
-							<Text>
-								<Id>1796000000349</Id>
-								<Name><![CDATA[tituloHistorial]]></Name>
-								<X>35</X>
-								<Y>652</Y>
-								<Label>
-									<X>0</X>
-									<Y>-10</Y>
-								</Label>
-								<PublicFlag>true</PublicFlag>
-								<PresentationFlag>true</PresentationFlag>
-								<ShowLabel>false</ShowLabel>
-								<DrawMode>SHAPE_DRAW_2D</DrawMode>
-								<EmbeddedIcon>false</EmbeddedIcon>
-								<Z>0</Z>
-								<Rotation>0.0</Rotation>
-								<Color>-15788246</Color>
-								<Text><![CDATA[Historial de jornadas]]></Text>
-								<Font>
-									<Name>SansSerif</Name>
-									<Size>14</Size>
-									<Style>1</Style>
-								</Font>
-								<Alignment>LEFT</Alignment>
-							</Text>
-							<Text>
-								<Id>1796000000350</Id>
-								<Name><![CDATA[panelHistorial]]></Name>
-								<X>35</X>
-								<Y>676</Y>
-								<Label>
-									<X>0</X>
-									<Y>-10</Y>
-								</Label>
-								<PublicFlag>true</PublicFlag>
-								<PresentationFlag>true</PresentationFlag>
-								<ShowLabel>false</ShowLabel>
-								<DrawMode>SHAPE_DRAW_2D</DrawMode>
-								<EmbeddedIcon>false</EmbeddedIcon>
-								<Z>0</Z>
-								<Rotation>0.0</Rotation>
-								<Color>-14800581</Color>
-								<Text><![CDATA[-]]></Text>
-								<TextCode><![CDATA[textoHistorial()]]></TextCode>
-								<Font>
-									<Name>Monospaced</Name>
-									<Size>10</Size>
-									<Style>0</Style>
-								</Font>
-								<Alignment>LEFT</Alignment>
-							</Text>
 							<Text>
 								<Id>1796000000351</Id>
 								<Name><![CDATA[rotuloProduccion]]></Name>
@@ -17779,34 +17345,8 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<SimplifiedAnimation>true</SimplifiedAnimation>
 								<ServiceType>EXTERNAL</ServiceType>
 							</RackStorage>
-							<Control Type="Button">
-								<EmbeddedIcon>false</EmbeddedIcon>
-								<Id>1796000001147</Id>
-								<Name><![CDATA[botonVerGraficos]]></Name>
-								<X>1400</X>
-								<Y>40</Y>
-								<Label>
-									<X>10</X>
-									<Y>0</Y>
-								</Label>
-								<PublicFlag>true</PublicFlag>
-								<PresentationFlag>true</PresentationFlag>
-								<ShowLabel>false</ShowLabel>
-								<DrawMode>SHAPE_DRAW_2D</DrawMode>
-								<BasicProperties Width="210" Height="30">
-									<EmbeddedIcon>false</EmbeddedIcon>
-									<FillColor>-14326805</FillColor>
-									<TextColor>-1</TextColor>
-									<Enabled>true</Enabled>
-									<ActionCode><![CDATA[vistaGraficos.navigateTo();]]></ActionCode>
-								</BasicProperties>
-								<ExtendedProperties>
-									<Font Name="SansSerif" Size="13" Style="0"/>
-									<LabelText><![CDATA[Ver gráficos  ▸]]></LabelText>
-								</ExtendedProperties>
-							</Control>
 							<Rectangle>
-								<Id>1796000001155</Id>
+								<Id>1796000001094</Id>
 								<Name><![CDATA[fondoGraficos]]></Name>
 								<X>0</X>
 								<Y>-1000</Y>
@@ -17831,85 +17371,8 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<FillColor>-920071</FillColor>
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
-							<Text>
-								<Id>1796000001156</Id>
-								<Name><![CDATA[encabezadoGraficos]]></Name>
-								<X>30</X>
-								<Y>-978</Y>
-								<Label>
-									<X>0</X>
-									<Y>-10</Y>
-								</Label>
-								<PublicFlag>true</PublicFlag>
-								<PresentationFlag>true</PresentationFlag>
-								<ShowLabel>false</ShowLabel>
-								<DrawMode>SHAPE_DRAW_2D</DrawMode>
-								<EmbeddedIcon>false</EmbeddedIcon>
-								<Z>0</Z>
-								<Rotation>0.0</Rotation>
-								<Color>-15788246</Color>
-								<Text><![CDATA[KRETZ | Gráficos de la simulación]]></Text>
-								<Font>
-									<Name>SansSerif</Name>
-									<Size>22</Size>
-									<Style>1</Style>
-								</Font>
-								<Alignment>LEFT</Alignment>
-							</Text>
-							<Text>
-								<Id>1796000001157</Id>
-								<Name><![CDATA[relojGraficos]]></Name>
-								<X>30</X>
-								<Y>-942</Y>
-								<Label>
-									<X>0</X>
-									<Y>-10</Y>
-								</Label>
-								<PublicFlag>true</PublicFlag>
-								<PresentationFlag>true</PresentationFlag>
-								<ShowLabel>false</ShowLabel>
-								<DrawMode>SHAPE_DRAW_2D</DrawMode>
-								<EmbeddedIcon>false</EmbeddedIcon>
-								<Z>0</Z>
-								<Rotation>0.0</Rotation>
-								<Color>-14856488</Color>
-								<Text><![CDATA[Preparando la primera jornada...]]></Text>
-								<TextCode><![CDATA[textoReloj()]]></TextCode>
-								<Font>
-									<Name>SansSerif</Name>
-									<Size>13</Size>
-									<Style>1</Style>
-								</Font>
-								<Alignment>LEFT</Alignment>
-							</Text>
-							<Control Type="Button">
-								<EmbeddedIcon>false</EmbeddedIcon>
-								<Id>1796000001158</Id>
-								<Name><![CDATA[botonVerPlanta]]></Name>
-								<X>1400</X>
-								<Y>-978</Y>
-								<Label>
-									<X>10</X>
-									<Y>0</Y>
-								</Label>
-								<PublicFlag>true</PublicFlag>
-								<PresentationFlag>true</PresentationFlag>
-								<ShowLabel>false</ShowLabel>
-								<DrawMode>SHAPE_DRAW_2D</DrawMode>
-								<BasicProperties Width="210" Height="30">
-									<EmbeddedIcon>false</EmbeddedIcon>
-									<FillColor>-14326805</FillColor>
-									<TextColor>-1</TextColor>
-									<Enabled>true</Enabled>
-									<ActionCode><![CDATA[vistaPlanta.navigateTo();]]></ActionCode>
-								</BasicProperties>
-								<ExtendedProperties>
-									<Font Name="SansSerif" Size="13" Style="0"/>
-									<LabelText><![CDATA[◂  Volver a la planta]]></LabelText>
-								</ExtendedProperties>
-							</Control>
 							<Rectangle>
-								<Id>1796000001159</Id>
+								<Id>1796000001095</Id>
 								<Name><![CDATA[tarjetaCumplimiento]]></Name>
 								<X>30</X>
 								<Y>-900</Y>
@@ -17935,7 +17398,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000001165</Id>
+								<Id>1796000001096</Id>
 								<Name><![CDATA[tituloGraficoCumplimiento]]></Name>
 								<X>48</X>
 								<Y>-888</Y>
@@ -17960,7 +17423,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000001170</Id>
+								<Id>1796000001097</Id>
 								<Name><![CDATA[subtituloGraficoCumplimiento]]></Name>
 								<X>48</X>
 								<Y>-866</Y>
@@ -17985,7 +17448,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Plot>
-								<Id>1796000001171</Id>
+								<Id>1796000001098</Id>
 								<Name><![CDATA[graficoCumplimiento]]></Name>
 								<X>35</X>
 								<Y>-848</Y>
@@ -17999,7 +17462,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<DrawMode>SHAPE_DRAW_2D</DrawMode>
 								<AutoUpdate>false</AutoUpdate>
 								<RecurrenceProperties>
-									<Id>1796000001172</Id>
+									<Id>1796000001099</Id>
 									<OccurrenceAtTime>true</OccurrenceAtTime>
 									<OccurrenceDate>1794211200000</OccurrenceDate>
 									<OccurrenceTime Class="CodeUnitValue">
@@ -18043,7 +17506,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Interpolation>LINEAR</Interpolation>
 								<DatasetExpression>
 									<Title><![CDATA[OF pedida]]></Title>
-									<Id>1796000001193</Id>
+									<Id>1796000001103</Id>
 									<Expression><![CDATA[dsOFJornada]]></Expression>
 									<Color>-7035976</Color>
 									<Expression2><![CDATA[0]]></Expression2>
@@ -18054,7 +17517,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								</DatasetExpression>
 								<DatasetExpression>
 									<Title><![CDATA[Producido a tiempo]]></Title>
-									<Id>1796000001194</Id>
+									<Id>1796000001106</Id>
 									<Expression><![CDATA[dsATiempoJornada]]></Expression>
 									<Color>-14326805</Color>
 									<Expression2><![CDATA[0]]></Expression2>
@@ -18069,7 +17532,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<HorScaleType>AUTO</HorScaleType>
 							</Plot>
 							<Rectangle>
-								<Id>1796000001195</Id>
+								<Id>1796000001107</Id>
 								<Name><![CDATA[tarjetaFaltante]]></Name>
 								<X>560</X>
 								<Y>-900</Y>
@@ -18095,7 +17558,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000001200</Id>
+								<Id>1796000001108</Id>
 								<Name><![CDATA[tituloGraficoFaltante]]></Name>
 								<X>578</X>
 								<Y>-888</Y>
@@ -18120,7 +17583,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000001202</Id>
+								<Id>1796000001110</Id>
 								<Name><![CDATA[subtituloGraficoFaltante]]></Name>
 								<X>578</X>
 								<Y>-866</Y>
@@ -18145,7 +17608,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<BarChart>
-								<Id>1796000001203</Id>
+								<Id>1796000001111</Id>
 								<Name><![CDATA[graficoFaltante]]></Name>
 								<X>565</X>
 								<Y>-848</Y>
@@ -18159,7 +17622,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<DrawMode>SHAPE_DRAW_2D</DrawMode>
 								<AutoUpdate>true</AutoUpdate>
 								<RecurrenceProperties>
-									<Id>1796000001206</Id>
+									<Id>1796000001112</Id>
 									<OccurrenceAtTime>true</OccurrenceAtTime>
 									<OccurrenceDate>1794211200000</OccurrenceDate>
 									<OccurrenceTime Class="CodeUnitValue">
@@ -18197,31 +17660,31 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								</Labels>
 								<ShowLegend>true</ShowLegend>
 								<DataItem>
-									<Id>1796000001231</Id>
+									<Id>1796000001124</Id>
 									<Expression><![CDATA[faltanteModelo[0]]]></Expression>
 									<Color>-14326805</Color>
 									<Title><![CDATA[AILA 30KG]]></Title>
 								</DataItem>
 								<DataItem>
-									<Id>1796000001235</Id>
+									<Id>1796000001125</Id>
 									<Expression><![CDATA[faltanteModelo[1]]]></Expression>
 									<Color>-1419252</Color>
 									<Title><![CDATA[REPORT LT]]></Title>
 								</DataItem>
 								<DataItem>
-									<Id>1796000001239</Id>
+									<Id>1796000001126</Id>
 									<Expression><![CDATA[faltanteModelo[2]]]></Expression>
 									<Color>-15293622</Color>
 									<Title><![CDATA[NOVEL ECO]]></Title>
 								</DataItem>
 								<DataItem>
-									<Id>1796000001240</Id>
+									<Id>1796000001128</Id>
 									<Expression><![CDATA[faltanteModelo[3]]]></Expression>
 									<Color>-7130134</Color>
 									<Title><![CDATA[LURA]]></Title>
 								</DataItem>
 								<DataItem>
-									<Id>1796000001246</Id>
+									<Id>1796000001129</Id>
 									<Expression><![CDATA[faltanteModelo[4]]]></Expression>
 									<Color>-2349530</Color>
 									<Title><![CDATA[AURA]]></Title>
@@ -18235,7 +17698,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								</Bars>
 							</BarChart>
 							<Rectangle>
-								<Id>1796000001247</Id>
+								<Id>1796000001130</Id>
 								<Name><![CDATA[tarjetaHorasExtra]]></Name>
 								<X>1090</X>
 								<Y>-900</Y>
@@ -18261,7 +17724,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000001252</Id>
+								<Id>1796000001133</Id>
 								<Name><![CDATA[tituloGraficoHorasExtra]]></Name>
 								<X>1108</X>
 								<Y>-888</Y>
@@ -18286,7 +17749,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000001258</Id>
+								<Id>1796000001134</Id>
 								<Name><![CDATA[subtituloGraficoHorasExtra]]></Name>
 								<X>1108</X>
 								<Y>-866</Y>
@@ -18311,7 +17774,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Plot>
-								<Id>1796000001264</Id>
+								<Id>1796000001135</Id>
 								<Name><![CDATA[graficoHorasExtra]]></Name>
 								<X>1095</X>
 								<Y>-848</Y>
@@ -18325,7 +17788,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<DrawMode>SHAPE_DRAW_2D</DrawMode>
 								<AutoUpdate>false</AutoUpdate>
 								<RecurrenceProperties>
-									<Id>1796000001267</Id>
+									<Id>1796000001136</Id>
 									<OccurrenceAtTime>true</OccurrenceAtTime>
 									<OccurrenceDate>1794211200000</OccurrenceDate>
 									<OccurrenceTime Class="CodeUnitValue">
@@ -18369,7 +17832,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Interpolation>LINEAR</Interpolation>
 								<DatasetExpression>
 									<Title><![CDATA[Horas-hombre]]></Title>
-									<Id>1796000001275</Id>
+									<Id>1796000001145</Id>
 									<Expression><![CDATA[dsHorasExtraSemana]]></Expression>
 									<Color>-2525434</Color>
 									<Expression2><![CDATA[0]]></Expression2>
@@ -18384,7 +17847,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<HorScaleType>AUTO</HorScaleType>
 							</Plot>
 							<Rectangle>
-								<Id>1796000001281</Id>
+								<Id>1796000001146</Id>
 								<Name><![CDATA[tarjetaUtilizacion]]></Name>
 								<X>30</X>
 								<Y>-470</Y>
@@ -18410,7 +17873,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000001282</Id>
+								<Id>1796000001148</Id>
 								<Name><![CDATA[tituloGraficoUtilizacion]]></Name>
 								<X>48</X>
 								<Y>-458</Y>
@@ -18435,7 +17898,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000001283</Id>
+								<Id>1796000001149</Id>
 								<Name><![CDATA[subtituloGraficoUtilizacion]]></Name>
 								<X>48</X>
 								<Y>-436</Y>
@@ -18460,7 +17923,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<BarChart>
-								<Id>1796000001287</Id>
+								<Id>1796000001150</Id>
 								<Name><![CDATA[graficoUtilizacion]]></Name>
 								<X>35</X>
 								<Y>-418</Y>
@@ -18474,7 +17937,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<DrawMode>SHAPE_DRAW_2D</DrawMode>
 								<AutoUpdate>true</AutoUpdate>
 								<RecurrenceProperties>
-									<Id>1796000001293</Id>
+									<Id>1796000001151</Id>
 									<OccurrenceAtTime>true</OccurrenceAtTime>
 									<OccurrenceDate>1794211200000</OccurrenceDate>
 									<OccurrenceTime Class="CodeUnitValue">
@@ -18512,25 +17975,25 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								</Labels>
 								<ShowLegend>true</ShowLegend>
 								<DataItem>
-									<Id>1796000001316</Id>
+									<Id>1796000001162</Id>
 									<Expression><![CDATA[100 * utilizacion(Especialidad.Armador)]]></Expression>
 									<Color>-14326805</Color>
 									<Title><![CDATA[Armador]]></Title>
 								</DataItem>
 								<DataItem>
-									<Id>1796000001318</Id>
+									<Id>1796000001163</Id>
 									<Expression><![CDATA[100 * utilizacion(Especialidad.Ajustador)]]></Expression>
 									<Color>-7130134</Color>
 									<Title><![CDATA[Ajustador]]></Title>
 								</DataItem>
 								<DataItem>
-									<Id>1796000001319</Id>
+									<Id>1796000001164</Id>
 									<Expression><![CDATA[100 * utilizacion(Especialidad.Controlador)]]></Expression>
 									<Color>-15887224</Color>
 									<Title><![CDATA[Controlador]]></Title>
 								</DataItem>
 								<DataItem>
-									<Id>1796000001322</Id>
+									<Id>1796000001166</Id>
 									<Expression><![CDATA[100 * utilizacion(Especialidad.Embalador)]]></Expression>
 									<Color>-4959479</Color>
 									<Title><![CDATA[Embalador]]></Title>
@@ -18544,7 +18007,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								</Bars>
 							</BarChart>
 							<Rectangle>
-								<Id>1796000001337</Id>
+								<Id>1796000001167</Id>
 								<Name><![CDATA[tarjetaEspera]]></Name>
 								<X>560</X>
 								<Y>-470</Y>
@@ -18570,7 +18033,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000001338</Id>
+								<Id>1796000001168</Id>
 								<Name><![CDATA[tituloGraficoEspera]]></Name>
 								<X>578</X>
 								<Y>-458</Y>
@@ -18595,7 +18058,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000001339</Id>
+								<Id>1796000001169</Id>
 								<Name><![CDATA[subtituloGraficoEspera]]></Name>
 								<X>578</X>
 								<Y>-436</Y>
@@ -18620,7 +18083,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<BarChart>
-								<Id>1796000001345</Id>
+								<Id>1796000001173</Id>
 								<Name><![CDATA[graficoEspera]]></Name>
 								<X>565</X>
 								<Y>-418</Y>
@@ -18634,7 +18097,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<DrawMode>SHAPE_DRAW_2D</DrawMode>
 								<AutoUpdate>true</AutoUpdate>
 								<RecurrenceProperties>
-									<Id>1796000001346</Id>
+									<Id>1796000001174</Id>
 									<OccurrenceAtTime>true</OccurrenceAtTime>
 									<OccurrenceDate>1794211200000</OccurrenceDate>
 									<OccurrenceTime Class="CodeUnitValue">
@@ -18672,25 +18135,25 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								</Labels>
 								<ShowLegend>true</ShowLegend>
 								<DataItem>
-									<Id>1796000001373</Id>
+									<Id>1796000001181</Id>
 									<Expression><![CDATA[esperaMedia(0)]]></Expression>
 									<Color>-14326805</Color>
 									<Title><![CDATA[Armado]]></Title>
 								</DataItem>
 								<DataItem>
-									<Id>1796000001374</Id>
+									<Id>1796000001182</Id>
 									<Expression><![CDATA[esperaMedia(1)]]></Expression>
 									<Color>-7130134</Color>
 									<Title><![CDATA[Ajuste]]></Title>
 								</DataItem>
 								<DataItem>
-									<Id>1796000001375</Id>
+									<Id>1796000001183</Id>
 									<Expression><![CDATA[esperaMedia(2)]]></Expression>
 									<Color>-15887224</Color>
 									<Title><![CDATA[Control final]]></Title>
 								</DataItem>
 								<DataItem>
-									<Id>1796000001381</Id>
+									<Id>1796000001184</Id>
 									<Expression><![CDATA[esperaMedia(3)]]></Expression>
 									<Color>-4959479</Color>
 									<Title><![CDATA[Embalaje]]></Title>
@@ -18704,7 +18167,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								</Bars>
 							</BarChart>
 							<Rectangle>
-								<Id>1796000001382</Id>
+								<Id>1796000001185</Id>
 								<Name><![CDATA[tarjetaRacks]]></Name>
 								<X>1090</X>
 								<Y>-470</Y>
@@ -18730,7 +18193,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000001383</Id>
+								<Id>1796000001186</Id>
 								<Name><![CDATA[tituloGraficoRacks]]></Name>
 								<X>1108</X>
 								<Y>-458</Y>
@@ -18755,7 +18218,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000001384</Id>
+								<Id>1796000001187</Id>
 								<Name><![CDATA[subtituloGraficoRacks]]></Name>
 								<X>1108</X>
 								<Y>-436</Y>
@@ -18780,7 +18243,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<TimePlot>
-								<Id>1796000001385</Id>
+								<Id>1796000001188</Id>
 								<Name><![CDATA[graficoRacks]]></Name>
 								<X>1095</X>
 								<Y>-418</Y>
@@ -18794,7 +18257,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<DrawMode>SHAPE_DRAW_2D</DrawMode>
 								<AutoUpdate>false</AutoUpdate>
 								<RecurrenceProperties>
-									<Id>1796000001386</Id>
+									<Id>1796000001189</Id>
 									<OccurrenceAtTime>true</OccurrenceAtTime>
 									<OccurrenceDate>1794211200000</OccurrenceDate>
 									<OccurrenceTime Class="CodeUnitValue">
@@ -18840,7 +18303,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Interpolation>LINEAR</Interpolation>
 								<DatasetExpression>
 									<Title><![CDATA[Materiales]]></Title>
-									<Id>1796000001395</Id>
+									<Id>1796000001196</Id>
 									<Expression><![CDATA[dsRackMateriales]]></Expression>
 									<Color>-4959479</Color>
 									<Expression2><![CDATA[0]]></Expression2>
@@ -18850,7 +18313,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								</DatasetExpression>
 								<DatasetExpression>
 									<Title><![CDATA[Espera de calidad]]></Title>
-									<Id>1796000001396</Id>
+									<Id>1796000001197</Id>
 									<Expression><![CDATA[dsRackCalidad]]></Expression>
 									<Color>-14856488</Color>
 									<Expression2><![CDATA[0]]></Expression2>
@@ -18860,7 +18323,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								</DatasetExpression>
 								<DatasetExpression>
 									<Title><![CDATA[Stock]]></Title>
-									<Id>1796000001397</Id>
+									<Id>1796000001198</Id>
 									<Expression><![CDATA[dsRackStock]]></Expression>
 									<Color>-10193781</Color>
 									<Expression2><![CDATA[0]]></Expression2>
@@ -18873,12 +18336,1171 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<FillAreaUnderLine>false</FillAreaUnderLine>
 								<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
 							</TimePlot>
+							<Rectangle>
+								<Id>1796000001199</Id>
+								<Name><![CDATA[fondoVariables]]></Name>
+								<X>0</X>
+								<Y>-2000</Y>
+								<Label>
+									<X>10</X>
+									<Y>0</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<ZHeight>0</ZHeight>
+								<LineWidth>1</LineWidth>
+								<LineColor>-3418655</LineColor>
+								<LineMaterial>null</LineMaterial>
+								<LineStyle>SOLID</LineStyle>
+								<Width>1640</Width>
+								<Height>900</Height>
+								<Rotation>0.0</Rotation>
+								<FillColor>-920071</FillColor>
+								<FillMaterial>null</FillMaterial>
+							</Rectangle>
+							<Rectangle>
+								<Id>1796000001201</Id>
+								<Name><![CDATA[tarjetaVarOF]]></Name>
+								<X>30</X>
+								<Y>-1894</Y>
+								<Label>
+									<X>10</X>
+									<Y>0</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<ZHeight>0</ZHeight>
+								<LineWidth>1</LineWidth>
+								<LineColor>-3418655</LineColor>
+								<LineMaterial>null</LineMaterial>
+								<LineStyle>SOLID</LineStyle>
+								<Width>800</Width>
+								<Height>177</Height>
+								<Rotation>0.0</Rotation>
+								<FillColor>-1</FillColor>
+								<FillMaterial>null</FillMaterial>
+							</Rectangle>
+							<Rectangle>
+								<Id>1796000001204</Id>
+								<Name><![CDATA[tarjetaVarPersonal]]></Name>
+								<X>30</X>
+								<Y>-1707</Y>
+								<Label>
+									<X>10</X>
+									<Y>0</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<ZHeight>0</ZHeight>
+								<LineWidth>1</LineWidth>
+								<LineColor>-3418655</LineColor>
+								<LineMaterial>null</LineMaterial>
+								<LineStyle>SOLID</LineStyle>
+								<Width>800</Width>
+								<Height>120</Height>
+								<Rotation>0.0</Rotation>
+								<FillColor>-1</FillColor>
+								<FillMaterial>null</FillMaterial>
+							</Rectangle>
+							<Rectangle>
+								<Id>1796000001205</Id>
+								<Name><![CDATA[tarjetaVarCalidad]]></Name>
+								<X>30</X>
+								<Y>-1577</Y>
+								<Label>
+									<X>10</X>
+									<Y>0</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<ZHeight>0</ZHeight>
+								<LineWidth>1</LineWidth>
+								<LineColor>-3418655</LineColor>
+								<LineMaterial>null</LineMaterial>
+								<LineStyle>SOLID</LineStyle>
+								<Width>800</Width>
+								<Height>139</Height>
+								<Rotation>0.0</Rotation>
+								<FillColor>-1</FillColor>
+								<FillMaterial>null</FillMaterial>
+							</Rectangle>
+							<Rectangle>
+								<Id>1796000001207</Id>
+								<Name><![CDATA[tarjetaVarCostos]]></Name>
+								<X>850</X>
+								<Y>-1894</Y>
+								<Label>
+									<X>10</X>
+									<Y>0</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<ZHeight>0</ZHeight>
+								<LineWidth>1</LineWidth>
+								<LineColor>-3418655</LineColor>
+								<LineMaterial>null</LineMaterial>
+								<LineStyle>SOLID</LineStyle>
+								<Width>760</Width>
+								<Height>120</Height>
+								<Rotation>0.0</Rotation>
+								<FillColor>-1</FillColor>
+								<FillMaterial>null</FillMaterial>
+							</Rectangle>
+							<Rectangle>
+								<Id>1796000001209</Id>
+								<Name><![CDATA[tarjetaVarAusencias]]></Name>
+								<X>850</X>
+								<Y>-1764</Y>
+								<Label>
+									<X>10</X>
+									<Y>0</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<ZHeight>0</ZHeight>
+								<LineWidth>1</LineWidth>
+								<LineColor>-3418655</LineColor>
+								<LineMaterial>null</LineMaterial>
+								<LineStyle>SOLID</LineStyle>
+								<Width>760</Width>
+								<Height>177</Height>
+								<Rotation>0.0</Rotation>
+								<FillColor>-1</FillColor>
+								<FillMaterial>null</FillMaterial>
+							</Rectangle>
+							<Rectangle>
+								<Id>1796000001210</Id>
+								<Name><![CDATA[tarjetaVarColas]]></Name>
+								<X>850</X>
+								<Y>-1577</Y>
+								<Label>
+									<X>10</X>
+									<Y>0</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<ZHeight>0</ZHeight>
+								<LineWidth>1</LineWidth>
+								<LineColor>-3418655</LineColor>
+								<LineMaterial>null</LineMaterial>
+								<LineStyle>SOLID</LineStyle>
+								<Width>760</Width>
+								<Height>82</Height>
+								<Rotation>0.0</Rotation>
+								<FillColor>-1</FillColor>
+								<FillMaterial>null</FillMaterial>
+							</Rectangle>
+							<Rectangle>
+								<Id>1796000001211</Id>
+								<Name><![CDATA[tarjetaVarHistorial]]></Name>
+								<X>30</X>
+								<Y>-1428</Y>
+								<Label>
+									<X>10</X>
+									<Y>0</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<ZHeight>0</ZHeight>
+								<LineWidth>1</LineWidth>
+								<LineColor>-3418655</LineColor>
+								<LineMaterial>null</LineMaterial>
+								<LineStyle>SOLID</LineStyle>
+								<Width>1580</Width>
+								<Height>204</Height>
+								<Rotation>0.0</Rotation>
+								<FillColor>-1</FillColor>
+								<FillMaterial>null</FillMaterial>
+							</Rectangle>
+							<Text>
+								<Id>1796000000339</Id>
+								<Name><![CDATA[tituloOF]]></Name>
+								<X>48</X>
+								<Y>-1882</Y>
+								<Label>
+									<X>0</X>
+									<Y>-10</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<Rotation>0.0</Rotation>
+								<Color>-15788246</Color>
+								<Text><![CDATA[Orden de fabricación del día]]></Text>
+								<Font>
+									<Name>SansSerif</Name>
+									<Size>14</Size>
+									<Style>1</Style>
+								</Font>
+								<Alignment>LEFT</Alignment>
+							</Text>
+							<Text>
+								<Id>1796000000340</Id>
+								<Name><![CDATA[panelOF]]></Name>
+								<X>48</X>
+								<Y>-1858</Y>
+								<Label>
+									<X>0</X>
+									<Y>-10</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<Rotation>0.0</Rotation>
+								<Color>-14800581</Color>
+								<Text><![CDATA[-]]></Text>
+								<TextCode><![CDATA[textoOF()]]></TextCode>
+								<Font>
+									<Name>Monospaced</Name>
+									<Size>12</Size>
+									<Style>0</Style>
+								</Font>
+								<Alignment>LEFT</Alignment>
+							</Text>
+							<Text>
+								<Id>1796000000341</Id>
+								<Name><![CDATA[tituloPersonal]]></Name>
+								<X>48</X>
+								<Y>-1695</Y>
+								<Label>
+									<X>0</X>
+									<Y>-10</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<Rotation>0.0</Rotation>
+								<Color>-15788246</Color>
+								<Text><![CDATA[Personal, asistencia y coberturas]]></Text>
+								<Font>
+									<Name>SansSerif</Name>
+									<Size>14</Size>
+									<Style>1</Style>
+								</Font>
+								<Alignment>LEFT</Alignment>
+							</Text>
+							<Text>
+								<Id>1796000000342</Id>
+								<Name><![CDATA[panelPersonal]]></Name>
+								<X>48</X>
+								<Y>-1671</Y>
+								<Label>
+									<X>0</X>
+									<Y>-10</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<Rotation>0.0</Rotation>
+								<Color>-14800581</Color>
+								<Text><![CDATA[-]]></Text>
+								<TextCode><![CDATA[textoPersonal()]]></TextCode>
+								<Font>
+									<Name>Monospaced</Name>
+									<Size>11</Size>
+									<Style>0</Style>
+								</Font>
+								<Alignment>LEFT</Alignment>
+							</Text>
+							<Text>
+								<Id>1796000000345</Id>
+								<Name><![CDATA[tituloCalidad]]></Name>
+								<X>48</X>
+								<Y>-1565</Y>
+								<Label>
+									<X>0</X>
+									<Y>-10</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<Rotation>0.0</Rotation>
+								<Color>-15788246</Color>
+								<Text><![CDATA[Control de calidad por muestreo y tiempos por modelo]]></Text>
+								<Font>
+									<Name>SansSerif</Name>
+									<Size>14</Size>
+									<Style>1</Style>
+								</Font>
+								<Alignment>LEFT</Alignment>
+							</Text>
+							<Text>
+								<Id>1796000000346</Id>
+								<Name><![CDATA[panelCalidad]]></Name>
+								<X>48</X>
+								<Y>-1541</Y>
+								<Label>
+									<X>0</X>
+									<Y>-10</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<Rotation>0.0</Rotation>
+								<Color>-14800581</Color>
+								<Text><![CDATA[-]]></Text>
+								<TextCode><![CDATA[textoCalidad()]]></TextCode>
+								<Font>
+									<Name>Monospaced</Name>
+									<Size>11</Size>
+									<Style>0</Style>
+								</Font>
+								<Alignment>LEFT</Alignment>
+							</Text>
+							<Text>
+								<Id>1796000000347</Id>
+								<Name><![CDATA[tituloCostos]]></Name>
+								<X>868</X>
+								<Y>-1882</Y>
+								<Label>
+									<X>0</X>
+									<Y>-10</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<Rotation>0.0</Rotation>
+								<Color>-15788246</Color>
+								<Text><![CDATA[Cumplimiento de la OF y costos]]></Text>
+								<Font>
+									<Name>SansSerif</Name>
+									<Size>14</Size>
+									<Style>1</Style>
+								</Font>
+								<Alignment>LEFT</Alignment>
+							</Text>
+							<Text>
+								<Id>1796000000348</Id>
+								<Name><![CDATA[panelCostos]]></Name>
+								<X>868</X>
+								<Y>-1858</Y>
+								<Label>
+									<X>0</X>
+									<Y>-10</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<Rotation>0.0</Rotation>
+								<Color>-14800581</Color>
+								<Text><![CDATA[-]]></Text>
+								<TextCode><![CDATA[textoCostos()]]></TextCode>
+								<Font>
+									<Name>Monospaced</Name>
+									<Size>11</Size>
+									<Style>0</Style>
+								</Font>
+								<Alignment>LEFT</Alignment>
+							</Text>
+							<Text>
+								<Id>1796000001212</Id>
+								<Name><![CDATA[tituloAusencias]]></Name>
+								<X>868</X>
+								<Y>-1752</Y>
+								<Label>
+									<X>0</X>
+									<Y>-10</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<Rotation>0.0</Rotation>
+								<Color>-15788246</Color>
+								<Text><![CDATA[Efecto de las ausencias (faltante medio por jornada, mismo día de la semana)]]></Text>
+								<Font>
+									<Name>SansSerif</Name>
+									<Size>14</Size>
+									<Style>1</Style>
+								</Font>
+								<Alignment>LEFT</Alignment>
+							</Text>
+							<Text>
+								<Id>1796000001213</Id>
+								<Name><![CDATA[panelAusencias]]></Name>
+								<X>868</X>
+								<Y>-1728</Y>
+								<Label>
+									<X>0</X>
+									<Y>-10</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<Rotation>0.0</Rotation>
+								<Color>-14800581</Color>
+								<Text><![CDATA[-]]></Text>
+								<TextCode><![CDATA[textoAusencias()]]></TextCode>
+								<Font>
+									<Name>Monospaced</Name>
+									<Size>11</Size>
+									<Style>0</Style>
+								</Font>
+								<Alignment>LEFT</Alignment>
+							</Text>
+							<Text>
+								<Id>1796000000343</Id>
+								<Name><![CDATA[tituloColas]]></Name>
+								<X>868</X>
+								<Y>-1565</Y>
+								<Label>
+									<X>0</X>
+									<Y>-10</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<Rotation>0.0</Rotation>
+								<Color>-15788246</Color>
+								<Text><![CDATA[Colas y avance]]></Text>
+								<Font>
+									<Name>SansSerif</Name>
+									<Size>14</Size>
+									<Style>1</Style>
+								</Font>
+								<Alignment>LEFT</Alignment>
+							</Text>
+							<Text>
+								<Id>1796000000344</Id>
+								<Name><![CDATA[panelColas]]></Name>
+								<X>868</X>
+								<Y>-1541</Y>
+								<Label>
+									<X>0</X>
+									<Y>-10</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<Rotation>0.0</Rotation>
+								<Color>-14800581</Color>
+								<Text><![CDATA[-]]></Text>
+								<TextCode><![CDATA[textoColas()]]></TextCode>
+								<Font>
+									<Name>Monospaced</Name>
+									<Size>11</Size>
+									<Style>0</Style>
+								</Font>
+								<Alignment>LEFT</Alignment>
+							</Text>
+							<Text>
+								<Id>1796000000349</Id>
+								<Name><![CDATA[tituloHistorial]]></Name>
+								<X>48</X>
+								<Y>-1416</Y>
+								<Label>
+									<X>0</X>
+									<Y>-10</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<Rotation>0.0</Rotation>
+								<Color>-15788246</Color>
+								<Text><![CDATA[Historial de jornadas]]></Text>
+								<Font>
+									<Name>SansSerif</Name>
+									<Size>14</Size>
+									<Style>1</Style>
+								</Font>
+								<Alignment>LEFT</Alignment>
+							</Text>
+							<Text>
+								<Id>1796000000350</Id>
+								<Name><![CDATA[panelHistorial]]></Name>
+								<X>48</X>
+								<Y>-1392</Y>
+								<Label>
+									<X>0</X>
+									<Y>-10</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<Rotation>0.0</Rotation>
+								<Color>-14800581</Color>
+								<Text><![CDATA[-]]></Text>
+								<TextCode><![CDATA[textoHistorial()]]></TextCode>
+								<Font>
+									<Name>Monospaced</Name>
+									<Size>10</Size>
+									<Style>0</Style>
+								</Font>
+								<Alignment>LEFT</Alignment>
+							</Text>
+							<Text>
+								<Id>1796000000338</Id>
+								<Name><![CDATA[escenario]]></Name>
+								<X>30</X>
+								<Y>-1928</Y>
+								<Label>
+									<X>0</X>
+									<Y>-10</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<Rotation>0.0</Rotation>
+								<Color>-12102295</Color>
+								<Text><![CDATA[Escenario]]></Text>
+								<TextCode><![CDATA[textoEscenario()]]></TextCode>
+								<Font>
+									<Name>SansSerif</Name>
+									<Size>11</Size>
+									<Style>0</Style>
+								</Font>
+								<Alignment>LEFT</Alignment>
+							</Text>
+							<Control Type="Button">
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Id>1796000000336</Id>
+								<Name><![CDATA[botonResumen]]></Name>
+								<X>1445</X>
+								<Y>-1934</Y>
+								<Label>
+									<X>10</X>
+									<Y>0</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+								<BasicProperties Width="165" Height="30">
+									<EmbeddedIcon>false</EmbeddedIcon>
+									<TextColor>-1</TextColor>
+									<Enabled>true</Enabled>
+									<ActionCode><![CDATA[traceln(resumenTexto());]]></ActionCode>
+								</BasicProperties>
+								<ExtendedProperties>
+									<Font Name="SansSerif" Size="13" Style="0"/>
+									<LabelText><![CDATA[Resumen en consola]]></LabelText>
+								</ExtendedProperties>
+							</Control>
+							<Rectangle>
+								<Id>1796000001214</Id>
+								<Name><![CDATA[navbar0Fondo]]></Name>
+								<X>0</X>
+								<Y>0</Y>
+								<Label>
+									<X>10</X>
+									<Y>0</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<ZHeight>0</ZHeight>
+								<LineWidth>1</LineWidth>
+								<LineColor>-15788246</LineColor>
+								<LineMaterial>null</LineMaterial>
+								<LineStyle>SOLID</LineStyle>
+								<Width>1640</Width>
+								<Height>56</Height>
+								<Rotation>0.0</Rotation>
+								<FillColor>-15788246</FillColor>
+								<FillMaterial>null</FillMaterial>
+							</Rectangle>
+							<Text>
+								<Id>1796000001215</Id>
+								<Name><![CDATA[navbar0Titulo]]></Name>
+								<X>24</X>
+								<Y>18</Y>
+								<Label>
+									<X>0</X>
+									<Y>-10</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<Rotation>0.0</Rotation>
+								<Color>-1</Color>
+								<Text><![CDATA[KRETZ]]></Text>
+								<Font>
+									<Name>SansSerif</Name>
+									<Size>18</Size>
+									<Style>1</Style>
+								</Font>
+								<Alignment>LEFT</Alignment>
+							</Text>
+							<Control Type="Button">
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Id>1796000001216</Id>
+								<Name><![CDATA[navbar0Boton0]]></Name>
+								<X>130</X>
+								<Y>13</Y>
+								<Label>
+									<X>10</X>
+									<Y>0</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<BasicProperties Width="140" Height="30">
+									<EmbeddedIcon>false</EmbeddedIcon>
+									<FillColor>-14326805</FillColor>
+									<TextColor>-1</TextColor>
+									<Enabled>true</Enabled>
+									<ActionCode><![CDATA[vistaPlanta.navigateTo();]]></ActionCode>
+								</BasicProperties>
+								<ExtendedProperties>
+									<Font Name="SansSerif" Size="13" Style="0"/>
+									<LabelText><![CDATA[Simulación]]></LabelText>
+								</ExtendedProperties>
+							</Control>
+							<Rectangle>
+								<Id>1796000001217</Id>
+								<Name><![CDATA[navbar0Activa]]></Name>
+								<X>130</X>
+								<Y>51</Y>
+								<Label>
+									<X>10</X>
+									<Y>0</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<ZHeight>0</ZHeight>
+								<LineWidth>1</LineWidth>
+								<LineColor>-10443270</LineColor>
+								<LineMaterial>null</LineMaterial>
+								<LineStyle>SOLID</LineStyle>
+								<Width>140</Width>
+								<Height>5</Height>
+								<Rotation>0.0</Rotation>
+								<FillColor>-10443270</FillColor>
+								<FillMaterial>null</FillMaterial>
+							</Rectangle>
+							<Control Type="Button">
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Id>1796000001218</Id>
+								<Name><![CDATA[navbar0Boton1]]></Name>
+								<X>280</X>
+								<Y>13</Y>
+								<Label>
+									<X>10</X>
+									<Y>0</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<BasicProperties Width="140" Height="30">
+									<EmbeddedIcon>false</EmbeddedIcon>
+									<FillColor>-13418155</FillColor>
+									<TextColor>-1</TextColor>
+									<Enabled>true</Enabled>
+									<ActionCode><![CDATA[vistaVariables.navigateTo();]]></ActionCode>
+								</BasicProperties>
+								<ExtendedProperties>
+									<Font Name="SansSerif" Size="13" Style="0"/>
+									<LabelText><![CDATA[Variables]]></LabelText>
+								</ExtendedProperties>
+							</Control>
+							<Control Type="Button">
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Id>1796000001219</Id>
+								<Name><![CDATA[navbar0Boton2]]></Name>
+								<X>430</X>
+								<Y>13</Y>
+								<Label>
+									<X>10</X>
+									<Y>0</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<BasicProperties Width="140" Height="30">
+									<EmbeddedIcon>false</EmbeddedIcon>
+									<FillColor>-13418155</FillColor>
+									<TextColor>-1</TextColor>
+									<Enabled>true</Enabled>
+									<ActionCode><![CDATA[vistaGraficos.navigateTo();]]></ActionCode>
+								</BasicProperties>
+								<ExtendedProperties>
+									<Font Name="SansSerif" Size="13" Style="0"/>
+									<LabelText><![CDATA[Gráficos]]></LabelText>
+								</ExtendedProperties>
+							</Control>
+							<Text>
+								<Id>1796000001220</Id>
+								<Name><![CDATA[navbar0Reloj]]></Name>
+								<X>1620</X>
+								<Y>20</Y>
+								<Label>
+									<X>0</X>
+									<Y>-10</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<Rotation>0.0</Rotation>
+								<Color>-4203522</Color>
+								<Text><![CDATA[Preparando la primera jornada...]]></Text>
+								<TextCode><![CDATA[textoReloj()]]></TextCode>
+								<Font>
+									<Name>SansSerif</Name>
+									<Size>12</Size>
+									<Style>1</Style>
+								</Font>
+								<Alignment>RIGHT</Alignment>
+							</Text>
+							<Rectangle>
+								<Id>1796000001221</Id>
+								<Name><![CDATA[navbar1Fondo]]></Name>
+								<X>0</X>
+								<Y>-2000</Y>
+								<Label>
+									<X>10</X>
+									<Y>0</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<ZHeight>0</ZHeight>
+								<LineWidth>1</LineWidth>
+								<LineColor>-15788246</LineColor>
+								<LineMaterial>null</LineMaterial>
+								<LineStyle>SOLID</LineStyle>
+								<Width>1640</Width>
+								<Height>56</Height>
+								<Rotation>0.0</Rotation>
+								<FillColor>-15788246</FillColor>
+								<FillMaterial>null</FillMaterial>
+							</Rectangle>
+							<Text>
+								<Id>1796000001222</Id>
+								<Name><![CDATA[navbar1Titulo]]></Name>
+								<X>24</X>
+								<Y>-1982</Y>
+								<Label>
+									<X>0</X>
+									<Y>-10</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<Rotation>0.0</Rotation>
+								<Color>-1</Color>
+								<Text><![CDATA[KRETZ]]></Text>
+								<Font>
+									<Name>SansSerif</Name>
+									<Size>18</Size>
+									<Style>1</Style>
+								</Font>
+								<Alignment>LEFT</Alignment>
+							</Text>
+							<Control Type="Button">
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Id>1796000001223</Id>
+								<Name><![CDATA[navbar1Boton0]]></Name>
+								<X>130</X>
+								<Y>-1987</Y>
+								<Label>
+									<X>10</X>
+									<Y>0</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<BasicProperties Width="140" Height="30">
+									<EmbeddedIcon>false</EmbeddedIcon>
+									<FillColor>-13418155</FillColor>
+									<TextColor>-1</TextColor>
+									<Enabled>true</Enabled>
+									<ActionCode><![CDATA[vistaPlanta.navigateTo();]]></ActionCode>
+								</BasicProperties>
+								<ExtendedProperties>
+									<Font Name="SansSerif" Size="13" Style="0"/>
+									<LabelText><![CDATA[Simulación]]></LabelText>
+								</ExtendedProperties>
+							</Control>
+							<Control Type="Button">
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Id>1796000001224</Id>
+								<Name><![CDATA[navbar1Boton1]]></Name>
+								<X>280</X>
+								<Y>-1987</Y>
+								<Label>
+									<X>10</X>
+									<Y>0</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<BasicProperties Width="140" Height="30">
+									<EmbeddedIcon>false</EmbeddedIcon>
+									<FillColor>-14326805</FillColor>
+									<TextColor>-1</TextColor>
+									<Enabled>true</Enabled>
+									<ActionCode><![CDATA[vistaVariables.navigateTo();]]></ActionCode>
+								</BasicProperties>
+								<ExtendedProperties>
+									<Font Name="SansSerif" Size="13" Style="0"/>
+									<LabelText><![CDATA[Variables]]></LabelText>
+								</ExtendedProperties>
+							</Control>
+							<Rectangle>
+								<Id>1796000001225</Id>
+								<Name><![CDATA[navbar1Activa]]></Name>
+								<X>280</X>
+								<Y>-1949</Y>
+								<Label>
+									<X>10</X>
+									<Y>0</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<ZHeight>0</ZHeight>
+								<LineWidth>1</LineWidth>
+								<LineColor>-10443270</LineColor>
+								<LineMaterial>null</LineMaterial>
+								<LineStyle>SOLID</LineStyle>
+								<Width>140</Width>
+								<Height>5</Height>
+								<Rotation>0.0</Rotation>
+								<FillColor>-10443270</FillColor>
+								<FillMaterial>null</FillMaterial>
+							</Rectangle>
+							<Control Type="Button">
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Id>1796000001226</Id>
+								<Name><![CDATA[navbar1Boton2]]></Name>
+								<X>430</X>
+								<Y>-1987</Y>
+								<Label>
+									<X>10</X>
+									<Y>0</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<BasicProperties Width="140" Height="30">
+									<EmbeddedIcon>false</EmbeddedIcon>
+									<FillColor>-13418155</FillColor>
+									<TextColor>-1</TextColor>
+									<Enabled>true</Enabled>
+									<ActionCode><![CDATA[vistaGraficos.navigateTo();]]></ActionCode>
+								</BasicProperties>
+								<ExtendedProperties>
+									<Font Name="SansSerif" Size="13" Style="0"/>
+									<LabelText><![CDATA[Gráficos]]></LabelText>
+								</ExtendedProperties>
+							</Control>
+							<Text>
+								<Id>1796000001227</Id>
+								<Name><![CDATA[navbar1Reloj]]></Name>
+								<X>1620</X>
+								<Y>-1980</Y>
+								<Label>
+									<X>0</X>
+									<Y>-10</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<Rotation>0.0</Rotation>
+								<Color>-4203522</Color>
+								<Text><![CDATA[Preparando la primera jornada...]]></Text>
+								<TextCode><![CDATA[textoReloj()]]></TextCode>
+								<Font>
+									<Name>SansSerif</Name>
+									<Size>12</Size>
+									<Style>1</Style>
+								</Font>
+								<Alignment>RIGHT</Alignment>
+							</Text>
+							<Rectangle>
+								<Id>1796000001228</Id>
+								<Name><![CDATA[navbar2Fondo]]></Name>
+								<X>0</X>
+								<Y>-1000</Y>
+								<Label>
+									<X>10</X>
+									<Y>0</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<ZHeight>0</ZHeight>
+								<LineWidth>1</LineWidth>
+								<LineColor>-15788246</LineColor>
+								<LineMaterial>null</LineMaterial>
+								<LineStyle>SOLID</LineStyle>
+								<Width>1640</Width>
+								<Height>56</Height>
+								<Rotation>0.0</Rotation>
+								<FillColor>-15788246</FillColor>
+								<FillMaterial>null</FillMaterial>
+							</Rectangle>
+							<Text>
+								<Id>1796000001229</Id>
+								<Name><![CDATA[navbar2Titulo]]></Name>
+								<X>24</X>
+								<Y>-982</Y>
+								<Label>
+									<X>0</X>
+									<Y>-10</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<Rotation>0.0</Rotation>
+								<Color>-1</Color>
+								<Text><![CDATA[KRETZ]]></Text>
+								<Font>
+									<Name>SansSerif</Name>
+									<Size>18</Size>
+									<Style>1</Style>
+								</Font>
+								<Alignment>LEFT</Alignment>
+							</Text>
+							<Control Type="Button">
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Id>1796000001230</Id>
+								<Name><![CDATA[navbar2Boton0]]></Name>
+								<X>130</X>
+								<Y>-987</Y>
+								<Label>
+									<X>10</X>
+									<Y>0</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<BasicProperties Width="140" Height="30">
+									<EmbeddedIcon>false</EmbeddedIcon>
+									<FillColor>-13418155</FillColor>
+									<TextColor>-1</TextColor>
+									<Enabled>true</Enabled>
+									<ActionCode><![CDATA[vistaPlanta.navigateTo();]]></ActionCode>
+								</BasicProperties>
+								<ExtendedProperties>
+									<Font Name="SansSerif" Size="13" Style="0"/>
+									<LabelText><![CDATA[Simulación]]></LabelText>
+								</ExtendedProperties>
+							</Control>
+							<Control Type="Button">
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Id>1796000001232</Id>
+								<Name><![CDATA[navbar2Boton1]]></Name>
+								<X>280</X>
+								<Y>-987</Y>
+								<Label>
+									<X>10</X>
+									<Y>0</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<BasicProperties Width="140" Height="30">
+									<EmbeddedIcon>false</EmbeddedIcon>
+									<FillColor>-13418155</FillColor>
+									<TextColor>-1</TextColor>
+									<Enabled>true</Enabled>
+									<ActionCode><![CDATA[vistaVariables.navigateTo();]]></ActionCode>
+								</BasicProperties>
+								<ExtendedProperties>
+									<Font Name="SansSerif" Size="13" Style="0"/>
+									<LabelText><![CDATA[Variables]]></LabelText>
+								</ExtendedProperties>
+							</Control>
+							<Control Type="Button">
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Id>1796000001233</Id>
+								<Name><![CDATA[navbar2Boton2]]></Name>
+								<X>430</X>
+								<Y>-987</Y>
+								<Label>
+									<X>10</X>
+									<Y>0</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<BasicProperties Width="140" Height="30">
+									<EmbeddedIcon>false</EmbeddedIcon>
+									<FillColor>-14326805</FillColor>
+									<TextColor>-1</TextColor>
+									<Enabled>true</Enabled>
+									<ActionCode><![CDATA[vistaGraficos.navigateTo();]]></ActionCode>
+								</BasicProperties>
+								<ExtendedProperties>
+									<Font Name="SansSerif" Size="13" Style="0"/>
+									<LabelText><![CDATA[Gráficos]]></LabelText>
+								</ExtendedProperties>
+							</Control>
+							<Rectangle>
+								<Id>1796000001234</Id>
+								<Name><![CDATA[navbar2Activa]]></Name>
+								<X>430</X>
+								<Y>-949</Y>
+								<Label>
+									<X>10</X>
+									<Y>0</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<ZHeight>0</ZHeight>
+								<LineWidth>1</LineWidth>
+								<LineColor>-10443270</LineColor>
+								<LineMaterial>null</LineMaterial>
+								<LineStyle>SOLID</LineStyle>
+								<Width>140</Width>
+								<Height>5</Height>
+								<Rotation>0.0</Rotation>
+								<FillColor>-10443270</FillColor>
+								<FillMaterial>null</FillMaterial>
+							</Rectangle>
+							<Text>
+								<Id>1796000001236</Id>
+								<Name><![CDATA[navbar2Reloj]]></Name>
+								<X>1620</X>
+								<Y>-980</Y>
+								<Label>
+									<X>0</X>
+									<Y>-10</Y>
+								</Label>
+								<PublicFlag>true</PublicFlag>
+								<PresentationFlag>true</PresentationFlag>
+								<ShowLabel>false</ShowLabel>
+								<DrawMode>SHAPE_DRAW_2D</DrawMode>
+								<EmbeddedIcon>false</EmbeddedIcon>
+								<Z>0</Z>
+								<Rotation>0.0</Rotation>
+								<Color>-4203522</Color>
+								<Text><![CDATA[Preparando la primera jornada...]]></Text>
+								<TextCode><![CDATA[textoReloj()]]></TextCode>
+								<Font>
+									<Name>SansSerif</Name>
+									<Size>12</Size>
+									<Style>1</Style>
+								</Font>
+								<Alignment>RIGHT</Alignment>
+							</Text>
 						</Presentation>
 					</Level>
 				</Presentation>
 				<Areas>
 					<Area>
-						<Id>1796000001143</Id>
+						<Id>1796000001091</Id>
 						<Name><![CDATA[vistaPlanta]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -18889,12 +19511,28 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						<PublicFlag>false</PublicFlag>
 						<PresentationFlag>true</PresentationFlag>
 						<ShowLabel>false</ShowLabel>
-						<Title><![CDATA[Planta]]></Title>
+						<Title><![CDATA[Simulación]]></Title>
 						<Width>1640</Width>
 						<Height>900</Height>
 					</Area>
 					<Area>
-						<Id>1796000001144</Id>
+						<Id>1796000001092</Id>
+						<Name><![CDATA[vistaVariables]]></Name>
+						<X>0</X>
+						<Y>-2000</Y>
+						<Label>
+							<X>0</X>
+							<Y>-10</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>false</ShowLabel>
+						<Title><![CDATA[Variables]]></Title>
+						<Width>1640</Width>
+						<Height>900</Height>
+					</Area>
+					<Area>
+						<Id>1796000001093</Id>
 						<Name><![CDATA[vistaGraficos]]></Name>
 						<X>0</X>
 						<Y>-1000</Y>
@@ -21994,7 +22632,7 @@ return new Color(15, 23, 42);]]></Body>
 				<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
 				<AnalysisData>
 					<DataSet>
-						<Id>1796000001398</Id>
+						<Id>1796000001238</Id>
 						<Name><![CDATA[dsCostoReplica]]></Name>
 						<X>40</X>
 						<Y>660</Y>
@@ -22007,7 +22645,7 @@ return new Color(15, 23, 42);]]></Body>
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001399</Id>
+							<Id>1796000001241</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -22023,7 +22661,7 @@ return new Color(15, 23, 42);]]></Body>
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001400</Id>
+						<Id>1796000001242</Id>
 						<Name><![CDATA[dsCumplimientoReplica]]></Name>
 						<X>200</X>
 						<Y>660</Y>
@@ -22036,7 +22674,7 @@ return new Color(15, 23, 42);]]></Body>
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001401</Id>
+							<Id>1796000001243</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -22052,7 +22690,7 @@ return new Color(15, 23, 42);]]></Body>
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001402</Id>
+						<Id>1796000001244</Id>
 						<Name><![CDATA[dsHorasExtraReplica]]></Name>
 						<X>360</X>
 						<Y>660</Y>
@@ -22065,7 +22703,7 @@ return new Color(15, 23, 42);]]></Body>
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001403</Id>
+							<Id>1796000001245</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -22083,7 +22721,7 @@ return new Color(15, 23, 42);]]></Body>
 				</AnalysisData>
 				<Presentation>
 					<Rectangle>
-						<Id>1796000001404</Id>
+						<Id>1796000001248</Id>
 						<Name><![CDATA[fondoReplicas]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -22109,7 +22747,7 @@ return new Color(15, 23, 42);]]></Body>
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001405</Id>
+						<Id>1796000001249</Id>
 						<Name><![CDATA[tituloReplicas]]></Name>
 						<X>30</X>
 						<Y>22</Y>
@@ -22134,7 +22772,7 @@ return new Color(15, 23, 42);]]></Body>
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001406</Id>
+						<Id>1796000001250</Id>
 						<Name><![CDATA[resumenReplicas]]></Name>
 						<X>30</X>
 						<Y>60</Y>
@@ -22160,7 +22798,7 @@ return new Color(15, 23, 42);]]></Body>
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001407</Id>
+						<Id>1796000001251</Id>
 						<Name><![CDATA[notaReplicas]]></Name>
 						<X>30</X>
 						<Y>84</Y>
@@ -22185,7 +22823,7 @@ return new Color(15, 23, 42);]]></Body>
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Rectangle>
-						<Id>1796000001408</Id>
+						<Id>1796000001253</Id>
 						<Name><![CDATA[tarjetaReplicas0]]></Name>
 						<X>30</X>
 						<Y>120</Y>
@@ -22211,7 +22849,7 @@ return new Color(15, 23, 42);]]></Body>
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001409</Id>
+						<Id>1796000001254</Id>
 						<Name><![CDATA[tituloReplicas0]]></Name>
 						<X>48</X>
 						<Y>132</Y>
@@ -22236,7 +22874,7 @@ return new Color(15, 23, 42);]]></Body>
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001410</Id>
+						<Id>1796000001255</Id>
 						<Name><![CDATA[graficoReplicas0]]></Name>
 						<X>35</X>
 						<Y>165</Y>
@@ -22250,7 +22888,7 @@ return new Color(15, 23, 42);]]></Body>
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001411</Id>
+							<Id>1796000001256</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -22294,7 +22932,7 @@ return new Color(15, 23, 42);]]></Body>
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Costo total (millones de $)]]></Title>
-							<Id>1796000001419</Id>
+							<Id>1796000001260</Id>
 							<Expression><![CDATA[dsCostoReplica]]></Expression>
 							<Color>-14326805</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -22309,7 +22947,7 @@ return new Color(15, 23, 42);]]></Body>
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001420</Id>
+						<Id>1796000001261</Id>
 						<Name><![CDATA[tarjetaReplicas1]]></Name>
 						<X>570</X>
 						<Y>120</Y>
@@ -22335,7 +22973,7 @@ return new Color(15, 23, 42);]]></Body>
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001421</Id>
+						<Id>1796000001262</Id>
 						<Name><![CDATA[tituloReplicas1]]></Name>
 						<X>588</X>
 						<Y>132</Y>
@@ -22360,7 +22998,7 @@ return new Color(15, 23, 42);]]></Body>
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001422</Id>
+						<Id>1796000001263</Id>
 						<Name><![CDATA[graficoReplicas1]]></Name>
 						<X>575</X>
 						<Y>165</Y>
@@ -22374,7 +23012,7 @@ return new Color(15, 23, 42);]]></Body>
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001423</Id>
+							<Id>1796000001265</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -22418,7 +23056,7 @@ return new Color(15, 23, 42);]]></Body>
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Cumplimiento de la OF (%)]]></Title>
-							<Id>1796000001426</Id>
+							<Id>1796000001270</Id>
 							<Expression><![CDATA[dsCumplimientoReplica]]></Expression>
 							<Color>-15293622</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -22433,7 +23071,7 @@ return new Color(15, 23, 42);]]></Body>
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001432</Id>
+						<Id>1796000001271</Id>
 						<Name><![CDATA[tarjetaReplicas2]]></Name>
 						<X>1110</X>
 						<Y>120</Y>
@@ -22459,7 +23097,7 @@ return new Color(15, 23, 42);]]></Body>
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001433</Id>
+						<Id>1796000001272</Id>
 						<Name><![CDATA[tituloReplicas2]]></Name>
 						<X>1128</X>
 						<Y>132</Y>
@@ -22484,7 +23122,7 @@ return new Color(15, 23, 42);]]></Body>
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001434</Id>
+						<Id>1796000001273</Id>
 						<Name><![CDATA[graficoReplicas2]]></Name>
 						<X>1115</X>
 						<Y>165</Y>
@@ -22498,7 +23136,7 @@ return new Color(15, 23, 42);]]></Body>
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001435</Id>
+							<Id>1796000001274</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -22542,7 +23180,7 @@ return new Color(15, 23, 42);]]></Body>
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Horas extra (h-hombre)]]></Title>
-							<Id>1796000001438</Id>
+							<Id>1796000001278</Id>
 							<Expression><![CDATA[dsHorasExtraReplica]]></Expression>
 							<Color>-2525434</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -22917,7 +23555,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
 				<AnalysisData>
 					<DataSet>
-						<Id>1796000001439</Id>
+						<Id>1796000001279</Id>
 						<Name><![CDATA[dsCostoReplica]]></Name>
 						<X>40</X>
 						<Y>660</Y>
@@ -22930,7 +23568,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001440</Id>
+							<Id>1796000001280</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -22946,7 +23584,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001444</Id>
+						<Id>1796000001284</Id>
 						<Name><![CDATA[dsCumplimientoReplica]]></Name>
 						<X>200</X>
 						<Y>660</Y>
@@ -22959,7 +23597,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001445</Id>
+							<Id>1796000001285</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -22975,7 +23613,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001446</Id>
+						<Id>1796000001286</Id>
 						<Name><![CDATA[dsHorasExtraReplica]]></Name>
 						<X>360</X>
 						<Y>660</Y>
@@ -22988,7 +23626,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001447</Id>
+							<Id>1796000001288</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -23006,7 +23644,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				</AnalysisData>
 				<Presentation>
 					<Rectangle>
-						<Id>1796000001448</Id>
+						<Id>1796000001289</Id>
 						<Name><![CDATA[fondoReplicas]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -23032,7 +23670,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001449</Id>
+						<Id>1796000001290</Id>
 						<Name><![CDATA[tituloReplicas]]></Name>
 						<X>30</X>
 						<Y>22</Y>
@@ -23057,7 +23695,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001450</Id>
+						<Id>1796000001291</Id>
 						<Name><![CDATA[resumenReplicas]]></Name>
 						<X>30</X>
 						<Y>60</Y>
@@ -23083,7 +23721,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001451</Id>
+						<Id>1796000001292</Id>
 						<Name><![CDATA[notaReplicas]]></Name>
 						<X>30</X>
 						<Y>84</Y>
@@ -23108,7 +23746,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Rectangle>
-						<Id>1796000001452</Id>
+						<Id>1796000001294</Id>
 						<Name><![CDATA[tarjetaReplicas0]]></Name>
 						<X>30</X>
 						<Y>120</Y>
@@ -23134,7 +23772,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001453</Id>
+						<Id>1796000001296</Id>
 						<Name><![CDATA[tituloReplicas0]]></Name>
 						<X>48</X>
 						<Y>132</Y>
@@ -23159,7 +23797,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001454</Id>
+						<Id>1796000001297</Id>
 						<Name><![CDATA[graficoReplicas0]]></Name>
 						<X>35</X>
 						<Y>165</Y>
@@ -23173,7 +23811,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001455</Id>
+							<Id>1796000001298</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -23217,7 +23855,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Costo total (millones de $)]]></Title>
-							<Id>1796000001458</Id>
+							<Id>1796000001301</Id>
 							<Expression><![CDATA[dsCostoReplica]]></Expression>
 							<Color>-14326805</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -23232,7 +23870,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001459</Id>
+						<Id>1796000001302</Id>
 						<Name><![CDATA[tarjetaReplicas1]]></Name>
 						<X>570</X>
 						<Y>120</Y>
@@ -23258,7 +23896,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001460</Id>
+						<Id>1796000001303</Id>
 						<Name><![CDATA[tituloReplicas1]]></Name>
 						<X>588</X>
 						<Y>132</Y>
@@ -23283,7 +23921,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001463</Id>
+						<Id>1796000001304</Id>
 						<Name><![CDATA[graficoReplicas1]]></Name>
 						<X>575</X>
 						<Y>165</Y>
@@ -23297,7 +23935,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001464</Id>
+							<Id>1796000001305</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -23341,7 +23979,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Cumplimiento de la OF (%)]]></Title>
-							<Id>1796000001467</Id>
+							<Id>1796000001308</Id>
 							<Expression><![CDATA[dsCumplimientoReplica]]></Expression>
 							<Color>-15293622</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -23356,7 +23994,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001468</Id>
+						<Id>1796000001309</Id>
 						<Name><![CDATA[tarjetaReplicas2]]></Name>
 						<X>1110</X>
 						<Y>120</Y>
@@ -23382,7 +24020,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001469</Id>
+						<Id>1796000001310</Id>
 						<Name><![CDATA[tituloReplicas2]]></Name>
 						<X>1128</X>
 						<Y>132</Y>
@@ -23407,7 +24045,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001470</Id>
+						<Id>1796000001311</Id>
 						<Name><![CDATA[graficoReplicas2]]></Name>
 						<X>1115</X>
 						<Y>165</Y>
@@ -23421,7 +24059,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001471</Id>
+							<Id>1796000001312</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -23465,7 +24103,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Horas extra (h-hombre)]]></Title>
-							<Id>1796000001474</Id>
+							<Id>1796000001315</Id>
 							<Expression><![CDATA[dsHorasExtraReplica]]></Expression>
 							<Color>-2525434</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -23843,7 +24481,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
 				<AnalysisData>
 					<DataSet>
-						<Id>1796000001477</Id>
+						<Id>1796000001317</Id>
 						<Name><![CDATA[dsCostoReplica]]></Name>
 						<X>40</X>
 						<Y>660</Y>
@@ -23856,7 +24494,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001478</Id>
+							<Id>1796000001320</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -23872,7 +24510,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001479</Id>
+						<Id>1796000001321</Id>
 						<Name><![CDATA[dsCumplimientoReplica]]></Name>
 						<X>200</X>
 						<Y>660</Y>
@@ -23885,7 +24523,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001480</Id>
+							<Id>1796000001323</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -23901,7 +24539,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001481</Id>
+						<Id>1796000001325</Id>
 						<Name><![CDATA[dsHorasExtraReplica]]></Name>
 						<X>360</X>
 						<Y>660</Y>
@@ -23914,7 +24552,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001482</Id>
+							<Id>1796000001326</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -23932,7 +24570,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				</AnalysisData>
 				<Presentation>
 					<Rectangle>
-						<Id>1796000001483</Id>
+						<Id>1796000001327</Id>
 						<Name><![CDATA[fondoReplicas]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -23958,7 +24596,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001484</Id>
+						<Id>1796000001328</Id>
 						<Name><![CDATA[tituloReplicas]]></Name>
 						<X>30</X>
 						<Y>22</Y>
@@ -23983,7 +24621,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001485</Id>
+						<Id>1796000001329</Id>
 						<Name><![CDATA[resumenReplicas]]></Name>
 						<X>30</X>
 						<Y>60</Y>
@@ -24009,7 +24647,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001486</Id>
+						<Id>1796000001330</Id>
 						<Name><![CDATA[notaReplicas]]></Name>
 						<X>30</X>
 						<Y>84</Y>
@@ -24034,7 +24672,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Rectangle>
-						<Id>1796000001487</Id>
+						<Id>1796000001331</Id>
 						<Name><![CDATA[tarjetaReplicas0]]></Name>
 						<X>30</X>
 						<Y>120</Y>
@@ -24060,7 +24698,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001488</Id>
+						<Id>1796000001332</Id>
 						<Name><![CDATA[tituloReplicas0]]></Name>
 						<X>48</X>
 						<Y>132</Y>
@@ -24085,7 +24723,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001489</Id>
+						<Id>1796000001333</Id>
 						<Name><![CDATA[graficoReplicas0]]></Name>
 						<X>35</X>
 						<Y>165</Y>
@@ -24099,7 +24737,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001490</Id>
+							<Id>1796000001334</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -24143,7 +24781,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Costo total (millones de $)]]></Title>
-							<Id>1796000001495</Id>
+							<Id>1796000001340</Id>
 							<Expression><![CDATA[dsCostoReplica]]></Expression>
 							<Color>-14326805</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -24158,7 +24796,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001496</Id>
+						<Id>1796000001341</Id>
 						<Name><![CDATA[tarjetaReplicas1]]></Name>
 						<X>570</X>
 						<Y>120</Y>
@@ -24184,7 +24822,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001497</Id>
+						<Id>1796000001342</Id>
 						<Name><![CDATA[tituloReplicas1]]></Name>
 						<X>588</X>
 						<Y>132</Y>
@@ -24209,7 +24847,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001498</Id>
+						<Id>1796000001343</Id>
 						<Name><![CDATA[graficoReplicas1]]></Name>
 						<X>575</X>
 						<Y>165</Y>
@@ -24223,7 +24861,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001500</Id>
+							<Id>1796000001344</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -24267,7 +24905,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Cumplimiento de la OF (%)]]></Title>
-							<Id>1796000001503</Id>
+							<Id>1796000001349</Id>
 							<Expression><![CDATA[dsCumplimientoReplica]]></Expression>
 							<Color>-15293622</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -24282,7 +24920,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001504</Id>
+						<Id>1796000001350</Id>
 						<Name><![CDATA[tarjetaReplicas2]]></Name>
 						<X>1110</X>
 						<Y>120</Y>
@@ -24308,7 +24946,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001505</Id>
+						<Id>1796000001351</Id>
 						<Name><![CDATA[tituloReplicas2]]></Name>
 						<X>1128</X>
 						<Y>132</Y>
@@ -24333,7 +24971,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001506</Id>
+						<Id>1796000001352</Id>
 						<Name><![CDATA[graficoReplicas2]]></Name>
 						<X>1115</X>
 						<Y>165</Y>
@@ -24347,7 +24985,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001508</Id>
+							<Id>1796000001354</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -24391,7 +25029,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Horas extra (h-hombre)]]></Title>
-							<Id>1796000001511</Id>
+							<Id>1796000001357</Id>
 							<Expression><![CDATA[dsHorasExtraReplica]]></Expression>
 							<Color>-2525434</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -24769,7 +25407,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
 				<AnalysisData>
 					<DataSet>
-						<Id>1796000001512</Id>
+						<Id>1796000001358</Id>
 						<Name><![CDATA[dsCostoReplica]]></Name>
 						<X>40</X>
 						<Y>660</Y>
@@ -24782,7 +25420,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001513</Id>
+							<Id>1796000001359</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -24798,7 +25436,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001514</Id>
+						<Id>1796000001360</Id>
 						<Name><![CDATA[dsCumplimientoReplica]]></Name>
 						<X>200</X>
 						<Y>660</Y>
@@ -24811,7 +25449,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001515</Id>
+							<Id>1796000001361</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -24827,7 +25465,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001516</Id>
+						<Id>1796000001362</Id>
 						<Name><![CDATA[dsHorasExtraReplica]]></Name>
 						<X>360</X>
 						<Y>660</Y>
@@ -24840,7 +25478,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001517</Id>
+							<Id>1796000001363</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -24858,7 +25496,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				</AnalysisData>
 				<Presentation>
 					<Rectangle>
-						<Id>1796000001518</Id>
+						<Id>1796000001364</Id>
 						<Name><![CDATA[fondoReplicas]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -24884,7 +25522,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001519</Id>
+						<Id>1796000001365</Id>
 						<Name><![CDATA[tituloReplicas]]></Name>
 						<X>30</X>
 						<Y>22</Y>
@@ -24909,7 +25547,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001520</Id>
+						<Id>1796000001366</Id>
 						<Name><![CDATA[resumenReplicas]]></Name>
 						<X>30</X>
 						<Y>60</Y>
@@ -24935,7 +25573,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001521</Id>
+						<Id>1796000001367</Id>
 						<Name><![CDATA[notaReplicas]]></Name>
 						<X>30</X>
 						<Y>84</Y>
@@ -24960,7 +25598,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Rectangle>
-						<Id>1796000001522</Id>
+						<Id>1796000001368</Id>
 						<Name><![CDATA[tarjetaReplicas0]]></Name>
 						<X>30</X>
 						<Y>120</Y>
@@ -24986,7 +25624,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001525</Id>
+						<Id>1796000001369</Id>
 						<Name><![CDATA[tituloReplicas0]]></Name>
 						<X>48</X>
 						<Y>132</Y>
@@ -25011,7 +25649,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001526</Id>
+						<Id>1796000001370</Id>
 						<Name><![CDATA[graficoReplicas0]]></Name>
 						<X>35</X>
 						<Y>165</Y>
@@ -25025,7 +25663,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001527</Id>
+							<Id>1796000001371</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -25069,7 +25707,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Costo total (millones de $)]]></Title>
-							<Id>1796000001532</Id>
+							<Id>1796000001377</Id>
 							<Expression><![CDATA[dsCostoReplica]]></Expression>
 							<Color>-14326805</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -25084,7 +25722,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001533</Id>
+						<Id>1796000001378</Id>
 						<Name><![CDATA[tarjetaReplicas1]]></Name>
 						<X>570</X>
 						<Y>120</Y>
@@ -25110,7 +25748,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001534</Id>
+						<Id>1796000001379</Id>
 						<Name><![CDATA[tituloReplicas1]]></Name>
 						<X>588</X>
 						<Y>132</Y>
@@ -25135,7 +25773,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001535</Id>
+						<Id>1796000001380</Id>
 						<Name><![CDATA[graficoReplicas1]]></Name>
 						<X>575</X>
 						<Y>165</Y>
@@ -25149,7 +25787,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001536</Id>
+							<Id>1796000001387</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -25193,7 +25831,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Cumplimiento de la OF (%)]]></Title>
-							<Id>1796000001539</Id>
+							<Id>1796000001390</Id>
 							<Expression><![CDATA[dsCumplimientoReplica]]></Expression>
 							<Color>-15293622</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -25208,7 +25846,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001540</Id>
+						<Id>1796000001391</Id>
 						<Name><![CDATA[tarjetaReplicas2]]></Name>
 						<X>1110</X>
 						<Y>120</Y>
@@ -25234,7 +25872,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001541</Id>
+						<Id>1796000001392</Id>
 						<Name><![CDATA[tituloReplicas2]]></Name>
 						<X>1128</X>
 						<Y>132</Y>
@@ -25259,7 +25897,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001542</Id>
+						<Id>1796000001393</Id>
 						<Name><![CDATA[graficoReplicas2]]></Name>
 						<X>1115</X>
 						<Y>165</Y>
@@ -25273,7 +25911,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001543</Id>
+							<Id>1796000001394</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -25317,7 +25955,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Horas extra (h-hombre)]]></Title>
-							<Id>1796000001546</Id>
+							<Id>1796000001414</Id>
 							<Expression><![CDATA[dsHorasExtraReplica]]></Expression>
 							<Color>-2525434</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -25695,7 +26333,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
 				<AnalysisData>
 					<DataSet>
-						<Id>1796000001547</Id>
+						<Id>1796000001415</Id>
 						<Name><![CDATA[dsCostoReplica]]></Name>
 						<X>40</X>
 						<Y>660</Y>
@@ -25708,7 +26346,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001548</Id>
+							<Id>1796000001416</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -25724,7 +26362,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001549</Id>
+						<Id>1796000001417</Id>
 						<Name><![CDATA[dsCumplimientoReplica]]></Name>
 						<X>200</X>
 						<Y>660</Y>
@@ -25737,7 +26375,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001550</Id>
+							<Id>1796000001418</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -25753,7 +26391,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001551</Id>
+						<Id>1796000001424</Id>
 						<Name><![CDATA[dsHorasExtraReplica]]></Name>
 						<X>360</X>
 						<Y>660</Y>
@@ -25766,7 +26404,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001552</Id>
+							<Id>1796000001425</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -25784,7 +26422,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				</AnalysisData>
 				<Presentation>
 					<Rectangle>
-						<Id>1796000001553</Id>
+						<Id>1796000001427</Id>
 						<Name><![CDATA[fondoReplicas]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -25810,7 +26448,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001556</Id>
+						<Id>1796000001428</Id>
 						<Name><![CDATA[tituloReplicas]]></Name>
 						<X>30</X>
 						<Y>22</Y>
@@ -25835,7 +26473,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001557</Id>
+						<Id>1796000001429</Id>
 						<Name><![CDATA[resumenReplicas]]></Name>
 						<X>30</X>
 						<Y>60</Y>
@@ -25861,7 +26499,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001558</Id>
+						<Id>1796000001430</Id>
 						<Name><![CDATA[notaReplicas]]></Name>
 						<X>30</X>
 						<Y>84</Y>
@@ -25886,7 +26524,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Rectangle>
-						<Id>1796000001559</Id>
+						<Id>1796000001431</Id>
 						<Name><![CDATA[tarjetaReplicas0]]></Name>
 						<X>30</X>
 						<Y>120</Y>
@@ -25912,7 +26550,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001560</Id>
+						<Id>1796000001436</Id>
 						<Name><![CDATA[tituloReplicas0]]></Name>
 						<X>48</X>
 						<Y>132</Y>
@@ -25937,7 +26575,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001563</Id>
+						<Id>1796000001437</Id>
 						<Name><![CDATA[graficoReplicas0]]></Name>
 						<X>35</X>
 						<Y>165</Y>
@@ -25951,7 +26589,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001564</Id>
+							<Id>1796000001441</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -25995,7 +26633,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Costo total (millones de $)]]></Title>
-							<Id>1796000001567</Id>
+							<Id>1796000001456</Id>
 							<Expression><![CDATA[dsCostoReplica]]></Expression>
 							<Color>-14326805</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -26010,7 +26648,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001570</Id>
+						<Id>1796000001457</Id>
 						<Name><![CDATA[tarjetaReplicas1]]></Name>
 						<X>570</X>
 						<Y>120</Y>
@@ -26036,7 +26674,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001571</Id>
+						<Id>1796000001461</Id>
 						<Name><![CDATA[tituloReplicas1]]></Name>
 						<X>588</X>
 						<Y>132</Y>
@@ -26061,7 +26699,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001572</Id>
+						<Id>1796000001462</Id>
 						<Name><![CDATA[graficoReplicas1]]></Name>
 						<X>575</X>
 						<Y>165</Y>
@@ -26075,7 +26713,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001573</Id>
+							<Id>1796000001465</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -26119,7 +26757,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Cumplimiento de la OF (%)]]></Title>
-							<Id>1796000001576</Id>
+							<Id>1796000001473</Id>
 							<Expression><![CDATA[dsCumplimientoReplica]]></Expression>
 							<Color>-15293622</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -26134,7 +26772,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001577</Id>
+						<Id>1796000001475</Id>
 						<Name><![CDATA[tarjetaReplicas2]]></Name>
 						<X>1110</X>
 						<Y>120</Y>
@@ -26160,7 +26798,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001578</Id>
+						<Id>1796000001476</Id>
 						<Name><![CDATA[tituloReplicas2]]></Name>
 						<X>1128</X>
 						<Y>132</Y>
@@ -26185,7 +26823,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001579</Id>
+						<Id>1796000001491</Id>
 						<Name><![CDATA[graficoReplicas2]]></Name>
 						<X>1115</X>
 						<Y>165</Y>
@@ -26199,7 +26837,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001580</Id>
+							<Id>1796000001492</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -26243,7 +26881,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Horas extra (h-hombre)]]></Title>
-							<Id>1796000001583</Id>
+							<Id>1796000001499</Id>
 							<Expression><![CDATA[dsHorasExtraReplica]]></Expression>
 							<Color>-2525434</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -26621,7 +27259,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
 				<AnalysisData>
 					<DataSet>
-						<Id>1796000001584</Id>
+						<Id>1796000001501</Id>
 						<Name><![CDATA[dsCostoReplica]]></Name>
 						<X>40</X>
 						<Y>660</Y>
@@ -26634,7 +27272,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001587</Id>
+							<Id>1796000001502</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -26650,7 +27288,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001588</Id>
+						<Id>1796000001507</Id>
 						<Name><![CDATA[dsCumplimientoReplica]]></Name>
 						<X>200</X>
 						<Y>660</Y>
@@ -26663,7 +27301,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001589</Id>
+							<Id>1796000001509</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -26679,7 +27317,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001590</Id>
+						<Id>1796000001510</Id>
 						<Name><![CDATA[dsHorasExtraReplica]]></Name>
 						<X>360</X>
 						<Y>660</Y>
@@ -26692,7 +27330,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001591</Id>
+							<Id>1796000001523</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -26710,7 +27348,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				</AnalysisData>
 				<Presentation>
 					<Rectangle>
-						<Id>1796000001594</Id>
+						<Id>1796000001524</Id>
 						<Name><![CDATA[fondoReplicas]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -26736,7 +27374,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001595</Id>
+						<Id>1796000001528</Id>
 						<Name><![CDATA[tituloReplicas]]></Name>
 						<X>30</X>
 						<Y>22</Y>
@@ -26761,7 +27399,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001596</Id>
+						<Id>1796000001529</Id>
 						<Name><![CDATA[resumenReplicas]]></Name>
 						<X>30</X>
 						<Y>60</Y>
@@ -26787,7 +27425,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001597</Id>
+						<Id>1796000001530</Id>
 						<Name><![CDATA[notaReplicas]]></Name>
 						<X>30</X>
 						<Y>84</Y>
@@ -26812,7 +27450,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Rectangle>
-						<Id>1796000001598</Id>
+						<Id>1796000001531</Id>
 						<Name><![CDATA[tarjetaReplicas0]]></Name>
 						<X>30</X>
 						<Y>120</Y>
@@ -26838,7 +27476,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001601</Id>
+						<Id>1796000001537</Id>
 						<Name><![CDATA[tituloReplicas0]]></Name>
 						<X>48</X>
 						<Y>132</Y>
@@ -26863,7 +27501,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001602</Id>
+						<Id>1796000001538</Id>
 						<Name><![CDATA[graficoReplicas0]]></Name>
 						<X>35</X>
 						<Y>165</Y>
@@ -26877,7 +27515,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001603</Id>
+							<Id>1796000001544</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -26921,7 +27559,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Costo total (millones de $)]]></Title>
-							<Id>1796000001606</Id>
+							<Id>1796000001555</Id>
 							<Expression><![CDATA[dsCostoReplica]]></Expression>
 							<Color>-14326805</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -26936,7 +27574,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001607</Id>
+						<Id>1796000001561</Id>
 						<Name><![CDATA[tarjetaReplicas1]]></Name>
 						<X>570</X>
 						<Y>120</Y>
@@ -26962,7 +27600,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001608</Id>
+						<Id>1796000001562</Id>
 						<Name><![CDATA[tituloReplicas1]]></Name>
 						<X>588</X>
 						<Y>132</Y>
@@ -26987,7 +27625,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001609</Id>
+						<Id>1796000001565</Id>
 						<Name><![CDATA[graficoReplicas1]]></Name>
 						<X>575</X>
 						<Y>165</Y>
@@ -27001,7 +27639,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001610</Id>
+							<Id>1796000001566</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -27045,7 +27683,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Cumplimiento de la OF (%)]]></Title>
-							<Id>1796000001613</Id>
+							<Id>1796000001574</Id>
 							<Expression><![CDATA[dsCumplimientoReplica]]></Expression>
 							<Color>-15293622</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -27060,7 +27698,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001614</Id>
+						<Id>1796000001575</Id>
 						<Name><![CDATA[tarjetaReplicas2]]></Name>
 						<X>1110</X>
 						<Y>120</Y>
@@ -27086,7 +27724,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001615</Id>
+						<Id>1796000001581</Id>
 						<Name><![CDATA[tituloReplicas2]]></Name>
 						<X>1128</X>
 						<Y>132</Y>
@@ -27111,7 +27749,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001618</Id>
+						<Id>1796000001582</Id>
 						<Name><![CDATA[graficoReplicas2]]></Name>
 						<X>1115</X>
 						<Y>165</Y>
@@ -27125,7 +27763,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001619</Id>
+							<Id>1796000001585</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -27169,7 +27807,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Horas extra (h-hombre)]]></Title>
-							<Id>1796000001622</Id>
+							<Id>1796000001593</Id>
 							<Expression><![CDATA[dsHorasExtraReplica]]></Expression>
 							<Color>-2525434</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -27547,7 +28185,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
 				<AnalysisData>
 					<DataSet>
-						<Id>1796000001624</Id>
+						<Id>1796000001599</Id>
 						<Name><![CDATA[dsCostoReplica]]></Name>
 						<X>40</X>
 						<Y>660</Y>
@@ -27560,7 +28198,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001625</Id>
+							<Id>1796000001600</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -27576,7 +28214,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001626</Id>
+						<Id>1796000001604</Id>
 						<Name><![CDATA[dsCumplimientoReplica]]></Name>
 						<X>200</X>
 						<Y>660</Y>
@@ -27589,7 +28227,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001627</Id>
+							<Id>1796000001605</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -27605,7 +28243,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001628</Id>
+						<Id>1796000001611</Id>
 						<Name><![CDATA[dsHorasExtraReplica]]></Name>
 						<X>360</X>
 						<Y>660</Y>
@@ -27618,7 +28256,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001629</Id>
+							<Id>1796000001612</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -27636,7 +28274,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				</AnalysisData>
 				<Presentation>
 					<Rectangle>
-						<Id>1796000001630</Id>
+						<Id>1796000001616</Id>
 						<Name><![CDATA[fondoReplicas]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -27662,7 +28300,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001632</Id>
+						<Id>1796000001617</Id>
 						<Name><![CDATA[tituloReplicas]]></Name>
 						<X>30</X>
 						<Y>22</Y>
@@ -27687,7 +28325,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001633</Id>
+						<Id>1796000001620</Id>
 						<Name><![CDATA[resumenReplicas]]></Name>
 						<X>30</X>
 						<Y>60</Y>
@@ -27713,7 +28351,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001634</Id>
+						<Id>1796000001621</Id>
 						<Name><![CDATA[notaReplicas]]></Name>
 						<X>30</X>
 						<Y>84</Y>
@@ -27738,7 +28376,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Rectangle>
-						<Id>1796000001635</Id>
+						<Id>1796000001623</Id>
 						<Name><![CDATA[tarjetaReplicas0]]></Name>
 						<X>30</X>
 						<Y>120</Y>
@@ -27764,7 +28402,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001636</Id>
+						<Id>1796000001631</Id>
 						<Name><![CDATA[tituloReplicas0]]></Name>
 						<X>48</X>
 						<Y>132</Y>
@@ -27789,7 +28427,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001637</Id>
+						<Id>1796000001639</Id>
 						<Name><![CDATA[graficoReplicas0]]></Name>
 						<X>35</X>
 						<Y>165</Y>
@@ -27803,7 +28441,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001638</Id>
+							<Id>1796000001640</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -27847,7 +28485,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Costo total (millones de $)]]></Title>
-							<Id>1796000001641</Id>
+							<Id>1796000001648</Id>
 							<Expression><![CDATA[dsCostoReplica]]></Expression>
 							<Color>-14326805</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -27862,7 +28500,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001642</Id>
+						<Id>1796000001649</Id>
 						<Name><![CDATA[tarjetaReplicas1]]></Name>
 						<X>570</X>
 						<Y>120</Y>
@@ -27888,7 +28526,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001643</Id>
+						<Id>1796000001654</Id>
 						<Name><![CDATA[tituloReplicas1]]></Name>
 						<X>588</X>
 						<Y>132</Y>
@@ -27913,7 +28551,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001644</Id>
+						<Id>1796000001655</Id>
 						<Name><![CDATA[graficoReplicas1]]></Name>
 						<X>575</X>
 						<Y>165</Y>
@@ -27927,7 +28565,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001645</Id>
+							<Id>1796000001657</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -27971,7 +28609,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Cumplimiento de la OF (%)]]></Title>
-							<Id>1796000001650</Id>
+							<Id>1796000001675</Id>
 							<Expression><![CDATA[dsCumplimientoReplica]]></Expression>
 							<Color>-15293622</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -27986,7 +28624,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001651</Id>
+						<Id>1796000001678</Id>
 						<Name><![CDATA[tarjetaReplicas2]]></Name>
 						<X>1110</X>
 						<Y>120</Y>
@@ -28012,7 +28650,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001652</Id>
+						<Id>1796000001679</Id>
 						<Name><![CDATA[tituloReplicas2]]></Name>
 						<X>1128</X>
 						<Y>132</Y>
@@ -28037,7 +28675,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001653</Id>
+						<Id>1796000001683</Id>
 						<Name><![CDATA[graficoReplicas2]]></Name>
 						<X>1115</X>
 						<Y>165</Y>
@@ -28051,7 +28689,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001656</Id>
+							<Id>1796000001684</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -28095,7 +28733,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Horas extra (h-hombre)]]></Title>
-							<Id>1796000001659</Id>
+							<Id>1796000001692</Id>
 							<Expression><![CDATA[dsHorasExtraReplica]]></Expression>
 							<Color>-2525434</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -28482,7 +29120,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
 				<AnalysisData>
 					<DataSet>
-						<Id>1796000001660</Id>
+						<Id>1796000001693</Id>
 						<Name><![CDATA[dsCostoReplica]]></Name>
 						<X>40</X>
 						<Y>660</Y>
@@ -28495,7 +29133,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001661</Id>
+							<Id>1796000001694</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -28511,7 +29149,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001662</Id>
+						<Id>1796000001696</Id>
 						<Name><![CDATA[dsCumplimientoReplica]]></Name>
 						<X>200</X>
 						<Y>660</Y>
@@ -28524,7 +29162,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001663</Id>
+							<Id>1796000001697</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -28540,7 +29178,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001664</Id>
+						<Id>1796000001698</Id>
 						<Name><![CDATA[dsHorasExtraReplica]]></Name>
 						<X>360</X>
 						<Y>660</Y>
@@ -28553,7 +29191,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001665</Id>
+							<Id>1796000001699</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -28571,7 +29209,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				</AnalysisData>
 				<Presentation>
 					<Rectangle>
-						<Id>1796000001666</Id>
+						<Id>1796000001700</Id>
 						<Name><![CDATA[fondoReplicas]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -28597,7 +29235,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001667</Id>
+						<Id>1796000001701</Id>
 						<Name><![CDATA[tituloReplicas]]></Name>
 						<X>30</X>
 						<Y>22</Y>
@@ -28622,7 +29260,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001668</Id>
+						<Id>1796000001702</Id>
 						<Name><![CDATA[resumenReplicas]]></Name>
 						<X>30</X>
 						<Y>60</Y>
@@ -28648,7 +29286,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001669</Id>
+						<Id>1796000001703</Id>
 						<Name><![CDATA[notaReplicas]]></Name>
 						<X>30</X>
 						<Y>84</Y>
@@ -28673,7 +29311,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Rectangle>
-						<Id>1796000001670</Id>
+						<Id>1796000001704</Id>
 						<Name><![CDATA[tarjetaReplicas0]]></Name>
 						<X>30</X>
 						<Y>120</Y>
@@ -28699,7 +29337,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001671</Id>
+						<Id>1796000001705</Id>
 						<Name><![CDATA[tituloReplicas0]]></Name>
 						<X>48</X>
 						<Y>132</Y>
@@ -28724,7 +29362,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001672</Id>
+						<Id>1796000001706</Id>
 						<Name><![CDATA[graficoReplicas0]]></Name>
 						<X>35</X>
 						<Y>165</Y>
@@ -28738,7 +29376,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001673</Id>
+							<Id>1796000001707</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -28782,7 +29420,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Costo total (millones de $)]]></Title>
-							<Id>1796000001676</Id>
+							<Id>1796000001710</Id>
 							<Expression><![CDATA[dsCostoReplica]]></Expression>
 							<Color>-14326805</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -28797,7 +29435,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001677</Id>
+						<Id>1796000001711</Id>
 						<Name><![CDATA[tarjetaReplicas1]]></Name>
 						<X>570</X>
 						<Y>120</Y>
@@ -28823,7 +29461,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001680</Id>
+						<Id>1796000001712</Id>
 						<Name><![CDATA[tituloReplicas1]]></Name>
 						<X>588</X>
 						<Y>132</Y>
@@ -28848,7 +29486,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001681</Id>
+						<Id>1796000001713</Id>
 						<Name><![CDATA[graficoReplicas1]]></Name>
 						<X>575</X>
 						<Y>165</Y>
@@ -28862,7 +29500,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001682</Id>
+							<Id>1796000001714</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -28906,7 +29544,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Cumplimiento de la OF (%)]]></Title>
-							<Id>1796000001687</Id>
+							<Id>1796000001717</Id>
 							<Expression><![CDATA[dsCumplimientoReplica]]></Expression>
 							<Color>-15293622</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -28921,7 +29559,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001688</Id>
+						<Id>1796000001718</Id>
 						<Name><![CDATA[tarjetaReplicas2]]></Name>
 						<X>1110</X>
 						<Y>120</Y>
@@ -28947,7 +29585,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001689</Id>
+						<Id>1796000001719</Id>
 						<Name><![CDATA[tituloReplicas2]]></Name>
 						<X>1128</X>
 						<Y>132</Y>
@@ -28972,7 +29610,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001690</Id>
+						<Id>1796000001720</Id>
 						<Name><![CDATA[graficoReplicas2]]></Name>
 						<X>1115</X>
 						<Y>165</Y>
@@ -28986,7 +29624,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001691</Id>
+							<Id>1796000001721</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -29030,7 +29668,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Horas extra (h-hombre)]]></Title>
-							<Id>1796000001695</Id>
+							<Id>1796000001724</Id>
 							<Expression><![CDATA[dsHorasExtraReplica]]></Expression>
 							<Color>-2525434</Color>
 							<Expression2><![CDATA[0]]></Expression2>

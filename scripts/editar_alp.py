@@ -372,7 +372,8 @@ class Editor(D.Generador):
         tpls = {t: n.cloneNode(True) for t, n in tpls.items()}
         # Se borran las plantillas y lo generado antes (así se puede volver a correr)
         nuestros = re.compile(r"^(grafico|tarjeta|tituloGrafico|subtituloGrafico|fondoGraficos|encabezadoGraficos|"
-                              r"relojGraficos|boton(VerGraficos|VerPlanta)|vista)")
+                              r"relojGraficos|boton(VerGraficos|VerPlanta)|vista|navbar|fondoVariables|"
+                              r"(titulo|panel)Ausencias$|fondoTablero$|tituloTablero$|reloj$)")
         for cont, plantillas in ((plano, {"plot", "plot1", "chart"}), (areas, {"viewArea"}),
                                  (analisis, {"dataset"})):
             for n in list(self.hijos(cont)):
@@ -392,14 +393,8 @@ class Editor(D.Generador):
             self.poner(a, "Height", h)
             self.poner_cdata(a, "Title", titulo)
             areas.appendChild(a)
-        self.boton(plano, "botonVerGraficos", 1400, 40, 210, "Ver gráficos  ▸", "vistaGraficos.navigateTo();")
-        # Panel de gráficos
+        # Panel de gráficos (la barra de pestañas la agrega armar_pestanas)
         self.rectangulo(plano, "fondoGraficos", G.X0, G.Y0, 1640, 900, fill="F1F5F9", line="CBD5E1")
-        self.texto(plano, "encabezadoGraficos", 30, G.Y0 + 22, "KRETZ | Gráficos de la simulación", size=22,
-                   bold=True, color="0F172A")
-        self.texto(plano, "relojGraficos", 30, G.Y0 + 58, "Preparando la primera jornada...", "textoReloj()",
-                   size=13, bold=True, color="1D4ED8")
-        self.boton(plano, "botonVerPlanta", 1400, G.Y0 + 22, 210, "◂  Volver a la planta", "vistaPlanta.navigateTo();")
         for nombre, tipo, col, fila, titulo, subtitulo, opciones in G.GRAFICOS:
             x, y = G.COLUMNAS[col], G.FILAS[fila]
             sufijo = nombre[len("grafico"):]
@@ -410,6 +405,55 @@ class Editor(D.Generador):
             plano.appendChild(self.grafico(tpls[tipo], nombre, tipo, x + 5, y + 52, G.ANCHO_TARJETA - 10,
                                            G.ALTO_TARJETA - 58, opciones))
         return tpl_ds, tpls["Plot"]
+
+    # --- Pestañas: barra de navegación y pestaña Variables -------------------------------
+    def armar_pestanas(self):
+        """Corre después de armar_graficos, que borra lo generado antes (navbar*, tarjetaVar*, etc.)."""
+        plano = self.plano
+        elems = self.por_nombre(plano, "Text")
+        elems.update(self.por_nombre(plano, "Control"))
+
+        def al_frente(nombre, x, y):
+            # Se mueve al final de la lista para que se dibuje encima de las tarjetas
+            n = elems[nombre]
+            plano.removeChild(n)
+            plano.appendChild(n)
+            self.posicion(n, x, y)
+
+        # Pestaña Variables: fondo, línea del escenario y tarjetas con el tablero de indicadores
+        y0 = G.VAR_Y0
+        self.rectangulo(plano, "fondoVariables", 0, y0, 1640, 900, fill="F1F5F9", line="CBD5E1")
+        pos = G.layout_variables()
+        for sufijo, titulo, funcion, _, _, tam in G.VAR_TARJETAS:
+            x, y, w, h = pos[sufijo]
+            self.rectangulo(plano, f"tarjetaVar{sufijo}", x, y, w, h, fill="FFFFFF", line="CBD5E1")
+        for sufijo, titulo, funcion, _, _, tam in G.VAR_TARJETAS:
+            x, y, w, h = pos[sufijo]
+            if f"titulo{sufijo}" not in elems:
+                self.texto(plano, f"titulo{sufijo}", x + 18, y + 12, titulo, size=14, bold=True, color="0F172A")
+                self.texto(plano, f"panel{sufijo}", x + 18, y + 36, "-", funcion + "()", size=tam, mono=True,
+                           color="1E293B")
+            else:
+                al_frente(f"titulo{sufijo}", x + 18, y + 12)
+                al_frente(f"panel{sufijo}", x + 18, y + 36)
+        al_frente("escenario", 30, y0 + G.ALTO_NAVBAR + 16)
+        al_frente("botonResumen", 1445, y0 + G.ALTO_NAVBAR + 10)
+
+        # Barra de navegación, igual en las tres pestañas, con la pestaña activa resaltada
+        vistas = list(G.VISTAS.items())
+        for i, (vista, (vx, vy, vw, _, _)) in enumerate(vistas):
+            self.rectangulo(plano, f"navbar{i}Fondo", vx, vy, vw, G.ALTO_NAVBAR, fill="0F172A", line="0F172A")
+            self.texto(plano, f"navbar{i}Titulo", vx + 24, vy + 18, "KRETZ", size=18, bold=True, color="FFFFFF")
+            for j, (destino, (*_, titulo)) in enumerate(vistas):
+                bx = vx + 130 + j * (G.ANCHO_BOTON_PESTANA + 10)
+                activa = destino == vista
+                self.boton(plano, f"navbar{i}Boton{j}", bx, vy + 13, G.ANCHO_BOTON_PESTANA, titulo,
+                           f"{destino}.navigateTo();", fill="2563EB" if activa else "334155")
+                if activa:
+                    self.rectangulo(plano, f"navbar{i}Activa", bx, vy + G.ALTO_NAVBAR - 5, G.ANCHO_BOTON_PESTANA, 5,
+                                    fill="60A5FA", line="60A5FA")
+            self.texto(plano, f"navbar{i}Reloj", vx + vw - 20, vy + 20, "Preparando la primera jornada...",
+                       "textoReloj()", size=12, bold=True, color="BFDBFE", align="RIGHT")
 
     # --- Experimentos de réplicas -------------------------------------------------------
     def armar_replicas(self, tpl_ds, tpl_plot):
@@ -567,7 +611,9 @@ def main():
     if args.plano:
         e.armar_plano()
     e.ajustar_racks()
-    e.armar_replicas(*e.armar_graficos())
+    plantillas = e.armar_graficos()
+    e.armar_pestanas()
+    e.armar_replicas(*plantillas)
     e.requerir_libreria(D.MHL, (8, 3, 0))
     e.verificar_nombres()
     respaldo = args.modelo.with_suffix(".antes.alp")

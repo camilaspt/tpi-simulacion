@@ -3,7 +3,7 @@
 Sirven para probar el modelo y armar la comparación con "la realidad" mientras no
 lleguen los datos reales de KRETZ. Escribe en Datos/Sinteticos/:
 
-- empleados.csv                 dotación (51 empleados) con especialidad y línea
+- empleados.csv                 dotación (41 empleados) con especialidad y línea
 - planilla_ausencias.csv        una fila por ausencia (legajo, fecha, motivo)
 - resumen_ausentismo.csv        tasa de ausencia por especialidad y día de la semana
 - ordenes_fabricacion.csv       OF diaria por modelo: pedido, producido en el turno, faltante
@@ -88,7 +88,7 @@ def crear_empleados(rng):
             alta("Controlador", f"Control Final {l}", f"Control {p}")
         for p in range(1, 4):
             alta("Embalador", f"Control Final {l}", f"Embalaje {p}")
-    for p in range(1, 21):
+    for p in range(1, 11):
         alta("Depósito", "Depósito", f"Depósito {p}")
     alta("Inspector de calidad", "Depósito", "Calidad")
     return empleados
