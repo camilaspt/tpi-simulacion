@@ -1019,6 +1019,8 @@ for (int m = 0; m < 5; m++) {
 int faltante = objetivo - aTiempo;
 faltanteSemana += faltante;
 diasSimulados++;
+dsOFJornada.add(diasSimulados, objetivo);
+dsATiempoJornada.add(diasSimulados, aTiempo);
 if (faltante > 0) diasSinCumplir++;
 if (ausentesHoy > 0) {
 	diasConAusencias++;
@@ -1084,6 +1086,7 @@ finSemana();
 """)
 
 funcion("finSemana", "void", [], """
+dsHorasExtraSemana.add(semana + 1, horasExtraSemana);
 exportarSemana();
 faltanteSemana = 0;
 horasExtraSemana = 0;
@@ -1146,6 +1149,7 @@ return disponible > 0 ? Math.min(1, ocupado / disponible) : 0;
 funcion("anexarCSV", "void", [("archivo", "String"), ("encabezado", "String"), ("fila", "String")], """
 // Separador ; y coma decimal, como Datos/*.csv (Excel con configuración argentina)
 if (!guardarResultados) return;
+synchronized (Main.class) { // las réplicas pueden correr en paralelo
 try {
 	java.io.File f = new java.io.File(archivo);
 	if (f.getParentFile() != null) f.getParentFile().mkdirs();
@@ -1157,6 +1161,7 @@ try {
 	}
 } catch (Exception e) {
 	traceln("No se pudo escribir " + archivo + ": " + e.getMessage());
+}
 }
 """)
 
@@ -1227,6 +1232,24 @@ h.append(";inspeccionadas;rechazadas");
 v.append(";" + sumar(inspeccionadas) + ";" + sumar(rechazadas));
 anexarCSV("Resultados/resultados_corridas.csv", h.toString(), v.toString());
 traceln("Resultados guardados en Resultados/resultados_corridas.csv (semilla " + semillaUsada + ")");
+""")
+
+# --- Gráficos -----------------------------------------------------------------
+funcion("registrarRacks", "void", [], """
+// Ocupación de los racks del depósito, cada 10 minutos (gráfico de la pestaña Gráficos)
+dsRackMateriales.add(time(), almacenMateriales.size());
+dsRackCalidad.add(time(), almacenCalidad.size());
+dsRackStock.add(time(), almacenStock.size());
+eventoMuestreoRacks.restart(10);
+""")
+
+funcion("esperaMedia", "double", [("tipo", "int")], """
+return nEsperaTipo[tipo] > 0 ? sumaEsperaTipo[tipo] / nEsperaTipo[tipo] : 0;
+""")
+
+funcion("cumplimientoTotal", "double", [], """
+int of = sumar(ofTotal);
+return of > 0 ? (double) sumar(aTiempoTotal) / of : 1;
 """)
 
 # --- Textos y colores del tablero -------------------------------------------
@@ -1351,14 +1374,26 @@ if (l >= lineasArmado + lineasCF) return "";
 return l < lineasArmado ? "ARM " + (l + 1) : "CF " + (l - lineasArmado + 1);
 """)
 
+# Data sets de Main para los gráficos: (nombre, puntos que guarda)
+DATASETS = [
+    ("dsOFJornada", 200),
+    ("dsATiempoJornada", 200),
+    ("dsHorasExtraSemana", 60),
+    ("dsRackMateriales", 3000),
+    ("dsRackCalidad", 3000),
+    ("dsRackStock", 3000),
+]
+
 # ---------------------------------------------------------------------------
 # Código de arranque y eventos
 # ---------------------------------------------------------------------------
-STARTUP = """// Semilla de la corrida: la elegida o una al azar, que queda registrada para poder repetirla
-semillaUsada = semilla != 0 ? semilla : 1 + (long) (Math.random() * 999999999L);
+STARTUP = """// Semilla de la corrida: la elegida o una derivada de la del experimento, que queda registrada.
+// En los experimentos de réplicas, la réplica n usa la misma semilla en todos los escenarios
+semillaUsada = semilla != 0 ? semilla : 1 + Math.floorMod(getDefaultRandomGenerator().nextLong(), 999999999L);
 getDefaultRandomGenerator().setSeed(semillaUsada);
 // La primera jornada arranca apenas el ResourcePool crea a los operarios
-eventoInicioJornada.restart(0.01);"""
+eventoInicioJornada.restart(0.01);
+eventoMuestreoRacks.restart(1);"""
 
 EVENTOS = [
     ("eventoInicioJornada", "iniciarJornada();"),
@@ -1367,4 +1402,5 @@ EVENTOS = [
     ("eventoCamion1", "llegaCamion.inject(1);"),
     ("eventoCamion2", "llegaCamion.inject(1);"),
     ("eventoSalidaCamion", "despacharCamion();"),
+    ("eventoMuestreoRacks", "registrarRacks();"),
 ]

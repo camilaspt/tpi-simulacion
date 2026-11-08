@@ -21,6 +21,7 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import modelo_java as J  # noqa: E402
+import graficos as G  # noqa: E402
 
 PAQUETE = "tpi_simulacion_kretz"
 PML = "com.anylogic.libraries.processmodeling"
@@ -956,6 +957,7 @@ def arnes(destino):
     imports = ("package %s;\nimport java.util.*;\nimport java.awt.Color;\nimport com.anylogic.engine.*;\n"
                "import com.anylogic.engine.markup.*;\nimport com.anylogic.libraries.processmodeling.*;\n"
                "import com.anylogic.libraries.material_handling.*;\n"
+               "import com.anylogic.engine.analysis.*;\nimport com.anylogic.engine.presentation.ViewArea;\n"
                "import static com.anylogic.engine.Utilities.*;\n" % PAQUETE)
     (pkg / "Especialidad.java").write_text(imports + "public enum Especialidad { Armador, Ajustador, Controlador, Embalador, Polivalente }\n", encoding="utf-8")
 
@@ -987,6 +989,8 @@ def arnes(destino):
     m += "  public RectangularNode zonaIngreso;\n"
     m += "  public Level level;\n"
     m += "".join(f"  public Storage {n};\n" for n in ALMACENES)
+    m += "".join(f"  public DataSet {n} = new DataSet({k});\n" for n, k in J.DATASETS)
+    m += "".join(f"  public ViewArea {n};\n" for n in G.VISTAS)
     # Con el nombre completo: Queue choca con java.util.Queue
     m += "".join(f"  public {PAQUETES[c]}.{c}<{'Agent' if c == 'ResourcePool' else TIPO_AGENTE.get(n, 'Balanza')}> {n};\n"
                  for n, c, _, _, _ in BLOQUES)
@@ -1018,8 +1022,23 @@ def arnes(destino):
               '"en uso " + rackMateriales.busy() + "/" + rackMateriales.size()', '"Rack espera calidad: " + rackCalidad.size()',
               "inspector.busy() > 0 ? new Color(13, 148, 136) : new Color(153, 246, 228)", '"Stock: " + sumar(enStock)']:
         m += f"    o = {e};\n"
+    # Gráficos de la pestaña: valores de las barras, data sets de las series y botones
+    for _, _, _, _, _, _, opciones in G.GRAFICOS:
+        for expresion, _, _ in opciones.get("barras", []):
+            m += f"    o = {expresion};\n"
+        for ds, _, _ in opciones.get("series", []):
+            m += f"    o = {ds};\n"
+    m += "    vistaGraficos.navigateTo();\n    vistaPlanta.navigateTo();\n"
     m += "    traceln(resumenTexto());\n  }\n}\n"
     (pkg / "Main.java").write_text(m, encoding="utf-8")
+    # Experimentos de réplicas: data sets, código antes/después y texto de resumen
+    x = imports + "public abstract class ReplicasArnes {\n  Main root;\n"
+    x += "".join(f"  DataSet {n} = new DataSet(500);\n" for n, *_ in G.DATASETS_REPLICAS)
+    x += f"  void antes() {{\n{G.codigo_antes_replicas()}\n  }}\n"
+    x += f"  void despues() {{\n{G.codigo_despues_corrida()}\n  }}\n"
+    x += f"  void fin() {{\n{G.codigo_fin_experimento('Escenario')}\n  }}\n"
+    x += f"  Object texto() {{ return {G.texto_resumen_replicas()}; }}\n}}\n"
+    (pkg / "ReplicasArnes.java").write_text(x, encoding="utf-8")
     return pkg
 
 

@@ -29,6 +29,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import modelo_java as J  # noqa: E402
 import desarrollar_modelo as D  # noqa: E402
+import graficos as G  # noqa: E402
 
 # Elementos que generaba el script y ya no se usan
 VARIABLES_OBSOLETAS = {"rackCalidadX", "rackCalidadY", "contadorRackCalidad", "despachoX", "despachoY",
@@ -290,6 +291,214 @@ class Editor(D.Generador):
         self.posicion(textos["rotuloRackCalidad"], q["x"] + 80, q["y"] - 8)
         self.posicion(textos["rotuloStock"], v["stockFrenteX"], v["stockFrenteY"] + 14)
 
+    # --- Gráficos: pestañas, tarjetas y data sets ----------------------------------------
+    def poner_cdata(self, nodo, tag, valor):
+        h = self.hijo(nodo, tag)
+        if h is None:
+            h = self.el(nodo, tag)
+        while h.firstChild is not None:
+            h.removeChild(h.firstChild)
+        h.appendChild(self.doc.createCDATASection(str(valor)))
+
+    def plantilla(self, contenedor, tag, nombres):
+        """Primer elemento del tipo pedido: la muestra agregada en AnyLogic o uno ya generado."""
+        for n in self.hijos(contenedor, tag):
+            if self.nombre(n) in nombres:
+                return n
+        return next(iter(self.hijos(contenedor, tag)), None)
+
+    def grafico(self, tpl, nombre, tipo, x, y, ancho, alto, opciones):
+        g = tpl.cloneNode(True)
+        self.renovar_ids(g)
+        self.hijo(g, "Name").firstChild.data = nombre
+        self.posicion(g, x, y)
+        self.poner(g, "DrawMode", "SHAPE_DRAW_2D")
+        self.poner(g, "Width", ancho)
+        self.poner(g, "Height", alto)
+        area = self.hijo(g, "ChartArea")
+        for tag, valor in (("XOffset", 60), ("YOffset", 12), ("Width", ancho - 85), ("Height", alto - 110)):
+            self.poner(area, tag, valor)
+        self.poner(self.hijo(g, "Legend"), "Size", 40)
+        item_tag = "DataItem" if tipo == "BarChart" else "DatasetExpression"
+        items = self.hijos(g, item_tag)
+        modelo, ref = items[0], items[-1].nextSibling
+        for it in items:
+            g.removeChild(it)
+        lista = opciones.get("barras") or opciones.get("series")
+        for expresion, titulo, color in lista:
+            it = modelo.cloneNode(True)
+            self.renovar_ids(it)
+            self.poner_cdata(it, "Expression", expresion)
+            self.poner(it, "Color", self.color(color))
+            self.poner_cdata(it, "Title", titulo)
+            if tipo != "BarChart":
+                self.poner(it, "PointStyle", "CIRCLE" if tipo == "Plot" else "NONE")
+                self.poner(it, "LineWidth", "2.0")
+            g.insertBefore(it, ref)
+        if tipo == "TimePlot":
+            self.poner_cdata(g, "TimeWindowExpression", opciones.get("ventana", 2400))
+            self.poner(g, "SamplesToKeep", 3000)
+        elif tipo == "Plot":
+            self.poner(g, "SamplesToKeep", 200)
+        return g
+
+    def data_set(self, tpl, nombre, puntos, x, y):
+        d = tpl.cloneNode(True)
+        self.renovar_ids(d)
+        self.hijo(d, "Name").firstChild.data = nombre
+        self.posicion(d, x, y)
+        self.poner(d, "AutoUpdate", "false")
+        self.poner(d, "SamplesToKeep", puntos)
+        return d
+
+    def armar_graficos(self):
+        analisis = self.hijo(self.main, "AnalysisData")
+        areas = self.hijo(self.main, "Areas")
+        plano = self.plano
+        tpl_ds = self.plantilla(analisis, "DataSet", {"dataset"})
+        tpl_area = self.plantilla(areas, "Area", {"viewArea"})
+        tpls = {t: self.plantilla(plano, t, n) for t, n in
+                (("Plot", {"plot1"}), ("BarChart", {"chart"}), ("TimePlot", {"plot"}))}
+        if None in (tpl_ds, tpl_area, *tpls.values()):
+            sys.exit("Faltan plantillas de gráficos en Main (View Area, Plot, Bar Chart, Time Plot y Data Set).")
+        tpl_ds, tpl_area = tpl_ds.cloneNode(True), tpl_area.cloneNode(True)
+        tpls = {t: n.cloneNode(True) for t, n in tpls.items()}
+        # Se borran las plantillas y lo generado antes (así se puede volver a correr)
+        nuestros = re.compile(r"^(grafico|tarjeta|tituloGrafico|subtituloGrafico|fondoGraficos|encabezadoGraficos|"
+                              r"relojGraficos|boton(VerGraficos|VerPlanta)|vista)")
+        for cont, plantillas in ((plano, {"plot", "plot1", "chart"}), (areas, {"viewArea"}),
+                                 (analisis, {"dataset"})):
+            for n in list(self.hijos(cont)):
+                nombre = self.nombre(n) or ""
+                if nombre in plantillas or nuestros.match(nombre) or nombre in dict(J.DATASETS):
+                    cont.removeChild(n)
+        # Data sets que llena el modelo (cerrarJornada, finSemana, registrarRacks)
+        for i, (n, puntos) in enumerate(J.DATASETS):
+            analisis.appendChild(self.data_set(tpl_ds, n, puntos, 1820, -1000 + i * 25))
+        # Pestañas y botones para pasar de una a otra
+        for nombre, (x, y, w, h, titulo) in G.VISTAS.items():
+            a = tpl_area.cloneNode(True)
+            self.renovar_ids(a)
+            self.hijo(a, "Name").firstChild.data = nombre
+            self.posicion(a, x, y)
+            self.poner(a, "Width", w)
+            self.poner(a, "Height", h)
+            self.poner_cdata(a, "Title", titulo)
+            areas.appendChild(a)
+        self.boton(plano, "botonVerGraficos", 1400, 40, 210, "Ver gráficos  ▸", "vistaGraficos.navigateTo();")
+        # Panel de gráficos
+        self.rectangulo(plano, "fondoGraficos", G.X0, G.Y0, 1640, 900, fill="F1F5F9", line="CBD5E1")
+        self.texto(plano, "encabezadoGraficos", 30, G.Y0 + 22, "KRETZ | Gráficos de la simulación", size=22,
+                   bold=True, color="0F172A")
+        self.texto(plano, "relojGraficos", 30, G.Y0 + 58, "Preparando la primera jornada...", "textoReloj()",
+                   size=13, bold=True, color="1D4ED8")
+        self.boton(plano, "botonVerPlanta", 1400, G.Y0 + 22, 210, "◂  Volver a la planta", "vistaPlanta.navigateTo();")
+        for nombre, tipo, col, fila, titulo, subtitulo, opciones in G.GRAFICOS:
+            x, y = G.COLUMNAS[col], G.FILAS[fila]
+            sufijo = nombre[len("grafico"):]
+            self.rectangulo(plano, f"tarjeta{sufijo}", x, y, G.ANCHO_TARJETA, G.ALTO_TARJETA, fill="FFFFFF",
+                            line="CBD5E1")
+            self.texto(plano, f"tituloGrafico{sufijo}", x + 18, y + 12, titulo, size=15, bold=True, color="0F172A")
+            self.texto(plano, f"subtituloGrafico{sufijo}", x + 18, y + 34, subtitulo, size=11, color="475569")
+            plano.appendChild(self.grafico(tpls[tipo], nombre, tipo, x + 5, y + 52, G.ANCHO_TARJETA - 10,
+                                           G.ALTO_TARJETA - 58, opciones))
+        return tpl_ds, tpls["Plot"]
+
+    # --- Experimentos de réplicas -------------------------------------------------------
+    def armar_replicas(self, tpl_ds, tpl_plot):
+        exps = self.doc.getElementsByTagName("Experiments")[0]
+        pvs = {self.nombre(e): e for e in self.hijos(exps, "ParamVariationExperiment")}
+        if not pvs:
+            sys.exit("Falta el experimento de Variación de parámetros (Replicas) que sirve de plantilla.")
+        plantilla = pvs.get("Replicas") or next(iter(pvs.values()))
+        ids = {self.nombre(v): self.hijo(v, "Id").firstChild.data
+               for v in self.hijos(self.hijo(self.main, "Variables"), "Variable") if v.getAttribute("Class") == "Parameter"}
+        for sim, (titulo, valores) in D.EXPERIMENTOS.items():
+            nombre = G.NOMBRES_REPLICAS[sim]
+            e = pvs.get(nombre)
+            if e is None:
+                e = plantilla.cloneNode(True)
+                self.hijo(e, "Id").firstChild.data = str(self.nuevo_id())
+                exps.appendChild(e)
+            self.configurar_replicas(e, nombre, titulo, {**valores, "nombreEscenario": f'"{titulo}"'}, ids,
+                                     tpl_ds, tpl_plot)
+
+    def configurar_replicas(self, e, nombre, titulo, valores, ids, tpl_ds, tpl_plot):
+        self.hijo(e, "Name").firstChild.data = nombre
+        self.poner(e, "RandomNumberGenerationType", "fixedSeed")
+        self.poner(e, "SeedValue", 1)
+        self.poner(e, "MaximumMemory", 2048)
+        self.poner(e, "AllowParallelEvaluations", "true")
+        self.poner(e, "UseFreeformParameters", "false")
+        # Todos los parámetros fijos; los del escenario con su valor (las réplicas varían la semilla)
+        rangos = {self.hijo(r, "Id").firstChild.data: r for r in self.hijos(e, "RangeVariationParamValue")}
+        libres = {self.hijo(r, "Id").firstChild.data for r in self.hijos(e, "FreeformParamValue")}
+        ancla = self.hijo(e, "ModelTimeProperties")
+        for pid in ids.values():
+            if pid not in libres:
+                f = self.el(None, "FreeformParamValue")
+                self.el(f, "Id", pid)
+                e.insertBefore(f, ancla)
+            if pid not in rangos:
+                r = self.el(None, "RangeVariationParamValue")
+                self.el(r, "Id", pid)
+                self.el(r, "Type", "FIXED")
+                e.insertBefore(r, ancla)
+                rangos[pid] = r
+        for pid, r in rangos.items():
+            self.poner(r, "Type", "FIXED")
+            for tag in ("Expression", "From", "To", "Step"):
+                for h in self.hijos(r, tag):
+                    r.removeChild(h)
+        for pname, valor in valores.items():
+            r = rangos[ids[pname]]
+            ex = self.el(r, "Expression", attrs={"Class": "CodeValue"})
+            self.el(ex, "Code", valor, cdata=True)
+        # Se detiene solo (finishSimulation al terminar las semanas simuladas)
+        self.poner_cdata(self.hijo(e, "ModelTimeProperties"), "StopOption", "Never")
+        self.poner_cdata(self.hijo(e, "PresentationProperties"), "Title", f"KRETZ | Réplicas: {titulo}")
+        rep = self.hijo(e, "ReplicationsProperties")
+        self.poner(rep, "UseReplication", "true")
+        self.poner(rep, "FixedReplicationsNumber", "true")
+        self.poner(rep, "ReplicationPerIteration", G.REPLICAS)
+        # Código: los data sets se vacían al empezar y suman un punto por réplica
+        for tag, codigo in (("BeforeEachExperimentRunCode", G.codigo_antes_replicas()),
+                            ("AfterSimulationRunCode", G.codigo_despues_corrida()),
+                            ("AfterExperimentCode", G.codigo_fin_experimento(titulo))):
+            h = self.hijo(e, tag)
+            if h is None:
+                h = self.el(None, tag)
+                e.insertBefore(h, ancla)
+            while h.firstChild is not None:
+                h.removeChild(h.firstChild)
+            h.appendChild(self.doc.createCDATASection(codigo))
+        # Data sets y presentación del experimento
+        for tag in ("AnalysisData", "Presentation"):
+            for h in self.hijos(e, tag):
+                e.removeChild(h)
+        analisis = self.el(None, "AnalysisData")
+        pres = self.el(None, "Presentation")
+        despues = self.hijo(e, "LoadRootFromSnapshot")
+        e.insertBefore(pres, despues.nextSibling)
+        e.insertBefore(analisis, pres)
+        for i, (n, _, _, _) in enumerate(G.DATASETS_REPLICAS):
+            analisis.appendChild(self.data_set(tpl_ds, n, 500, 40 + i * 160, 660))
+        self.rectangulo(pres, "fondoReplicas", 0, 0, 1660, 640, fill="F1F5F9", line="CBD5E1")
+        self.texto(pres, "tituloReplicas", 30, 22, f"KRETZ | Réplicas: {titulo}", size=22, bold=True, color="0F172A")
+        self.texto(pres, "resumenReplicas", 30, 60, "Réplicas terminadas: 0", G.texto_resumen_replicas(), size=13,
+                   bold=True, color="1D4ED8")
+        self.texto(pres, "notaReplicas", 30, 84,
+                   f"{G.REPLICAS} réplicas con la misma secuencia de semillas en todos los escenarios. "
+                   "Cada punto es una réplica completa; los resultados se guardan en Resultados/resultados_corridas.csv.",
+                   size=11, color="475569")
+        for i, (n, _, titulo_ds, color) in enumerate(G.DATASETS_REPLICAS):
+            x = 30 + i * 540
+            self.rectangulo(pres, f"tarjetaReplicas{i}", x, 120, 510, 490, fill="FFFFFF", line="CBD5E1")
+            self.texto(pres, f"tituloReplicas{i}", x + 18, 132, titulo_ds + " por réplica", size=15, bold=True,
+                       color="0F172A")
+            pres.appendChild(self.grafico(tpl_plot, f"graficoReplicas{i}", "Plot", x + 5, 165, 500, 430,
+                                          {"series": [(n, titulo_ds, color)]}))
+
     def registrar_recurso(self, ruta):
         recursos = self.doc.getElementsByTagName("ModelResources")[0]
         if any(self.hijo(r, "Path").firstChild.data == ruta for r in self.hijos(recursos, "Resource")):
@@ -351,6 +560,7 @@ def main():
     if args.plano:
         e.armar_plano()
     e.ajustar_racks()
+    e.armar_replicas(*e.armar_graficos())
     e.requerir_libreria(D.MHL, (8, 3, 0))
     e.verificar_nombres()
     respaldo = args.modelo.with_suffix(".antes.alp")

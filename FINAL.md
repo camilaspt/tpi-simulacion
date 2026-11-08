@@ -49,9 +49,9 @@ El modelo (`TPI-Simulacion-KRETZ - copia.alp`) corre en AnyLogic y cubre la espe
 ## Lo que falta, en orden
 
 1. **Correr una simulación completa (4 semanas)** y confirmar que termina, que crea `Resultados/resultados_corridas.csv` y que no quedan cajas al pie de los racks de calidad o stock (AnyLogic informa 200 celdas en cada uno; si se llenan, agrandarlos).
-2. **Experimento de réplicas:** crear a mano en AnyLogic una *Variación de parámetros* (por ejemplo, `semilla` de 1 a 30) y guardar el modelo; después se replica para los 8 escenarios con el script. Con las mismas semillas en todos los escenarios, la comparación es más precisa.
+2. **Experimentos de réplicas:** listos (`Replicas` y 7 más, uno por escenario, 30 réplicas cada uno). Falta abrir el modelo y comprobar que abren y corren, junto con la pestaña de gráficos.
 3. **Datos reales o supuestos declarados:** OF reales de KRETZ (hoy 3 de ejemplo en `ofEjemplo`) y probabilidad de ausencia de la planilla de asistencia (hoy 6 %, `probAusencia`).
-4. **Correr las réplicas** de los 8 escenarios (sin animación) y generar `Resultados/informe_resultados.md` con `py -3 scripts/analizar_resultados.py`.
+4. **Correr las réplicas** de los 8 escenarios (los 8 experimentos `Replicas…`) y generar `Resultados/informe_resultados.md` con `py -3 scripts/analizar_resultados.py`.
 5. **Planilla de cálculo** (entregable 3): armarla desde los CSV de resultados.
 6. **Informe PDF** (entregable 2): completar `INFORME-FINAL.md` con los resultados y los autores, y pasarlo a Overleaf.
 7. **AnyLogic Cloud** (entregable 4): subir el modelo, con nombres y correos de los autores e instrucciones de uso.

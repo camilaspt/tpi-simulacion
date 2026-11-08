@@ -6,3 +6,4 @@ __pycache__/
 *.pyc
 *.original.alp
 *.antes.alp
+respaldos/

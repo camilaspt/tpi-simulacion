@@ -137,7 +137,8 @@ Hay que cerrar el modelo en AnyLogic antes de correr `editar_alp.py`. `desarroll
 - **Ausentismo y coberturas**: al inicio de cada jornada se sortea la asistencia; los puestos vacantes que frenan una línea se cubren con reserva polivalente, misma especialidad u otro operario (armado).
 - **Control de calidad por muestreo**: el primer equipo de cada modelo se inspecciona al llegar al rack de calidad y el último al cierre de la jornada.
 - **Cierre de jornada y fin de semana**: se compara lo producido a tiempo contra la OF; el faltante de la semana se recupera en una jornada de fin de semana cuyas horas-hombre se pagan al doble.
-- **Semilla**: con `semilla = 0` cada corrida sortea una semilla nueva y la registra; poniendo esa semilla se repite exactamente la corrida.
+- **Semilla**: con `semilla = 0` la corrida usa una semilla derivada de la del experimento y la registra; poniendo esa semilla se repite exactamente la corrida. Los experimentos tienen semilla fija (1): una corrida de Simulación se repite igual, y en los experimentos de réplicas la réplica n usa la misma semilla en todos los escenarios.
+- **Gráficos**: el botón *Ver gráficos* lleva a una segunda pestaña (View Area `vistaGraficos`) con 6 gráficos que se actualizan durante la corrida: cumplimiento de la OF por jornada, faltante acumulado por modelo, horas extra de fin de semana por semana, utilización por especialidad, espera en cola por tipo de puesto y ocupación de los racks. *Volver a la planta* regresa a `vistaPlanta`. Los gráficos se definen en `scripts/graficos.py`.
 
 ### Escenarios (experimentos)
 
@@ -154,9 +155,9 @@ Hay que cerrar el modelo en AnyLogic antes de correr `editar_alp.py`. `desarroll
 
 ## Réplicas y análisis de resultados
 
-Cada corrida, al terminar, agrega una fila a `Resultados/resultados_corridas.csv` (indicadores de la corrida completa) y una fila por semana a `Resultados/resultados_semanas.csv`. Como la semilla cambia en cada corrida, **cada corrida es una réplica**.
+Cada corrida, al terminar, agrega una fila a `Resultados/resultados_corridas.csv` (indicadores de la corrida completa) y una fila por semana a `Resultados/resultados_semanas.csv`.
 
-Para correr muchas réplicas sin animación conviene crear en AnyLogic un experimento de **Variación de parámetros** (*Parameter Variation*): sin parámetros variados (o variando el escenario) y con *Replications* = 10 o más por escenario. También sirve correr varias veces cada experimento de Simulación con la ejecución en tiempo virtual.
+Las réplicas se corren con los 8 experimentos de **Variación de parámetros** (`Replicas`, `ReplicasContratacion`, `ReplicasContratacionArmadores`, `ReplicasContratacionControlador`, `ReplicasContratacionEmbalador`, `ReplicasReserva`, `ReplicasReorganizacion` y `ReplicasSecuencia`), uno por escenario. Cada uno corre 30 réplicas sin animación, con la misma secuencia de semillas en todos los escenarios, y muestra un gráfico por réplica del costo total, el cumplimiento de la OF y las horas extra, con el promedio arriba.
 
 Después, el análisis:
 
