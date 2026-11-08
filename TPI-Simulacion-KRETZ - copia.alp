@@ -3672,10 +3672,67 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 							</InitialValue>
 						</Properties>
 					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000408</Id>
+						<Name><![CDATA[kitsEnRack]]></Name>
+						<X>2560</X>
+						<Y>3604</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+							<Type><![CDATA[int]]></Type>
+							<InitialValue Class="CodeValue">
+								<Code><![CDATA[0]]></Code>
+							</InitialValue>
+						</Properties>
+					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000411</Id>
+						<Name><![CDATA[celdasRackMateriales]]></Name>
+						<X>2560</X>
+						<Y>3626</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+							<Type><![CDATA[int]]></Type>
+							<InitialValue Class="CodeValue">
+								<Code><![CDATA[60]]></Code>
+							</InitialValue>
+						</Properties>
+					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000414</Id>
+						<Name><![CDATA[diagnosticoRacks]]></Name>
+						<X>2560</X>
+						<Y>3648</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+							<Type><![CDATA[boolean]]></Type>
+							<InitialValue Class="CodeValue">
+								<Code><![CDATA[false]]></Code>
+							</InitialValue>
+						</Properties>
+					</Variable>
 				</Variables>
 				<Connectors>
 					<Connector>
-						<Id>1796000000981</Id>
+						<Id>1796000000964</Id>
 						<Name><![CDATA[conector0]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3708,8 +3765,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</TargetConnectableItemReference>
 						<Points>
 							<Point>
-								<X>40</X>
-								<Y>930</Y>
+								<X>40.0</X>
+								<Y>930.0</Y>
 							</Point>
 							<Point>
 								<X>80.0</X>
@@ -3718,7 +3775,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000982</Id>
+						<Id>1796000000965</Id>
 						<Name><![CDATA[conector1]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3755,13 +3812,13 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 								<Y>1010.0</Y>
 							</Point>
 							<Point>
-								<X>80</X>
-								<Y>930</Y>
+								<X>80.0</X>
+								<Y>930.0</Y>
 							</Point>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000983</Id>
+						<Id>1796000000966</Id>
 						<Name><![CDATA[conector2]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3804,7 +3861,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000984</Id>
+						<Id>1796000000967</Id>
 						<Name><![CDATA[conector3]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3847,7 +3904,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000985</Id>
+						<Id>1796000000968</Id>
 						<Name><![CDATA[conector4]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3890,7 +3947,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000986</Id>
+						<Id>1796000000969</Id>
 						<Name><![CDATA[conector5]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3933,7 +3990,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000987</Id>
+						<Id>1796000000972</Id>
 						<Name><![CDATA[conector6]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3976,7 +4033,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000988</Id>
+						<Id>1796000000973</Id>
 						<Name><![CDATA[conector7]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4019,7 +4076,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000989</Id>
+						<Id>1796000000976</Id>
 						<Name><![CDATA[conector8]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4062,7 +4119,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000990</Id>
+						<Id>1796000000977</Id>
 						<Name><![CDATA[conector9]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4105,7 +4162,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000991</Id>
+						<Id>1796000000978</Id>
 						<Name><![CDATA[conector10]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4148,7 +4205,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000992</Id>
+						<Id>1796000000979</Id>
 						<Name><![CDATA[conector11]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4191,7 +4248,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000993</Id>
+						<Id>1796000000980</Id>
 						<Name><![CDATA[conector12]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4234,7 +4291,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000994</Id>
+						<Id>1796000001029</Id>
 						<Name><![CDATA[conector13]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4277,7 +4334,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000995</Id>
+						<Id>1796000001030</Id>
 						<Name><![CDATA[conector14]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4320,7 +4377,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000996</Id>
+						<Id>1796000001031</Id>
 						<Name><![CDATA[conector15]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4363,7 +4420,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000997</Id>
+						<Id>1796000001032</Id>
 						<Name><![CDATA[conector16]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4406,7 +4463,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000998</Id>
+						<Id>1796000001033</Id>
 						<Name><![CDATA[conector17]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4449,7 +4506,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000999</Id>
+						<Id>1796000001034</Id>
 						<Name><![CDATA[conector18]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4482,8 +4539,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</TargetConnectableItemReference>
 						<Points>
 							<Point>
-								<X>840</X>
-								<Y>1330</Y>
+								<X>840.0</X>
+								<Y>1330.0</Y>
 							</Point>
 							<Point>
 								<X>850.0</X>
@@ -4492,7 +4549,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001000</Id>
+						<Id>1796000001035</Id>
 						<Name><![CDATA[conector19]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4529,13 +4586,13 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 								<Y>1250.0</Y>
 							</Point>
 							<Point>
-								<X>880</X>
-								<Y>1330</Y>
+								<X>880.0</X>
+								<Y>1330.0</Y>
 							</Point>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001001</Id>
+						<Id>1796000001036</Id>
 						<Name><![CDATA[conector20]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4572,13 +4629,13 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 								<Y>1170.0</Y>
 							</Point>
 							<Point>
-								<X>880</X>
-								<Y>1330</Y>
+								<X>880.0</X>
+								<Y>1330.0</Y>
 							</Point>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001002</Id>
+						<Id>1796000001037</Id>
 						<Name><![CDATA[conector21]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4621,7 +4678,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001003</Id>
+						<Id>1796000001038</Id>
 						<Name><![CDATA[conector22]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4654,8 +4711,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</TargetConnectableItemReference>
 						<Points>
 							<Point>
-								<X>940</X>
-								<Y>1330</Y>
+								<X>940.0</X>
+								<Y>1330.0</Y>
 							</Point>
 							<Point>
 								<X>940.0</X>
@@ -4664,7 +4721,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001004</Id>
+						<Id>1796000001039</Id>
 						<Name><![CDATA[conector23]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4701,13 +4758,13 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 								<Y>1250.0</Y>
 							</Point>
 							<Point>
-								<X>980</X>
-								<Y>1330</Y>
+								<X>980.0</X>
+								<Y>1330.0</Y>
 							</Point>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001005</Id>
+						<Id>1796000001040</Id>
 						<Name><![CDATA[conector24]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4744,13 +4801,13 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 								<Y>1170.0</Y>
 							</Point>
 							<Point>
-								<X>980</X>
-								<Y>1330</Y>
+								<X>980.0</X>
+								<Y>1330.0</Y>
 							</Point>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001006</Id>
+						<Id>1796000001041</Id>
 						<Name><![CDATA[conector25]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4793,7 +4850,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001007</Id>
+						<Id>1796000001042</Id>
 						<Name><![CDATA[conector26]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4836,7 +4893,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001008</Id>
+						<Id>1796000001043</Id>
 						<Name><![CDATA[conector27]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4869,8 +4926,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</TargetConnectableItemReference>
 						<Points>
 							<Point>
-								<X>1350</X>
-								<Y>1330</Y>
+								<X>1350.0</X>
+								<Y>1330.0</Y>
 							</Point>
 							<Point>
 								<X>1040.0</X>
@@ -4879,7 +4936,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001009</Id>
+						<Id>1796000001044</Id>
 						<Name><![CDATA[conector28]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4922,7 +4979,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001010</Id>
+						<Id>1796000001045</Id>
 						<Name><![CDATA[conector29]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4965,7 +5022,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001011</Id>
+						<Id>1796000001046</Id>
 						<Name><![CDATA[conector30]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4998,8 +5055,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</TargetConnectableItemReference>
 						<Points>
 							<Point>
-								<X>1350</X>
-								<Y>1330</Y>
+								<X>1350.0</X>
+								<Y>1330.0</Y>
 							</Point>
 							<Point>
 								<X>1340.0</X>
@@ -5008,7 +5065,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001012</Id>
+						<Id>1796000001047</Id>
 						<Name><![CDATA[conector31]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5045,13 +5102,13 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 								<Y>1090.0</Y>
 							</Point>
 							<Point>
-								<X>1390</X>
-								<Y>1330</Y>
+								<X>1390.0</X>
+								<Y>1330.0</Y>
 							</Point>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001013</Id>
+						<Id>1796000001048</Id>
 						<Name><![CDATA[conector32]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5088,13 +5145,13 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 								<Y>1090.0</Y>
 							</Point>
 							<Point>
-								<X>1390</X>
-								<Y>1330</Y>
+								<X>1390.0</X>
+								<Y>1330.0</Y>
 							</Point>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001014</Id>
+						<Id>1796000001049</Id>
 						<Name><![CDATA[conector33]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5137,7 +5194,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001015</Id>
+						<Id>1796000001050</Id>
 						<Name><![CDATA[conector34]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5180,7 +5237,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001016</Id>
+						<Id>1796000001051</Id>
 						<Name><![CDATA[conector35]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5223,7 +5280,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001017</Id>
+						<Id>1796000001052</Id>
 						<Name><![CDATA[conector36]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5256,8 +5313,8 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</TargetConnectableItemReference>
 						<Points>
 							<Point>
-								<X>1750</X>
-								<Y>1330</Y>
+								<X>1750.0</X>
+								<Y>1330.0</Y>
 							</Point>
 							<Point>
 								<X>1740.0</X>
@@ -5266,7 +5323,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001018</Id>
+						<Id>1796000001053</Id>
 						<Name><![CDATA[conector37]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5303,13 +5360,13 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 								<Y>1090.0</Y>
 							</Point>
 							<Point>
-								<X>1790</X>
-								<Y>1330</Y>
+								<X>1790.0</X>
+								<Y>1330.0</Y>
 							</Point>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001019</Id>
+						<Id>1796000001054</Id>
 						<Name><![CDATA[conector38]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5346,13 +5403,13 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 								<Y>1090.0</Y>
 							</Point>
 							<Point>
-								<X>1790</X>
-								<Y>1330</Y>
+								<X>1790.0</X>
+								<Y>1330.0</Y>
 							</Point>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001020</Id>
+						<Id>1796000001055</Id>
 						<Name><![CDATA[conector39]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5395,7 +5452,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001021</Id>
+						<Id>1796000001056</Id>
 						<Name><![CDATA[conector40]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5438,7 +5495,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001022</Id>
+						<Id>1796000001057</Id>
 						<Name><![CDATA[conector41]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5481,7 +5538,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001023</Id>
+						<Id>1796000001058</Id>
 						<Name><![CDATA[conector42]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5524,7 +5581,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001024</Id>
+						<Id>1796000001059</Id>
 						<Name><![CDATA[conector43]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5567,7 +5624,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001025</Id>
+						<Id>1796000001060</Id>
 						<Name><![CDATA[conector44]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5610,7 +5667,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001026</Id>
+						<Id>1796000001061</Id>
 						<Name><![CDATA[conector45]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5653,7 +5710,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001027</Id>
+						<Id>1796000001062</Id>
 						<Name><![CDATA[conector46]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5696,7 +5753,7 @@ eventoInicioJornada.restart(0.01);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001028</Id>
+						<Id>1796000001063</Id>
 						<Name><![CDATA[conector47]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -8408,7 +8465,7 @@ b.cargador = null;]]></Body>
 							<Type><![CDATA[Storage]]></Type>
 						</Parameter>
 						<Body><![CDATA[// Cada celda de un Storage guarda una sola caja; se deja una de margen
-return s.nFreeCells() > 1;]]></Body>
+return celdasLibres(s) > 1;]]></Body>
 					</Function>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
@@ -8424,10 +8481,20 @@ return s.nFreeCells() > 1;]]></Body>
 						<PublicFlag>false</PublicFlag>
 						<PresentationFlag>true</PresentationFlag>
 						<ShowLabel>true</ShowLabel>
-						<Body><![CDATA[// Los kits de la OF entran al rack de materiales a medida que se liberan celdas. Se cuentan
-// antes de liberar: no depende de cuándo reserva su celda cada Store
-int entran = Math.min(esperaLugarKit.size(), almacenMateriales.nFreeCells() - 1);
-for (int k = 0; k < entran; k++) esperaLugarKit.free(esperaLugarKit.get(0));]]></Body>
+						<Body><![CDATA[// Los kits de la OF entran al rack de materiales a medida que se retiran los que ya están.
+// Se lleva la cuenta propia de kits en el rack: no depende de cuándo el rack arma sus celdas
+// ni de cuándo cada Store reserva la suya
+if (!diagnosticoRacks) {
+	diagnosticoRacks = true;
+	traceln(String.format("Racks al iniciar: materiales capacidad %d, libres %d | calidad %d, libres %d | stock %d, libres %d",
+		almacenMateriales.capacity(), almacenMateriales.nFreeCells(), almacenCalidad.capacity(),
+		almacenCalidad.nFreeCells(), almacenStock.capacity(), almacenStock.nFreeCells()));
+}
+int capacidad = almacenMateriales.capacity() > 0 ? almacenMateriales.capacity() : celdasRackMateriales;
+int entran = Math.min(esperaLugarKit.size(), capacidad - 1 - kitsEnRack);
+for (int k = 0; k < entran; k++) esperaLugarKit.free(esperaLugarKit.get(0));
+// Si quedaron kits esperando y no hay ninguno en el rack, nadie va a disparar la reposición
+if (esperaLugarKit.size() > 0 && kitsEnRack + Math.max(0, entran) == 0) eventoReponerKits.restart(1);]]></Body>
 					</Function>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
@@ -8491,6 +8558,29 @@ b.cajaAlPie = true;
 int k = contadorPie++;
 b.jumpTo(pieX - 20 + (k % 6) * 8, pieY + (k / 6 % 3) * 8, (k / 18 % 4) * 8);]]></Body>
 					</Function>
+					<Function AccessType="public" StaticFunction="false">
+						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+						<ReturnType><![CDATA[int]]></ReturnType>
+						<Id>1796000000656</Id>
+						<Name><![CDATA[celdasLibres]]></Name>
+						<X>3020</X>
+						<Y>40</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Parameter>
+							<Name><![CDATA[s]]></Name>
+							<Type><![CDATA[Storage]]></Type>
+						</Parameter>
+						<Body><![CDATA[// Si el rack todavía no armó sus celdas (no guardó nada y no informa lugar), se toma su capacidad
+int libres = s.nFreeCells();
+if (libres <= 0 && s.size() == 0) libres = s.capacity();
+return libres;]]></Body>
+					</Function>
 				</Functions>
 				<AgentLinks>
 					<AgentLink>
@@ -8553,7 +8643,7 @@ b.jumpTo(pieX - 20 + (k % 6) * 8, pieY + (k / 6 % 3) * 8, (k / 18 % 4) * 8);]]><
 								<Value Class="EntityCodeValue">
 									<IsAgentEntity>true</IsAgentEntity>
 									<EntityEmbeddedObject>
-										<Id>1796000000752</Id>
+										<Id>1796000000794</Id>
 										<ActiveObjectClass>
 											<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 											<ClassName><![CDATA[Balanza]]></ClassName>
@@ -8587,7 +8677,7 @@ b.jumpTo(pieX - 20 + (k % 6) * 8, pieY + (k / 6 % 3) * 8, (k / 18 % 4) * 8);]]><
 										</LocationNameCode>
 										<InitializationType>LOAD_FROM_DATABASE</InitializationType>
 										<InitializationDatabaseTableQuery>
-											<Id>1796000000753</Id>
+											<Id>1796000000798</Id>
 											<TableReference/>
 										</InitializationDatabaseTableQuery>
 										<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
@@ -9828,7 +9918,7 @@ agent.paso++;]]></Code>
 								<Value Class="EntityCodeValue">
 									<IsAgentEntity>true</IsAgentEntity>
 									<EntityEmbeddedObject>
-										<Id>1796000000974</Id>
+										<Id>1796000000955</Id>
 										<ActiveObjectClass>
 											<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 											<ClassName><![CDATA[Operario]]></ClassName>
@@ -9862,7 +9952,7 @@ agent.paso++;]]></Code>
 										</LocationNameCode>
 										<InitializationType>LOAD_FROM_DATABASE</InitializationType>
 										<InitializationDatabaseTableQuery>
-											<Id>1796000000975</Id>
+											<Id>1796000000956</Id>
 											<TableReference/>
 										</InitializationDatabaseTableQuery>
 										<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
@@ -10094,7 +10184,8 @@ agent.paso++;]]></Code>
 								<Name><![CDATA[onEnter]]></Name>
 								<Value Class="CodeValue">
 									<Code><![CDATA[agent.cajaEnRack = true;
-agent.mostrarCaja = true;]]></Code>
+agent.mostrarCaja = true;
+kitsEnRack++;]]></Code>
 								</Value>
 							</Parameter>
 						</Parameters>
@@ -10169,7 +10260,8 @@ agent.mostrarCaja = true;]]></Code>
 							<Parameter>
 								<Name><![CDATA[onExit]]></Name>
 								<Value Class="CodeValue">
-									<Code><![CDATA[eventoReponerKits.restart(0);]]></Code>
+									<Code><![CDATA[kitsEnRack--;
+eventoReponerKits.restart(0);]]></Code>
 								</Value>
 							</Parameter>
 						</Parameters>
@@ -11012,7 +11104,7 @@ llegarAlRack(agent, pieStockX, pieStockY);]]></Code>
 								<Value Class="EntityCodeValue">
 									<IsAgentEntity>true</IsAgentEntity>
 									<EntityEmbeddedObject>
-										<Id>1796000000958</Id>
+										<Id>1796000000939</Id>
 										<ActiveObjectClass>
 											<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 											<ClassName><![CDATA[CamionRetiro]]></ClassName>
@@ -11042,7 +11134,7 @@ llegarAlRack(agent, pieStockX, pieStockY);]]></Code>
 										</LocationNameCode>
 										<InitializationType>LOAD_FROM_DATABASE</InitializationType>
 										<InitializationDatabaseTableQuery>
-											<Id>1796000000959</Id>
+											<Id>1796000000940</Id>
 											<TableReference/>
 										</InitializationDatabaseTableQuery>
 										<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
@@ -11362,7 +11454,7 @@ llegarAlRack(agent, pieStockX, pieStockY);]]></Code>
 								<Value Class="EntityCodeValue">
 									<IsAgentEntity>true</IsAgentEntity>
 									<EntityEmbeddedObject>
-										<Id>1796000000970</Id>
+										<Id>1796000000951</Id>
 										<ActiveObjectClass>
 											<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 											<ClassName><![CDATA[Operario]]></ClassName>
@@ -11396,7 +11488,7 @@ llegarAlRack(agent, pieStockX, pieStockY);]]></Code>
 										</LocationNameCode>
 										<InitializationType>LOAD_FROM_DATABASE</InitializationType>
 										<InitializationDatabaseTableQuery>
-											<Id>1796000000971</Id>
+											<Id>1796000000952</Id>
 											<TableReference/>
 										</InitializationDatabaseTableQuery>
 										<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>

@@ -76,7 +76,7 @@ BLOQUES = [
     ("guardarKit", "Store", 40, Y1, {
         "resourceType": codigo("self.RESOURCE_NONE"),
         "storage": expr("almacenMateriales", "RackUnitAggregator"),
-        "onEnter": accion("agent.cajaEnRack = true;\nagent.mostrarCaja = true;"),
+        "onEnter": accion("agent.cajaEnRack = true;\nagent.mostrarCaja = true;\nkitsEnRack++;"),
     }),
     ("tomarOperario", "Seize", 130, Y2, {
         "seizeFromOnePool": codigo("true"),
@@ -118,7 +118,7 @@ BLOQUES = [
         "resourceType": codigo("self.RESOURCE_NONE"),
         "destinationType": codigo("self.DEST_AGENT"),
         "destinationAgent": expr("agent.opActual", "Agent"),
-        "onExit": accion("eventoReponerKits.restart(0);"),
+        "onExit": accion("kitsEnRack--;\neventoReponerKits.restart(0);"),
     }),
     ("liberarRack", "Release", 720, Y1, {
         "releaseMode": codigo("self.SPECIFIED_RESOURCES"),
