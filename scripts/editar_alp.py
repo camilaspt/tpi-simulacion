@@ -31,8 +31,11 @@ import modelo_java as J  # noqa: E402
 import desarrollar_modelo as D  # noqa: E402
 
 # Elementos que generaba el script y ya no se usan
-VARIABLES_OBSOLETAS = {"rackCalidadX", "rackCalidadY", "contadorRackCalidad", "despachoX", "despachoY"}
-FUNCIONES_OBSOLETAS = {"ubicarEnRackCalidad", "liberarCargador"}
+VARIABLES_OBSOLETAS = {"rackCalidadX", "rackCalidadY", "contadorRackCalidad", "despachoX", "despachoY",
+                       "kitsEnRack", "diagnosticoRacks"}
+FUNCIONES_OBSOLETAS = {"ubicarEnRackCalidad", "liberarCargador", "reponerKits"}
+EVENTOS_OBSOLETOS = {"eventoReponerKits"}
+BLOQUES_OBSOLETOS = {"esperaLugarKit"}
 # Gráficos agregados por el script en versiones anteriores (se reemplazan por las plantillas)
 GRAFICOS_VIEJOS = re.compile(r"^(mesa\d+|mesaInspector|rackDeMateriales.*|rackDeCalidad.*|stockProductoTerminado.*)$")
 PLANTILLAS = {"table": "Figure3D", "box_1_closed": "Figure3D", "storage": "RackStorage"}
@@ -134,6 +137,8 @@ class Editor(D.Generador):
         self.sincronizar_funciones(self.operario, J.FUNCIONES_OPERARIO)
         eventos = self.hijo(self.main, "Events")
         actuales = self.por_nombre(eventos, "Event")
+        for n in EVENTOS_OBSOLETOS & set(actuales):
+            eventos.removeChild(actuales.pop(n))
         for i, (n, accion) in enumerate(J.EVENTOS):
             if n in actuales:
                 self.hijo(actuales[n], "Action").firstChild.data = accion
@@ -145,6 +150,8 @@ class Editor(D.Generador):
     def sincronizar_flujo(self):
         bloques = self.hijo(self.main, "EmbeddedObjects")
         actuales = self.por_nombre(bloques, "EmbeddedObject")
+        for n in BLOQUES_OBSOLETOS & set(actuales):
+            bloques.removeChild(actuales.pop(n))
         # Las entidades (Balanza / Operario) se toman de los bloques que ya las crean
         entidades = {}
         for eo in actuales.values():

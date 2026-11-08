@@ -30,7 +30,8 @@ MHL = "com.anylogic.libraries.material_handling"
 GENERICOS = {
     "Source": "1412336242928", "Sink": "1412336242929", "Delay": "1412336242930",
     "SelectOutput": "1412336242931", "Seize": "1412336243147", "Release": "1412336243154",
-    "Wait": "1412336243169", "ResourcePool": "1412336243135",
+    "Wait": "1412336243169", "ResourcePool": "1412336243135", "Queue": "1412336242932",
+    "RestrictedAreaStart": "1412336243130", "RestrictedAreaEnd": "1412336243129",
     "Store": "1608133547886", "Retrieve": "1608135007245",
 }
 PAQUETES = {c: MHL if c in ("Store", "Retrieve") else PML for c in GENERICOS}
@@ -69,14 +70,18 @@ BLOQUES = [
     }),
     # Racks (Space Markup -> Storage) con la Material Handling Library, sin recursos: la caja
     # entra y sale de la celda al instante, así que no cambian los tiempos del proceso.
-    # Cada celda guarda una caja: los kits de la OF esperan acá hasta que haya celda (reponerKits)
-    ("esperaLugarKit", "Wait", 40, 920, {
+    # Cada celda guarda una caja: los kits de la OF esperan en la cola y el área restringida deja
+    # entrar al rack tantos como celdas tiene (menos una de margen); sale uno al retirarlo
+    ("colaKits", "Queue", 40, 860, {
         "maximumCapacity": codigo("true"),
+    }),
+    ("areaKitsInicio", "RestrictedAreaStart", 40, 930, {
+        "capacity": expr("celdasRackMateriales - 1", "int", []),
     }),
     ("guardarKit", "Store", 40, Y1, {
         "resourceType": codigo("self.RESOURCE_NONE"),
         "storage": expr("almacenMateriales", "RackUnitAggregator"),
-        "onEnter": accion("agent.cajaEnRack = true;\nagent.mostrarCaja = true;\nkitsEnRack++;"),
+        "onEnter": accion("agent.cajaEnRack = true;\nagent.mostrarCaja = true;"),
     }),
     ("tomarOperario", "Seize", 130, Y2, {
         "seizeFromOnePool": codigo("true"),
@@ -118,7 +123,9 @@ BLOQUES = [
         "resourceType": codigo("self.RESOURCE_NONE"),
         "destinationType": codigo("self.DEST_AGENT"),
         "destinationAgent": expr("agent.opActual", "Agent"),
-        "onExit": accion("kitsEnRack--;\neventoReponerKits.restart(0);"),
+    }),
+    ("areaKitsFin", "RestrictedAreaEnd", 700, 940, {
+        "restrictedAreaStart": expr("areaKitsInicio", "RestrictedAreaStart", []),
     }),
     ("liberarRack", "Release", 720, Y1, {
         "releaseMode": codigo("self.SPECIFIED_RESOURCES"),
@@ -298,8 +305,9 @@ BLOQUES = [
 
 # (bloque destino, puerto de entrada, bloque origen, puerto de salida)
 CONEXIONES = [
-    ("esperaLugarKit", "in", "fuenteOF", "out"),
-    ("guardarKit", "in", "esperaLugarKit", "out"),
+    ("colaKits", "in", "fuenteOF", "out"),
+    ("areaKitsInicio", "in", "colaKits", "out"),
+    ("guardarKit", "in", "areaKitsInicio", "out"),
     ("tomarOperario", "in", "guardarKit", "out"),
     ("caminar", "in", "tomarOperario", "out"),
     ("masTramos", "in", "caminar", "out"),
@@ -308,7 +316,8 @@ CONEXIONES = [
     ("tomarRack", "in", "irAlRack", "outT"),
     ("retirarMateriales", "in", "tomarRack", "out"),
     ("retirarKit", "in", "retirarMateriales", "out"),
-    ("liberarRack", "in", "retirarKit", "out"),
+    ("areaKitsFin", "in", "retirarKit", "out"),
+    ("liberarRack", "in", "areaKitsFin", "out"),
     ("caminar", "in", "liberarRack", "out"),
     ("tarea", "in", "irAlRack", "outF"),
     ("liberarOperario", "in", "tarea", "out"),
@@ -978,7 +987,8 @@ def arnes(destino):
     m += "  public RectangularNode zonaIngreso;\n"
     m += "  public Level level;\n"
     m += "".join(f"  public Storage {n};\n" for n in ALMACENES)
-    m += "".join(f"  public {c}<{'Agent' if c == 'ResourcePool' else TIPO_AGENTE.get(n, 'Balanza')}> {n};\n"
+    # Con el nombre completo: Queue choca con java.util.Queue
+    m += "".join(f"  public {PAQUETES[c]}.{c}<{'Agent' if c == 'ResourcePool' else TIPO_AGENTE.get(n, 'Balanza')}> {n};\n"
                  for n, c, _, _, _ in BLOQUES)
     m += metodos(J.FUNCIONES_MAIN)
     m += f"  void startup() {{\n{J.STARTUP}\n  }}\n"

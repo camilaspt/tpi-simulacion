@@ -95,9 +95,7 @@ VARIABLES_MAIN = [
     ("pieStockX", "double", "1440"),
     ("pieStockY", "double", "395"),
     ("contadorPie", "int", "0"),
-    ("kitsEnRack", "int", "0"),
     ("celdasRackMateriales", "int", "60"),
-    ("diagnosticoRacks", "boolean", "false"),
     # Recorrido del camión por el camino de afuera y andén frente a la puerta del depósito
     ("camionEntradaX", "double", "1720"),
     ("camionEntradaY", "double", "660"),
@@ -661,7 +659,6 @@ if (reglaSecuencia == 3) {
 colaLiberacion.addAll(orden);
 liberadasSemana += orden.size();
 fuenteOF.inject(orden.size());
-eventoReponerKits.restart(0);
 """)
 
 funcion("prepararUnidad", "void", [("b", "Balanza")], """
@@ -675,7 +672,7 @@ b.tIngreso = time();
 b.diaOF = diaGlobal;
 b.ordenLiberacion = contadorLiberadas++;
 enProceso++;
-// La caja del kit entra al rack de materiales cuando hay una celda libre (reponerKits) y queda
+// La caja del kit entra al rack de materiales cuando hay una celda libre (areaKitsInicio) y queda
 // ahí hasta que el operario la retira; mientras espera lugar no se dibuja
 asegurarEspacio(b);
 b.color = colorModelo(m);
@@ -727,23 +724,6 @@ funcion("celdasLibres", "int", [("s", "Storage")], """
 int libres = s.nFreeCells();
 if (libres <= 0 && s.size() == 0) libres = s.capacity();
 return libres;
-""")
-
-funcion("reponerKits", "void", [], """
-// Los kits de la OF entran al rack de materiales a medida que se retiran los que ya están.
-// Se lleva la cuenta propia de kits en el rack: no depende de cuándo el rack arma sus celdas
-// ni de cuándo cada Store reserva la suya
-if (!diagnosticoRacks) {
-	diagnosticoRacks = true;
-	traceln(String.format("Racks al iniciar: materiales capacidad %d, libres %d | calidad %d, libres %d | stock %d, libres %d",
-		almacenMateriales.capacity(), almacenMateriales.nFreeCells(), almacenCalidad.capacity(),
-		almacenCalidad.nFreeCells(), almacenStock.capacity(), almacenStock.nFreeCells()));
-}
-int capacidad = almacenMateriales.capacity() > 0 ? almacenMateriales.capacity() : celdasRackMateriales;
-int entran = Math.min(esperaLugarKit.size(), capacidad - 1 - kitsEnRack);
-for (int k = 0; k < entran; k++) esperaLugarKit.free(esperaLugarKit.get(0));
-// Si quedaron kits esperando y no hay ninguno en el rack, nadie va a disparar la reposición
-if (esperaLugarKit.size() > 0 && kitsEnRack + Math.max(0, entran) == 0) eventoReponerKits.restart(1);
 """)
 
 funcion("decidirRack", "boolean", [("b", "Balanza"), ("s", "Storage")], """
@@ -1387,5 +1367,4 @@ EVENTOS = [
     ("eventoCamion1", "llegaCamion.inject(1);"),
     ("eventoCamion2", "llegaCamion.inject(1);"),
     ("eventoSalidaCamion", "despacharCamion();"),
-    ("eventoReponerKits", "reponerKits();"),
 ]
