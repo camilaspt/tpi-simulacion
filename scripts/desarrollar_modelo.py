@@ -41,6 +41,7 @@ PAQUETES = {c: MHL if c in ("Store", "Retrieve") else PML for c in GENERICOS}
 # ---------------------------------------------------------------------------
 AG = [("agent", "Balanza")]
 AG_UNIT = [("agent", "Balanza"), ("unit", "Agent")]
+CAMION = [("agent", "CamionRetiro")]
 
 
 def codigo(c, kind=None):
@@ -182,19 +183,76 @@ BLOQUES = [
         "storage": expr("almacenStock", "RackUnitAggregator"),
         "onEnter": accion("agent.cajaEnRack = true;\nalIngresarStock(agent);"),
     }),
-    # Producto terminado esperando el despacho (hoy al cierre de cada jornada)
+    # Producto terminado esperando el camión (lo libera iniciarCarga cuando llega)
     ("esperaDespacho", "Wait", 1500, Y2, {
         "maximumCapacity": codigo("true"),
     }),
-    ("retirarStock", "Retrieve", 1600, Y2, {
+    # Carga: un cargador de depósito va al rack, retira la caja, la lleva al camión y la sube
+    ("tomarCargador", "Seize", 1600, Y2, {
+        "seizeFromOnePool": codigo("true"),
+        "resourcePool": expr("cargadores", "ResourcePool"),
+        "maximumCapacity": codigo("true"),
+        "onSeizeUnit": accion("alTomarCargador(agent, (Operario) unit);", AG_UNIT),
+    }),
+    ("irPorCaja", "Delay", 1700, Y2, {
+        "delayTime": tiempo("caminarCargador(agent, stockFrenteX, stockFrenteY)"),
+        "maximumCapacity": codigo("true"),
+        "onExit": accion("finCaminataCargador(agent);"),
+    }),
+    ("retirarStock", "Retrieve", 1800, Y2, {
         "resourceType": codigo("self.RESOURCE_NONE"),
-        "destinationType": codigo("self.DEST_XYZ"),
-        "destinationX": expr("despachoX", "double"),
-        "destinationY": expr("despachoY", "double"),
-        "destinationZ": expr("0", "double"),
+        "destinationType": codigo("self.DEST_AGENT"),
+        "destinationAgent": expr("agent.cargador", "Agent"),
         "onExit": accion("agent.cajaEnRack = false;"),
     }),
-    ("stock", "Sink", 1700, Y2, {}),
+    ("llevarAlCamion", "Delay", 1900, Y2, {
+        "delayTime": tiempo("caminarCargador(agent, andenX, andenY - 30)"),
+        "maximumCapacity": codigo("true"),
+        "onExit": accion("finCaminataCargador(agent);"),
+    }),
+    ("subirAlCamion", "Delay", 2000, Y2, {
+        "delayTime": tiempo("tiempoCargaCajaMin"),
+        "maximumCapacity": codigo("true"),
+        "onEnter": accion("subirCaja(agent);", [("agent", "Balanza"), ("delayTime", "double")]),
+    }),
+    ("liberarCargador", "Release", 2100, Y2, {
+        "releaseMode": codigo("self.SPECIFIED_RESOURCES"),
+        "resources": expr("{ cargadores }", "ResourcePool[]"),
+        "onEnter": accion("liberarCargador(agent);"),
+    }),
+    # Las cajas cargadas esperan arriba del camión y se van con él (despacharCamion)
+    ("enCamion", "Wait", 2200, Y2, {
+        "maximumCapacity": codigo("true"),
+        "onEnter": accion("cajaCargada();"),
+    }),
+    ("stock", "Sink", 2300, Y2, {}),
+    # Camión: llega por el camino de afuera, espera en el andén mientras lo cargan y se va
+    ("llegaCamion", "Source", 1500, 1400, {
+        "arrivalType": codigo("self.MANUAL"),
+        "newEntity": ("Entity", "CamionRetiro", None, None),
+        "onAtExit": accion("prepararCamion((CamionRetiro) agent);", [("agent", "Agent")]),
+    }),
+    ("irAlAnden", "Delay", 1600, 1400, {
+        "delayTime": tiempo("moverCamion(agent, andenX, andenY)", CAMION),
+        "maximumCapacity": codigo("true"),
+    }),
+    ("cargandoCamion", "Wait", 1700, 1400, {
+        "maximumCapacity": codigo("true"),
+        "onEnter": accion("alLlegarCamion(agent);", CAMION),
+    }),
+    ("salirDelPredio", "Delay", 1800, 1400, {
+        "delayTime": tiempo("moverCamion(agent, camionSalidaX, camionSalidaY)", CAMION),
+        "maximumCapacity": codigo("true"),
+    }),
+    ("salidaCamion", "Sink", 1900, 1400, {}),
+    # Cargadores: empleados de depósito (de los ya incluidos en costos), animados como operarios
+    ("cargadores", "ResourcePool", 1600, 1250, {
+        "type": codigo("self.RESOURCE_STATIC"),
+        "capacity": expr("cargadoresDeposito", "int", []),
+        "newUnit": ("Entity", "Operario", None, None),
+        "forceStatisticsCollection": codigo("true"),
+        "onNewUnit": accion("prepararCargador(unit);", [("unit", "Operario")]),
+    }),
     ("operarios", "ResourcePool", 130, 1250, {
         "capacity": expr("cantidadOperarios()", "int", []),
         "newUnit": ("Entity", "Operario", None, None),
@@ -244,9 +302,23 @@ CONEXIONES = [
     ("liberarInspector", "in", "inspeccion", "out"),
     ("guardarStock", "in", "liberarInspector", "out"),
     ("esperaDespacho", "in", "guardarStock", "out"),
-    ("retirarStock", "in", "esperaDespacho", "out"),
-    ("stock", "in", "retirarStock", "out"),
+    ("tomarCargador", "in", "esperaDespacho", "out"),
+    ("irPorCaja", "in", "tomarCargador", "out"),
+    ("retirarStock", "in", "irPorCaja", "out"),
+    ("llevarAlCamion", "in", "retirarStock", "out"),
+    ("subirAlCamion", "in", "llevarAlCamion", "out"),
+    ("liberarCargador", "in", "subirAlCamion", "out"),
+    ("enCamion", "in", "liberarCargador", "out"),
+    ("stock", "in", "enCamion", "out"),
+    ("irAlAnden", "in", "llegaCamion", "out"),
+    ("cargandoCamion", "in", "irAlAnden", "out"),
+    ("salirDelPredio", "in", "cargandoCamion", "out"),
+    ("salidaCamion", "in", "salirDelPredio", "out"),
 ]
+
+# Tipo de agente de cada bloque que no trabaja con Balanza
+TIPO_AGENTE = {n: "CamionRetiro" for n in ("llegaCamion", "irAlAnden", "cargandoCamion", "salirDelPredio",
+                                            "salidaCamion")}
 
 ALTO_PAREDES = 48  # 3 m (16 px = 1 m)
 
@@ -428,7 +500,7 @@ class Generador:
         self.el(ref, "ItemName", GENERICOS[clase], cdata=True)
         if clase not in ("Source", "ResourcePool"):
             val = self.el(gps, "GenericParameterSubstituteValue", attrs={"Class": "CodeValue"})
-            self.el(val, "Code", "Balanza", cdata=True)
+            self.el(val, "Code", TIPO_AGENTE.get(name, "Balanza"), cdata=True)
         ps = self.el(eo, "Parameters")
         for pname, (vclass, code, unit, _) in params.items():
             par = self.el(ps, "Parameter")
@@ -860,6 +932,8 @@ def arnes(destino):
         "  public String modelo = \"AILA 30KG\";\n  public void set_modelo(String v) { modelo = v; }\n"
         + campos(J.VARIABLES_BALANZA)
         + "  void presentacion() { Color c = color; boolean v = mostrarCaja; }\n}\n", encoding="utf-8")
+    (pkg / "CamionRetiro.java").write_text(imports + "public abstract class CamionRetiro extends Agent {\n}\n",
+                                           encoding="utf-8")
     (pkg / "Operario.java").write_text(imports + "public abstract class Operario extends Agent {\n"
         "  public Especialidad especialidad = Especialidad.Armador;\n"
         + campos(J.VARIABLES_OPERARIO) + metodos(J.FUNCIONES_OPERARIO)
@@ -872,11 +946,8 @@ def arnes(destino):
     m += "  public RectangularNode zonaIngreso;\n"
     m += "  public Level level;\n"
     m += "".join(f"  public Storage {n};\n" for n in ALMACENES)
-    tipos = {"Source": "Source<Balanza>", "Seize": "Seize<Balanza>", "Delay": "Delay<Balanza>",
-             "Release": "Release<Balanza>", "SelectOutput": "SelectOutput<Balanza>", "Wait": "Wait<Balanza>",
-             "Sink": "Sink<Balanza>", "ResourcePool": "ResourcePool<Agent>",
-             "Store": "Store<Balanza>", "Retrieve": "Retrieve<Balanza>"}
-    m += "".join(f"  public {tipos[c]} {n};\n" for n, c, _, _, _ in BLOQUES)
+    m += "".join(f"  public {c}<{'Agent' if c == 'ResourcePool' else TIPO_AGENTE.get(n, 'Balanza')}> {n};\n"
+                 for n, c, _, _, _ in BLOQUES)
     m += metodos(J.FUNCIONES_MAIN)
     m += f"  void startup() {{\n{J.STARTUP}\n  }}\n"
     for n, a in J.EVENTOS:

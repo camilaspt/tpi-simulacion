@@ -50,6 +50,12 @@ PARAMETROS = [
     ("valorHoraNormal", "double", "6500", "Costo hora normal por empleado ($/h, con cargas)"),
     ("recargoFinDeSemana", "double", "2", "Recargo de la hora extra de fin de semana"),
     ("costoReorganizacion", "double", "0", "Costo de la reorganización ($)"),
+    # Despacho: un camión retira el stock dos veces por jornada (no en la recuperación)
+    ("horaCamion1Min", "double", "180", "Llegada del primer camión (min desde el inicio de la jornada)"),
+    ("horaCamion2Min", "double", "360", "Llegada del segundo camión (min desde el inicio de la jornada)"),
+    ("cargadoresDeposito", "int", "3", "Empleados de depósito que cargan el camión (de los de depósito)"),
+    ("tiempoCargaCajaMin", "double", "0.5", "Tiempo para subir una caja al camión (min)"),
+    ("velocidadCamion", "double", "2.8", "Velocidad del camión en el predio (m/s)"),
     # Réplicas y resultados
     ("nombreEscenario", "String", '"Escenario actual"', "Nombre del escenario (para los resultados)"),
     ("semilla", "long", "0", "Semilla (0 = aleatoria; la usada queda registrada)"),
@@ -83,8 +89,18 @@ VARIABLES_MAIN = [
     ("inspectorY", "double", "420"),
     ("stockFrenteX", "double", "1528"),
     ("stockFrenteY", "double", "392"),
-    ("despachoX", "double", "1430"),
-    ("despachoY", "double", "600"),
+    # Recorrido del camión por el camino de afuera y andén frente a la puerta del depósito
+    ("camionEntradaX", "double", "1720"),
+    ("camionEntradaY", "double", "660"),
+    ("andenX", "double", "1432"),
+    ("andenY", "double", "640"),
+    ("camionSalidaX", "double", "940"),
+    ("camionSalidaY", "double", "660"),
+    ("camionActual", "CamionRetiro", "null"),
+    ("colaCamiones", "java.util.LinkedList<CamionRetiro>", "new java.util.LinkedList<CamionRetiro>()"),
+    ("cajasPorCargar", "int", "0"),
+    ("cajasEnCamion", "int", "0"),
+    ("contadorCargadores", "int", "0"),
     ("paredNavesX", "double", "1281.6"),
     ("puertaX", "double", "1281.6"),
     ("puertaY", "double", "515"),
@@ -202,6 +218,7 @@ VARIABLES_BALANZA = [
     ("color", "Color", "new Color(160, 120, 60)"),
     ("mostrarCaja", "boolean", "true"),
     ("cajaEnRack", "boolean", "false"),
+    ("cargador", "Operario", "null"),
 ]
 
 VARIABLES_OPERARIO = [
@@ -405,7 +422,7 @@ funcion("registrarOperario", "void", [("o", "Operario")], """
 construirPlanta();
 o.idOp = ops.size();
 ops.add(o);
-o.setSpeed(velocidadOperario);
+o.setSpeed(velocidadOperario, MPS);
 if (o.idOp < nPuestos) {
 	// Titular de un puesto: su especialidad sale del tipo de puesto
 	int p = o.idOp;
@@ -476,6 +493,8 @@ asignarCoberturas();
 ubicarOperarios();
 liberarUnidadesOF();
 eventoCierreJornada.restart(duracionTurnoMin);
+eventoCamion1.restart(horaCamion1Min);
+eventoCamion2.restart(horaCamion2Min);
 """)
 
 funcion("asignarAsistencia", "void", [("prob", "double")], """
@@ -670,7 +689,7 @@ if (metros <= 0.05 || minutos <= 0) {
 	b.jumpTo(x, y + 6, alturaCajaEnMano);
 	return;
 }
-b.setSpeed(metros / (minutos * 60));
+b.setSpeed(metros / (minutos * 60), MPS);
 b.moveTo(x, y + 6, alturaCajaEnMano);
 """)
 
@@ -681,6 +700,93 @@ if (p >= 0) b.jumpTo(pX[p] - mesaOffset, pY[p], alturaMesa);
 
 funcion("llevarAInspeccion", "void", [("b", "Balanza")], """
 b.jumpTo(inspectorX, inspectorY, alturaMesa);
+""")
+
+# --- Despacho: camión y cargadores de depósito -------------------------------
+funcion("prepararCamion", "void", [("c", "CamionRetiro")], """
+asegurarEspacio(c);
+c.jumpTo(camionEntradaX, camionEntradaY);
+""")
+
+funcion("moverCamion", "double", [("c", "CamionRetiro"), ("x", "double"), ("y", "double")], """
+// Devuelve los minutos del trayecto: lo usa el Delay como tiempo de viaje
+double metros = Math.hypot(x - c.getX(), y - c.getY()) / pxPorMetro;
+c.setSpeed(velocidadCamion, MPS);
+if (metros > 0.05) c.moveTo(x, y);
+return metros / velocidadCamion / 60.0;
+""")
+
+funcion("alLlegarCamion", "void", [("c", "CamionRetiro")], """
+// Si otro camión todavía está cargando, este espera su turno en el andén
+if (camionActual == null) iniciarCarga(c);
+else colaCamiones.add(c);
+""")
+
+funcion("iniciarCarga", "void", [("c", "CamionRetiro")], """
+// Se carga lo que hay en el rack de stock al llegar; lo que entra después espera al próximo camión
+camionActual = c;
+cajasEnCamion = 0;
+cajasPorCargar = esperaDespacho.size();
+if (cajasPorCargar == 0) eventoSalidaCamion.restart(0);
+else esperaDespacho.freeAll();
+""")
+
+funcion("cajaCargada", "void", [], """
+// En un evento propio: la salida libera agentes de otros bloques
+if (--cajasPorCargar <= 0) eventoSalidaCamion.restart(0);
+""")
+
+funcion("despacharCamion", "void", [], """
+if (camionActual == null) return;
+enCamion.freeAll(); // las cajas se van con el camión
+CamionRetiro c = camionActual;
+camionActual = null;
+cargandoCamion.free(c);
+if (!colaCamiones.isEmpty()) iniciarCarga(colaCamiones.removeFirst());
+""")
+
+funcion("prepararCargador", "void", [("o", "Operario")], """
+// Empleados de depósito (de los ya contados en costos), no forman parte de los operarios de línea
+asegurarEspacio(o);
+o.especialidad = Especialidad.Polivalente;
+o.presente = true;
+o.estado = 0;
+o.setSpeed(velocidadOperario, MPS);
+o.jumpTo(stockFrenteX - 20 + (contadorCargadores++ % 4) * 14, stockFrenteY + 26);
+""")
+
+funcion("alTomarCargador", "void", [("b", "Balanza"), ("o", "Operario")], """
+b.cargador = o;
+o.estado = 1;
+""")
+
+funcion("caminarCargador", "double", [("b", "Balanza"), ("x", "double"), ("y", "double")], """
+// El cargador camina en línea recta; si ya retiró la caja, la lleva en la mano
+Operario o = b.cargador;
+double metros = Math.hypot(x - o.getX(), y - o.getY()) / pxPorMetro;
+double minutos = metros / velocidadOperario / 60.0;
+if (metros > 0.05) o.moveTo(x, y);
+moverCaja(b, x, y, minutos);
+o.estado = 1;
+return minutos;
+""")
+
+funcion("finCaminataCargador", "void", [("b", "Balanza")], """
+Operario o = b.cargador;
+if (o.isMoving()) o.jumpTo(o.getTargetX(), o.getTargetY());
+if (!b.cajaEnRack) b.jumpTo(o.getX(), o.getY() + 6, alturaCajaEnMano);
+""")
+
+funcion("subirCaja", "void", [("b", "Balanza")], """
+// La caja queda apilada en la caja del camión
+b.cargador.estado = 2;
+int k = cajasEnCamion++;
+b.jumpTo(andenX - 28 + (k % 8) * 8, andenY - 6 + (k / 8 % 2) * 8, 16 + (k / 16) * 8);
+""")
+
+funcion("liberarCargador", "void", [("b", "Balanza")], """
+b.cargador.estado = 0;
+b.cargador = null;
 """)
 
 # --- Ruteo y asignación de operarios ----------------------------------------
@@ -851,8 +957,6 @@ for (Balanza b : ultimo)
 		b.inspeccionar = true;
 		b.posMuestra = 2;
 	}
-// Primero se despacha el stock, así no salen también las unidades que entran ahora desde calidad
-esperaDespacho.freeAll();
 rackCalidad.freeAll();
 """)
 
@@ -1214,4 +1318,7 @@ EVENTOS = [
     ("eventoInicioJornada", "iniciarJornada();"),
     ("eventoCierreJornada", "if (enRecuperacion) finRecuperacion();\nelse cerrarJornada();"),
     ("eventoFinRecuperacion", "finRecuperacion();"),
+    ("eventoCamion1", "llegaCamion.inject(1);"),
+    ("eventoCamion2", "llegaCamion.inject(1);"),
+    ("eventoSalidaCamion", "despacharCamion();"),
 ]

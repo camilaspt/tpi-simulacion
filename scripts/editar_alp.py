@@ -31,7 +31,7 @@ import modelo_java as J  # noqa: E402
 import desarrollar_modelo as D  # noqa: E402
 
 # Elementos que generaba el script y ya no se usan
-VARIABLES_OBSOLETAS = {"rackCalidadX", "rackCalidadY", "contadorRackCalidad"}
+VARIABLES_OBSOLETAS = {"rackCalidadX", "rackCalidadY", "contadorRackCalidad", "despachoX", "despachoY"}
 FUNCIONES_OBSOLETAS = {"ubicarEnRackCalidad"}
 # Gráficos agregados por el script en versiones anteriores (se reemplazan por las plantillas)
 GRAFICOS_VIEJOS = re.compile(r"^(mesa\d+|mesaInspector|rackDeMateriales.*|rackDeCalidad.*|stockProductoTerminado.*)$")
@@ -149,6 +149,18 @@ class Editor(D.Generador):
                     cls = valor.getElementsByTagName("ClassName")
                     if cls:
                         entidades.setdefault(cls[0].firstChild.data, valor.cloneNode(True))
+        # Tipos de agente nuevos (CamionRetiro): se copia la entidad de Balanza y se la apunta a ese tipo
+        for tipo in set(D.TIPO_AGENTE.values()) - set(entidades):
+            clase = self.clase(tipo)
+            generico = self.hijo(self.hijo(clase, "GenericParameter"), "Id").firstChild.data
+            valor = entidades["Balanza"].cloneNode(True)
+            for c in valor.getElementsByTagName("ClassName"):
+                c.firstChild.data = tipo
+            valor.getElementsByTagName("ItemName")[0].firstChild.data = generico
+            pars = valor.getElementsByTagName("Parameters")[0]
+            for par in self.hijos(pars):
+                pars.removeChild(par)
+            entidades[tipo] = valor
         clases, posiciones = {}, {}
         for name, cls, x, y, params in D.BLOQUES:
             nuevo = self.nuevo(self.bloque, name, cls, x, y, params, entidades)
