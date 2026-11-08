@@ -67,10 +67,22 @@ VARIABLES_MAIN = [
     ("T_EMBALAJE", "int", "3"),
     # Geometría de la planta (píxeles; la regla de escala da 16 px = 1 m)
     ("pxPorMetro", "double", "16"),
-    ("origenPuestosX", "double", "995"),
-    ("origenPuestosY", "double", "205"),
-    ("separacionPuestosX", "double", "52"),
-    ("separacionLineasY", "double", "58"),
+    # Puestos: columnas de 6 mesas pegadas a lo largo del eje Y. (pX, pY) es el lugar
+    # del operario, al costado derecho de su mesa; la mesa está mesaOffset px a la izquierda
+    ("origenPuestosX", "double", "997"),
+    ("origenPuestosY", "double", "235"),
+    ("mesasPorColumna", "int", "6"),
+    ("separacionColumnas", "double", "52"),
+    ("largoMesa", "double", "40"),
+    ("mesaOffset", "double", "17"),
+    # Cajas de producto (alturas en px sobre el piso)
+    ("alturaMesa", "double", "14"),
+    ("alturaCajaEnMano", "double", "12"),
+    ("rackCalidadX", "double", "1500"),
+    ("rackCalidadY", "double", "482"),
+    ("inspectorX", "double", "1500"),
+    ("inspectorY", "double", "439"),
+    ("contadorRackCalidad", "int", "0"),
     ("paredNavesX", "double", "1281.6"),
     ("puertaX", "double", "1281.6"),
     ("puertaY", "double", "515"),
@@ -184,6 +196,9 @@ VARIABLES_BALANZA = [
     ("posMuestra", "int", "0"),
     ("rechazada", "boolean", "false"),
     ("tIngresoRack", "double", "0"),
+    # Caja que representa a la unidad en la animación
+    ("color", "Color", "new Color(160, 120, 60)"),
+    ("mostrarCaja", "boolean", "false"),
 ]
 
 VARIABLES_OPERARIO = [
@@ -264,21 +279,27 @@ if (nPuestos >= pLinea.length || linea >= columnasLinea.length) {
 	traceln("Se alcanzó el máximo de puestos del modelo; se ignora un puesto adicional.");
 	return;
 }
-int c = columnasLinea[linea]++;
+columnasLinea[linea]++;
 int p = nPuestos++;
 pLinea[p] = linea;
 pTipo[p] = tipo;
 pNum[p] = num;
-// Hasta 5 puestos en la fila de la línea; los adicionales van en una segunda fila
-if (c < 5) {
-	pX[p] = origenPuestosX + c * separacionPuestosX;
-	pY[p] = origenPuestosY + linea * separacionLineasY;
-} else {
-	pX[p] = origenPuestosX + (c - 5) * separacionPuestosX + separacionPuestosX / 2;
-	pY[p] = origenPuestosY + linea * separacionLineasY + 24;
-}
+pX[p] = posicionPuestoX(p);
+pY[p] = posicionPuestoY(p);
 pTitular[p] = -1;
 pAtiende[p] = -1;
+""")
+
+# La misma fórmula la usa desarrollar_modelo.py para dibujar las mesas 3D
+funcion("posicionPuestoX", "double", [("p", "int")], """
+// Columnas de mesasPorColumna mesas; más de 6 columnas no entran en la nave, así que
+// los puestos siguientes se intercalan entre las columnas existentes
+int columna = p / mesasPorColumna;
+return origenPuestosX + (columna % 6) * separacionColumnas + (columna / 6) * separacionColumnas / 2;
+""")
+
+funcion("posicionPuestoY", "double", [("p", "int")], """
+return origenPuestosY + (p % mesasPorColumna) * largoMesa;
 """)
 
 funcion("pasoReceta", "void", [("m", "int"), ("tipo", "int"), ("num", "int"), ("tiempo", "double")], """
@@ -553,11 +574,11 @@ if (pTipo[p] == T_ARMADO || coberturaEntreEspecialidades) {
 return mejor;
 """)
 
-funcion("asegurarEspacio", "void", [("o", "Operario")], """
-// El ResourcePool crea a los operarios sin espacio asignado (solo los ubica al moverlos él);
+funcion("asegurarEspacio", "void", [("a", "Agent")], """
+// El ResourcePool y la Source crean a operarios y unidades sin espacio asignado;
 // como el modelo los mueve por código, se los incorpora al espacio y nivel de Main
-if (o.getSpace() == null) o.setSpace(this);
-if (o.getLevel() == null) o.setLevel(level);
+if (a.getSpace() == null) a.setSpace(this);
+if (a.getLevel() == null) a.setLevel(level);
 """)
 
 funcion("ubicarOperarios", "void", [], """
@@ -618,6 +639,51 @@ b.tIngreso = time();
 b.diaOF = diaGlobal;
 b.ordenLiberacion = contadorLiberadas++;
 enProceso++;
+// La caja aparece recién cuando el operario retira los materiales del rack
+asegurarEspacio(b);
+b.color = colorModelo(m);
+b.mostrarCaja = false;
+b.jumpTo(rackX, rackY, alturaCajaEnMano);
+""")
+
+funcion("colorModelo", "Color", [("m", "int")], """
+Color[] colores = { new Color(37, 99, 235), new Color(234, 88, 12), new Color(22, 163, 74),
+	new Color(147, 51, 234), new Color(220, 38, 38) };
+return colores[m];
+""")
+
+funcion("recogerCaja", "void", [("b", "Balanza")], """
+// El operario sale del rack con la caja de materiales en la mano
+b.mostrarCaja = true;
+b.jumpTo(b.opActual.getX(), b.opActual.getY() + 6, alturaCajaEnMano);
+""")
+
+funcion("moverCaja", "void", [("b", "Balanza"), ("x", "double"), ("y", "double"), ("minutos", "double")], """
+// La caja llega a las manos del operario al mismo tiempo que él: desde el rack la lleva
+// encima; entre pasos viaja desde la mesa anterior
+if (!b.mostrarCaja) return;
+double metros = Math.hypot(x - b.getX(), y + 6 - b.getY()) / pxPorMetro;
+if (metros <= 0.05 || minutos <= 0) {
+	b.jumpTo(x, y + 6, alturaCajaEnMano);
+	return;
+}
+b.setSpeed(metros / (minutos * 60));
+b.moveTo(x, y + 6, alturaCajaEnMano);
+""")
+
+funcion("dejarCajaEnMesa", "void", [("b", "Balanza")], """
+int p = b.puestoActual;
+if (b.mostrarCaja && p >= 0) b.jumpTo(pX[p] - mesaOffset, pY[p], alturaMesa);
+""")
+
+funcion("ubicarEnRackCalidad", "void", [("b", "Balanza")], """
+// Tres estantes de nueve cajas; cuando se llena se vuelve a empezar
+int k = contadorRackCalidad++ % 27;
+b.jumpTo(rackCalidadX - 40 + (k % 9) * 10, rackCalidadY, 2 + (k / 9) * 16);
+""")
+
+funcion("llevarAInspeccion", "void", [("b", "Balanza")], """
+b.jumpTo(inspectorX, inspectorY, alturaMesa);
 """)
 
 # --- Ruteo y asignación de operarios ----------------------------------------
@@ -711,6 +777,7 @@ Operario o = b.opActual;
 double metros = Math.hypot(destino[0] - o.getX(), destino[1] - o.getY()) / pxPorMetro;
 double minutos = metros / velocidadOperario / 60.0;
 if (metros > 0.05) o.moveTo(destino[0], destino[1]);
+moverCaja(b, destino[0], destino[1], minutos);
 o.estado = 1;
 b.tCaminata += minutos;
 o.tCaminando += minutos;
@@ -722,6 +789,7 @@ funcion("finTramo", "void", [("b", "Balanza")], """
 // Asegura que el operario quede exactamente en el destino del tramo
 Operario o = b.opActual;
 if (o.isMoving()) o.jumpTo(o.getTargetX(), o.getTargetY());
+if (b.mostrarCaja) b.jumpTo(o.getX(), o.getY() + 6, alturaCajaEnMano);
 """)
 
 funcion("tiempoAleatorio", "double", [("media", "double")], """
@@ -1123,8 +1191,10 @@ return trabajando ? new Color(34, 160, 80) : new Color(175, 225, 190); // trabaj
 """)
 
 funcion("etiquetaPuesto", "String", [("p", "int")], """
+// Las líneas ocupan varias columnas de mesas, así que cada mesa dice a qué línea pertenece
 String[] siglas = { "A", "AJ", "CF", "EM" };
-return siglas[pTipo[p]] + (pTipo[p] == T_ARMADO && pNum[p] > 0 ? String.valueOf(pNum[p]) : "");
+return nombreLinea(pLinea[p]) + " · " + siglas[pTipo[p]]
+	+ (pTipo[p] == T_ARMADO && pNum[p] > 0 ? String.valueOf(pNum[p]) : "");
 """)
 
 funcion("nombreLinea", "String", [("l", "int")], """

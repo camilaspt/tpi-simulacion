@@ -14,6 +14,7 @@ Usa solo la biblioteca estándar de Python.
 from pathlib import Path
 from xml.dom import minidom
 import argparse
+import math
 import re
 import subprocess
 import sys
@@ -100,13 +101,14 @@ BLOQUES = [
     ("liberarRack", "Release", 720, Y1, {
         "releaseMode": codigo("self.SPECIFIED_RESOURCES"),
         "resources": expr("{ rackMateriales }", "ResourcePool[]"),
-        "onEnter": accion("agent.fase = 2;\nplanificarCaminata(agent, pX[agent.puestoActual], pY[agent.puestoActual]);"),
+        "onEnter": accion("agent.fase = 2;\nrecogerCaja(agent);\nplanificarCaminata(agent, pX[agent.puestoActual], pY[agent.puestoActual]);"),
     }),
     ("tarea", "Delay", 520, Y2, {
         "delayTime": tiempo("tiempoTarea(agent)"),
         "maximumCapacity": codigo("true"),
         # El paso avanza aca y no en el Release: quedanPasos se evalua antes de entrar al Release
-        "onEnter": accion("agent.opActual.estado = 2;\nagent.paso++;", [("agent", "Balanza"), ("delayTime", "double")]),
+        "onEnter": accion("agent.opActual.estado = 2;\ndejarCajaEnMesa(agent);\nagent.paso++;",
+                          [("agent", "Balanza"), ("delayTime", "double")]),
     }),
     ("liberarOperario", "Release", 620, Y2, {
         "releaseMode": codigo("self.SPECIFIED_RESOURCES"),
@@ -124,6 +126,7 @@ BLOQUES = [
     }),
     ("rackCalidad", "Wait", 900, Y3, {
         "maximumCapacity": codigo("true"),
+        "onEnter": accion("ubicarEnRackCalidad(agent);"),
     }),
     ("aInspeccion", "SelectOutput", 1000, Y3, {
         "conditionIsProbabilistic": codigo("false"),
@@ -137,6 +140,7 @@ BLOQUES = [
     ("inspeccion", "Delay", 1200, Y2, {
         "delayTime": tiempo("tiempoAleatorio(tiempoInspeccionMin)"),
         "maximumCapacity": codigo("true"),
+        "onEnter": accion("llevarAInspeccion(agent);", [("agent", "Balanza"), ("delayTime", "double")]),
         "onExit": accion("alFinalizarInspeccion(agent);"),
     }),
     ("liberarInspector", "Release", 1300, Y2, {
@@ -209,7 +213,21 @@ EXPERIMENTOS = {
 }
 
 MAX_PUESTOS = 60
-MAX_LINEAS_DIBUJADAS = 6
+
+# Mesa de la paleta 3D de AnyLogic (Table). AnyLogic la copió a 3d/ al arrastrarla al modelo
+MESA_3D = "3d/table.dae"
+# El origen del modelo de la mesa está en un borde del lado corto (1,05 m de profundidad):
+# girada 90°, se la corre media profundidad para que quede centrada en su lugar
+CORRECCION_MESA_X = 8.4
+
+
+def posicion_puesto(p, v):
+    """Misma fórmula que posicionPuestoX/Y en modelo_java.py (columnas de mesas pegadas)."""
+    por_columna = int(v["mesasPorColumna"])
+    columna = p // por_columna
+    x = v["origenPuestosX"] + (columna % 6) * v["separacionColumnas"] + (columna // 6) * v["separacionColumnas"] / 2
+    y = v["origenPuestosY"] + (p % por_columna) * v["largoMesa"]
+    return x, y
 
 
 class Generador:
@@ -407,14 +425,14 @@ class Generador:
             self.el(node, "VisibleCode", visible, cdata=True)
 
     def texto(self, container, name, x, y, valor, codigo_texto=None, size=12, color="334155", bold=False,
-              mono=False, xcode=None, ycode=None, visible=None, draw="SHAPE_DRAW_2D", align="LEFT"):
+              mono=False, xcode=None, ycode=None, visible=None, draw="SHAPE_DRAW_2D", align="LEFT", rotacion=0.0):
         t = self.el(container, "Text")
         self.comunes(t, name, x, y, label=(0, -10))
         self.el(t, "DrawMode", draw)
         self.dinamicos(t, xcode, ycode, visible)
         self.el(t, "EmbeddedIcon", "false")
         self.el(t, "Z", 0)
-        self.el(t, "Rotation", "0.0")
+        self.el(t, "Rotation", rotacion)
         self.el(t, "Color", self.color(color))
         self.el(t, "Text", valor, cdata=True)
         if codigo_texto:
@@ -426,14 +444,14 @@ class Generador:
         self.el(t, "Alignment", align)
 
     def rectangulo(self, container, name, x, y, w, h, fill="FFFFFF", line="CBD5E1", fill_code=None,
-                   xcode=None, ycode=None, visible=None, draw="SHAPE_DRAW_2D", line_width=1):
+                   xcode=None, ycode=None, visible=None, draw="SHAPE_DRAW_2D", line_width=1, z=0, alto=None):
         r = self.el(container, "Rectangle")
         self.comunes(r, name, x, y)
         self.el(r, "DrawMode", draw)
         self.dinamicos(r, xcode, ycode, visible)
         self.el(r, "EmbeddedIcon", "false")
-        self.el(r, "Z", 0)
-        self.el(r, "ZHeight", 4 if draw != "SHAPE_DRAW_2D" else 0)
+        self.el(r, "Z", z)
+        self.el(r, "ZHeight", alto if alto is not None else (4 if draw != "SHAPE_DRAW_2D" else 0))
         self.el(r, "LineWidth", line_width)
         self.el(r, "LineColor", self.color(line))
         self.el(r, "LineMaterial", "null")
@@ -464,6 +482,52 @@ class Generador:
         self.el(o, "FillColor", self.color("A0A8B4"))
         self.el(o, "FillColorCode", fill_code, cdata=True)
         self.el(o, "FillMaterial", "null")
+
+    def figura3d(self, container, name, x, y, recurso, rotacion=0.0, visible=None):
+        # Misma estructura que guarda AnyLogic para un objeto de la paleta 3D (ver worker en Operario)
+        f = self.el(container, "Figure3D")
+        self.comunes(f, name, x, y, label=(0, -10))
+        self.el(f, "DrawMode", "SHAPE_DRAW_2D3D")
+        self.dinamicos(f, visible=visible)
+        self.el(f, "Z", 0)
+        ref = self.el(f, "ResourceReference")
+        self.el(ref, "PackageName", PAQUETE, cdata=True)
+        self.el(ref, "ClassName", recurso, cdata=True)
+        self.el(f, "ColorTable")
+        self.el(f, "AutoScale", "true")
+        self.el(f, "Scale", "1.0")
+        self.el(f, "Rotation", rotacion)
+        self.el(f, "AxisOrder", "YZX_AXIS_ORDER")
+        self.el(f, "SelectedAnimationPose", "")
+        self.el(f, "ApplyShading", "true")
+        self.el(f, "InternalLighting", "OFF")
+        self.el(f, "IgnoreSceneLights", "false")
+
+    def rack3d(self, container, name, x, y, w, h, niveles=3, alto_nivel=16, color="92400E", cajas=True):
+        # Rack armado con formas 3D: cuatro parantes, estantes y cajas de materiales
+        alto = niveles * alto_nivel
+        for i, (px, py) in enumerate(((x, y), (x + w - 3, y), (x, y + h - 3), (x + w - 3, y + h - 3))):
+            self.rectangulo(container, f"{name}Parante{i}", px, py, 3, 3, fill="475569", line="334155",
+                            draw="SHAPE_DRAW_2D3D", alto=alto)
+        for n in range(niveles):
+            self.rectangulo(container, f"{name}Estante{n}", x, y, w, h, fill=color, line="451A03",
+                            draw="SHAPE_DRAW_2D3D", z=n * alto_nivel, alto=2)
+            if cajas:
+                for k in range(int(w // 14)):
+                    self.rectangulo(container, f"{name}Caja{n}_{k}", x + 3 + k * 14, y + 3, 10, h - 6,
+                                    fill="C8A165", line="7C5A2A", draw="SHAPE_DRAW_2D3D",
+                                    z=n * alto_nivel + 2, alto=8)
+
+    def registrar_recurso(self, ruta):
+        recursos = self.doc.getElementsByTagName("ModelResources")[0]
+        for r in self.hijos(recursos, "Resource"):
+            if self.hijo(r, "Path").firstChild.data == ruta:
+                return
+        r = self.el(recursos, "Resource")
+        self.el(r, "Id", self.nuevo_id())
+        self.el(r, "Path", ruta, cdata=True)
+        self.el(r, "ReferencedFromUserCode", "false")
+        self.el(r, "Location", "FILE_SYSTEM")
 
     def boton(self, container, name, x, y, width, label, action):
         b = self.el(container, "Control", attrs={"Type": "Button"})
@@ -581,6 +645,13 @@ class Generador:
         _, plano_op = self.presentacion_nivel(operario)
         self.ovalo(plano_op, "marcaOperario", 6, "colorEstado()", "colorEspecialidad()")
 
+        # Cada unidad se ve como una caja del color de su modelo (0,6 m de lado)
+        nivel_b, plano_b = self.presentacion_nivel(balanza)
+        if plano_b is None:
+            plano_b = self.el(nivel_b, "Presentation")
+        self.rectangulo(plano_b, "caja", -5, -5, 10, 10, fill="C8A165", line="7C5A2A", fill_code="color",
+                        visible="mostrarCaja", draw="SHAPE_DRAW_2D3D", alto=8)
+
         self.experimentos(main_id)
 
         def limpiar(node):
@@ -624,34 +695,48 @@ class Generador:
         # Referencias de la planta
         self.texto(plano, "rotuloProduccion", 955, 150, "PLANTA DE PRODUCCIÓN", size=12, bold=True, color="0F172A")
         self.texto(plano, "rotuloDeposito", 1290, 150, "DEPÓSITO", size=12, bold=True, color="0F172A")
-        for l in range(MAX_LINEAS_DIBUJADAS):
-            self.texto(plano, f"rotuloLinea{l}", 951, 201 + l * 58, "", f"nombreLinea({l})", size=8, bold=True,
-                       color="0F172A", visible=f"lineasArmado + lineasCF > {l}")
+        # Puestos: columnas de mesas 3D (Table de la paleta de AnyLogic) pegadas a lo largo del eje Y.
+        # El modelo de la mesa mide 2,5 m x 1,05 m con el lado largo en X, así que se la gira 90°
+        # y se corrige su origen, que está en un borde y no en el centro del lado corto
+        v = {n: float(val) for n, _, val in J.VARIABLES_MAIN
+             if n in ("origenPuestosX", "origenPuestosY", "mesasPorColumna", "separacionColumnas", "largoMesa",
+                      "mesaOffset", "alturaMesa")}
+        self.registrar_recurso(MESA_3D)
         for p in range(MAX_PUESTOS):
-            self.rectangulo(plano, f"puesto{p}", 980, 196, 30, 18, fill="DC4646", line="334155",
-                            fill_code=f"colorPuesto({p})", xcode=f"pX[{p}] - 15", ycode=f"pY[{p}] - 9",
-                            visible=f"nPuestos > {p}", draw="SHAPE_DRAW_2D3D")
-            self.texto(plano, f"siglaPuesto{p}", 995, 200, "", f"etiquetaPuesto({p})", size=8, color="0F172A",
-                       xcode=f"pX[{p}]", ycode=f"pY[{p}] - 5", visible=f"nPuestos > {p}", align="CENTER")
-        self.rectangulo(plano, "rackDeMateriales", 1425, 210, 70, 22, fill="92400E", line="451A03", draw="SHAPE_DRAW_2D3D")
+            x, y = posicion_puesto(p, v)
+            mx = x - v["mesaOffset"]
+            visible = f"nPuestos > {p}"
+            self.figura3d(plano, f"mesa{p}", mx + CORRECCION_MESA_X, y, MESA_3D, rotacion=round(math.pi / 2, 6),
+                          visible=visible)
+            # Tablero de la mesa con el color del estado del puesto
+            self.rectangulo(plano, f"puesto{p}", mx - 7, y - 18, 14, 36, fill="DC4646", line="334155",
+                            fill_code=f"colorPuesto({p})", xcode=f"pX[{p}] - mesaOffset - 7", ycode=f"pY[{p}] - 18",
+                            visible=visible, draw="SHAPE_DRAW_2D3D", z=v["alturaMesa"], alto=1)
+            self.texto(plano, f"siglaPuesto{p}", mx, y, "", f"etiquetaPuesto({p})", size=7, color="0F172A",
+                       xcode=f"pX[{p}] - mesaOffset + 3", ycode=f"pY[{p}]", visible=visible, align="CENTER",
+                       rotacion=round(-math.pi / 2, 6))
+        self.rack3d(plano, "rackDeMateriales", 1425, 210, 70, 22)
         self.texto(plano, "rotuloRack", 1460, 196, "Rack único de materiales", size=9, color="0F172A", align="CENTER")
         self.texto(plano, "usoRack", 1460, 256, "", '"en uso " + rackMateriales.busy() + "/" + rackMateriales.size()',
                    size=9, color="0F172A", align="CENTER")
-        self.rectangulo(plano, "rackDeCalidad", 1455, 470, 90, 24, fill="1D4ED8", line="1E3A8A", draw="SHAPE_DRAW_2D3D")
+        # Rack de espera de calidad: las cajas terminadas se apoyan en sus estantes (ubicarEnRackCalidad)
+        self.rack3d(plano, "rackDeCalidad", 1455, 470, 90, 24, color="1D4ED8", cajas=False)
         self.texto(plano, "rotuloRackCalidad", 1500, 500, "", '"Rack espera calidad: " + rackCalidad.size()',
                    size=9, color="0F172A", align="CENTER")
-        self.rectangulo(plano, "puestoInspector", 1488, 430, 24, 18, fill="0D9488", line="134E4A",
+        self.figura3d(plano, "mesaInspector", 1500 + CORRECCION_MESA_X, 439, MESA_3D, rotacion=round(math.pi / 2, 6))
+        self.rectangulo(plano, "puestoInspector", 1493, 421, 14, 36, fill="0D9488", line="134E4A",
                         fill_code="inspector.busy() > 0 ? new Color(13, 148, 136) : new Color(153, 246, 228)",
-                        draw="SHAPE_DRAW_2D3D")
-        self.texto(plano, "rotuloInspector", 1500, 416, "Inspector", size=9, color="0F172A", align="CENTER")
-        self.rectangulo(plano, "stockProductoTerminado", 1520, 290, 55, 90, fill="CBD5E1", line="475569", draw="SHAPE_DRAW_2D3D")
+                        draw="SHAPE_DRAW_2D3D", z=v["alturaMesa"], alto=1)
+        self.texto(plano, "rotuloInspector", 1500, 412, "Inspector", size=9, color="0F172A", align="CENTER")
+        self.rack3d(plano, "stockProductoTerminado", 1520, 290, 55, 90, niveles=4, color="64748B")
         self.texto(plano, "rotuloStock", 1547, 386, "", '"Stock: " + sumar(enStock)', size=9, color="0F172A", align="CENTER")
         self.rectangulo(plano, "zonaAusentes", 950, 588, 160, 46, fill="FEE2E2", line="DC2626")
         self.texto(plano, "rotuloAusentes", 952, 576, "Ausentes", size=9, bold=True, color="991B1B")
         self.rectangulo(plano, "zonaReserva", 1128, 530, 80, 26, fill="E0E7FF", line="4338CA")
         self.texto(plano, "rotuloReserva", 1130, 518, "Reserva", size=9, bold=True, color="3730A3")
         self.texto(plano, "leyenda", 1150, 600,
-                   "Puestos: verde = trabajando · verde claro = ocioso · naranja = cubierto por otro · rojo = vacante\n"
+                   "Puestos (color sobre la mesa): verde = trabajando · verde claro = ocioso · naranja = cubierto por otro · rojo = vacante\n"
+                   "Cajas: azul AILA 30KG · naranja REPORT LT · verde NOVEL ECO · violeta LURA · rojo AURA\n"
                    "Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo = ausente;"
                    " borde = especialidad (azul Armador, violeta Ajustador, verde azulado Controlador, marrón Embalador)",
                    size=9, color="0F172A")
@@ -707,7 +792,8 @@ def arnes(destino):
 
     (pkg / "Balanza.java").write_text(imports + "public abstract class Balanza extends Agent {\n"
         "  public String modelo = \"AILA 30KG\";\n  public void set_modelo(String v) { modelo = v; }\n"
-        + campos(J.VARIABLES_BALANZA) + "}\n", encoding="utf-8")
+        + campos(J.VARIABLES_BALANZA)
+        + "  void presentacion() { Color c = color; boolean v = mostrarCaja; }\n}\n", encoding="utf-8")
     (pkg / "Operario.java").write_text(imports + "public abstract class Operario extends Agent {\n"
         "  public Especialidad especialidad = Especialidad.Armador;\n"
         + campos(J.VARIABLES_OPERARIO) + metodos(J.FUNCIONES_OPERARIO)
@@ -747,7 +833,7 @@ def arnes(destino):
     m += "  void presentacion() {\n    Object o;\n"
     for e in ["textoReloj()", "textoEscenario()", "textoOF()", "textoPersonal()", "textoColas()", "textoCalidad()",
               "textoCostos()", "textoHistorial()", "nombreLinea(0)", "lineasArmado + lineasCF > 0",
-              "colorPuesto(0)", "pX[0] - 15", "pY[0] - 9", "nPuestos > 0", "etiquetaPuesto(0)",
+              "colorPuesto(0)", "pX[0] - mesaOffset - 7", "pY[0] - 18", "pX[0] - mesaOffset + 3", "nPuestos > 0", "etiquetaPuesto(0)",
               '"en uso " + rackMateriales.busy() + "/" + rackMateriales.size()', '"Rack espera calidad: " + rackCalidad.size()',
               "inspector.busy() > 0 ? new Color(13, 148, 136) : new Color(153, 246, 228)", '"Stock: " + sumar(enStock)']:
         m += f"    o = {e};\n"
