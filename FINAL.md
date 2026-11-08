@@ -2,6 +2,37 @@
 
 Estado al 01/11/2026, rama `feature/pedestrian-library`.
 
+## Entrega final (lo que hay que presentar)
+
+| # | Entregable | Estado | Qué falta |
+|---|---|---|---|
+| 1 | **ALP de AnyLogic** | Generado: `TPI-Simulacion-KRETZ - copia.alp` | Probarlo en AnyLogic y corregir errores. Al entregar, renombrarlo (por ejemplo, `TPI-Simulacion-KRETZ-GRUPO07.alp`) y comprobar que abre y corre. |
+| 2 | **Informe en PDF tipo paper** | No empezado | Secciones indispensables: **abstract, objetivos, metodología, resultados y conclusiones**. Los diez pasos de la simulación deben quedar **implícitos** en el texto, sin enumerarlos. Se arma en Overleaf, como la Etapa 1. |
+| 3 | **Planilla de cálculo con los resultados de las corridas** | Se arma con los CSV del modelo | Correr las réplicas y pasar `Resultados/resultados_corridas.csv`, `resultados_semanas.csv` y `resumen_escenarios.csv` a una planilla Excel (una hoja por archivo y una de resumen). |
+| 4 | **Link de AnyLogic Cloud del TPI** | No empezado | Subir el modelo a AnyLogic Cloud. Poner **nombres y correos electrónicos de los autores** y, si hace falta, instrucciones de uso. |
+| 5 | **Video breve (link de YouTube)** | No empezado | Explicar el problema, la solución y mostrar el uso del modelo. |
+
+### Los diez pasos de la simulación (deben quedar implícitos en el informe)
+
+Sirve como guía para controlar que el informe los cubra sin nombrarlos como pasos:
+
+1. Formulación del problema → introducción y objetivos (OF que no se cumple, costo de las horas extra de fin de semana).
+2. Objetivos y plan del estudio → objetivos y escenarios a comparar.
+3. Modelo conceptual → metodología: sistema, entidades, recursos, supuestos y diagrama conceptual.
+4. Recolección de datos → metodología: tiempos de SAP, dotación, OF y ausentismo.
+5. Construcción del modelo → metodología: AnyLogic, Process Modeling y Pedestrian Library.
+6. Verificación → metodología: el modelo hace lo que dice la especificación.
+7. Validación → metodología o resultados: el escenario actual se parece a la realidad de la planta.
+8. Diseño de experimentos → metodología: escenarios, réplicas, semillas y horizonte simulado.
+9. Corridas y análisis → resultados: intervalos de confianza y ahorro neto.
+10. Documentación e implementación → conclusiones y recomendaciones para KRETZ.
+
+### Antes de la entrega del Cloud y del video
+
+- La subida a AnyLogic Cloud desde la edición Personal Learning puede tener límites (tamaño del modelo, librerías). Probar la subida con tiempo.
+- En Cloud probablemente no se pueda acceder a los CSV que escribe el modelo: los resultados para la planilla conviene sacarlos de las corridas locales.
+- Grabar el video con el modelo ya corregido. Sirve mostrar la vista 3D y el tablero de indicadores.
+
 ## Lo que ya está desarrollado
 
 El modelo (`TPI-Simulacion-KRETZ - copia.alp`, generado con `scripts/desarrollar_modelo.py`) cubre la especificación:
