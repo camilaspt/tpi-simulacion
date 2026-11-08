@@ -271,6 +271,7 @@ for (int k = 0; k < extraArmadores; k++) agregarPuesto(k % lineasArmado, T_ARMAD
 for (int k = 0; k < extraAjustadores; k++) agregarPuesto(k % lineasArmado, T_AJUSTE, 0);
 for (int k = 0; k < extraControladores; k++) agregarPuesto(lineasArmado + k % lineasCF, T_CONTROL, 0);
 for (int k = 0; k < extraEmbaladores; k++) agregarPuesto(lineasArmado + k % lineasCF, T_EMBALAJE, 0);
+if (nPuestos > 36) traceln("Hay " + nPuestos + " puestos: el plano dibuja solo los primeros 36 (6 columnas de 6 mesas).");
 plantaConstruida = true;
 """)
 

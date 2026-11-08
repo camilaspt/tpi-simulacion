@@ -212,7 +212,9 @@ EXPERIMENTOS = {
     "EscenarioSecuencia": ("Secuencia: procesos largos primero", {"reglaSecuencia": "1"}),
 }
 
-MAX_PUESTOS = 60
+# Mesas que se dibujan: 6 columnas de 6, lo que entra en la nave de producción. Los escenarios
+# llegan a 32 puestos; si alguno pasara de 36, esos puestos funcionan pero no se dibujan
+PUESTOS_DIBUJADOS = 36
 
 # Mesa de la paleta 3D de AnyLogic (Table). AnyLogic la copió a 3d/ al arrastrarla al modelo
 MESA_3D = "3d/table.dae"
@@ -487,7 +489,7 @@ class Generador:
         # Misma estructura que guarda AnyLogic para un objeto de la paleta 3D (ver worker en Operario)
         f = self.el(container, "Figure3D")
         self.comunes(f, name, x, y, label=(0, -10))
-        self.el(f, "DrawMode", "SHAPE_DRAW_2D3D")
+        self.el(f, "DrawMode", "SHAPE_DRAW_3D")
         self.dinamicos(f, visible=visible)
         self.el(f, "Z", 0)
         ref = self.el(f, "ResourceReference")
@@ -504,18 +506,20 @@ class Generador:
         self.el(f, "IgnoreSceneLights", "false")
 
     def rack3d(self, container, name, x, y, w, h, niveles=3, alto_nivel=16, color="92400E", cajas=True):
-        # Rack armado con formas 3D: cuatro parantes, estantes y cajas de materiales
+        # Rack armado con formas 3D: cuatro parantes, estantes y cajas de materiales. Todas las
+        # piezas caen en el mismo lugar del plano, así que en 2D se ve solo la planta del rack
         alto = niveles * alto_nivel
+        self.rectangulo(container, f"{name}Planta", x, y, w, h, fill=color, line="451A03")
         for i, (px, py) in enumerate(((x, y), (x + w - 3, y), (x, y + h - 3), (x + w - 3, y + h - 3))):
             self.rectangulo(container, f"{name}Parante{i}", px, py, 3, 3, fill="475569", line="334155",
-                            draw="SHAPE_DRAW_2D3D", alto=alto)
+                            draw="SHAPE_DRAW_3D", alto=alto)
         for n in range(niveles):
             self.rectangulo(container, f"{name}Estante{n}", x, y, w, h, fill=color, line="451A03",
-                            draw="SHAPE_DRAW_2D3D", z=n * alto_nivel, alto=2)
+                            draw="SHAPE_DRAW_3D", z=n * alto_nivel, alto=2)
             if cajas:
                 for k in range(int(w // 14)):
                     self.rectangulo(container, f"{name}Caja{n}_{k}", x + 3 + k * 14, y + 3, 10, h - 6,
-                                    fill="C8A165", line="7C5A2A", draw="SHAPE_DRAW_2D3D",
+                                    fill="C8A165", line="7C5A2A", draw="SHAPE_DRAW_3D",
                                     z=n * alto_nivel + 2, alto=8)
 
     def registrar_recurso(self, ruta):
@@ -702,14 +706,14 @@ class Generador:
              if n in ("origenPuestosX", "origenPuestosY", "mesasPorColumna", "separacionColumnas", "largoMesa",
                       "mesaOffset", "alturaMesa")}
         self.registrar_recurso(MESA_3D)
-        for p in range(MAX_PUESTOS):
+        for p in range(PUESTOS_DIBUJADOS):
             x, y = posicion_puesto(p, v)
             mx = x - v["mesaOffset"]
             visible = f"nPuestos > {p}"
             self.figura3d(plano, f"mesa{p}", mx + CORRECCION_MESA_X, y, MESA_3D, rotacion=round(math.pi / 2, 6),
                           visible=visible)
             # Tablero de la mesa con el color del estado del puesto
-            self.rectangulo(plano, f"puesto{p}", mx - 7, y - 18, 14, 36, fill="DC4646", line="334155",
+            self.rectangulo(plano, f"puesto{p}", mx - 7, y - 18, 14, 36, fill="AFE1BE", line="334155",
                             fill_code=f"colorPuesto({p})", xcode=f"pX[{p}] - mesaOffset - 7", ycode=f"pY[{p}] - 18",
                             visible=visible, draw="SHAPE_DRAW_2D3D", z=v["alturaMesa"], alto=1)
             self.texto(plano, f"siglaPuesto{p}", mx, y, "", f"etiquetaPuesto({p})", size=7, color="0F172A",
