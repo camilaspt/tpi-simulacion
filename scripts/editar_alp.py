@@ -347,6 +347,8 @@ class Editor(D.Generador):
             self.poner(g, "SamplesToKeep", 3000)
         elif tipo == "Plot":
             self.poner(g, "SamplesToKeep", 200)
+            # Las réplicas corren en paralelo y terminan en cualquier orden: solo puntos, sin unirlos
+            self.poner(g, "DrawLine", "false" if opciones.get("sin_linea") else "true")
         return g
 
     def data_set(self, tpl, nombre, puntos, x, y):
@@ -505,13 +507,21 @@ class Editor(D.Generador):
             r = rangos[ids[pname]]
             ex = self.el(r, "Expression", attrs={"Class": "CodeValue"})
             self.el(ex, "Code", valor, cdata=True)
+        # La réplica es el único parámetro que varía (1..N): cada iteración usa la semilla N del
+        # listado común, así todos los escenarios corren con las mismas semillas
+        r = rangos[ids["replica"]]
+        self.poner(r, "Type", "RANGE")
+        for tag, valor in (("From", 1), ("To", G.REPLICAS), ("Step", 1)):
+            v = self.el(r, tag, attrs={"Class": "CodeValue"})
+            self.el(v, "Code", valor, cdata=True)
         # Se detiene solo (finishSimulation al terminar las semanas simuladas)
         self.poner_cdata(self.hijo(e, "ModelTimeProperties"), "StopOption", "Never")
         self.poner_cdata(self.hijo(e, "PresentationProperties"), "Title", f"KRETZ | Réplicas: {titulo}")
         rep = self.hijo(e, "ReplicationsProperties")
-        self.poner(rep, "UseReplication", "true")
+        # Una corrida por iteración: las réplicas son las iteraciones del parámetro replica
+        self.poner(rep, "UseReplication", "false")
         self.poner(rep, "FixedReplicationsNumber", "true")
-        self.poner(rep, "ReplicationPerIteration", G.REPLICAS)
+        self.poner(rep, "ReplicationPerIteration", 1)
         # Código: los data sets se vacían al empezar y suman un punto por réplica
         for tag, codigo in (("BeforeEachExperimentRunCode", G.codigo_antes_replicas()),
                             ("AfterSimulationRunCode", G.codigo_despues_corrida()),
@@ -548,7 +558,7 @@ class Editor(D.Generador):
             self.texto(pres, f"tituloReplicas{i}", x + 18, 132, titulo_ds + " por réplica", size=15, bold=True,
                        color="0F172A")
             pres.appendChild(self.grafico(tpl_plot, f"graficoReplicas{i}", "Plot", x + 5, 165, 500, 430,
-                                          {"series": [(n, titulo_ds, color)]}))
+                                          {"series": [(n, titulo_ds, color)], "sin_linea": True}))
 
     def registrar_recurso(self, ruta):
         recursos = self.doc.getElementsByTagName("ModelResources")[0]

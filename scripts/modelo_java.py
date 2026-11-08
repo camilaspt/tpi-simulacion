@@ -59,6 +59,7 @@ PARAMETROS = [
     # Réplicas y resultados
     ("nombreEscenario", "String", '"Escenario actual"', "Nombre del escenario (para los resultados)"),
     ("semilla", "long", "0", "Semilla (0 = aleatoria; la usada queda registrada)"),
+    ("replica", "int", "0", "Réplica (1..N usa la semilla N del listado común; 0 = no es réplica)"),
     ("guardarResultados", "boolean", "true", "Guardar resultados en Resultados/*.csv"),
 ]
 
@@ -1165,14 +1166,27 @@ funcion("num", "String", [("v", "double")], """
 return String.format(java.util.Locale.forLanguageTag("es-AR"), "%.4f", v);
 """)
 
+funcion("semillaDeReplica", "long", [("r", "int")], """
+// Listado común de semillas: la réplica r usa la misma semilla en todos los escenarios
+// (números aleatorios comunes). Se generó una vez, al azar, y queda fijo.
+long[] lista = {
+	227904006L, 443043868L, 639572182L, 649565454L, 794923749L, 210205473L, 339749960L, 745351751L,
+	767313473L, 697600698L, 551631864L, 941140765L, 714791075L, 688208069L, 884410270L, 933838458L,
+	924757551L, 627104586L, 906407983L, 930080574L, 729771961L, 573622146L, 357627256L, 102721764L,
+	759496827L, 186676380L, 218902461L, 408421828L, 976990827L, 205282126L };
+if (r >= 1 && r <= lista.length) return lista[r - 1];
+// Más réplicas que el listado: una semilla fija que depende solo del número de réplica
+return 1 + Math.floorMod(new java.util.Random(7919L * r).nextLong(), 999999999L);
+""")
+
 funcion("columnasEscenario", "String", [], """
-return "escenario;semilla;of;regla_secuencia;lineas_armado;lineas_cf;armadores_linea;ajustadores_linea;"
+return "escenario;replica;semilla;of;regla_secuencia;lineas_armado;lineas_cf;armadores_linea;ajustadores_linea;"
 	+ "controladores_linea_cf;embaladores_linea_cf;extra_armadores;extra_ajustadores;extra_controladores;"
 	+ "extra_embaladores;reserva;cobertura_entre_especialidades;prob_ausencia;costo_reorganizacion";
 """)
 
 funcion("valoresEscenario", "String", [], """
-return nombreEscenario + ";" + semillaUsada + ";" + ofSeleccionada + ";" + reglaSecuencia + ";" + lineasArmado + ";"
+return nombreEscenario + ";" + replica + ";" + semillaUsada + ";" + ofSeleccionada + ";" + reglaSecuencia + ";" + lineasArmado + ";"
 	+ lineasCF + ";" + armadoresPorLinea + ";" + ajustadoresPorLinea + ";" + controladoresPorLineaCF + ";"
 	+ embaladoresPorLineaCF + ";" + extraArmadores + ";" + extraAjustadores + ";" + extraControladores + ";"
 	+ extraEmbaladores + ";" + operariosReserva + ";" + (coberturaEntreEspecialidades ? 1 : 0) + ";"
@@ -1431,9 +1445,13 @@ DATASETS = [
 # ---------------------------------------------------------------------------
 # Código de arranque y eventos
 # ---------------------------------------------------------------------------
-STARTUP = """// Semilla de la corrida: la elegida o una derivada de la del experimento, que queda registrada.
-// En los experimentos de réplicas, la réplica n usa la misma semilla en todos los escenarios
-semillaUsada = semilla != 0 ? semilla : 1 + Math.floorMod(getDefaultRandomGenerator().nextLong(), 999999999L);
+STARTUP = """// Semilla de la corrida, que queda registrada:
+//  - la elegida en el parámetro semilla, si no es 0;
+//  - en los experimentos de réplicas, la del listado común (réplica n -> misma semilla en todos los escenarios);
+//  - si no, una derivada de la semilla del experimento.
+semillaUsada = semilla != 0 ? semilla
+	: replica > 0 ? semillaDeReplica(replica)
+	: 1 + Math.floorMod(getDefaultRandomGenerator().nextLong(), 999999999L);
 getDefaultRandomGenerator().setSeed(semillaUsada);
 // La primera jornada arranca apenas el ResourcePool crea a los operarios
 eventoInicioJornada.restart(0.01);

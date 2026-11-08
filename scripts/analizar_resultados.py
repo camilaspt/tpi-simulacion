@@ -119,6 +119,19 @@ def informe(grupos, semanas, precision):
       "de 5 jornadas más la recuperación de fin de semana) con una semilla distinta. Los intervalos son de "
       "confianza del 95 % (t de Student) sobre la media de las réplicas.\n")
 
+    w("## Semillas (números aleatorios comunes)\n")
+    w("Todos los escenarios tienen que correr con el mismo listado de semillas: la réplica n usa la misma "
+      "semilla en todos, así las diferencias entre escenarios no se deben al azar.\n")
+    semillas = {n: {int(f["semilla"]) for f in g if isinstance(f.get("semilla"), float)} for n, g in grupos.items()}
+    ref = semillas.get(BASE) or next(iter(semillas.values()), set())
+    w(f"| Escenario | Semillas distintas | Mismas que {BASE} |")
+    w("|---|---|---|")
+    for nombre, s in semillas.items():
+        faltan, sobran = len(ref - s), len(s - ref)
+        estado = "sí" if not faltan and not sobran else f"**no** (faltan {faltan}, sobran {sobran})"
+        w(f"| {nombre} | {len(s)} | {estado} |")
+    w("")
+
     w("## Réplicas por escenario\n")
     w("| Escenario | Réplicas | Semanas por réplica | Réplicas necesarias (costo total ±{:.0f} %) |".format(100 * precision))
     w("|---|---|---|---|")

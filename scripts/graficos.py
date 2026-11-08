@@ -119,8 +119,8 @@ def codigo_antes_replicas():
 
 
 def codigo_despues_corrida():
-    lineas = ["// Un punto por réplica: x = número de réplica"]
-    lineas += [f"{n}.add({n}.size() + 1, {e});" for n, e, *_ in DATASETS_REPLICAS]
+    lineas = ["// Un punto por réplica: x = número de réplica (parámetro replica, 1..N)"]
+    lineas += [f"{n}.add(root.replica, {e});" for n, e, *_ in DATASETS_REPLICAS]
     return "\n".join(lineas)
 
 
