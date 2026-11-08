@@ -43,7 +43,7 @@ PARAMETROS = [
     # Tiempos
     ("variabilidadTiempos", "double", "1", "Variabilidad de tiempos (0 = determinístico)"),
     ("velocidadOperario", "double", "1.3", "Velocidad peatonal (m/s)"),
-    ("capacidadRackMateriales", "int", "1", "Operarios que retiran en el rack a la vez"),
+    ("capacidadRackMateriales", "int", "5", "Operarios que retiran en el rack a la vez"),
     ("tiempoInspeccionMin", "double", "8", "Tiempo medio de inspección (min)"),
     ("probRechazo", "double", "0.03", "Probabilidad de rechazo en inspección"),
     # Costos
@@ -175,10 +175,9 @@ VARIABLES_MAIN = [
     # Indicadores de cierre
     ("diasSimulados", "int", "0"),
     ("diasSinCumplir", "int", "0"),
-    ("diasConAusencias", "int", "0"),
-    ("diasSinAusencias", "int", "0"),
-    ("faltanteConAusencias", "double", "0"),
-    ("faltanteSinAusencias", "double", "0"),
+    # Faltante por día de la semana, separando jornadas con [0] y sin [1] ausencias
+    ("faltanteDiaAus", "double[][]", "new double[7][2]"),
+    ("jornadasDiaAus", "int[][]", "new int[7][2]"),
     ("horasExtraTotal", "double", "0"),
     ("costoHorasExtraTotal", "double", "0"),
     ("historial", "java.util.ArrayList<String>", "new java.util.ArrayList<String>()"),
@@ -1022,13 +1021,10 @@ diasSimulados++;
 dsOFJornada.add(diasSimulados, objetivo);
 dsATiempoJornada.add(diasSimulados, aTiempo);
 if (faltante > 0) diasSinCumplir++;
-if (ausentesHoy > 0) {
-	diasConAusencias++;
-	faltanteConAusencias += faltante;
-} else {
-	diasSinAusencias++;
-	faltanteSinAusencias += faltante;
-}
+// Para medir el efecto de las ausencias se compara contra el mismo día de la semana
+int grupoAus = ausentesHoy > 0 ? 0 : 1;
+faltanteDiaAus[dia % 7][grupoAus] += faltante;
+jornadasDiaAus[dia % 7][grupoAus]++;
 registrarPresencia(duracionTurnoMin);
 historial.add(String.format("S%d %-9s OF %3d | a tiempo %3d (%3.0f%%) | faltan %3d%s | aus %d cob %d sin cubrir %d",
 	semana + 1, nombreDia(dia), objetivo, aTiempo, objetivo > 0 ? 100.0 * aTiempo / objetivo : 100.0,
@@ -1205,10 +1201,10 @@ for (int m = 0; m < 5; m++) {
 h.append(";horas_extra;costo_horas_extra;costo_horas_normales;costo_total;sin_recuperar");
 v.append(";" + num(horasExtraTotal) + ";" + num(costoHorasExtraTotal) + ";" + num(costoHorasNormales()) + ";"
 	+ num(costoTotal()) + ";" + (liberadasSemana - terminadasSemana));
-h.append(";coberturas;vacantes_criticas;puesto_min_vacantes;faltante_medio_con_ausencias;faltante_medio_sin_ausencias");
+h.append(";coberturas;vacantes_criticas;puesto_min_vacantes;efecto_ausencias;dias_comparables");
+int comparables = jornadasComparables();
 v.append(";" + coberturasTotal + ";" + vacantesCriticasTotal + ";" + num(minutosVacantesTotal) + ";"
-	+ num(diasConAusencias > 0 ? faltanteConAusencias / diasConAusencias : 0) + ";"
-	+ num(diasSinAusencias > 0 ? faltanteSinAusencias / diasSinAusencias : 0));
+	+ (comparables > 0 ? num(efectoAusencias()) : "") + ";" + comparables);
 h.append(";util_armador;util_ajustador;util_controlador;util_embalador;caminata_min;caminata_fraccion");
 double ocupado = 0;
 for (Operario o : ops) ocupado += o.tOcupado;
@@ -1236,11 +1232,17 @@ traceln("Resultados guardados en Resultados/resultados_corridas.csv (semilla " +
 
 # --- Gráficos -----------------------------------------------------------------
 funcion("registrarRacks", "void", [], """
-// Ocupación de los racks del depósito, cada 10 minutos (gráfico de la pestaña Gráficos)
-dsRackMateriales.add(time(), almacenMateriales.size());
-dsRackCalidad.add(time(), almacenCalidad.size());
-dsRackStock.add(time(), almacenStock.size());
+// Ocupación de los racks del depósito (% de celdas con caja), cada 10 minutos (pestaña Gráficos).
+// En porcentaje, para comparar racks de distinto tamaño (materiales 60 celdas, calidad y stock 200)
+dsRackMateriales.add(time(), ocupacionRack(almacenMateriales));
+dsRackCalidad.add(time(), ocupacionRack(almacenCalidad));
+dsRackStock.add(time(), ocupacionRack(almacenStock));
 eventoMuestreoRacks.restart(10);
+""")
+
+funcion("ocupacionRack", "double", [("s", "Storage")], """
+int capacidad = s.capacity();
+return capacidad > 0 ? 100.0 * s.size() / capacidad : 0;
 """)
 
 funcion("esperaMedia", "double", [("tipo", "int")], """
@@ -1317,12 +1319,53 @@ for (int m = 0; m < 5; m++)
 return s.toString().trim();
 """)
 
+funcion("efectoAusencias", "double", [], """
+// Diferencia de faltante entre jornadas con y sin ausencias, comparando cada día de la semana
+// consigo mismo (el atraso se acumula de lunes a viernes, así que mezclar días confunde).
+// Se promedia ponderando por las jornadas con ausencias de cada día.
+double suma = 0, peso = 0;
+for (int d = 0; d < 7; d++) {
+	int nCon = jornadasDiaAus[d][0], nSin = jornadasDiaAus[d][1];
+	if (nCon == 0 || nSin == 0) continue;
+	suma += nCon * (faltanteDiaAus[d][0] / nCon - faltanteDiaAus[d][1] / nSin);
+	peso += nCon;
+}
+return peso > 0 ? suma / peso : 0;
+""")
+
+funcion("jornadasComparables", "int", [], """
+// Jornadas de los días de la semana que tuvieron tanto jornadas con ausencias como sin ellas
+int n = 0;
+for (int d = 0; d < 7; d++)
+	if (jornadasDiaAus[d][0] > 0 && jornadasDiaAus[d][1] > 0) n += jornadasDiaAus[d][0] + jornadasDiaAus[d][1];
+return n;
+""")
+
+funcion("textoAusencias", "String", [], """
+StringBuilder s = new StringBuilder(String.format("%-10s %22s %22s %12s%n", "Día", "Con ausencias (n)", "Sin ausencias (n)", "Diferencia"));
+for (int d = 0; d < 7; d++) {
+	int nCon = jornadasDiaAus[d][0], nSin = jornadasDiaAus[d][1];
+	if (nCon + nSin == 0) continue;
+	String con = nCon > 0 ? String.format("%.1f u. (%d)", faltanteDiaAus[d][0] / nCon, nCon) : "- (0)";
+	String sin = nSin > 0 ? String.format("%.1f u. (%d)", faltanteDiaAus[d][1] / nSin, nSin) : "- (0)";
+	String dif = nCon > 0 && nSin > 0 ? String.format("%+.1f u.", faltanteDiaAus[d][0] / nCon - faltanteDiaAus[d][1] / nSin) : "s/d";
+	s.append(String.format("%-10s %22s %22s %12s%n", nombreDia(d), con, sin, dif));
+}
+if (jornadasComparables() > 0)
+	s.append(String.format("Efecto medio: %+.1f u. de faltante en las jornadas con ausencias (%d jornadas comparables)",
+		efectoAusencias(), jornadasComparables()));
+else
+	s.append("Efecto medio: s/d (ningún día de la semana tuvo jornadas con y sin ausencias; usar las réplicas)");
+return s.toString();
+""")
+
 funcion("textoCostos", "String", [], """
 return String.format("Jornadas %d | sin cumplir la OF %d (%.0f%%) | faltante acumulado %d u.%n",
 		diasSimulados, diasSinCumplir, diasSimulados > 0 ? 100.0 * diasSinCumplir / diasSimulados : 0, sumar(faltanteModelo))
-	+ String.format("Faltante medio por jornada: con ausencias %.1f u. (%d) | sin ausencias %.1f u. (%d)%n",
-		diasConAusencias > 0 ? faltanteConAusencias / diasConAusencias : 0, diasConAusencias,
-		diasSinAusencias > 0 ? faltanteSinAusencias / diasSinAusencias : 0, diasSinAusencias)
+	+ (jornadasComparables() > 0
+		? String.format("Efecto de las ausencias (mismo día de la semana): %+.1f u. de faltante por jornada (%d jornadas)%n",
+			efectoAusencias(), jornadasComparables())
+		: "Efecto de las ausencias: sin jornadas comparables todavía (hace falta el mismo día con y sin ausencias)\\n")
 	+ String.format("Horas extra de fin de semana %.1f h-hombre | costo (x%.1f) $ %,.0f%n",
 		horasExtraTotal, recargoFinDeSemana, costoHorasExtraTotal)
 	+ String.format("Horas normales $ %,.0f | reorganización $ %,.0f | COSTO TOTAL $ %,.0f",
@@ -1348,6 +1391,7 @@ s.append("--- Producción (última jornada) ---\\n").append(textoOF()).append('\
 s.append("--- Personal ---\\n").append(textoPersonal()).append('\\n');
 s.append("--- Calidad y tiempos ---\\n").append(textoCalidad()).append('\\n');
 s.append("--- Cumplimiento y costos ---\\n").append(textoCostos()).append('\\n');
+s.append("--- Efecto de las ausencias (faltante medio por jornada, mismo día de la semana) ---\\n").append(textoAusencias()).append('\\n');
 s.append("--- Historial ---\\n");
 for (String fila : historial) s.append(fila).append('\\n');
 s.append("=== FIN DEL RESUMEN ===");

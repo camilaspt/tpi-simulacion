@@ -128,16 +128,23 @@ def informe(grupos, semanas, precision):
     w("")
 
     w("## Cumplimiento de la OF\n")
-    w("| Escenario | Cumplimiento a tiempo | Jornadas sin cumplir | Faltante medio por jornada (con / sin ausencias) |")
+    w("| Escenario | Cumplimiento a tiempo | Jornadas sin cumplir | Efecto de las ausencias (u. de faltante por jornada) |")
     w("|---|---|---|---|")
     for nombre, g in grupos.items():
         m, _, s, _ = resumen(col(g, "cumplimiento"))
         sin = [f["jornadas_sin_cumplir"] / f["jornadas"] for f in g if f.get("jornadas")]
         ms, _, ss, _ = resumen(sin)
-        con, _, _, _ = resumen(col(g, "faltante_medio_con_ausencias"))
-        sinaus, _, _, _ = resumen(col(g, "faltante_medio_sin_ausencias"))
-        w(f"| {nombre} | {ic(m, s, pct)} | {ic(ms, ss, pct)} | {dec(con)} / {dec(sinaus)} u. |")
+        efecto = col(g, "efecto_ausencias")
+        if efecto:
+            me, _, se, ne = resumen(efecto)
+            texto_efecto = f"{ic(me, se, dec)} ({ne} réplicas)"
+        else:
+            texto_efecto = "s/d"
+        w(f"| {nombre} | {ic(m, s, pct)} | {ic(ms, ss, pct)} | {texto_efecto} |")
     w("")
+    w("El efecto de las ausencias compara cada día de la semana consigo mismo (jornadas con ausencias "
+      "contra jornadas sin ausencias del mismo día), porque el atraso se acumula de lunes a viernes. "
+      "Un valor positivo indica más faltante cuando falta alguien.\n")
 
     w("### Faltante acumulado por modelo (unidades por réplica)\n")
     w("| Escenario | " + " | ".join(NOMBRES_MODELO[m] for m in MODELOS) + " |")

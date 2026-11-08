@@ -33,7 +33,8 @@ import graficos as G  # noqa: E402
 
 # Elementos que generaba el script y ya no se usan
 VARIABLES_OBSOLETAS = {"rackCalidadX", "rackCalidadY", "contadorRackCalidad", "despachoX", "despachoY",
-                       "kitsEnRack", "diagnosticoRacks"}
+                       "kitsEnRack", "diagnosticoRacks", "diasConAusencias", "diasSinAusencias",
+                       "faltanteConAusencias", "faltanteSinAusencias"}
 FUNCIONES_OBSOLETAS = {"ubicarEnRackCalidad", "liberarCargador", "reponerKits"}
 EVENTOS_OBSOLETOS = {"eventoReponerKits"}
 BLOQUES_OBSOLETOS = {"esperaLugarKit"}
@@ -332,6 +333,8 @@ class Editor(D.Generador):
             self.poner(it, "Color", self.color(color))
             self.poner_cdata(it, "Title", titulo)
             if tipo != "BarChart":
+                # Expression2Flag = "usar valor": en true grafica Expression2 (0) en lugar del data set
+                self.poner(it, "Expression2Flag", "false")
                 self.poner(it, "PointStyle", "CIRCLE" if tipo == "Plot" else "NONE")
                 self.poner(it, "LineWidth", "2.0")
             g.insertBefore(it, ref)

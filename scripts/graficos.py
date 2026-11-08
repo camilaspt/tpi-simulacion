@@ -44,7 +44,7 @@ GRAFICOS = [
                     for t, (n, c) in enumerate(zip(("Armado", "Ajuste", "Control final", "Embalaje"),
                                                    COLORES_ESPECIALIDAD))]}),
     ("graficoRacks", "TimePlot", 2, 1, "Ocupación de los racks del depósito",
-     "Cajas en cada rack (min de simulación); el stock baja con cada camión", {
+     "% de celdas ocupadas en cada rack; el stock baja con cada camión", {
          "series": [("dsRackMateriales", "Materiales", "B45309"), ("dsRackCalidad", "Espera de calidad", "1D4ED8"),
                     ("dsRackStock", "Stock", "64748B")],
          "ventana": 2400}),
