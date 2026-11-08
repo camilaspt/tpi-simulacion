@@ -1,13 +1,13 @@
 # FINAL — Pendientes para cerrar el TP
 
-Estado al 01/11/2026, rama `feature/pedestrian-library`.
+Estado al 08/11/2026, rama `feature/pedestrian-library`.
 
 ## Entrega final (lo que hay que presentar)
 
 | # | Entregable | Estado | Qué falta |
 |---|---|---|---|
-| 1 | **ALP de AnyLogic** | Generado: `TPI-Simulacion-KRETZ - copia.alp` | Probarlo en AnyLogic y corregir errores. Al entregar, renombrarlo (por ejemplo, `TPI-Simulacion-KRETZ-GRUPO07.alp`) y comprobar que abre y corre. |
-| 2 | **Informe en PDF tipo paper** | No empezado | Secciones indispensables: **abstract, objetivos, metodología, resultados y conclusiones**. Los diez pasos de la simulación deben quedar **implícitos** en el texto, sin enumerarlos. Se arma en Overleaf, como la Etapa 1. |
+| 1 | **ALP de AnyLogic** | Corre en AnyLogic: `TPI-Simulacion-KRETZ - copia.alp` | Correr una simulación completa (4 semanas) sin errores. Al entregar, renombrarlo (por ejemplo, `TPI-Simulacion-KRETZ-GRUPO07.alp`) junto con la carpeta `3d/` y comprobar que abre y corre. |
+| 2 | **Informe en PDF tipo paper** | Borrador en `INFORME-FINAL.md` (faltan resultados y autores) | Secciones indispensables: **abstract, objetivos, metodología, resultados y conclusiones**. Los diez pasos de la simulación deben quedar **implícitos** en el texto, sin enumerarlos. Se arma en Overleaf, como la Etapa 1. |
 | 3 | **Planilla de cálculo con los resultados de las corridas** | Se arma con los CSV del modelo | Correr las réplicas y pasar `Resultados/resultados_corridas.csv`, `resultados_semanas.csv` y `resumen_escenarios.csv` a una planilla Excel (una hoja por archivo y una de resumen). |
 | 4 | **Link de AnyLogic Cloud del TPI** | No empezado | Subir el modelo a AnyLogic Cloud. Poner **nombres y correos electrónicos de los autores** y, si hace falta, instrucciones de uso. |
 | 5 | **Video breve (link de YouTube)** | No empezado | Explicar el problema, la solución y mostrar el uso del modelo. |
@@ -35,39 +35,32 @@ Sirve como guía para controlar que el informe los cubra sin nombrarlos como pas
 
 ## Lo que ya está desarrollado
 
-El modelo (`TPI-Simulacion-KRETZ - copia.alp`, generado con `scripts/desarrollar_modelo.py`) cubre la especificación:
+El modelo (`TPI-Simulacion-KRETZ - copia.alp`) corre en AnyLogic y cubre la especificación:
 
-- Los 5 equipos con sus recetas, el viaje a Depósito (rack único) y el ruteo entre líneas equivalentes.
+- Los 5 equipos con sus recetas, el viaje a Depósito y el ruteo entre líneas equivalentes.
 - Ausentismo y coberturas, muestreo de calidad (primer y último equipo por modelo).
-- Cierre de jornada, recuperación de fin de semana con horas extra al doble y costos.
-- Operarios que caminan por el plano a escala (línea recta y puerta entre naves). La Pedestrian Library se descartó: en la edición Personal Learning solo permite simular 5 horas.
+- Cierre de jornada, recuperación de fin de semana con horas extra al doble y costos (41 empleados: 30 de línea, 10 de depósito y 1 inspector).
+- Plano 3D: mesas (*Table*), cajas de producto (*box_1_closed*) y tres racks *Storage* con la Material Handling Library (materiales, espera de calidad y stock).
+- Despacho: camión (`CamionRetiro`) a las 3 h y 6 h de cada jornada, cargado por 3 empleados de depósito.
+- Operarios que caminan por el plano a escala. La Pedestrian Library se descartó: en la edición Personal Learning solo permite simular 5 horas.
 - 8 escenarios, réplicas con semilla registrada, exportación de resultados a `Resultados/*.csv` e informe automático (`scripts/analizar_resultados.py`).
+- Los cambios al modelo se aplican con `scripts/editar_alp.py` (conserva lo editado en AnyLogic); hay que cerrar el modelo antes.
 
 ## Lo que falta, en orden
 
-1. **Probar el modelo en AnyLogic y corregir errores.** El código compila, pero todavía no se ejecutó completo. Para probarlo:
-   - cerrar el modelo y borrar `TPI-Simulacion-KRETZ - copia.alp.autosave`;
-   - abrir `TPI-Simulacion-KRETZ - copia.alp` y correr `Simulation`;
-   - anotar los errores de la consola o de la pantalla.
-
-   Qué puede aparecer:
-   - lentitud: si tarda demasiado, bajar `semanasSimuladas`.
-2. **Crear el experimento de réplicas (Variación de parámetros) a mano en AnyLogic**, con *Replications* en 10 o más, y guardar el modelo. Después se usa como plantilla en el script para generarlo en los 8 escenarios.
-3. **Cargar datos reales:**
-   - OF reales de KRETZ, en lugar de las 3 de ejemplo (función `ofEjemplo` en `scripts/modelo_java.py`);
-   - probabilidad de ausencia según la planilla de asistencia, en lugar del 6 % supuesto (parámetro `probAusencia`).
-
-   Si no se consiguen, dejarlos declarados como supuestos en el informe.
-4. **Correr las réplicas de los 8 escenarios** y generar el informe con `py -3 scripts/analizar_resultados.py`. El informe dice si alcanzan las réplicas para ±5 % de precisión en el costo total.
-5. **Escribir el informe final de la Etapa 2** en Overleaf, siguiendo el formato de la Etapa 1:
-   - descripción del modelo construido;
-   - verificación y validación (por ejemplo, comparar la producción del escenario actual con la real);
-   - resultados con intervalos de confianza (de `Resultados/informe_resultados.md`);
-   - conclusiones respondiendo las preguntas de la sección 16 de la especificación.
-6. **Unir la rama `feature/pedestrian-library` a `main`** cuando el modelo funcione.
+1. **Correr una simulación completa (4 semanas)** y confirmar que termina, que crea `Resultados/resultados_corridas.csv` y que no quedan cajas al pie de los racks de calidad o stock (AnyLogic informa 200 celdas en cada uno; si se llenan, agrandarlos).
+2. **Experimento de réplicas:** crear a mano en AnyLogic una *Variación de parámetros* (por ejemplo, `semilla` de 1 a 30) y guardar el modelo; después se replica para los 8 escenarios con el script. Con las mismas semillas en todos los escenarios, la comparación es más precisa.
+3. **Datos reales o supuestos declarados:** OF reales de KRETZ (hoy 3 de ejemplo en `ofEjemplo`) y probabilidad de ausencia de la planilla de asistencia (hoy 6 %, `probAusencia`).
+4. **Correr las réplicas** de los 8 escenarios (sin animación) y generar `Resultados/informe_resultados.md` con `py -3 scripts/analizar_resultados.py`.
+5. **Planilla de cálculo** (entregable 3): armarla desde los CSV de resultados.
+6. **Informe PDF** (entregable 2): completar `INFORME-FINAL.md` con los resultados y los autores, y pasarlo a Overleaf.
+7. **AnyLogic Cloud** (entregable 4): subir el modelo, con nombres y correos de los autores e instrucciones de uso.
+8. **Video** (entregable 5): grabarlo con el modelo final.
+9. **Cierre del repositorio:** unir `feature/pedestrian-library` a `main`.
 
 ## Detalles menores (opcionales)
 
 - `Datos/dotacion_lineas.csv` no se lee desde el modelo: la dotación sale de los parámetros (`armadoresPorLinea`, `ajustadoresPorLinea`, etc.).
 - El «faltante por línea» de la sección 14 se informa como unidades procesadas por línea. Como las líneas no están dedicadas a un equipo, el faltante no se puede asignar a una línea.
-- Ordenar el repositorio: hay dos versiones de la especificación (`README-Especificacion.md` y `README-Especificacion_1.md`) y queda un `debug.log` en la raíz.
+- Ordenar el repositorio: hay dos versiones de la especificación (`README-Especificacion.md` y `README-Especificacion_1.md`), un `debug.log` en la raíz y `scripts/desarrollar_modelo.py`, que ya no se usa para generar el modelo (solo para el arnés de compilación y las definiciones del flujo).
+- La especificación de la Etapa 1 todavía dice 51 empleados (≈ 20 de depósito).
