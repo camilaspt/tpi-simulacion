@@ -27,11 +27,10 @@
 \usepackage{url}
 \usepackage[hidelinks]{hyperref}
 
-% Colores
-\definecolor{kretzazul}{HTML}{1F3A6B}
-\definecolor{kretzfila}{HTML}{EEF2FA}
-\definecolor{kretzgris}{HTML}{B7C2D8}
-\definecolor{pendiente}{HTML}{B91C1C}
+% Grises para el fondo de las tablas y del recuadro (el texto va todo en negro)
+\definecolor{encabezado}{HTML}{D9D9D9}
+\definecolor{fila}{HTML}{F2F2F2}
+\definecolor{borde}{HTML}{808080}
 
 % Párrafos y listas
 \setlength{\parindent}{0pt}
@@ -43,25 +42,25 @@
 \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
 \setlength{\LTpre}{0.6em}
 \setlength{\LTpost}{0.6em}
-\captionsetup{font=small,labelfont={bf,color=kretzazul}}
+\captionsetup{font=small,labelfont=bf}
 \captionsetup[longtable]{skip=4pt}
 
 % Títulos
-\titleformat{\section}{\Large\bfseries\color{kretzazul}}{\thesection.}{0.5em}{}
-\titleformat{\subsection}{\large\bfseries\color{kretzazul}}{\thesubsection}{0.5em}{}
+\titleformat{\section}{\Large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{0.5em}{}
 \titlespacing*{\section}{0pt}{1.4em}{0.6em}
 \titlespacing*{\subsection}{0pt}{1.1em}{0.4em}
 
 % Encabezado y pie
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\small\color{gray}Informe final — Simulación KRETZ}
-\fancyhead[R]{\small\color{gray}Grupo 7}
+\fancyhead[L]{\small Informe final — Simulación KRETZ}
+\fancyhead[R]{\small Grupo 7}
 \fancyfoot[C]{\small\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 
-% Datos que faltan completar (se ven en rojo hasta reemplazarlos)
-\newcommand{\pendiente}[1]{\textcolor{pendiente}{\textbf{[#1]}}}
+% Datos que faltan completar (en negrita y entre corchetes hasta reemplazarlos)
+\newcommand{\pendiente}[1]{\textbf{[#1]}}
 
 \hypersetup{pdftitle={Informe final — Simulación KRETZ}, pdfsubject={Línea de producción y depósito — Fábrica de balanzas KRETZ}}
 
@@ -69,7 +68,7 @@
 
 % ------------------------------------------------------------------ Título
 \begin{center}
-  {\LARGE\bfseries\color{kretzazul} Simulación de la línea de producción y el depósito de KRETZ: horas extra de fin de semana frente a contratación, reorganización y personal de reserva \par}
+  {\LARGE\bfseries Simulación de la línea de producción y el depósito de KRETZ: horas extra de fin de semana frente a contratación, reorganización y personal de reserva \par}
   \vspace{0.8em}
   {\large Trabajo Práctico Integrador de Simulación — Etapa 2/2 — Grupo 7 \par}
   \vspace{0.6em}
@@ -167,14 +166,14 @@ Las secuencias de puestos y los tiempos medios de cada modelo, relevados de SAP,
 {\small
 \begin{longtable}{P{0.221\linewidth}P{0.134\linewidth}P{0.134\linewidth}P{0.103\linewidth}P{0.087\linewidth}P{0.142\linewidth}}
 \caption{Secuencia y tiempos medios por modelo (min). Todos empiezan con el retiro de materiales en el depósito (2 min).}\\
-\rowcolor{kretzazul}\textcolor{white}{\textbf{Modelo}} & \textcolor{white}{\textbf{Armado}} & \textcolor{white}{\textbf{Ajuste / Ensamble}} & \textcolor{white}{\textbf{Control Final}} & \textcolor{white}{\textbf{Embalaje}} & \textcolor{white}{\textbf{Total sin caminata}} \\
+\rowcolor{encabezado}\textbf{Modelo} & \textbf{Armado} & \textbf{Ajuste / Ensamble} & \textbf{Control Final} & \textbf{Embalaje} & \textbf{Total sin caminata} \\
 \endfirsthead
-\rowcolor{kretzazul}\textcolor{white}{\textbf{Modelo}} & \textcolor{white}{\textbf{Armado}} & \textcolor{white}{\textbf{Ajuste / Ensamble}} & \textcolor{white}{\textbf{Control Final}} & \textcolor{white}{\textbf{Embalaje}} & \textcolor{white}{\textbf{Total sin caminata}} \\
+\rowcolor{encabezado}\textbf{Modelo} & \textbf{Armado} & \textbf{Ajuste / Ensamble} & \textbf{Control Final} & \textbf{Embalaje} & \textbf{Total sin caminata} \\
 \endhead
 AILA 30KG & 3,5 + 7 + 7 + 7,5 & 5 & 4,5 & 10 & 46,5 \\
-\rowcolor{kretzfila}REPORT LT & 11 & 12 & 12 & 12 & 49 \\
+\rowcolor{fila}REPORT LT & 11 & 12 & 12 & 12 & 49 \\
 NOVEL ECO & 3,15 & 3 & 2,25 & 3 & 13,4 \\
-\rowcolor{kretzfila}LURA (importado, sin armado) & — & 4 & 3,15 & 3,15 & 12,3 \\
+\rowcolor{fila}LURA (importado, sin armado) & — & 4 & 3,15 & 3,15 & 12,3 \\
 AURA & 3,15 & 3 & 2,5 & 2,88 & 13,53 \\
 \end{longtable}
 }
@@ -184,20 +183,20 @@ AURA & 3,15 & 3 & 2,5 & 2,88 & 13,53 \\
 \needspace{5\baselineskip}
 {\small
 \begin{longtable}{P{0.177\linewidth}P{0.366\linewidth}P{0.366\linewidth}}
-\rowcolor{kretzazul}\textcolor{white}{\textbf{Dato}} & \textcolor{white}{\textbf{Valor en el modelo}} & \textcolor{white}{\textbf{Fuente}} \\
+\rowcolor{encabezado}\textbf{Dato} & \textbf{Valor en el modelo} & \textbf{Fuente} \\
 \endfirsthead
-\rowcolor{kretzazul}\textcolor{white}{\textbf{Dato}} & \textcolor{white}{\textbf{Valor en el modelo}} & \textcolor{white}{\textbf{Fuente}} \\
+\rowcolor{encabezado}\textbf{Dato} & \textbf{Valor en el modelo} & \textbf{Fuente} \\
 \endhead
 Tiempos de tarea & Triangular con mínimo $0{,}8\,m$, moda $0{,}9\,m$ y máximo $1{,}3\,m$, donde $m$ es el tiempo de SAP (la media de la distribución es $m$) & SAP; asimetría supuesta: las demoras largas son más probables que las tareas muy cortas \\
-\rowcolor{kretzfila}Retiro de materiales & 2 min (misma triangular); hasta 5 operarios a la vez en el rack & SAP y planta \\
+\rowcolor{fila}Retiro de materiales & 2 min (misma triangular); hasta 5 operarios a la vez en el rack & SAP y planta \\
 Jornada & Turno de 480 min, 5 jornadas por semana & KRETZ \\
-\rowcolor{kretzfila}Ausentismo & 6 \% por empleado y día, con un factor por día de la semana (lunes 1,25; martes 1,0; miércoles y jueves 0,9; viernes 1,1); 10 \% en la recuperación de fin de semana & Supuesto, coherente con la planilla de ausencias de referencia (Sección 3.5) \\
+\rowcolor{fila}Ausentismo & 6 \% por empleado y día, con un factor por día de la semana (lunes 1,25; martes 1,0; miércoles y jueves 0,9; viernes 1,1); 10 \% en la recuperación de fin de semana & Supuesto, coherente con la planilla de ausencias de referencia (Sección 3.5) \\
 Velocidad de caminata & 1,3 m/s, en línea recta y pasando por la puerta entre naves & Valor típico de marcha; plano a escala (16 px = 1 m) \\
-\rowcolor{kretzfila}Inspección de calidad & 8 min por equipo inspeccionado; 3 \% de rechazo & Supuesto \\
+\rowcolor{fila}Inspección de calidad & 8 min por equipo inspeccionado; 3 \% de rechazo & Supuesto \\
 OF & OF 1, mezcla equilibrada, todos los días: 42 AILA 30KG, 58 REPORT LT, 83 NOVEL ECO, 55 LURA y 69 AURA (307 unidades) & KRETZ (OF de producción) \\
-\rowcolor{kretzfila}Costo de la hora normal & \$ 6.500 por empleado, con cargas & Supuesto \\
+\rowcolor{fila}Costo de la hora normal & \$ 6.500 por empleado, con cargas & Supuesto \\
 Recargo de fin de semana & $\times$2 & KRETZ \\
-\rowcolor{kretzfila}Recuperación de fin de semana & Se convoca una cuadrilla proporcional al faltante: 1 persona cada 4 unidades pendientes, entre 3 y 12, repartidas entre especialidades según los minutos pendientes. Se pagan al menos 4 h y como máximo 16 h; lo que no se recupera pasa a la semana siguiente & Supuesto \\
+\rowcolor{fila}Recuperación de fin de semana & Se convoca una cuadrilla proporcional al faltante: 1 persona cada 4 unidades pendientes, entre 3 y 12, repartidas entre especialidades según los minutos pendientes. Se pagan al menos 4 h y como máximo 16 h; lo que no se recupera pasa a la semana siguiente & Supuesto \\
 \end{longtable}
 }
 
@@ -253,22 +252,22 @@ El modelo tiene tres pestañas: \textbf{Simulación} (animación 2D y 3D de la p
 
 \textbf{Validación} (el escenario actual se parece a la planta real). Comparamos el escenario actual con un historial de referencia de 26 semanas (marzo a agosto de 2026, 120 jornadas): planilla de ausencias, OF diarias y horas extra de cada sábado (\texttt{Datos/\allowbreak{}Sinteticos/\allowbreak{}}).
 
-\begin{center}\fcolorbox{kretzgris}{kretzfila}{\parbox{0.93\linewidth}{\small \textbf{Importante:} mientras KRETZ no entregue los registros completos, ese historial es \textbf{sintético}. Lo genera \texttt{scripts/\allowbreak{}generar\_\allowbreak{}datos\_\allowbreak{}sinteticos.py} con un modelo de capacidad más simple que el de AnyLogic, pero con los mismos tiempos de SAP, la misma tasa de ausentismo y el mismo valor de la hora. Por eso la comparación muestra que el modelo es coherente con esos supuestos, no que reproduce la planta real. Cuando lleguen los registros reales, alcanza con reemplazar esos archivos y volver a correr la planilla.}}\end{center}
+\begin{center}\fcolorbox{borde}{fila}{\parbox{0.93\linewidth}{\small \textbf{Importante:} mientras KRETZ no entregue los registros completos, ese historial es \textbf{sintético}. Lo genera \texttt{scripts/\allowbreak{}generar\_\allowbreak{}datos\_\allowbreak{}sinteticos.py} con un modelo de capacidad más simple que el de AnyLogic, pero con los mismos tiempos de SAP, la misma tasa de ausentismo y el mismo valor de la hora. Por eso la comparación muestra que el modelo es coherente con esos supuestos, no que reproduce la planta real. Cuando lleguen los registros reales, alcanza con reemplazar esos archivos y volver a correr la planilla.}}\end{center}
 
 \needspace{5\baselineskip}
 {\small
 \begin{longtable}{P{0.281\linewidth}P{0.251\linewidth}P{0.196\linewidth}P{0.153\linewidth}}
 \caption{Validación del escenario actual.}\\
-\rowcolor{kretzazul}\textcolor{white}{\textbf{Medida}} & \textcolor{white}{\textbf{Historial}} & \textcolor{white}{\textbf{Modelo: media (IC 95 \%)}} & \textcolor{white}{\textbf{¿Historial dentro del IC?}} \\
+\rowcolor{encabezado}\textbf{Medida} & \textbf{Historial} & \textbf{Modelo: media (IC 95 \%)} & \textbf{¿Historial dentro del IC?} \\
 \endfirsthead
-\rowcolor{kretzazul}\textcolor{white}{\textbf{Medida}} & \textcolor{white}{\textbf{Historial}} & \textcolor{white}{\textbf{Modelo: media (IC 95 \%)}} & \textcolor{white}{\textbf{¿Historial dentro del IC?}} \\
+\rowcolor{encabezado}\textbf{Medida} & \textbf{Historial} & \textbf{Modelo: media (IC 95 \%)} & \textbf{¿Historial dentro del IC?} \\
 \endhead
 Jornadas sin cumplir la OF & 65,0 \% & 60,0 \% (54,4 \% a 65,6 \%) & Sí \\
-\rowcolor{kretzfila}Cumplimiento de la OF en el turno & 83,4 \% & 82,3 \% (79,4 \% a 85,3 \%) & Sí \\
+\rowcolor{fila}Cumplimiento de la OF en el turno & 83,4 \% & 82,3 \% (79,4 \% a 85,3 \%) & Sí \\
 Horas extra de fin de semana (h-hombre/semana) & 32,1 & 29,6 (25,0 a 34,2) & Sí \\
-\rowcolor{kretzfila}Costo de horas extra por semana & \$ 417.250 & \$ 385.147 (\$ 325.165 a \$ 445.128) & Sí \\
+\rowcolor{fila}Costo de horas extra por semana & \$ 417.250 & \$ 385.147 (\$ 325.165 a \$ 445.128) & Sí \\
 Semanas con recuperación & 65,4 \% (17 de 26) & 62,5 \% (75 de 120) & (proporción) \\
-\rowcolor{kretzfila}Especialidad que limita la jornada & Ajustador (69 de 78 jornadas sin cumplir) & Ajustador (utilización del 92 \%) & Sí \\
+\rowcolor{fila}Especialidad que limita la jornada & Ajustador (69 de 78 jornadas sin cumplir) & Ajustador (utilización del 92 \%) & Sí \\
 \end{longtable}
 }
 
@@ -308,18 +307,18 @@ Como medidas complementarias, para explicar los resultados y no para elegir el e
 {\small
 \begin{longtable}{P{0.080\linewidth}P{0.230\linewidth}P{0.600\linewidth}}
 \caption{Escenarios evaluados.}\\
-\rowcolor{kretzazul}\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Escenario}} & \textcolor{white}{\textbf{Cambio respecto del escenario actual}} \\
+\rowcolor{encabezado}\textbf{\#} & \textbf{Escenario} & \textbf{Cambio respecto del escenario actual} \\
 \endfirsthead
-\rowcolor{kretzazul}\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Escenario}} & \textcolor{white}{\textbf{Cambio respecto del escenario actual}} \\
+\rowcolor{encabezado}\textbf{\#} & \textbf{Escenario} & \textbf{Cambio respecto del escenario actual} \\
 \endhead
 E0 & Escenario actual & Dotación actual, faltante recuperado con horas extra de fin de semana \\
-\rowcolor{kretzfila}E1 & Contratar 2 Ajustadores & +2 Ajustadores \\
+\rowcolor{fila}E1 & Contratar 2 Ajustadores & +2 Ajustadores \\
 E2 & Contratar 2 Armadores & +2 Armadores \\
-\rowcolor{kretzfila}E3 & Contratar 1 Controlador & +1 Controlador \\
+\rowcolor{fila}E3 & Contratar 1 Controlador & +1 Controlador \\
 E4 & Contratar 1 Embalador & +1 Embalador \\
-\rowcolor{kretzfila}E5 & Personal de reserva & 2 operarios polivalentes que cubren ausencias de cualquier especialidad \\
+\rowcolor{fila}E5 & Personal de reserva & 2 operarios polivalentes que cubren ausencias de cualquier especialidad \\
 E6 & Reorganización & 3 armadores + 2 ajustadores por línea de Armado (misma dotación total) y coberturas entre especialidades; costo de reorganización de \$ 1.500.000, una sola vez \\
-\rowcolor{kretzfila}E7 & Cambio de secuencia & Se liberan primero los equipos con procesos más largos \\
+\rowcolor{fila}E7 & Cambio de secuencia & Se liberan primero los equipos con procesos más largos \\
 \end{longtable}
 }
 
@@ -450,18 +449,18 @@ Para recuperarlo hacen falta 29,6 h-hombre de fin de semana por semana (IC 95 \%
 {\small
 \begin{longtable}{P{0.160\linewidth}P{0.137\linewidth}P{0.125\linewidth}P{0.119\linewidth}P{0.172\linewidth}P{0.107\linewidth}}
 \caption{Media e intervalo de confianza del 95 \% ($\bar{X} \pm t_{29;\,0{,}025}\,S/\sqrt{n}$, $n = 30$). Valores por semana.}\\
-\rowcolor{kretzazul}\textcolor{white}{\textbf{Escenario}} & \textcolor{white}{\textbf{Costo total semanal (\$)}} & \textcolor{white}{\textbf{Cumplimiento de la OF}} & \textcolor{white}{\textbf{Jornadas sin cumplir}} & \textcolor{white}{\textbf{Horas extra (h-hombre/semana)}} & \textcolor{white}{\textbf{Semanas con sábado}} \\
+\rowcolor{encabezado}\textbf{Escenario} & \textbf{Costo total semanal (\$)} & \textbf{Cumplimiento de la OF} & \textbf{Jornadas sin cumplir} & \textbf{Horas extra (h-hombre/semana)} & \textbf{Semanas con sábado} \\
 \endfirsthead
-\rowcolor{kretzazul}\textcolor{white}{\textbf{Escenario}} & \textcolor{white}{\textbf{Costo total semanal (\$)}} & \textcolor{white}{\textbf{Cumplimiento de la OF}} & \textcolor{white}{\textbf{Jornadas sin cumplir}} & \textcolor{white}{\textbf{Horas extra (h-hombre/semana)}} & \textcolor{white}{\textbf{Semanas con sábado}} \\
+\rowcolor{encabezado}\textbf{Escenario} & \textbf{Costo total semanal (\$)} & \textbf{Cumplimiento de la OF} & \textbf{Jornadas sin cumplir} & \textbf{Horas extra (h-hombre/semana)} & \textbf{Semanas con sábado} \\
 \endhead
 E0 Actual & 11.045.147 \textpm{} 59.982 & 82,3 \% \textpm{} 3,0 \% & 60,0 \% \textpm{} 5,6 \% & 29,6 \textpm{} 4,6 & 62,5 \% \\
-\rowcolor{kretzfila}E1 +2 Ajustadores & 11.327.791 \textpm{} 52.473 & 94,2 \% \textpm{} 1,5 \% & 36,0 \% \textpm{} 4,1 \% & 11,4 \textpm{} 4,0 & 33,3 \% \\
+\rowcolor{fila}E1 +2 Ajustadores & 11.327.791 \textpm{} 52.473 & 94,2 \% \textpm{} 1,5 \% & 36,0 \% \textpm{} 4,1 \% & 11,4 \textpm{} 4,0 & 33,3 \% \\
 E2 +2 Armadores & 11.582.778 \textpm{} 58.801 & 82,4 \% \textpm{} 2,9 \% & 61,5 \% \textpm{} 4,9 \% & 31,0 \textpm{} 4,5 & 65,8 \% \\
-\rowcolor{kretzfila}E3 +1 Controlador & 11.294.813 \textpm{} 61.029 & 83,0 \% \textpm{} 3,0 \% & 54,7 \% \textpm{} 5,6 \% & 28,8 \textpm{} 4,7 & 59,2 \% \\
+\rowcolor{fila}E3 +1 Controlador & 11.294.813 \textpm{} 61.029 & 83,0 \% \textpm{} 3,0 \% & 54,7 \% \textpm{} 5,6 \% & 28,8 \textpm{} 4,7 & 59,2 \% \\
 E4 +1 Embalador & 11.300.927 \textpm{} 60.960 & 82,9 \% \textpm{} 2,9 \% & 57,2 \% \textpm{} 5,7 \% & 29,3 \textpm{} 4,7 & 61,7 \% \\
-\rowcolor{kretzfila}E5 Reserva (2) & 11.294.923 \textpm{} 43.251 & 95,0 \% \textpm{} 1,2 \% & 26,7 \% \textpm{} 4,7 \% & 8,8 \textpm{} 3,3 & 24,2 \% \\
+\rowcolor{fila}E5 Reserva (2) & 11.294.923 \textpm{} 43.251 & 95,0 \% \textpm{} 1,2 \% & 26,7 \% \textpm{} 4,7 \% & 8,8 \textpm{} 3,3 & 24,2 \% \\
 E6 Reorganización & 11.165.903 \textpm{} 44.231 & 94,9 \% \textpm{} 1,3 \% & 33,8 \% \textpm{} 4,3 \% & 10,1 \textpm{} 3,4 & 30,0 \% \\
-\rowcolor{kretzfila}E7 Secuencia largos primero & 11.030.952 \textpm{} 60.905 & 83,7 \% \textpm{} 3,0 \% & 60,7 \% \textpm{} 5,8 \% & 28,5 \textpm{} 4,7 & 65,0 \% \\
+\rowcolor{fila}E7 Secuencia largos primero & 11.030.952 \textpm{} 60.905 & 83,7 \% \textpm{} 3,0 \% & 60,7 \% \textpm{} 5,8 \% & 28,5 \textpm{} 4,7 & 65,0 \% \\
 \end{longtable}
 }
 
@@ -494,16 +493,16 @@ En costo total, el único escenario que queda a la altura del actual es E7. Todo
 {\small
 \begin{longtable}{P{0.291\linewidth}P{0.137\linewidth}P{0.125\linewidth}P{0.137\linewidth}P{0.160\linewidth}}
 \caption{Ahorro medio por semana ($\bar{D} \pm t_{29;\,0{,}025}\,S_D/\sqrt{n}$, pares con la misma semilla). Un valor negativo indica que la alternativa cuesta más.}\\
-\rowcolor{kretzazul}\textcolor{white}{\textbf{Alternativa}} & \textcolor{white}{\textbf{Ahorro medio (\$/semana)}} & \textcolor{white}{\textbf{IC 95 \%}} & \textcolor{white}{\textbf{¿Significativo al 95 \%?}} & \textcolor{white}{\textbf{¿Y con Bonferroni (99,3 \%)?}} \\
+\rowcolor{encabezado}\textbf{Alternativa} & \textbf{Ahorro medio (\$/semana)} & \textbf{IC 95 \%} & \textbf{¿Significativo al 95 \%?} & \textbf{¿Y con Bonferroni (99,3 \%)?} \\
 \endfirsthead
-\rowcolor{kretzazul}\textcolor{white}{\textbf{Alternativa}} & \textcolor{white}{\textbf{Ahorro medio (\$/semana)}} & \textcolor{white}{\textbf{IC 95 \%}} & \textcolor{white}{\textbf{¿Significativo al 95 \%?}} & \textcolor{white}{\textbf{¿Y con Bonferroni (99,3 \%)?}} \\
+\rowcolor{encabezado}\textbf{Alternativa} & \textbf{Ahorro medio (\$/semana)} & \textbf{IC 95 \%} & \textbf{¿Significativo al 95 \%?} & \textbf{¿Y con Bonferroni (99,3 \%)?} \\
 \endhead
 E1 +2 Ajustadores & $-$282.644 & [$-$356.927 ; $-$208.362] & Sí, cuesta más & Sí \\
-\rowcolor{kretzfila}E2 +2 Armadores & $-$537.631 & [$-$546.997 ; $-$528.265] & Sí, cuesta más & Sí \\
+\rowcolor{fila}E2 +2 Armadores & $-$537.631 & [$-$546.997 ; $-$528.265] & Sí, cuesta más & Sí \\
 E3 +1 Controlador & $-$249.666 & [$-$274.420 ; $-$224.912] & Sí, cuesta más & Sí \\
-\rowcolor{kretzfila}E4 +1 Embalador & $-$255.781 & [$-$260.438 ; $-$251.123] & Sí, cuesta más & Sí \\
+\rowcolor{fila}E4 +1 Embalador & $-$255.781 & [$-$260.438 ; $-$251.123] & Sí, cuesta más & Sí \\
 E5 Reserva (2) & $-$249.777 & [$-$307.612 ; $-$191.942] & Sí, cuesta más & Sí \\
-\rowcolor{kretzfila}E6 Reorganización (con la inversión en 4 semanas) & $-$120.757 & [$-$188.608 ; $-$52.905] & Sí, cuesta más & Sí \\
+\rowcolor{fila}E6 Reorganización (con la inversión en 4 semanas) & $-$120.757 & [$-$188.608 ; $-$52.905] & Sí, cuesta más & Sí \\
 E7 Secuencia largos primero & +14.194 & [$-$1.327 ; +29.715] & No & No \\
 \end{longtable}
 }
@@ -560,18 +559,18 @@ En las capturas del experimento de réplicas de la reorganización (Anexo), la m
 {\footnotesize
 \begin{longtable}{P{0.083\linewidth}P{0.063\linewidth}P{0.073\linewidth}P{0.083\linewidth}P{0.073\linewidth}P{0.136\linewidth}P{0.141\linewidth}P{0.107\linewidth}}
 \caption{Utilización, espera en cola y coberturas (media de las 30 réplicas).}\\
-\rowcolor{kretzazul}\textcolor{white}{\textbf{Escenario}} & \textcolor{white}{\textbf{Util. Armador}} & \textcolor{white}{\textbf{Util. Ajustador}} & \textcolor{white}{\textbf{Util. Controlador}} & \textcolor{white}{\textbf{Util. Embalador}} & \textcolor{white}{\textbf{Espera media en ajuste (min)}} & \textcolor{white}{\textbf{Espera media en control (min)}} & \textcolor{white}{\textbf{Coberturas por réplica}} \\
+\rowcolor{encabezado}\textbf{Escenario} & \textbf{Util. Armador} & \textbf{Util. Ajustador} & \textbf{Util. Controlador} & \textbf{Util. Embalador} & \textbf{Espera media en ajuste (min)} & \textbf{Espera media en control (min)} & \textbf{Coberturas por réplica} \\
 \endfirsthead
-\rowcolor{kretzazul}\textcolor{white}{\textbf{Escenario}} & \textcolor{white}{\textbf{Util. Armador}} & \textcolor{white}{\textbf{Util. Ajustador}} & \textcolor{white}{\textbf{Util. Controlador}} & \textcolor{white}{\textbf{Util. Embalador}} & \textcolor{white}{\textbf{Espera media en ajuste (min)}} & \textcolor{white}{\textbf{Espera media en control (min)}} & \textcolor{white}{\textbf{Coberturas por réplica}} \\
+\rowcolor{encabezado}\textbf{Escenario} & \textbf{Util. Armador} & \textbf{Util. Ajustador} & \textbf{Util. Controlador} & \textbf{Util. Embalador} & \textbf{Espera media en ajuste (min)} & \textbf{Espera media en control (min)} & \textbf{Coberturas por réplica} \\
 \endhead
 E0 Actual & 41,0 \% & 92,4 \% & 76,8 \% & 62,2 \% & 165,1 & 13,3 & 24,1 \\
-\rowcolor{kretzfila}E1 +2 Ajustadores & 41,8 \% & 63,9 \% & 78,4 \% & 63,4 \% & 74,0 & 51,4 & 22,2 \\
+\rowcolor{fila}E1 +2 Ajustadores & 41,8 \% & 63,9 \% & 78,4 \% & 63,4 \% & 74,0 & 51,4 & 22,2 \\
 E2 +2 Armadores & 36,9 \% & 92,2 \% & 76,7 \% & 62,1 \% & 180,8 & 13,1 & 14,6 \\
-\rowcolor{kretzfila}E3 +1 Controlador & 41,1 \% & 92,6 \% & 61,8 \% & 62,3 \% & 165,1 & 2,5 & 24,0 \\
+\rowcolor{fila}E3 +1 Controlador & 41,1 \% & 92,6 \% & 61,8 \% & 62,3 \% & 165,1 & 2,5 & 24,0 \\
 E4 +1 Embalador & 41,0 \% & 92,4 \% & 76,8 \% & 53,6 \% & 165,1 & 13,3 & 24,0 \\
-\rowcolor{kretzfila}E5 Reserva (2) & 39,4 \% & 91,3 \% & 75,9 \% & 61,8 \% & 139,4 & 8,8 & 29,6 \\
+\rowcolor{fila}E5 Reserva (2) & 39,4 \% & 91,3 \% & 75,9 \% & 61,8 \% & 139,4 & 8,8 & 29,6 \\
 E6 Reorganización & 56,0 \% & 49,1 \% & 78,4 \% & 63,5 \% & 23,8 & 60,8 & 16,1 \\
-\rowcolor{kretzfila}E7 Secuencia & 41,2 \% & 92,8 \% & 77,1 \% & 62,3 \% & 173,7 & 17,5 & 24,1 \\
+\rowcolor{fila}E7 Secuencia & 41,2 \% & 92,8 \% & 77,1 \% & 62,3 \% & 173,7 & 17,5 & 24,1 \\
 \end{longtable}
 }
 

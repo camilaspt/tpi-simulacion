@@ -2,8 +2,8 @@
 
 Escribe Informe/Overleaf/main.tex, copia las figuras a Informe/Overleaf/figuras/ y deja todo
 comprimido en Informe/Informe_Final_GRUPO_07_Overleaf.zip, listo para "New Project > Upload
-Project" en Overleaf (compilador pdfLaTeX). Usa el mismo estilo que la especificación de la
-Etapa 1 (Overleaf/main.tex).
+Project" en Overleaf (compilador pdfLaTeX). Estilo sobrio, con todo el texto en negro (basado en la especificación de la
+Etapa 1).
 
     py -3 scripts/armar_overleaf.py
 """
@@ -49,11 +49,10 @@ PREAMBULO = r"""% --------------------------------------------------------------
 \usepackage{url}
 \usepackage[hidelinks]{hyperref}
 
-% Colores
-\definecolor{kretzazul}{HTML}{1F3A6B}
-\definecolor{kretzfila}{HTML}{EEF2FA}
-\definecolor{kretzgris}{HTML}{B7C2D8}
-\definecolor{pendiente}{HTML}{B91C1C}
+% Grises para el fondo de las tablas y del recuadro (el texto va todo en negro)
+\definecolor{encabezado}{HTML}{D9D9D9}
+\definecolor{fila}{HTML}{F2F2F2}
+\definecolor{borde}{HTML}{808080}
 
 % Párrafos y listas
 \setlength{\parindent}{0pt}
@@ -65,25 +64,25 @@ PREAMBULO = r"""% --------------------------------------------------------------
 \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
 \setlength{\LTpre}{0.6em}
 \setlength{\LTpost}{0.6em}
-\captionsetup{font=small,labelfont={bf,color=kretzazul}}
+\captionsetup{font=small,labelfont=bf}
 \captionsetup[longtable]{skip=4pt}
 
 % Títulos
-\titleformat{\section}{\Large\bfseries\color{kretzazul}}{\thesection.}{0.5em}{}
-\titleformat{\subsection}{\large\bfseries\color{kretzazul}}{\thesubsection}{0.5em}{}
+\titleformat{\section}{\Large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{0.5em}{}
 \titlespacing*{\section}{0pt}{1.4em}{0.6em}
 \titlespacing*{\subsection}{0pt}{1.1em}{0.4em}
 
 % Encabezado y pie
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\small\color{gray}Informe final — Simulación KRETZ}
-\fancyhead[R]{\small\color{gray}Grupo 7}
+\fancyhead[L]{\small Informe final — Simulación KRETZ}
+\fancyhead[R]{\small Grupo 7}
 \fancyfoot[C]{\small\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 
-% Datos que faltan completar (se ven en rojo hasta reemplazarlos)
-\newcommand{\pendiente}[1]{\textcolor{pendiente}{\textbf{[#1]}}}
+% Datos que faltan completar (en negrita y entre corchetes hasta reemplazarlos)
+\newcommand{\pendiente}[1]{\textbf{[#1]}}
 
 \hypersetup{pdftitle={Informe final — Simulación KRETZ}, pdfsubject={Línea de producción y depósito — Fábrica de balanzas KRETZ}}
 
@@ -91,7 +90,7 @@ PREAMBULO = r"""% --------------------------------------------------------------
 
 % ------------------------------------------------------------------ Título
 \begin{center}
-  {\LARGE\bfseries\color{kretzazul} TITULO \par}
+  {\LARGE\bfseries TITULO \par}
   \vspace{0.8em}
   {\large Trabajo Práctico Integrador de Simulación — Etapa 2/2 — Grupo 7 \par}
   \vspace{0.6em}
@@ -162,12 +161,12 @@ def tabla(filas, titulo):
     lineas = [r"\needspace{5\baselineskip}", "{" + letra, r"\begin{longtable}{" + columnas + "}"]
     if titulo:
         lineas.append(r"\caption{" + en_linea(titulo) + r"}\\")
-    encabezado = r"\rowcolor{kretzazul}" + " & ".join(
-        r"\textcolor{white}{\textbf{" + en_linea(c) + "}}" for c in cab) + r" \\"
+    encabezado = r"\rowcolor{encabezado}" + " & ".join(
+        r"\textbf{" + en_linea(c) + "}" for c in cab) + r" \\"
     lineas += [encabezado, r"\endfirsthead", encabezado, r"\endhead"]
     for i, fila in enumerate(cuerpo):
         fila = (fila + [""] * n)[:n]
-        color = r"\rowcolor{kretzfila}" if i % 2 else ""
+        color = r"\rowcolor{fila}" if i % 2 else ""
         lineas.append(color + " & ".join(en_linea(c) for c in fila) + r" \\")
     lineas += [r"\end{longtable}", "}"]
     return "\n".join(lineas)
@@ -293,7 +292,7 @@ def convertir(md):
                     leyenda = mm.group(1)
             out.append(figura(ruta, alt, leyenda))
         elif tipo == "cita":
-            out.append(r"\begin{center}\fcolorbox{kretzgris}{kretzfila}{\parbox{0.93\linewidth}{\small "
+            out.append(r"\begin{center}\fcolorbox{borde}{fila}{\parbox{0.93\linewidth}{\small "
                        + en_linea(val) + r"}}\end{center}")
         elif tipo == "ecuacion":
             out.append(r"\[" + val.strip("$").strip() + r"\]")
