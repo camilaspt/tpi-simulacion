@@ -38,6 +38,10 @@ PARAMETROS = [
     # Ausentismo y coberturas
     ("probAusencia", "double", "0.06", "Probabilidad de ausencia por empleado y día"),
     ("probAusenciaFinDeSemana", "double", "0.10", "Probabilidad de no asistir a la recuperación"),
+    ("unidadesPorPersonaRecuperacion", "double", "4", "Recuperación: unidades pendientes por persona convocada"),
+    ("minCuadrillaRecuperacion", "int", "3", "Recuperación: personas mínimas convocadas"),
+    ("maxCuadrillaRecuperacion", "int", "12", "Recuperación: personas máximas convocadas"),
+    ("horasMinimasRecuperacion", "double", "4", "Recuperación: horas mínimas que se pagan"),
     ("coberturaEntreEspecialidades", "boolean", "false", "Permitir coberturas entre especialidades"),
     ("maxPuestosPorOperario", "int", "2", "Máximo de puestos que atiende un operario"),
     # Tiempos
@@ -144,6 +148,12 @@ VARIABLES_MAIN = [
     # Estado de la jornada
     ("colaLiberacion", "java.util.LinkedList<Integer>", "new java.util.LinkedList<Integer>()"),
     ("contadorLiberadas", "int", "0"),
+    # Unidades de cada modelo liberadas en la jornada (identifican a la unidad para sus números aleatorios)
+    ("contadorModeloDia", "int[]", "new int[5]"),
+    # Unidades de cada modelo liberadas y todavía no terminadas
+    ("enSistemaModelo", "int[]", "new int[5]"),
+    # Generador propio para los tiempos de retiro e inspección (separado de ausencias y tareas)
+    ("rngTiempos", "java.util.Random", "new java.util.Random(1)"),
     ("dia", "int", "0"),
     ("diaGlobal", "int", "0"),
     ("semana", "int", "0"),
@@ -217,6 +227,7 @@ VARIABLES_BALANZA = [
     ("tCaminata", "double", "0"),
     ("diaOF", "int", "0"),
     ("ordenLiberacion", "int", "0"),
+    ("nroEnModelo", "int", "0"),
     ("inspeccionar", "boolean", "false"),
     ("posMuestra", "int", "0"),
     ("rechazada", "boolean", "false"),
@@ -297,10 +308,10 @@ for (int l = 0; l < lineasCF; l++) {
 }
 // Contrataciones: cada empleado nuevo agrega un puesto de su especialidad,
 // repartido en forma rotativa entre las líneas que hacen esa tarea
-for (int k = 0; k < extraArmadores; k++) agregarPuesto(k % lineasArmado, T_ARMADO, 0);
-for (int k = 0; k < extraAjustadores; k++) agregarPuesto(k % lineasArmado, T_AJUSTE, 0);
-for (int k = 0; k < extraControladores; k++) agregarPuesto(lineasArmado + k % lineasCF, T_CONTROL, 0);
-for (int k = 0; k < extraEmbaladores; k++) agregarPuesto(lineasArmado + k % lineasCF, T_EMBALAJE, 0);
+for (int k = 0; k < extraArmadores && lineasArmado > 0; k++) agregarPuesto(k % lineasArmado, T_ARMADO, 0);
+for (int k = 0; k < extraAjustadores && lineasArmado > 0; k++) agregarPuesto(k % lineasArmado, T_AJUSTE, 0);
+for (int k = 0; k < extraControladores && lineasCF > 0; k++) agregarPuesto(lineasArmado + k % lineasCF, T_CONTROL, 0);
+for (int k = 0; k < extraEmbaladores && lineasCF > 0; k++) agregarPuesto(lineasArmado + k % lineasCF, T_EMBALAJE, 0);
 if (nPuestos > 36) traceln("Hay " + nPuestos + " puestos: el plano dibuja solo los primeros 36 (6 columnas de 6 mesas).");
 plantaConstruida = true;
 """)
@@ -492,6 +503,7 @@ enRecuperacion = false;
 diaGlobal++;
 tInicioJornada = time();
 for (int m = 0; m < 5; m++) {
+	contadorModeloDia[m] = 0;
 	ofDia[m] = ofEjemplo(ofSeleccionada, m);
 	ofSemana[m] += ofDia[m];
 	ofTotal[m] += ofDia[m];
@@ -508,9 +520,10 @@ eventoCamion2.restart(horaCamion2Min);
 """)
 
 funcion("asignarAsistencia", "void", [("prob", "double")], """
+// Cada persona tiene su propio sorteo por día (números aleatorios comunes entre escenarios)
 ausentesHoy = 0;
 for (Operario o : ops) {
-	o.presente = !randomTrue(prob);
+	o.presente = azar(1, diaGlobal, claveOperario(o), 0) >= prob;
 	if (!o.presente) ausentesHoy++;
 }
 """)
@@ -542,9 +555,23 @@ for (int p = 0; p < nPuestos; p++) {
 		vacantesCriticasHoy++;
 	}
 }
-coberturasTotal += coberturasHoy;
-vacantesCriticasTotal += vacantesCriticasHoy;
-if (!enRecuperacion) minutosVacantesTotal += (vacantesHoy - coberturasHoy) * duracionTurnoMin;
+// La reserva que quedó libre cubre también los puestos vacantes no críticos (por ejemplo, un
+// controlador o un embalador), empezando por las tareas más cargadas
+int[] ordenTipos = { T_AJUSTE, T_CONTROL, T_EMBALAJE, T_ARMADO };
+for (int t : ordenTipos)
+	for (int p = 0; p < nPuestos; p++) {
+		if (pAtiende[p] >= 0 || pTipo[p] != t) continue;
+		Operario r = reservaLibre();
+		if (r == null) break;
+		pAtiende[p] = r.idOp;
+		r.puestosAtendidos.add(p);
+		coberturasHoy++;
+	}
+if (!enRecuperacion) {
+	coberturasTotal += coberturasHoy;
+	vacantesCriticasTotal += vacantesCriticasHoy;
+	minutosVacantesTotal += (vacantesHoy - coberturasHoy) * duracionTurnoMin;
+}
 // Qué líneas pueden completar cada modelo con el personal de hoy
 for (int l = 0; l < lineasArmado + lineasCF && l < lineaCapaz.length; l++)
 	for (int m = 0; m < 5; m++) {
@@ -565,7 +592,18 @@ return true;
 
 funcion("puedeCubrir", "boolean", [("o", "Operario")], """
 return o.presente && !o.esReserva && !o.puestosAtendidos.isEmpty()
-	&& o.puestosAtendidos.size() < maxPuestosPorOperario;
+	&& o.puestosAtendidos.size() < limitePuestos();
+""")
+
+funcion("limitePuestos", "int", [], """
+// En la recuperación de fin de semana la cuadrilla es chica: cada uno puede atender más puestos
+return enRecuperacion ? Math.max(maxPuestosPorOperario, 4) : maxPuestosPorOperario;
+""")
+
+funcion("reservaLibre", "Operario", [], """
+for (Operario o : ops)
+	if (o.esReserva && o.presente && o.puestosAtendidos.isEmpty()) return o;
+return null;
 """)
 
 funcion("cargaCobertura", "int", [("o", "Operario")], """
@@ -585,13 +623,20 @@ Especialidad e = especialidadDeTipo(pTipo[p]);
 int linea = pLinea[p];
 boolean lineaDeArmado = linea < lineasArmado;
 // 0) Personal de reserva polivalente libre (no deja ningún puesto)
-for (Operario o : ops)
-	if (o.esReserva && o.presente && o.puestosAtendidos.isEmpty()) return o;
+Operario libre = reservaLibre();
+if (libre != null) return libre;
 Operario mejor = null;
 // 1) Misma especialidad y misma línea
 for (Operario o : ops)
 	if (puedeCubrir(o) && o.especialidad == e && o.lineaHabitual == linea) mejor = mejorCandidato(mejor, o);
 if (mejor != null) return mejor;
+// 1b) Con cobertura entre especialidades: otra especialidad de la misma línea, antes de que
+// alguien de la misma especialidad tenga que atender puestos de dos líneas
+if (coberturaEntreEspecialidades) {
+	for (Operario o : ops)
+		if (puedeCubrir(o) && o.lineaHabitual == linea) mejor = mejorCandidato(mejor, o);
+	if (mejor != null) return mejor;
+}
 // 2) Misma especialidad, otra línea del mismo tipo
 for (Operario o : ops)
 	if (puedeCubrir(o) && o.especialidad == e && (o.lineaHabitual < lineasArmado) == lineaDeArmado) mejor = mejorCandidato(mejor, o);
@@ -671,6 +716,8 @@ b.lineaCF = -1;
 b.tIngreso = time();
 b.diaOF = diaGlobal;
 b.ordenLiberacion = contadorLiberadas++;
+b.nroEnModelo = contadorModeloDia[m]++;
+enSistemaModelo[m]++;
 enProceso++;
 // La caja del kit entra al rack de materiales cuando hay una celda libre (areaKitsInicio) y queda
 // ahí hasta que el operario la retira; mientras espera lugar no se dibuja
@@ -837,8 +884,12 @@ b.cargador = null;
 
 # --- Ruteo y asignación de operarios ----------------------------------------
 funcion("prioridad", "double", [("b", "Balanza")], """
-// Las unidades más avanzadas pasan primero; entre iguales se respeta el orden de liberación
-return b.paso * 100000.0 - b.ordenLiberacion;
+// Las unidades en una etapa más avanzada del proceso (armado < ajuste < control < embalaje) pasan
+// primero; en la misma etapa, la más antigua. Se usa la etapa y no el número de paso, porque el
+// número de paso no es comparable entre modelos (AILA tiene 4 pasos de armado; LURA, ninguno)
+int m = b.tipoModelo;
+int etapa = recTipo[m][Math.max(0, Math.min(b.paso, recLen[m] - 1))];
+return etapa * 1000000.0 - b.ordenLiberacion;
 """)
 
 funcion("puestoSirvePaso", "boolean", [("p", "int"), ("tipo", "int"), ("num", "int")], """
@@ -892,7 +943,9 @@ o.tInicioOcupado = time();
 
 funcion("planificarDespuesDeTomar", "void", [("b", "Balanza")], """
 double espera = time() - b.tInicioEspera;
-b.esperaTotal += espera;
+// La espera de la unidad incluye, en el primer paso, la cola previa al rack de kits (desde que se
+// liberó); la espera por tipo de puesto mide solo la espera de operario (cuellos de botella)
+b.esperaTotal += b.paso == 0 ? time() - b.tIngreso : espera;
 // Espera en cola por tipo de puesto (identifica cuellos de botella)
 int tipo = recTipo[b.tipoModelo][b.paso];
 sumaEsperaTipo[tipo] += espera;
@@ -941,15 +994,53 @@ if (o.isMoving()) o.jumpTo(o.getTargetX(), o.getTargetY());
 if (!b.cajaEnRack) b.jumpTo(o.getX(), o.getY() + 6, alturaCajaEnMano);
 """)
 
-funcion("tiempoAleatorio", "double", [("media", "double")], """
+funcion("mezclar", "long", [("z", "long")], """
+// Mezclador de SplitMix64: convierte una clave en un número pseudoaleatorio de 64 bits
+z = (z ^ (z >>> 30)) * 0xBF58476D1CE4E5B9L;
+z = (z ^ (z >>> 27)) * 0x94D049BB133111EBL;
+return z ^ (z >>> 31);
+""")
+
+funcion("azar", "double", [("flujo", "long"), ("a", "long"), ("b", "long"), ("c", "long")], """
+// Uniforme en [0, 1) que depende solo de la semilla de la corrida y de la clave (flujo, a, b, c).
+// Así el mismo sorteo (por ejemplo, si el titular del puesto 7 falta el día 12) da igual en todos
+// los escenarios con la misma semilla, sin importar el orden de los eventos: números aleatorios comunes.
+long z = mezclar(semillaUsada * 0x9E3779B97F4A7C15L + flujo);
+z = mezclar(z + a);
+z = mezclar(z + b);
+z = mezclar(z + c);
+return (z >>> 11) * 0x1.0p-53;
+""")
+
+funcion("triangularInversa", "double", [("min", "double"), ("max", "double"), ("moda", "double"), ("u", "double")], """
+// Inversa de la distribución triangular: transforma una uniforme u en un tiempo
+double fc = (moda - min) / (max - min);
+if (u < fc) return min + Math.sqrt(u * (max - min) * (moda - min));
+return max - Math.sqrt((1 - u) * (max - min) * (max - moda));
+""")
+
+funcion("tiempoConAzar", "double", [("media", "double"), ("u", "double")], """
 // Triangular asimétrica con la media de SAP: mín 0,8·m, moda 0,9·m, máx 1,3·m (para variabilidad 1)
 double k = Math.max(0, Math.min(3, variabilidadTiempos));
 if (k == 0 || media <= 0) return media;
-return triangular(media * (1 - 0.2 * k), media * (1 + 0.3 * k), media * (1 - 0.1 * k));
+return triangularInversa(media * (1 - 0.2 * k), media * (1 + 0.3 * k), media * (1 - 0.1 * k), u);
+""")
+
+funcion("tiempoAleatorio", "double", [("media", "double")], """
+// Retiro de materiales e inspección: generador propio, separado de las ausencias y de las tareas
+return tiempoConAzar(media, rngTiempos.nextDouble());
+""")
+
+funcion("claveOperario", "int", [("o", "Operario")], """
+// Clave estable para sortear la asistencia: el puesto del titular o el número de la reserva
+return o.puestoHabitual >= 0 ? o.puestoHabitual : 1000 + o.idOp - nPuestos;
 """)
 
 funcion("tiempoTarea", "double", [("b", "Balanza")], """
-return tiempoAleatorio(recTiempo[b.tipoModelo][b.paso]);
+// El tiempo depende de la unidad (día, modelo y número dentro del modelo) y del paso, no del orden
+// en que ocurren los eventos: la misma unidad tarda lo mismo en todos los escenarios
+return tiempoConAzar(recTiempo[b.tipoModelo][b.paso],
+	azar(3, b.diaOF, b.tipoModelo * 10000L + b.nroEnModelo, b.paso));
 """)
 
 funcion("alLiberarOperario", "void", [("b", "Balanza")], """
@@ -968,6 +1059,7 @@ funcion("registrarTerminada", "boolean", [("b", "Balanza")], """
 if (b.tIngresoRack > 0) return b.inspeccionar;
 int m = b.tipoModelo;
 enProceso--;
+enSistemaModelo[m]--;
 terminadasSemana++;
 prodDia[m]++;
 prodSemana[m]++;
@@ -1023,7 +1115,7 @@ dsOFJornada.add(diasSimulados, objetivo);
 dsATiempoJornada.add(diasSimulados, aTiempo);
 if (faltante > 0) diasSinCumplir++;
 // Para medir el efecto de las ausencias se compara contra el mismo día de la semana
-int grupoAus = ausentesHoy > 0 ? 0 : 1;
+int grupoAus = vacantesHoy > 0 ? 0 : 1;
 faltanteDiaAus[dia % 7][grupoAus] += faltante;
 jornadasDiaAus[dia % 7][grupoAus]++;
 registrarPresencia(duracionTurnoMin);
@@ -1050,13 +1142,69 @@ if (pendientes <= 0) {
 enRecuperacion = true;
 tInicioRecuperacion = time();
 for (int m = 0; m < 5; m++) prodDia[m] = 0;
-asignarAsistencia(probAusenciaFinDeSemana);
+personasRecuperacion = convocarCuadrilla(pendientes);
 asignarCoberturas();
 ubicarOperarios();
-personasRecuperacion = 0;
-for (Operario o : ops) if (o.presente) personasRecuperacion++;
 pendientesInicioRecuperacion = pendientes;
 eventoCierreJornada.restart(maxHorasRecuperacion * 60);
+""")
+
+funcion("convocarCuadrilla", "int", [("pendientes", "int")], """
+// Cuadrilla proporcional al faltante: una persona cada unidadesPorPersonaRecuperacion pendientes,
+// entre minCuadrillaRecuperacion y maxCuadrillaRecuperacion. Se reparte entre las especialidades
+// según los minutos de trabajo pendientes de cada una (al menos una por especialidad con trabajo).
+int convocados = (int) Math.ceil(pendientes / Math.max(1e-9, unidadesPorPersonaRecuperacion));
+convocados = Math.max(minCuadrillaRecuperacion, Math.min(maxCuadrillaRecuperacion, convocados));
+double[] carga = new double[4];
+for (int m = 0; m < 5; m++) {
+	if (enSistemaModelo[m] <= 0 || recLen[m] == 0) continue;
+	carga[recTipo[m][0]] += enSistemaModelo[m] * tiempoRetiro[m];
+	for (int k = 0; k < recLen[m]; k++) carga[recTipo[m][k]] += enSistemaModelo[m] * recTiempo[m][k];
+}
+int necesarias = 0;
+double total = 0;
+for (int t = 0; t < 4; t++) if (carga[t] > 0) { necesarias++; total += carga[t]; }
+convocados = Math.max(convocados, necesarias);
+// Reparto por restos mayores, con mínimo 1 para cada especialidad con trabajo
+int[] cupo = new int[4];
+double[] resto = new double[4];
+int asignados = 0;
+for (int t = 0; t < 4; t++) {
+	if (carga[t] <= 0) continue;
+	double ideal = convocados * carga[t] / total;
+	cupo[t] = Math.max(1, (int) Math.floor(ideal));
+	resto[t] = ideal - Math.floor(ideal);
+	asignados += cupo[t];
+}
+while (asignados < convocados) {
+	int mejor = -1;
+	for (int t = 0; t < 4; t++) if (carga[t] > 0 && (mejor < 0 || resto[t] > resto[mejor])) mejor = t;
+	if (mejor < 0) break;
+	cupo[mejor]++;
+	resto[mejor] = -1;
+	asignados++;
+}
+// Se convoca a los titulares de cada especialidad en orden de línea (la cuadrilla queda concentrada);
+// quien no asiste se reemplaza por el siguiente. La reserva no se convoca.
+ausentesHoy = 0;
+for (Operario o : ops) o.presente = false;
+int presentes = 0;
+for (int t = 0; t < 4; t++) {
+	Especialidad e = especialidadDeTipo(t);
+	int vienen = 0;
+	for (Operario o : ops) {
+		if (vienen >= cupo[t]) break;
+		if (o.esReserva || o.especialidad != e) continue;
+		if (azar(2, diaGlobal, claveOperario(o), 0) >= probAusenciaFinDeSemana) {
+			o.presente = true;
+			vienen++;
+		} else {
+			ausentesHoy++;
+		}
+	}
+	presentes += vienen;
+}
+return presentes;
 """)
 
 funcion("finRecuperacion", "void", [], """
@@ -1064,7 +1212,9 @@ if (!enRecuperacion) return;
 eventoCierreJornada.reset();
 eventoFinRecuperacion.reset();
 double minutos = time() - tInicioRecuperacion;
-double horasHombre = minutos / 60.0 * personasRecuperacion;
+// A la cuadrilla se le paga al menos horasMinimasRecuperacion
+double horasPagadas = Math.max(minutos / 60.0, horasMinimasRecuperacion);
+double horasHombre = horasPagadas * personasRecuperacion;
 double costo = horasHombre * valorHoraNormal * recargoFinDeSemana;
 registrarPresencia(minutos);
 horasExtraTotal += horasHombre;
@@ -1110,7 +1260,7 @@ if (semana < semanasSimuladas) {
 funcion("alFinalizarInspeccion", "void", [("b", "Balanza")], """
 int m = b.tipoModelo;
 inspeccionadas[m]++;
-b.rechazada = randomTrue(probRechazo);
+b.rechazada = azar(4, b.diaOF, m * 10000L + b.nroEnModelo, 0) < probRechazo;
 if (b.rechazada) rechazadas[m]++; // se registra; el retrabajo queda fuera del alcance
 """)
 
@@ -1453,6 +1603,7 @@ semillaUsada = semilla != 0 ? semilla
 	: replica > 0 ? semillaDeReplica(replica)
 	: 1 + Math.floorMod(getDefaultRandomGenerator().nextLong(), 999999999L);
 getDefaultRandomGenerator().setSeed(semillaUsada);
+rngTiempos.setSeed(mezclar(semillaUsada + 5));
 // La primera jornada arranca apenas el ResourcePool crea a los operarios
 eventoInicioJornada.restart(0.01);
 eventoMuestreoRacks.restart(1);"""

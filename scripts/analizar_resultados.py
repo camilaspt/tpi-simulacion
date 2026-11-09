@@ -26,7 +26,8 @@ ESPECIALIDADES = ["armador", "ajustador", "controlador", "embalador"]
 # Cuantiles t de Student de dos colas al 95 % según grados de libertad
 T95 = {1: 12.706, 2: 4.303, 3: 3.182, 4: 2.776, 5: 2.571, 6: 2.447, 7: 2.365, 8: 2.306, 9: 2.262,
        10: 2.228, 11: 2.201, 12: 2.179, 13: 2.160, 14: 2.145, 15: 2.131, 16: 2.120, 17: 2.110,
-       18: 2.101, 19: 2.093, 20: 2.086, 25: 2.060, 30: 2.042, 40: 2.021, 60: 2.000, 120: 1.980}
+       18: 2.101, 19: 2.093, 20: 2.086, 21: 2.080, 22: 2.074, 23: 2.069, 24: 2.064, 25: 2.060,
+       26: 2.056, 27: 2.052, 28: 2.048, 29: 2.045, 30: 2.042, 40: 2.021, 60: 2.000, 120: 1.980}
 
 
 def t95(gl):
@@ -43,14 +44,44 @@ def leer(archivo):
     with archivo.open(encoding="utf-8-sig", newline="") as f:
         filas = list(csv.DictReader(f, delimiter=";"))
     for fila in filas:
+        if None in fila:
+            # Más campos que columnas: el CSV mezcla corridas con encabezados distintos
+            raise SystemExit(f"{archivo}: hay filas con más columnas que el encabezado. El archivo mezcla corridas "
+                             "de versiones distintas del modelo: movelo o borralo y volvé a correr las réplicas.")
         for k, v in fila.items():
             if k in ("escenario",):
                 continue
             try:
                 fila[k] = float(v.replace(".", "").replace(",", ".")) if "," in v else float(v)
-            except (ValueError, AttributeError):
+            except (ValueError, AttributeError, TypeError):
                 pass
     return filas
+
+
+def solo_replicas(filas):
+    """Deja solo las corridas de los experimentos de réplicas (replica >= 1), sin repetidas.
+
+    Las corridas sueltas (experimentos de Simulación, replica = 0) no son réplicas del diseño y no
+    entran en la estadística. Si una réplica se corrió dos veces, se queda la última."""
+    avisos = []
+    if not filas:
+        return filas, avisos
+    if not any(isinstance(f.get("replica"), float) for f in filas):
+        avisos.append("El CSV no tiene la columna `replica` (versión vieja del modelo): se usan todas las filas.")
+        return filas, avisos
+    sueltas = sum(1 for f in filas if not (isinstance(f.get("replica"), float) and f["replica"] >= 1))
+    unicas = {}
+    for f in filas:
+        if isinstance(f.get("replica"), float) and f["replica"] >= 1:
+            unicas[(f["escenario"], int(f["replica"]), int(f.get("semana") or 0))] = f
+    repetidas = len(filas) - sueltas - len(unicas)
+    if sueltas:
+        avisos.append(f"Se descartaron {sueltas} filas de corridas sueltas (replica = 0, por ejemplo del "
+                      "experimento Simulation).")
+    if repetidas:
+        avisos.append(f"Se descartaron {repetidas} filas repetidas (mismo escenario y número de réplica): "
+                      "se usa la última.")
+    return list(unicas.values()), avisos
 
 
 def agrupar(filas):
@@ -63,29 +94,54 @@ def agrupar(filas):
 
 def resumen(valores):
     n = len(valores)
+    if n == 0:
+        return float("nan"), float("nan"), float("nan"), 0
     media = statistics.fmean(valores)
     desvio = statistics.stdev(valores) if n > 1 else float("nan")
     semi = t95(n - 1) * desvio / math.sqrt(n) if n > 1 else float("nan")
     return media, desvio, semi, n
 
 
-def diferencia(base, alternativa):
-    """Ahorro neto (base - alternativa) con IC del 95 % de Welch."""
+def pares(base, alternativa, clave):
+    """Valores de la misma réplica en los dos escenarios (números aleatorios comunes)."""
+    b = {int(f["replica"]): f[clave] for f in base
+         if isinstance(f.get("replica"), float) and isinstance(f.get(clave), float)}
+    a = {int(f["replica"]): f[clave] for f in alternativa
+         if isinstance(f.get("replica"), float) and isinstance(f.get(clave), float)}
+    comunes = sorted(set(b) & set(a))
+    return [b[r] for r in comunes], [a[r] for r in comunes]
+
+
+def diferencia(base, alternativa, clave="costo_total"):
+    """Ahorro neto medio (base - alternativa) e IC del 95 %.
+
+    Con números aleatorios comunes la réplica n de cada escenario usa la misma semilla, así que se
+    comparan por pares: d_n = base_n - alternativa_n, IC = media(d) ± t(n-1)·s_d/√n.
+    Devuelve (ahorro, semiancho, réplicas emparejadas, método)."""
+    pb, pa = pares(base, alternativa, clave)
+    if len(pb) >= 2:
+        d = [x - y for x, y in zip(pb, pa)]
+        m, _, semi, n = resumen(d)
+        return m, semi, n, "pareado"
+    # Sin pares suficientes (CSV viejo sin replica): IC de Welch para muestras independientes
+    base, alternativa = col(base, clave), col(alternativa, clave)
+    if not base or not alternativa:
+        return float("nan"), float("nan"), 0, "sin datos"
     mb, sb, _, nb = resumen(base)
     ma, sa, _, na = resumen(alternativa)
     ahorro = mb - ma
     if nb < 2 or na < 2:
-        return ahorro, float("nan")
+        return ahorro, float("nan"), 0, "Welch"
     vb, va = sb ** 2 / nb, sa ** 2 / na
     if vb + va == 0:
-        return ahorro, 0.0
+        return ahorro, 0.0, 0, "Welch"
     gl = (vb + va) ** 2 / (vb ** 2 / (nb - 1) + va ** 2 / (na - 1))
-    return ahorro, t95(int(gl)) * math.sqrt(vb + va)
+    return ahorro, t95(int(gl)) * math.sqrt(vb + va), 0, "Welch"
 
 
 def replicas_necesarias(valores, precision):
     media, desvio, _, n = resumen(valores)
-    if n < 2 or media == 0:
+    if n < 2 or not media or math.isnan(media):
         return None
     return max(n, math.ceil((t95(n - 1) * desvio / (precision * abs(media))) ** 2))
 
@@ -110,14 +166,17 @@ def col(grupo, clave):
     return [f[clave] for f in grupo if isinstance(f.get(clave), float)]
 
 
-def informe(grupos, semanas, precision):
+def informe(grupos, semanas, precision, avisos=()):
     L = []
     w = L.append
     w("# Resultados de la simulación — KRETZ\n")
+    for a in avisos:
+        w(f"> {a}\n")
     w("Informe generado por `scripts/analizar_resultados.py` a partir de las réplicas guardadas por el modelo "
       "en `Resultados/resultados_corridas.csv`. Cada réplica es una corrida completa (por defecto, 4 semanas "
       "de 5 jornadas más la recuperación de fin de semana) con una semilla distinta. Los intervalos son de "
-      "confianza del 95 % (t de Student) sobre la media de las réplicas.\n")
+      "confianza del 95 % (t de Student) sobre la media de las réplicas. Las diferencias entre escenarios se "
+      "calculan por pares de réplicas con la misma semilla (números aleatorios comunes).\n")
 
     w("## Semillas (números aleatorios comunes)\n")
     w("Todos los escenarios tienen que correr con el mismo listado de semillas: la réplica n usa la misma "
@@ -133,12 +192,29 @@ def informe(grupos, semanas, precision):
     w("")
 
     w("## Réplicas por escenario\n")
-    w("| Escenario | Réplicas | Semanas por réplica | Réplicas necesarias (costo total ±{:.0f} %) |".format(100 * precision))
-    w("|---|---|---|---|")
+    w("| Escenario | Réplicas | Semanas por réplica | Réplicas para ±{:.0f} % en el costo de horas extra | "
+      "Réplicas para que el ahorro frente al actual sea significativo |".format(100 * precision))
+    w("|---|---|---|---|---|")
+    base_g = grupos.get(BASE)
     for nombre, g in grupos.items():
-        nec = replicas_necesarias(col(g, "costo_total"), precision)
-        w(f"| {nombre} | {len(g)} | {g[0].get('semanas', 0):.0f} | {nec if nec else 'hacen falta al menos 2'} |")
+        nec = replicas_necesarias(col(g, "costo_horas_extra"), precision)
+        if nec is None:
+            nec = "hacen falta al menos 2" if len(g) < 2 else "sin horas extra"
+        signif = "—"
+        if base_g is not None and nombre != BASE:
+            pb, pa = pares(base_g, g, "costo_total")
+            d = [x - y for x, y in zip(pb, pa)]
+            md, sd, _, nd = resumen(d)
+            if nd >= 2 and md:
+                signif = max(nd, math.ceil((t95(nd - 1) * sd / abs(md)) ** 2))
+            elif nd >= 2:
+                signif = "sin diferencia"
+        w(f"| {nombre} | {len(g)} | {g[0].get('semanas', 0):.0f} | {nec} | {signif} |")
     w("")
+    w("El costo total casi no varía entre réplicas (las horas normales son fijas para cada dotación), así que "
+      "la precisión se mide sobre su parte aleatoria, el costo de las horas extra. La última columna estima "
+      "cuántas réplicas emparejadas hacen falta para que el intervalo del ahorro neto no incluya el cero: "
+      "n = (t·s_d / |ahorro|)².\n")
 
     w("## Cumplimiento de la OF\n")
     w("| Escenario | Cumplimiento a tiempo | Jornadas sin cumplir | Efecto de las ausencias (u. de faltante por jornada) |")
@@ -180,9 +256,10 @@ def informe(grupos, semanas, precision):
         if base is None or nombre == BASE:
             ahorro_txt, ahorro, semi_a = "—", 0.0, float("nan")
         else:
-            ahorro, semi_a = diferencia(col(base, "costo_total"), col(g, "costo_total"))
+            ahorro, semi_a, npares, metodo = diferencia(base, g)
             signif = "" if math.isnan(semi_a) else (" (significativo)" if abs(ahorro) > semi_a else " (no significativo)")
-            ahorro_txt = ic(ahorro, semi_a, pesos) + signif
+            ahorro_txt = ("s/d" if math.isnan(ahorro) else ic(ahorro, semi_a, pesos) + signif
+                          + (f", {npares} pares" if metodo == "pareado" else f", {metodo}"))
         w(f"| {nombre} | {ic(he, she, dec)} | {ic(ce, sce, pesos)} | {pesos(cn)} | "
           f"{ic(ct, sct, pesos)} | {ahorro_txt} |")
         filas_resumen.append({"escenario": nombre, "replicas": n, "costo_total_media": ct, "costo_total_desvio": dct,
@@ -191,18 +268,28 @@ def informe(grupos, semanas, precision):
                               "cumplimiento_media": resumen(col(g, "cumplimiento"))[0]})
     w("")
     w("El costo total suma las horas normales de toda la dotación (incluidas las contrataciones y el personal de "
-      "reserva), las horas extra de fin de semana pagadas al doble y el costo de reorganización. Un ahorro es "
-      "significativo cuando el intervalo de la diferencia no incluye el cero.\n")
+      "reserva), las horas extra de fin de semana pagadas al doble y el costo de reorganización. El ahorro neto "
+      "es la media de las diferencias réplica a réplica (escenario actual menos alternativa) y es significativo "
+      "cuando su intervalo del 95 % no incluye el cero. Son 7 comparaciones contra el escenario actual, cada una "
+      "al 95 %: para un nivel conjunto del 95 % habría que usar Bonferroni (99,3 % por comparación).\n")
 
     if semanas:
         w("### Horas extra por semana\n")
-        w("| Escenario | Semanas observadas | Horas extra por semana | Costo por semana | Semanas con recuperación |")
+        w("Las semanas de una misma réplica no son independientes (lo que no se recupera pasa a la semana "
+          "siguiente): primero se promedian las semanas de cada réplica y el intervalo se calcula entre réplicas.\n")
+        w("| Escenario | Réplicas | Horas extra por semana | Costo por semana | Semanas con recuperación |")
         w("|---|---|---|---|---|")
         for nombre, g in agrupar(semanas).items():
-            h, _, sh, n = resumen(col(g, "horas_extra"))
-            c, _, sc, _ = resumen(col(g, "costo_horas_extra"))
-            con = sum(1 for f in g if f.get("pendientes_recuperacion", 0) > 0)
-            w(f"| {nombre} | {n} | {ic(h, sh, dec)} | {ic(c, sc, pesos)} | {con} de {n} |")
+            por_replica = {}
+            for f in g:
+                por_replica.setdefault(f.get("replica", 0), []).append(f)
+            hs = [statistics.fmean(col(fs, "horas_extra")) for fs in por_replica.values() if col(fs, "horas_extra")]
+            cs = [statistics.fmean(col(fs, "costo_horas_extra")) for fs in por_replica.values()
+                  if col(fs, "costo_horas_extra")]
+            h, _, sh, n = resumen(hs)
+            c, _, sc, _ = resumen(cs)
+            con = sum(1 for f in g if (f.get("pendientes_recuperacion") or 0) > 0)
+            w(f"| {nombre} | {n} | {ic(h, sh, dec)} | {ic(c, sc, pesos)} | {con} de {len(g)} |")
         w("")
 
     w("## Personal, cuellos de botella y traslados\n")
@@ -244,7 +331,7 @@ def conclusiones(grupos, filas):
     util = {e: resumen(col(base, "util_" + e))[0] for e in ESPECIALIDADES}
     mas_cargada = max(util, key=util.get)
     t.append(f"1. **Cumplimiento con la dotación actual.** En promedio, no se cumple la OF en el "
-             f"{pct(statistics.fmean(sin))} de las jornadas y se entrega a tiempo el {pct(cumpl)} de lo pedido. "
+             f"{pct(statistics.fmean(sin) if sin else float('nan'))} de las jornadas y se entrega a tiempo el {pct(cumpl)} de lo pedido. "
              f"El faltante se concentra en **{NOMBRES_MODELO[peor]}** ({dec(falt[peor])} u. por réplica), el mayor "
              f"tiempo de espera en cola está en **{cuello}** ({dec(espera[cuello])} min de media) y la "
              f"especialidad más cargada es **{mas_cargada}** ({pct(util[mas_cargada])}).")
@@ -256,7 +343,8 @@ def conclusiones(grupos, filas):
              f"pagadas al doble.")
     alternativas = [f for f in filas if f["escenario"] != BASE]
     if alternativas:
-        mejor = max(alternativas, key=lambda f: f["ahorro_neto"])
+        validas = [f for f in alternativas if not math.isnan(f["ahorro_neto"])] or alternativas
+        mejor = max(validas, key=lambda f: f["ahorro_neto"])
         contrat = [f for f in alternativas if "Contratar" in f["escenario"]]
         signif = lambda f: not math.isnan(f["ahorro_neto_ic95"]) and abs(f["ahorro_neto"]) > f["ahorro_neto_ic95"]
         if contrat:
@@ -274,9 +362,12 @@ def conclusiones(grupos, filas):
                 nota = "" if signif(f) else " (la diferencia no es significativa con las réplicas actuales)"
                 t.append(f"{num}. **{titulo}.** «{f['escenario']}» {estado} {pesos(abs(f['ahorro_neto']))} por réplica "
                          f"frente al escenario actual, con un cumplimiento medio del {pct(f['cumplimiento_media'])}{nota}.")
-        if mejor["ahorro_neto"] > 0:
+        if mejor["ahorro_neto"] > 0 and signif(mejor):
             t.append(f"\n**Alternativa de menor costo total:** «{mejor['escenario']}» "
                      f"({pesos(mejor['costo_total_media'])} por réplica, ahorro neto de {pesos(mejor['ahorro_neto'])}).")
+        elif mejor["ahorro_neto"] > 0:
+            t.append(f"\n**Alternativa de menor costo medio:** «{mejor['escenario']}», con un ahorro neto de "
+                     f"{pesos(mejor['ahorro_neto'])} por réplica que **no es significativo** con las réplicas actuales.")
         else:
             t.append("\n**Ninguna alternativa evaluada baja el costo total:** el escenario actual, con horas extra de "
                      "fin de semana, sigue siendo el más barato.")
@@ -292,11 +383,14 @@ def main():
     parser.add_argument("--precision", type=float, default=0.05,
                         help="precisión relativa buscada para el costo total (por defecto 0,05 = ±5 %%)")
     args = parser.parse_args()
-    corridas = leer(args.resultados / "resultados_corridas.csv")
+    corridas, avisos = solo_replicas(leer(args.resultados / "resultados_corridas.csv"))
     if not corridas:
-        parser.exit(1, f"No hay resultados en {args.resultados / 'resultados_corridas.csv'}: corré el modelo primero.\n")
-    semanas = leer(args.resultados / "resultados_semanas.csv")
-    texto, filas = informe(agrupar(corridas), semanas, args.precision)
+        parser.exit(1, f"No hay réplicas en {args.resultados / 'resultados_corridas.csv'}: corré los experimentos "
+                       "de réplicas primero.\n")
+    semanas, _ = solo_replicas(leer(args.resultados / "resultados_semanas.csv"))
+    for a in avisos:
+        print("Aviso:", a)
+    texto, filas = informe(agrupar(corridas), semanas, args.precision, avisos)
     (args.resultados / "informe_resultados.md").write_text(texto, encoding="utf-8")
     with (args.resultados / "resumen_escenarios.csv").open("w", encoding="utf-8", newline="") as f:
         out = csv.DictWriter(f, fieldnames=list(filas[0]), delimiter=";")

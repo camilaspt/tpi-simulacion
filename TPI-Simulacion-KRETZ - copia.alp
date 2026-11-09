@@ -59,6 +59,7 @@ semillaUsada = semilla != 0 ? semilla
 	: replica > 0 ? semillaDeReplica(replica)
 	: 1 + Math.floorMod(getDefaultRandomGenerator().nextLong(), 999999999L);
 getDefaultRandomGenerator().setSeed(semillaUsada);
+rngTiempos.setSeed(mezclar(semillaUsada + 5));
 // La primera jornada arranca apenas el ResourcePool crea a los operarios
 eventoInicioJornada.restart(0.01);
 eventoMuestreoRacks.restart(1);]]></StartupCode>
@@ -3688,10 +3689,183 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 							</ParameterEditor>
 						</Properties>
 					</Variable>
+					<Variable Class="Parameter">
+						<Id>1796000000161</Id>
+						<Name><![CDATA[unidadesPorPersonaRecuperacion]]></Name>
+						<X>1820</X>
+						<Y>3604</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+							<Type><![CDATA[double]]></Type>
+							<UnitType><![CDATA[NONE]]></UnitType>
+							<SdArray>false</SdArray>
+							<DefaultValue Class="CodeValue">
+								<Code><![CDATA[4]]></Code>
+							</DefaultValue>
+							<ParameterEditor>
+								<Id>1796000000162</Id>
+								<Label><![CDATA[Recuperación: unidades pendientes por persona convocada]]></Label>
+								<EditorContolType>TEXT_BOX</EditorContolType>
+								<MinSliderValue><![CDATA[0]]></MinSliderValue>
+								<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+								<DelimeterType>NO_DELIMETER</DelimeterType>
+							</ParameterEditor>
+						</Properties>
+					</Variable>
+					<Variable Class="Parameter">
+						<Id>1796000000310</Id>
+						<Name><![CDATA[minCuadrillaRecuperacion]]></Name>
+						<X>1820</X>
+						<Y>3626</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+							<Type><![CDATA[int]]></Type>
+							<UnitType><![CDATA[NONE]]></UnitType>
+							<SdArray>false</SdArray>
+							<DefaultValue Class="CodeValue">
+								<Code><![CDATA[3]]></Code>
+							</DefaultValue>
+							<ParameterEditor>
+								<Id>1796000000311</Id>
+								<Label><![CDATA[Recuperación: personas mínimas convocadas]]></Label>
+								<EditorContolType>TEXT_BOX</EditorContolType>
+								<MinSliderValue><![CDATA[0]]></MinSliderValue>
+								<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+								<DelimeterType>NO_DELIMETER</DelimeterType>
+							</ParameterEditor>
+						</Properties>
+					</Variable>
+					<Variable Class="Parameter">
+						<Id>1796000000312</Id>
+						<Name><![CDATA[maxCuadrillaRecuperacion]]></Name>
+						<X>1820</X>
+						<Y>3648</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+							<Type><![CDATA[int]]></Type>
+							<UnitType><![CDATA[NONE]]></UnitType>
+							<SdArray>false</SdArray>
+							<DefaultValue Class="CodeValue">
+								<Code><![CDATA[12]]></Code>
+							</DefaultValue>
+							<ParameterEditor>
+								<Id>1796000000313</Id>
+								<Label><![CDATA[Recuperación: personas máximas convocadas]]></Label>
+								<EditorContolType>TEXT_BOX</EditorContolType>
+								<MinSliderValue><![CDATA[0]]></MinSliderValue>
+								<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+								<DelimeterType>NO_DELIMETER</DelimeterType>
+							</ParameterEditor>
+						</Properties>
+					</Variable>
+					<Variable Class="Parameter">
+						<Id>1796000000314</Id>
+						<Name><![CDATA[horasMinimasRecuperacion]]></Name>
+						<X>1820</X>
+						<Y>3670</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+							<Type><![CDATA[double]]></Type>
+							<UnitType><![CDATA[NONE]]></UnitType>
+							<SdArray>false</SdArray>
+							<DefaultValue Class="CodeValue">
+								<Code><![CDATA[4]]></Code>
+							</DefaultValue>
+							<ParameterEditor>
+								<Id>1796000000315</Id>
+								<Label><![CDATA[Recuperación: horas mínimas que se pagan]]></Label>
+								<EditorContolType>TEXT_BOX</EditorContolType>
+								<MinSliderValue><![CDATA[0]]></MinSliderValue>
+								<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+								<DelimeterType>NO_DELIMETER</DelimeterType>
+							</ParameterEditor>
+						</Properties>
+					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000494</Id>
+						<Name><![CDATA[contadorModeloDia]]></Name>
+						<X>2560</X>
+						<Y>3692</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+							<Type><![CDATA[int[]]]></Type>
+							<InitialValue Class="CodeValue">
+								<Code><![CDATA[new int[5]]]></Code>
+							</InitialValue>
+						</Properties>
+					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000496</Id>
+						<Name><![CDATA[enSistemaModelo]]></Name>
+						<X>2560</X>
+						<Y>3714</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+							<Type><![CDATA[int[]]]></Type>
+							<InitialValue Class="CodeValue">
+								<Code><![CDATA[new int[5]]]></Code>
+							</InitialValue>
+						</Properties>
+					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000499</Id>
+						<Name><![CDATA[rngTiempos]]></Name>
+						<X>2560</X>
+						<Y>3736</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+							<Type><![CDATA[java.util.Random]]></Type>
+							<InitialValue Class="CodeValue">
+								<Code><![CDATA[new java.util.Random(1)]]></Code>
+							</InitialValue>
+						</Properties>
+					</Variable>
 				</Variables>
 				<Connectors>
 					<Connector>
-						<Id>1796000000991</Id>
+						<Id>1796000001043</Id>
 						<Name><![CDATA[conector0]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3734,7 +3908,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000992</Id>
+						<Id>1796000001044</Id>
 						<Name><![CDATA[conector1]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3777,7 +3951,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000993</Id>
+						<Id>1796000001045</Id>
 						<Name><![CDATA[conector2]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3820,7 +3994,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000994</Id>
+						<Id>1796000001046</Id>
 						<Name><![CDATA[conector3]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3863,7 +4037,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000995</Id>
+						<Id>1796000001047</Id>
 						<Name><![CDATA[conector4]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3906,7 +4080,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000996</Id>
+						<Id>1796000001048</Id>
 						<Name><![CDATA[conector5]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3949,7 +4123,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000997</Id>
+						<Id>1796000001049</Id>
 						<Name><![CDATA[conector6]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -3992,7 +4166,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000998</Id>
+						<Id>1796000001050</Id>
 						<Name><![CDATA[conector7]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4035,7 +4209,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000000999</Id>
+						<Id>1796000001051</Id>
 						<Name><![CDATA[conector8]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4078,7 +4252,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001000</Id>
+						<Id>1796000001052</Id>
 						<Name><![CDATA[conector9]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4121,7 +4295,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001001</Id>
+						<Id>1796000001053</Id>
 						<Name><![CDATA[conector10]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4164,7 +4338,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001002</Id>
+						<Id>1796000001054</Id>
 						<Name><![CDATA[conector11]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4207,7 +4381,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001003</Id>
+						<Id>1796000001055</Id>
 						<Name><![CDATA[conector12]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4250,7 +4424,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001004</Id>
+						<Id>1796000001056</Id>
 						<Name><![CDATA[conector13]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4293,7 +4467,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001005</Id>
+						<Id>1796000001057</Id>
 						<Name><![CDATA[conector14]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4336,7 +4510,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001006</Id>
+						<Id>1796000001058</Id>
 						<Name><![CDATA[conector15]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4379,7 +4553,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001007</Id>
+						<Id>1796000001059</Id>
 						<Name><![CDATA[conector16]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4422,7 +4596,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001008</Id>
+						<Id>1796000001060</Id>
 						<Name><![CDATA[conector17]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4465,7 +4639,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001009</Id>
+						<Id>1796000001061</Id>
 						<Name><![CDATA[conector18]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4508,7 +4682,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001010</Id>
+						<Id>1796000001062</Id>
 						<Name><![CDATA[conector19]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4551,7 +4725,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001011</Id>
+						<Id>1796000001063</Id>
 						<Name><![CDATA[conector20]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4594,7 +4768,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001012</Id>
+						<Id>1796000001071</Id>
 						<Name><![CDATA[conector21]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4637,7 +4811,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001013</Id>
+						<Id>1796000001072</Id>
 						<Name><![CDATA[conector22]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4680,7 +4854,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001014</Id>
+						<Id>1796000001073</Id>
 						<Name><![CDATA[conector23]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4723,7 +4897,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001015</Id>
+						<Id>1796000001074</Id>
 						<Name><![CDATA[conector24]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4766,7 +4940,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001016</Id>
+						<Id>1796000001075</Id>
 						<Name><![CDATA[conector25]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4809,7 +4983,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001017</Id>
+						<Id>1796000001076</Id>
 						<Name><![CDATA[conector26]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4852,7 +5026,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001018</Id>
+						<Id>1796000001077</Id>
 						<Name><![CDATA[conector27]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4895,7 +5069,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001019</Id>
+						<Id>1796000001078</Id>
 						<Name><![CDATA[conector28]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4938,7 +5112,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001020</Id>
+						<Id>1796000001079</Id>
 						<Name><![CDATA[conector29]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -4981,7 +5155,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001021</Id>
+						<Id>1796000001080</Id>
 						<Name><![CDATA[conector30]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5024,7 +5198,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001022</Id>
+						<Id>1796000001081</Id>
 						<Name><![CDATA[conector31]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5067,7 +5241,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001023</Id>
+						<Id>1796000001082</Id>
 						<Name><![CDATA[conector32]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5110,7 +5284,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001024</Id>
+						<Id>1796000001083</Id>
 						<Name><![CDATA[conector33]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5153,7 +5327,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001025</Id>
+						<Id>1796000001084</Id>
 						<Name><![CDATA[conector34]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5196,7 +5370,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001026</Id>
+						<Id>1796000001085</Id>
 						<Name><![CDATA[conector35]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5239,7 +5413,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001027</Id>
+						<Id>1796000001086</Id>
 						<Name><![CDATA[conector36]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5282,7 +5456,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001028</Id>
+						<Id>1796000001087</Id>
 						<Name><![CDATA[conector37]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5325,7 +5499,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001064</Id>
+						<Id>1796000001088</Id>
 						<Name><![CDATA[conector38]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5368,7 +5542,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001065</Id>
+						<Id>1796000001089</Id>
 						<Name><![CDATA[conector39]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5411,7 +5585,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001066</Id>
+						<Id>1796000001090</Id>
 						<Name><![CDATA[conector40]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5454,7 +5628,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001067</Id>
+						<Id>1796000001091</Id>
 						<Name><![CDATA[conector41]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5497,7 +5671,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001068</Id>
+						<Id>1796000001092</Id>
 						<Name><![CDATA[conector42]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5540,7 +5714,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001069</Id>
+						<Id>1796000001093</Id>
 						<Name><![CDATA[conector43]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5583,7 +5757,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001070</Id>
+						<Id>1796000001094</Id>
 						<Name><![CDATA[conector44]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5626,7 +5800,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001100</Id>
+						<Id>1796000001095</Id>
 						<Name><![CDATA[conector45]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5669,7 +5843,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001101</Id>
+						<Id>1796000001096</Id>
 						<Name><![CDATA[conector46]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5712,7 +5886,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001102</Id>
+						<Id>1796000001097</Id>
 						<Name><![CDATA[conector47]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5755,7 +5929,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001104</Id>
+						<Id>1796000001098</Id>
 						<Name><![CDATA[conector48]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -5798,7 +5972,7 @@ eventoMuestreoRacks.restart(1);]]></StartupCode>
 						</Points>
 					</Connector>
 					<Connector>
-						<Id>1796000001105</Id>
+						<Id>1796000001099</Id>
 						<Name><![CDATA[conector49]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -6155,10 +6329,10 @@ for (int l = 0; l < lineasCF; l++) {
 }
 // Contrataciones: cada empleado nuevo agrega un puesto de su especialidad,
 // repartido en forma rotativa entre las líneas que hacen esa tarea
-for (int k = 0; k < extraArmadores; k++) agregarPuesto(k % lineasArmado, T_ARMADO, 0);
-for (int k = 0; k < extraAjustadores; k++) agregarPuesto(k % lineasArmado, T_AJUSTE, 0);
-for (int k = 0; k < extraControladores; k++) agregarPuesto(lineasArmado + k % lineasCF, T_CONTROL, 0);
-for (int k = 0; k < extraEmbaladores; k++) agregarPuesto(lineasArmado + k % lineasCF, T_EMBALAJE, 0);
+for (int k = 0; k < extraArmadores && lineasArmado > 0; k++) agregarPuesto(k % lineasArmado, T_ARMADO, 0);
+for (int k = 0; k < extraAjustadores && lineasArmado > 0; k++) agregarPuesto(k % lineasArmado, T_AJUSTE, 0);
+for (int k = 0; k < extraControladores && lineasCF > 0; k++) agregarPuesto(lineasArmado + k % lineasCF, T_CONTROL, 0);
+for (int k = 0; k < extraEmbaladores && lineasCF > 0; k++) agregarPuesto(lineasArmado + k % lineasCF, T_EMBALAJE, 0);
 if (nPuestos > 36) traceln("Hay " + nPuestos + " puestos: el plano dibuja solo los primeros 36 (6 columnas de 6 mesas).");
 plantaConstruida = true;]]></Body>
 					</Function>
@@ -6572,6 +6746,7 @@ enRecuperacion = false;
 diaGlobal++;
 tInicioJornada = time();
 for (int m = 0; m < 5; m++) {
+	contadorModeloDia[m] = 0;
 	ofDia[m] = ofEjemplo(ofSeleccionada, m);
 	ofSemana[m] += ofDia[m];
 	ofTotal[m] += ofDia[m];
@@ -6604,9 +6779,10 @@ eventoCamion2.restart(horaCamion2Min);]]></Body>
 							<Name><![CDATA[prob]]></Name>
 							<Type><![CDATA[double]]></Type>
 						</Parameter>
-						<Body><![CDATA[ausentesHoy = 0;
+						<Body><![CDATA[// Cada persona tiene su propio sorteo por día (números aleatorios comunes entre escenarios)
+ausentesHoy = 0;
 for (Operario o : ops) {
-	o.presente = !randomTrue(prob);
+	o.presente = azar(1, diaGlobal, claveOperario(o), 0) >= prob;
 	if (!o.presente) ausentesHoy++;
 }]]></Body>
 					</Function>
@@ -6650,9 +6826,23 @@ for (int p = 0; p < nPuestos; p++) {
 		vacantesCriticasHoy++;
 	}
 }
-coberturasTotal += coberturasHoy;
-vacantesCriticasTotal += vacantesCriticasHoy;
-if (!enRecuperacion) minutosVacantesTotal += (vacantesHoy - coberturasHoy) * duracionTurnoMin;
+// La reserva que quedó libre cubre también los puestos vacantes no críticos (por ejemplo, un
+// controlador o un embalador), empezando por las tareas más cargadas
+int[] ordenTipos = { T_AJUSTE, T_CONTROL, T_EMBALAJE, T_ARMADO };
+for (int t : ordenTipos)
+	for (int p = 0; p < nPuestos; p++) {
+		if (pAtiende[p] >= 0 || pTipo[p] != t) continue;
+		Operario r = reservaLibre();
+		if (r == null) break;
+		pAtiende[p] = r.idOp;
+		r.puestosAtendidos.add(p);
+		coberturasHoy++;
+	}
+if (!enRecuperacion) {
+	coberturasTotal += coberturasHoy;
+	vacantesCriticasTotal += vacantesCriticasHoy;
+	minutosVacantesTotal += (vacantesHoy - coberturasHoy) * duracionTurnoMin;
+}
 // Qué líneas pueden completar cada modelo con el personal de hoy
 for (int l = 0; l < lineasArmado + lineasCF && l < lineaCapaz.length; l++)
 	for (int m = 0; m < 5; m++) {
@@ -6705,7 +6895,7 @@ return true;]]></Body>
 							<Type><![CDATA[Operario]]></Type>
 						</Parameter>
 						<Body><![CDATA[return o.presente && !o.esReserva && !o.puestosAtendidos.isEmpty()
-	&& o.puestosAtendidos.size() < maxPuestosPorOperario;]]></Body>
+	&& o.puestosAtendidos.size() < limitePuestos();]]></Body>
 					</Function>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
@@ -6777,13 +6967,20 @@ return cargaCobertura(candidato) < cargaCobertura(actual) ? candidato : actual;]
 int linea = pLinea[p];
 boolean lineaDeArmado = linea < lineasArmado;
 // 0) Personal de reserva polivalente libre (no deja ningún puesto)
-for (Operario o : ops)
-	if (o.esReserva && o.presente && o.puestosAtendidos.isEmpty()) return o;
+Operario libre = reservaLibre();
+if (libre != null) return libre;
 Operario mejor = null;
 // 1) Misma especialidad y misma línea
 for (Operario o : ops)
 	if (puedeCubrir(o) && o.especialidad == e && o.lineaHabitual == linea) mejor = mejorCandidato(mejor, o);
 if (mejor != null) return mejor;
+// 1b) Con cobertura entre especialidades: otra especialidad de la misma línea, antes de que
+// alguien de la misma especialidad tenga que atender puestos de dos líneas
+if (coberturaEntreEspecialidades) {
+	for (Operario o : ops)
+		if (puedeCubrir(o) && o.lineaHabitual == linea) mejor = mejorCandidato(mejor, o);
+	if (mejor != null) return mejor;
+}
 // 2) Misma especialidad, otra línea del mismo tipo
 for (Operario o : ops)
 	if (puedeCubrir(o) && o.especialidad == e && (o.lineaHabitual < lineasArmado) == lineaDeArmado) mejor = mejorCandidato(mejor, o);
@@ -6919,6 +7116,8 @@ b.lineaCF = -1;
 b.tIngreso = time();
 b.diaOF = diaGlobal;
 b.ordenLiberacion = contadorLiberadas++;
+b.nroEnModelo = contadorModeloDia[m]++;
+enSistemaModelo[m]++;
 enProceso++;
 // La caja del kit entra al rack de materiales cuando hay una celda libre (areaKitsInicio) y queda
 // ahí hasta que el operario la retira; mientras espera lugar no se dibuja
@@ -7070,8 +7269,12 @@ if (p >= 0) b.jumpTo(pX[p] - mesaOffset, pY[p], alturaMesa);]]></Body>
 							<Name><![CDATA[b]]></Name>
 							<Type><![CDATA[Balanza]]></Type>
 						</Parameter>
-						<Body><![CDATA[// Las unidades más avanzadas pasan primero; entre iguales se respeta el orden de liberación
-return b.paso * 100000.0 - b.ordenLiberacion;]]></Body>
+						<Body><![CDATA[// Las unidades en una etapa más avanzada del proceso (armado < ajuste < control < embalaje) pasan
+// primero; en la misma etapa, la más antigua. Se usa la etapa y no el número de paso, porque el
+// número de paso no es comparable entre modelos (AILA tiene 4 pasos de armado; LURA, ninguno)
+int m = b.tipoModelo;
+int etapa = recTipo[m][Math.max(0, Math.min(b.paso, recLen[m] - 1))];
+return etapa * 1000000.0 - b.ordenLiberacion;]]></Body>
 					</Function>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
@@ -7229,7 +7432,9 @@ o.tInicioOcupado = time();]]></Body>
 							<Type><![CDATA[Balanza]]></Type>
 						</Parameter>
 						<Body><![CDATA[double espera = time() - b.tInicioEspera;
-b.esperaTotal += espera;
+// La espera de la unidad incluye, en el primer paso, la cola previa al rack de kits (desde que se
+// liberó); la espera por tipo de puesto mide solo la espera de operario (cuellos de botella)
+b.esperaTotal += b.paso == 0 ? time() - b.tIngreso : espera;
 // Espera en cola por tipo de puesto (identifica cuellos de botella)
 int tipo = recTipo[b.tipoModelo][b.paso];
 sumaEsperaTipo[tipo] += espera;
@@ -7351,10 +7556,8 @@ if (!b.cajaEnRack) b.jumpTo(o.getX(), o.getY() + 6, alturaCajaEnMano);]]></Body>
 							<Name><![CDATA[media]]></Name>
 							<Type><![CDATA[double]]></Type>
 						</Parameter>
-						<Body><![CDATA[// Triangular asimétrica con la media de SAP: mín 0,8·m, moda 0,9·m, máx 1,3·m (para variabilidad 1)
-double k = Math.max(0, Math.min(3, variabilidadTiempos));
-if (k == 0 || media <= 0) return media;
-return triangular(media * (1 - 0.2 * k), media * (1 + 0.3 * k), media * (1 - 0.1 * k));]]></Body>
+						<Body><![CDATA[// Retiro de materiales e inspección: generador propio, separado de las ausencias y de las tareas
+return tiempoConAzar(media, rngTiempos.nextDouble());]]></Body>
 					</Function>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
@@ -7374,7 +7577,10 @@ return triangular(media * (1 - 0.2 * k), media * (1 + 0.3 * k), media * (1 - 0.1
 							<Name><![CDATA[b]]></Name>
 							<Type><![CDATA[Balanza]]></Type>
 						</Parameter>
-						<Body><![CDATA[return tiempoAleatorio(recTiempo[b.tipoModelo][b.paso]);]]></Body>
+						<Body><![CDATA[// El tiempo depende de la unidad (día, modelo y número dentro del modelo) y del paso, no del orden
+// en que ocurren los eventos: la misma unidad tarda lo mismo en todos los escenarios
+return tiempoConAzar(recTiempo[b.tipoModelo][b.paso],
+	azar(3, b.diaOF, b.tipoModelo * 10000L + b.nroEnModelo, b.paso));]]></Body>
 					</Function>
 					<Function AccessType="public" StaticFunction="false">
 						<ReturnModificator>VOID</ReturnModificator>
@@ -7425,6 +7631,7 @@ b.opActual = null;]]></Body>
 if (b.tIngresoRack > 0) return b.inspeccionar;
 int m = b.tipoModelo;
 enProceso--;
+enSistemaModelo[m]--;
 terminadasSemana++;
 prodDia[m]++;
 prodSemana[m]++;
@@ -7519,7 +7726,7 @@ dsOFJornada.add(diasSimulados, objetivo);
 dsATiempoJornada.add(diasSimulados, aTiempo);
 if (faltante > 0) diasSinCumplir++;
 // Para medir el efecto de las ausencias se compara contra el mismo día de la semana
-int grupoAus = ausentesHoy > 0 ? 0 : 1;
+int grupoAus = vacantesHoy > 0 ? 0 : 1;
 faltanteDiaAus[dia % 7][grupoAus] += faltante;
 jornadasDiaAus[dia % 7][grupoAus]++;
 registrarPresencia(duracionTurnoMin);
@@ -7558,11 +7765,9 @@ if (pendientes <= 0) {
 enRecuperacion = true;
 tInicioRecuperacion = time();
 for (int m = 0; m < 5; m++) prodDia[m] = 0;
-asignarAsistencia(probAusenciaFinDeSemana);
+personasRecuperacion = convocarCuadrilla(pendientes);
 asignarCoberturas();
 ubicarOperarios();
-personasRecuperacion = 0;
-for (Operario o : ops) if (o.presente) personasRecuperacion++;
 pendientesInicioRecuperacion = pendientes;
 eventoCierreJornada.restart(maxHorasRecuperacion * 60);]]></Body>
 					</Function>
@@ -7584,7 +7789,9 @@ eventoCierreJornada.restart(maxHorasRecuperacion * 60);]]></Body>
 eventoCierreJornada.reset();
 eventoFinRecuperacion.reset();
 double minutos = time() - tInicioRecuperacion;
-double horasHombre = minutos / 60.0 * personasRecuperacion;
+// A la cuadrilla se le paga al menos horasMinimasRecuperacion
+double horasPagadas = Math.max(minutos / 60.0, horasMinimasRecuperacion);
+double horasHombre = horasPagadas * personasRecuperacion;
 double costo = horasHombre * valorHoraNormal * recargoFinDeSemana;
 registrarPresencia(minutos);
 horasExtraTotal += horasHombre;
@@ -7658,7 +7865,7 @@ if (semana < semanasSimuladas) {
 						</Parameter>
 						<Body><![CDATA[int m = b.tipoModelo;
 inspeccionadas[m]++;
-b.rechazada = randomTrue(probRechazo);
+b.rechazada = azar(4, b.diaOF, m * 10000L + b.nroEnModelo, 0) < probRechazo;
 if (b.rechazada) rechazadas[m]++; // se registra; el retrabajo queda fuera del alcance]]></Body>
 					</Function>
 					<Function AccessType="public" StaticFunction="false">
@@ -8784,10 +8991,264 @@ if (r >= 1 && r <= lista.length) return lista[r - 1];
 // Más réplicas que el listado: una semilla fija que depende solo del número de réplica
 return 1 + Math.floorMod(new java.util.Random(7919L * r).nextLong(), 999999999L);]]></Body>
 					</Function>
+					<Function AccessType="public" StaticFunction="false">
+						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+						<ReturnType><![CDATA[int]]></ReturnType>
+						<Id>1796000000646</Id>
+						<Name><![CDATA[limitePuestos]]></Name>
+						<X>3020</X>
+						<Y>40</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Body><![CDATA[// En la recuperación de fin de semana la cuadrilla es chica: cada uno puede atender más puestos
+return enRecuperacion ? Math.max(maxPuestosPorOperario, 4) : maxPuestosPorOperario;]]></Body>
+					</Function>
+					<Function AccessType="public" StaticFunction="false">
+						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+						<ReturnType><![CDATA[Operario]]></ReturnType>
+						<Id>1796000000647</Id>
+						<Name><![CDATA[reservaLibre]]></Name>
+						<X>3020</X>
+						<Y>62</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Body><![CDATA[for (Operario o : ops)
+	if (o.esReserva && o.presente && o.puestosAtendidos.isEmpty()) return o;
+return null;]]></Body>
+					</Function>
+					<Function AccessType="public" StaticFunction="false">
+						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+						<ReturnType><![CDATA[long]]></ReturnType>
+						<Id>1796000000687</Id>
+						<Name><![CDATA[mezclar]]></Name>
+						<X>3020</X>
+						<Y>84</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Parameter>
+							<Name><![CDATA[z]]></Name>
+							<Type><![CDATA[long]]></Type>
+						</Parameter>
+						<Body><![CDATA[// Mezclador de SplitMix64: convierte una clave en un número pseudoaleatorio de 64 bits
+z = (z ^ (z >>> 30)) * 0xBF58476D1CE4E5B9L;
+z = (z ^ (z >>> 27)) * 0x94D049BB133111EBL;
+return z ^ (z >>> 31);]]></Body>
+					</Function>
+					<Function AccessType="public" StaticFunction="false">
+						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+						<ReturnType><![CDATA[double]]></ReturnType>
+						<Id>1796000000688</Id>
+						<Name><![CDATA[azar]]></Name>
+						<X>3020</X>
+						<Y>106</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Parameter>
+							<Name><![CDATA[flujo]]></Name>
+							<Type><![CDATA[long]]></Type>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[a]]></Name>
+							<Type><![CDATA[long]]></Type>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[b]]></Name>
+							<Type><![CDATA[long]]></Type>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[c]]></Name>
+							<Type><![CDATA[long]]></Type>
+						</Parameter>
+						<Body><![CDATA[// Uniforme en [0, 1) que depende solo de la semilla de la corrida y de la clave (flujo, a, b, c).
+// Así el mismo sorteo (por ejemplo, si el titular del puesto 7 falta el día 12) da igual en todos
+// los escenarios con la misma semilla, sin importar el orden de los eventos: números aleatorios comunes.
+long z = mezclar(semillaUsada * 0x9E3779B97F4A7C15L + flujo);
+z = mezclar(z + a);
+z = mezclar(z + b);
+z = mezclar(z + c);
+return (z >>> 11) * 0x1.0p-53;]]></Body>
+					</Function>
+					<Function AccessType="public" StaticFunction="false">
+						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+						<ReturnType><![CDATA[double]]></ReturnType>
+						<Id>1796000000689</Id>
+						<Name><![CDATA[triangularInversa]]></Name>
+						<X>3020</X>
+						<Y>128</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Parameter>
+							<Name><![CDATA[min]]></Name>
+							<Type><![CDATA[double]]></Type>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[max]]></Name>
+							<Type><![CDATA[double]]></Type>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[moda]]></Name>
+							<Type><![CDATA[double]]></Type>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[u]]></Name>
+							<Type><![CDATA[double]]></Type>
+						</Parameter>
+						<Body><![CDATA[// Inversa de la distribución triangular: transforma una uniforme u en un tiempo
+double fc = (moda - min) / (max - min);
+if (u < fc) return min + Math.sqrt(u * (max - min) * (moda - min));
+return max - Math.sqrt((1 - u) * (max - min) * (max - moda));]]></Body>
+					</Function>
+					<Function AccessType="public" StaticFunction="false">
+						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+						<ReturnType><![CDATA[double]]></ReturnType>
+						<Id>1796000000690</Id>
+						<Name><![CDATA[tiempoConAzar]]></Name>
+						<X>3020</X>
+						<Y>150</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Parameter>
+							<Name><![CDATA[media]]></Name>
+							<Type><![CDATA[double]]></Type>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[u]]></Name>
+							<Type><![CDATA[double]]></Type>
+						</Parameter>
+						<Body><![CDATA[// Triangular asimétrica con la media de SAP: mín 0,8·m, moda 0,9·m, máx 1,3·m (para variabilidad 1)
+double k = Math.max(0, Math.min(3, variabilidadTiempos));
+if (k == 0 || media <= 0) return media;
+return triangularInversa(media * (1 - 0.2 * k), media * (1 + 0.3 * k), media * (1 - 0.1 * k), u);]]></Body>
+					</Function>
+					<Function AccessType="public" StaticFunction="false">
+						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+						<ReturnType><![CDATA[int]]></ReturnType>
+						<Id>1796000000694</Id>
+						<Name><![CDATA[claveOperario]]></Name>
+						<X>3020</X>
+						<Y>172</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Parameter>
+							<Name><![CDATA[o]]></Name>
+							<Type><![CDATA[Operario]]></Type>
+						</Parameter>
+						<Body><![CDATA[// Clave estable para sortear la asistencia: el puesto del titular o el número de la reserva
+return o.puestoHabitual >= 0 ? o.puestoHabitual : 1000 + o.idOp - nPuestos;]]></Body>
+					</Function>
+					<Function AccessType="public" StaticFunction="false">
+						<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+						<ReturnType><![CDATA[int]]></ReturnType>
+						<Id>1796000000706</Id>
+						<Name><![CDATA[convocarCuadrilla]]></Name>
+						<X>3020</X>
+						<Y>194</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Parameter>
+							<Name><![CDATA[pendientes]]></Name>
+							<Type><![CDATA[int]]></Type>
+						</Parameter>
+						<Body><![CDATA[// Cuadrilla proporcional al faltante: una persona cada unidadesPorPersonaRecuperacion pendientes,
+// entre minCuadrillaRecuperacion y maxCuadrillaRecuperacion. Se reparte entre las especialidades
+// según los minutos de trabajo pendientes de cada una (al menos una por especialidad con trabajo).
+int convocados = (int) Math.ceil(pendientes / Math.max(1e-9, unidadesPorPersonaRecuperacion));
+convocados = Math.max(minCuadrillaRecuperacion, Math.min(maxCuadrillaRecuperacion, convocados));
+double[] carga = new double[4];
+for (int m = 0; m < 5; m++) {
+	if (enSistemaModelo[m] <= 0 || recLen[m] == 0) continue;
+	carga[recTipo[m][0]] += enSistemaModelo[m] * tiempoRetiro[m];
+	for (int k = 0; k < recLen[m]; k++) carga[recTipo[m][k]] += enSistemaModelo[m] * recTiempo[m][k];
+}
+int necesarias = 0;
+double total = 0;
+for (int t = 0; t < 4; t++) if (carga[t] > 0) { necesarias++; total += carga[t]; }
+convocados = Math.max(convocados, necesarias);
+// Reparto por restos mayores, con mínimo 1 para cada especialidad con trabajo
+int[] cupo = new int[4];
+double[] resto = new double[4];
+int asignados = 0;
+for (int t = 0; t < 4; t++) {
+	if (carga[t] <= 0) continue;
+	double ideal = convocados * carga[t] / total;
+	cupo[t] = Math.max(1, (int) Math.floor(ideal));
+	resto[t] = ideal - Math.floor(ideal);
+	asignados += cupo[t];
+}
+while (asignados < convocados) {
+	int mejor = -1;
+	for (int t = 0; t < 4; t++) if (carga[t] > 0 && (mejor < 0 || resto[t] > resto[mejor])) mejor = t;
+	if (mejor < 0) break;
+	cupo[mejor]++;
+	resto[mejor] = -1;
+	asignados++;
+}
+// Se convoca a los titulares de cada especialidad en orden de línea (la cuadrilla queda concentrada);
+// quien no asiste se reemplaza por el siguiente. La reserva no se convoca.
+ausentesHoy = 0;
+for (Operario o : ops) o.presente = false;
+int presentes = 0;
+for (int t = 0; t < 4; t++) {
+	Especialidad e = especialidadDeTipo(t);
+	int vienen = 0;
+	for (Operario o : ops) {
+		if (vienen >= cupo[t]) break;
+		if (o.esReserva || o.especialidad != e) continue;
+		if (azar(2, diaGlobal, claveOperario(o), 0) >= probAusenciaFinDeSemana) {
+			o.presente = true;
+			vienen++;
+		} else {
+			ausentesHoy++;
+		}
+	}
+	presentes += vienen;
+}
+return presentes;]]></Body>
+					</Function>
 				</Functions>
 				<AnalysisData>
 					<DataSet>
-						<Id>1796000001109</Id>
+						<Id>1796000001103</Id>
 						<Name><![CDATA[dsOFJornada]]></Name>
 						<X>1820</X>
 						<Y>-1000</Y>
@@ -8800,7 +9261,7 @@ return 1 + Math.floorMod(new java.util.Random(7919L * r).nextLong(), 999999999L)
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001113</Id>
+							<Id>1796000001106</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -8816,7 +9277,7 @@ return 1 + Math.floorMod(new java.util.Random(7919L * r).nextLong(), 999999999L)
 						<SamplesToKeep>200</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001114</Id>
+						<Id>1796000001107</Id>
 						<Name><![CDATA[dsATiempoJornada]]></Name>
 						<X>1820</X>
 						<Y>-975</Y>
@@ -8829,7 +9290,7 @@ return 1 + Math.floorMod(new java.util.Random(7919L * r).nextLong(), 999999999L)
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001115</Id>
+							<Id>1796000001108</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -8845,7 +9306,7 @@ return 1 + Math.floorMod(new java.util.Random(7919L * r).nextLong(), 999999999L)
 						<SamplesToKeep>200</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001116</Id>
+						<Id>1796000001110</Id>
 						<Name><![CDATA[dsHorasExtraSemana]]></Name>
 						<X>1820</X>
 						<Y>-950</Y>
@@ -8858,7 +9319,7 @@ return 1 + Math.floorMod(new java.util.Random(7919L * r).nextLong(), 999999999L)
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001117</Id>
+							<Id>1796000001111</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -8874,7 +9335,7 @@ return 1 + Math.floorMod(new java.util.Random(7919L * r).nextLong(), 999999999L)
 						<SamplesToKeep>60</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001118</Id>
+						<Id>1796000001112</Id>
 						<Name><![CDATA[dsRackMateriales]]></Name>
 						<X>1820</X>
 						<Y>-925</Y>
@@ -8887,7 +9348,7 @@ return 1 + Math.floorMod(new java.util.Random(7919L * r).nextLong(), 999999999L)
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001119</Id>
+							<Id>1796000001124</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -8903,7 +9364,7 @@ return 1 + Math.floorMod(new java.util.Random(7919L * r).nextLong(), 999999999L)
 						<SamplesToKeep>3000</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001120</Id>
+						<Id>1796000001125</Id>
 						<Name><![CDATA[dsRackCalidad]]></Name>
 						<X>1820</X>
 						<Y>-900</Y>
@@ -8916,7 +9377,7 @@ return 1 + Math.floorMod(new java.util.Random(7919L * r).nextLong(), 999999999L)
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001121</Id>
+							<Id>1796000001126</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -8932,7 +9393,7 @@ return 1 + Math.floorMod(new java.util.Random(7919L * r).nextLong(), 999999999L)
 						<SamplesToKeep>3000</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001122</Id>
+						<Id>1796000001128</Id>
 						<Name><![CDATA[dsRackStock]]></Name>
 						<X>1820</X>
 						<Y>-875</Y>
@@ -8945,7 +9406,7 @@ return 1 + Math.floorMod(new java.util.Random(7919L * r).nextLong(), 999999999L)
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001123</Id>
+							<Id>1796000001129</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -9022,7 +9483,7 @@ return 1 + Math.floorMod(new java.util.Random(7919L * r).nextLong(), 999999999L)
 								<Value Class="EntityCodeValue">
 									<IsAgentEntity>true</IsAgentEntity>
 									<EntityEmbeddedObject>
-										<Id>1796000000805</Id>
+										<Id>1796000000848</Id>
 										<ActiveObjectClass>
 											<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 											<ClassName><![CDATA[Balanza]]></ClassName>
@@ -9056,7 +9517,7 @@ return 1 + Math.floorMod(new java.util.Random(7919L * r).nextLong(), 999999999L)
 										</LocationNameCode>
 										<InitializationType>LOAD_FROM_DATABASE</InitializationType>
 										<InitializationDatabaseTableQuery>
-											<Id>1796000000806</Id>
+											<Id>1796000000849</Id>
 											<TableReference/>
 										</InitializationDatabaseTableQuery>
 										<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
@@ -10297,7 +10758,7 @@ agent.paso++;]]></Code>
 								<Value Class="EntityCodeValue">
 									<IsAgentEntity>true</IsAgentEntity>
 									<EntityEmbeddedObject>
-										<Id>1796000000975</Id>
+										<Id>1796000001036</Id>
 										<ActiveObjectClass>
 											<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 											<ClassName><![CDATA[Operario]]></ClassName>
@@ -10331,7 +10792,7 @@ agent.paso++;]]></Code>
 										</LocationNameCode>
 										<InitializationType>LOAD_FROM_DATABASE</InitializationType>
 										<InitializationDatabaseTableQuery>
-											<Id>1796000000976</Id>
+											<Id>1796000001037</Id>
 											<TableReference/>
 										</InitializationDatabaseTableQuery>
 										<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
@@ -11475,7 +11936,7 @@ llegarAlRack(agent, pieStockX, pieStockY);]]></Code>
 								<Value Class="EntityCodeValue">
 									<IsAgentEntity>true</IsAgentEntity>
 									<EntityEmbeddedObject>
-										<Id>1796000000955</Id>
+										<Id>1796000000982</Id>
 										<ActiveObjectClass>
 											<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 											<ClassName><![CDATA[CamionRetiro]]></ClassName>
@@ -11505,7 +11966,7 @@ llegarAlRack(agent, pieStockX, pieStockY);]]></Code>
 										</LocationNameCode>
 										<InitializationType>LOAD_FROM_DATABASE</InitializationType>
 										<InitializationDatabaseTableQuery>
-											<Id>1796000000956</Id>
+											<Id>1796000000983</Id>
 											<TableReference/>
 										</InitializationDatabaseTableQuery>
 										<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
@@ -11825,7 +12286,7 @@ llegarAlRack(agent, pieStockX, pieStockY);]]></Code>
 								<Value Class="EntityCodeValue">
 									<IsAgentEntity>true</IsAgentEntity>
 									<EntityEmbeddedObject>
-										<Id>1796000000971</Id>
+										<Id>1796000001032</Id>
 										<ActiveObjectClass>
 											<PackageName><![CDATA[tpi_simulacion_kretz]]></PackageName>
 											<ClassName><![CDATA[Operario]]></ClassName>
@@ -11859,7 +12320,7 @@ llegarAlRack(agent, pieStockX, pieStockY);]]></Code>
 										</LocationNameCode>
 										<InitializationType>LOAD_FROM_DATABASE</InitializationType>
 										<InitializationDatabaseTableQuery>
-											<Id>1796000000972</Id>
+											<Id>1796000001033</Id>
 											<TableReference/>
 										</InitializationDatabaseTableQuery>
 										<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
@@ -17408,7 +17869,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<ServiceType>EXTERNAL</ServiceType>
 							</RackStorage>
 							<Rectangle>
-								<Id>1796000001137</Id>
+								<Id>1796000001135</Id>
 								<Name><![CDATA[fondoGraficos]]></Name>
 								<X>0</X>
 								<Y>-1000</Y>
@@ -17434,7 +17895,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Rectangle>
-								<Id>1796000001138</Id>
+								<Id>1796000001136</Id>
 								<Name><![CDATA[tarjetaCumplimiento]]></Name>
 								<X>30</X>
 								<Y>-900</Y>
@@ -17460,7 +17921,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000001139</Id>
+								<Id>1796000001143</Id>
 								<Name><![CDATA[tituloGraficoCumplimiento]]></Name>
 								<X>48</X>
 								<Y>-888</Y>
@@ -17485,7 +17946,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000001140</Id>
+								<Id>1796000001144</Id>
 								<Name><![CDATA[subtituloGraficoCumplimiento]]></Name>
 								<X>48</X>
 								<Y>-866</Y>
@@ -17510,7 +17971,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Plot>
-								<Id>1796000001141</Id>
+								<Id>1796000001145</Id>
 								<Name><![CDATA[graficoCumplimiento]]></Name>
 								<X>35</X>
 								<Y>-848</Y>
@@ -17524,7 +17985,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<DrawMode>SHAPE_DRAW_2D</DrawMode>
 								<AutoUpdate>false</AutoUpdate>
 								<RecurrenceProperties>
-									<Id>1796000001142</Id>
+									<Id>1796000001146</Id>
 									<OccurrenceAtTime>true</OccurrenceAtTime>
 									<OccurrenceDate>1794211200000</OccurrenceDate>
 									<OccurrenceTime Class="CodeUnitValue">
@@ -17568,7 +18029,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Interpolation>LINEAR</Interpolation>
 								<DatasetExpression>
 									<Title><![CDATA[OF pedida]]></Title>
-									<Id>1796000001147</Id>
+									<Id>1796000001150</Id>
 									<Expression><![CDATA[dsOFJornada]]></Expression>
 									<Color>-7035976</Color>
 									<Expression2><![CDATA[0]]></Expression2>
@@ -17579,7 +18040,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								</DatasetExpression>
 								<DatasetExpression>
 									<Title><![CDATA[Producido a tiempo]]></Title>
-									<Id>1796000001152</Id>
+									<Id>1796000001151</Id>
 									<Expression><![CDATA[dsATiempoJornada]]></Expression>
 									<Color>-14326805</Color>
 									<Expression2><![CDATA[0]]></Expression2>
@@ -17594,7 +18055,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<HorScaleType>AUTO</HorScaleType>
 							</Plot>
 							<Rectangle>
-								<Id>1796000001153</Id>
+								<Id>1796000001158</Id>
 								<Name><![CDATA[tarjetaFaltante]]></Name>
 								<X>560</X>
 								<Y>-900</Y>
@@ -17620,7 +18081,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000001154</Id>
+								<Id>1796000001159</Id>
 								<Name><![CDATA[tituloGraficoFaltante]]></Name>
 								<X>578</X>
 								<Y>-888</Y>
@@ -17645,7 +18106,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000001155</Id>
+								<Id>1796000001160</Id>
 								<Name><![CDATA[subtituloGraficoFaltante]]></Name>
 								<X>578</X>
 								<Y>-866</Y>
@@ -17670,7 +18131,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<BarChart>
-								<Id>1796000001156</Id>
+								<Id>1796000001161</Id>
 								<Name><![CDATA[graficoFaltante]]></Name>
 								<X>565</X>
 								<Y>-848</Y>
@@ -17684,7 +18145,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<DrawMode>SHAPE_DRAW_2D</DrawMode>
 								<AutoUpdate>true</AutoUpdate>
 								<RecurrenceProperties>
-									<Id>1796000001157</Id>
+									<Id>1796000001162</Id>
 									<OccurrenceAtTime>true</OccurrenceAtTime>
 									<OccurrenceDate>1794211200000</OccurrenceDate>
 									<OccurrenceTime Class="CodeUnitValue">
@@ -17722,31 +18183,31 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								</Labels>
 								<ShowLegend>true</ShowLegend>
 								<DataItem>
-									<Id>1796000001170</Id>
+									<Id>1796000001168</Id>
 									<Expression><![CDATA[faltanteModelo[0]]]></Expression>
 									<Color>-14326805</Color>
 									<Title><![CDATA[AILA 30KG]]></Title>
 								</DataItem>
 								<DataItem>
-									<Id>1796000001171</Id>
+									<Id>1796000001169</Id>
 									<Expression><![CDATA[faltanteModelo[1]]]></Expression>
 									<Color>-1419252</Color>
 									<Title><![CDATA[REPORT LT]]></Title>
 								</DataItem>
 								<DataItem>
-									<Id>1796000001172</Id>
+									<Id>1796000001173</Id>
 									<Expression><![CDATA[faltanteModelo[2]]]></Expression>
 									<Color>-15293622</Color>
 									<Title><![CDATA[NOVEL ECO]]></Title>
 								</DataItem>
 								<DataItem>
-									<Id>1796000001175</Id>
+									<Id>1796000001174</Id>
 									<Expression><![CDATA[faltanteModelo[3]]]></Expression>
 									<Color>-7130134</Color>
 									<Title><![CDATA[LURA]]></Title>
 								</DataItem>
 								<DataItem>
-									<Id>1796000001176</Id>
+									<Id>1796000001181</Id>
 									<Expression><![CDATA[faltanteModelo[4]]]></Expression>
 									<Color>-2349530</Color>
 									<Title><![CDATA[AURA]]></Title>
@@ -17760,7 +18221,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								</Bars>
 							</BarChart>
 							<Rectangle>
-								<Id>1796000001177</Id>
+								<Id>1796000001182</Id>
 								<Name><![CDATA[tarjetaHorasExtra]]></Name>
 								<X>1090</X>
 								<Y>-900</Y>
@@ -17786,7 +18247,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000001178</Id>
+								<Id>1796000001183</Id>
 								<Name><![CDATA[tituloGraficoHorasExtra]]></Name>
 								<X>1108</X>
 								<Y>-888</Y>
@@ -17811,7 +18272,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000001180</Id>
+								<Id>1796000001184</Id>
 								<Name><![CDATA[subtituloGraficoHorasExtra]]></Name>
 								<X>1108</X>
 								<Y>-866</Y>
@@ -17836,7 +18297,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Plot>
-								<Id>1796000001190</Id>
+								<Id>1796000001185</Id>
 								<Name><![CDATA[graficoHorasExtra]]></Name>
 								<X>1095</X>
 								<Y>-848</Y>
@@ -17850,7 +18311,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<DrawMode>SHAPE_DRAW_2D</DrawMode>
 								<AutoUpdate>false</AutoUpdate>
 								<RecurrenceProperties>
-									<Id>1796000001191</Id>
+									<Id>1796000001186</Id>
 									<OccurrenceAtTime>true</OccurrenceAtTime>
 									<OccurrenceDate>1794211200000</OccurrenceDate>
 									<OccurrenceTime Class="CodeUnitValue">
@@ -17894,7 +18355,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Interpolation>LINEAR</Interpolation>
 								<DatasetExpression>
 									<Title><![CDATA[Horas-hombre]]></Title>
-									<Id>1796000001194</Id>
+									<Id>1796000001189</Id>
 									<Expression><![CDATA[dsHorasExtraSemana]]></Expression>
 									<Color>-2525434</Color>
 									<Expression2><![CDATA[0]]></Expression2>
@@ -17909,7 +18370,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<HorScaleType>AUTO</HorScaleType>
 							</Plot>
 							<Rectangle>
-								<Id>1796000001195</Id>
+								<Id>1796000001192</Id>
 								<Name><![CDATA[tarjetaUtilizacion]]></Name>
 								<X>30</X>
 								<Y>-470</Y>
@@ -17935,7 +18396,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000001200</Id>
+								<Id>1796000001193</Id>
 								<Name><![CDATA[tituloGraficoUtilizacion]]></Name>
 								<X>48</X>
 								<Y>-458</Y>
@@ -17960,7 +18421,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000001202</Id>
+								<Id>1796000001196</Id>
 								<Name><![CDATA[subtituloGraficoUtilizacion]]></Name>
 								<X>48</X>
 								<Y>-436</Y>
@@ -17985,7 +18446,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<BarChart>
-								<Id>1796000001203</Id>
+								<Id>1796000001197</Id>
 								<Name><![CDATA[graficoUtilizacion]]></Name>
 								<X>35</X>
 								<Y>-418</Y>
@@ -17999,7 +18460,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<DrawMode>SHAPE_DRAW_2D</DrawMode>
 								<AutoUpdate>true</AutoUpdate>
 								<RecurrenceProperties>
-									<Id>1796000001206</Id>
+									<Id>1796000001198</Id>
 									<OccurrenceAtTime>true</OccurrenceAtTime>
 									<OccurrenceDate>1794211200000</OccurrenceDate>
 									<OccurrenceTime Class="CodeUnitValue">
@@ -18037,25 +18498,25 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								</Labels>
 								<ShowLegend>true</ShowLegend>
 								<DataItem>
-									<Id>1796000001247</Id>
+									<Id>1796000001209</Id>
 									<Expression><![CDATA[100 * utilizacion(Especialidad.Armador)]]></Expression>
 									<Color>-14326805</Color>
 									<Title><![CDATA[Armador]]></Title>
 								</DataItem>
 								<DataItem>
-									<Id>1796000001252</Id>
+									<Id>1796000001210</Id>
 									<Expression><![CDATA[100 * utilizacion(Especialidad.Ajustador)]]></Expression>
 									<Color>-7130134</Color>
 									<Title><![CDATA[Ajustador]]></Title>
 								</DataItem>
 								<DataItem>
-									<Id>1796000001257</Id>
+									<Id>1796000001211</Id>
 									<Expression><![CDATA[100 * utilizacion(Especialidad.Controlador)]]></Expression>
 									<Color>-15887224</Color>
 									<Title><![CDATA[Controlador]]></Title>
 								</DataItem>
 								<DataItem>
-									<Id>1796000001258</Id>
+									<Id>1796000001212</Id>
 									<Expression><![CDATA[100 * utilizacion(Especialidad.Embalador)]]></Expression>
 									<Color>-4959479</Color>
 									<Title><![CDATA[Embalador]]></Title>
@@ -18069,7 +18530,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								</Bars>
 							</BarChart>
 							<Rectangle>
-								<Id>1796000001259</Id>
+								<Id>1796000001213</Id>
 								<Name><![CDATA[tarjetaEspera]]></Name>
 								<X>560</X>
 								<Y>-470</Y>
@@ -18095,7 +18556,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000001264</Id>
+								<Id>1796000001214</Id>
 								<Name><![CDATA[tituloGraficoEspera]]></Name>
 								<X>578</X>
 								<Y>-458</Y>
@@ -18120,7 +18581,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000001267</Id>
+								<Id>1796000001215</Id>
 								<Name><![CDATA[subtituloGraficoEspera]]></Name>
 								<X>578</X>
 								<Y>-436</Y>
@@ -18145,7 +18606,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<BarChart>
-								<Id>1796000001268</Id>
+								<Id>1796000001216</Id>
 								<Name><![CDATA[graficoEspera]]></Name>
 								<X>565</X>
 								<Y>-418</Y>
@@ -18159,7 +18620,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<DrawMode>SHAPE_DRAW_2D</DrawMode>
 								<AutoUpdate>true</AutoUpdate>
 								<RecurrenceProperties>
-									<Id>1796000001269</Id>
+									<Id>1796000001217</Id>
 									<OccurrenceAtTime>true</OccurrenceAtTime>
 									<OccurrenceDate>1794211200000</OccurrenceDate>
 									<OccurrenceTime Class="CodeUnitValue">
@@ -18197,25 +18658,25 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								</Labels>
 								<ShowLegend>true</ShowLegend>
 								<DataItem>
-									<Id>1796000001283</Id>
+									<Id>1796000001223</Id>
 									<Expression><![CDATA[esperaMedia(0)]]></Expression>
 									<Color>-14326805</Color>
 									<Title><![CDATA[Armado]]></Title>
 								</DataItem>
 								<DataItem>
-									<Id>1796000001287</Id>
+									<Id>1796000001224</Id>
 									<Expression><![CDATA[esperaMedia(1)]]></Expression>
 									<Color>-7130134</Color>
 									<Title><![CDATA[Ajuste]]></Title>
 								</DataItem>
 								<DataItem>
-									<Id>1796000001293</Id>
+									<Id>1796000001225</Id>
 									<Expression><![CDATA[esperaMedia(2)]]></Expression>
 									<Color>-15887224</Color>
 									<Title><![CDATA[Control final]]></Title>
 								</DataItem>
 								<DataItem>
-									<Id>1796000001299</Id>
+									<Id>1796000001226</Id>
 									<Expression><![CDATA[esperaMedia(3)]]></Expression>
 									<Color>-4959479</Color>
 									<Title><![CDATA[Embalaje]]></Title>
@@ -18229,7 +18690,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								</Bars>
 							</BarChart>
 							<Rectangle>
-								<Id>1796000001300</Id>
+								<Id>1796000001227</Id>
 								<Name><![CDATA[tarjetaRacks]]></Name>
 								<X>1090</X>
 								<Y>-470</Y>
@@ -18255,7 +18716,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000001306</Id>
+								<Id>1796000001228</Id>
 								<Name><![CDATA[tituloGraficoRacks]]></Name>
 								<X>1108</X>
 								<Y>-458</Y>
@@ -18280,7 +18741,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000001307</Id>
+								<Id>1796000001229</Id>
 								<Name><![CDATA[subtituloGraficoRacks]]></Name>
 								<X>1108</X>
 								<Y>-436</Y>
@@ -18305,7 +18766,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<TimePlot>
-								<Id>1796000001313</Id>
+								<Id>1796000001230</Id>
 								<Name><![CDATA[graficoRacks]]></Name>
 								<X>1095</X>
 								<Y>-418</Y>
@@ -18319,7 +18780,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<DrawMode>SHAPE_DRAW_2D</DrawMode>
 								<AutoUpdate>false</AutoUpdate>
 								<RecurrenceProperties>
-									<Id>1796000001314</Id>
+									<Id>1796000001231</Id>
 									<OccurrenceAtTime>true</OccurrenceAtTime>
 									<OccurrenceDate>1794211200000</OccurrenceDate>
 									<OccurrenceTime Class="CodeUnitValue">
@@ -18365,7 +18826,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Interpolation>LINEAR</Interpolation>
 								<DatasetExpression>
 									<Title><![CDATA[Materiales]]></Title>
-									<Id>1796000001322</Id>
+									<Id>1796000001235</Id>
 									<Expression><![CDATA[dsRackMateriales]]></Expression>
 									<Color>-4959479</Color>
 									<Expression2><![CDATA[0]]></Expression2>
@@ -18375,7 +18836,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								</DatasetExpression>
 								<DatasetExpression>
 									<Title><![CDATA[Espera de calidad]]></Title>
-									<Id>1796000001335</Id>
+									<Id>1796000001236</Id>
 									<Expression><![CDATA[dsRackCalidad]]></Expression>
 									<Color>-14856488</Color>
 									<Expression2><![CDATA[0]]></Expression2>
@@ -18385,7 +18846,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								</DatasetExpression>
 								<DatasetExpression>
 									<Title><![CDATA[Stock]]></Title>
-									<Id>1796000001336</Id>
+									<Id>1796000001238</Id>
 									<Expression><![CDATA[dsRackStock]]></Expression>
 									<Color>-10193781</Color>
 									<Expression2><![CDATA[0]]></Expression2>
@@ -18399,7 +18860,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
 							</TimePlot>
 							<Rectangle>
-								<Id>1796000001337</Id>
+								<Id>1796000001239</Id>
 								<Name><![CDATA[fondoVariables]]></Name>
 								<X>0</X>
 								<Y>-2000</Y>
@@ -18425,7 +18886,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Rectangle>
-								<Id>1796000001338</Id>
+								<Id>1796000001240</Id>
 								<Name><![CDATA[tarjetaVarOF]]></Name>
 								<X>30</X>
 								<Y>-1894</Y>
@@ -18451,7 +18912,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Rectangle>
-								<Id>1796000001339</Id>
+								<Id>1796000001241</Id>
 								<Name><![CDATA[tarjetaVarPersonal]]></Name>
 								<X>30</X>
 								<Y>-1707</Y>
@@ -18477,7 +18938,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Rectangle>
-								<Id>1796000001345</Id>
+								<Id>1796000001242</Id>
 								<Name><![CDATA[tarjetaVarCalidad]]></Name>
 								<X>30</X>
 								<Y>-1577</Y>
@@ -18503,7 +18964,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Rectangle>
-								<Id>1796000001346</Id>
+								<Id>1796000001243</Id>
 								<Name><![CDATA[tarjetaVarCostos]]></Name>
 								<X>850</X>
 								<Y>-1894</Y>
@@ -18529,7 +18990,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Rectangle>
-								<Id>1796000001347</Id>
+								<Id>1796000001244</Id>
 								<Name><![CDATA[tarjetaVarAusencias]]></Name>
 								<X>850</X>
 								<Y>-1764</Y>
@@ -18555,7 +19016,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Rectangle>
-								<Id>1796000001348</Id>
+								<Id>1796000001245</Id>
 								<Name><![CDATA[tarjetaVarColas]]></Name>
 								<X>850</X>
 								<Y>-1577</Y>
@@ -18581,7 +19042,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Rectangle>
-								<Id>1796000001355</Id>
+								<Id>1796000001246</Id>
 								<Name><![CDATA[tarjetaVarHistorial]]></Name>
 								<X>30</X>
 								<Y>-1428</Y>
@@ -18811,7 +19272,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000001356</Id>
+								<Id>1796000001248</Id>
 								<Name><![CDATA[tituloAusencias]]></Name>
 								<X>868</X>
 								<Y>-1752</Y>
@@ -18836,7 +19297,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>LEFT</Alignment>
 							</Text>
 							<Text>
-								<Id>1796000001372</Id>
+								<Id>1796000001249</Id>
 								<Name><![CDATA[panelAusencias]]></Name>
 								<X>868</X>
 								<Y>-1728</Y>
@@ -19015,7 +19476,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								</ExtendedProperties>
 							</Control>
 							<Rectangle>
-								<Id>1796000001373</Id>
+								<Id>1796000001250</Id>
 								<Name><![CDATA[navbar0Fondo]]></Name>
 								<X>0</X>
 								<Y>0</Y>
@@ -19041,7 +19502,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000001374</Id>
+								<Id>1796000001251</Id>
 								<Name><![CDATA[navbar0Titulo]]></Name>
 								<X>24</X>
 								<Y>18</Y>
@@ -19067,7 +19528,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 							</Text>
 							<Control Type="Button">
 								<EmbeddedIcon>false</EmbeddedIcon>
-								<Id>1796000001375</Id>
+								<Id>1796000001253</Id>
 								<Name><![CDATA[navbar0Boton0]]></Name>
 								<X>130</X>
 								<Y>13</Y>
@@ -19092,7 +19553,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								</ExtendedProperties>
 							</Control>
 							<Rectangle>
-								<Id>1796000001376</Id>
+								<Id>1796000001254</Id>
 								<Name><![CDATA[navbar0Activa]]></Name>
 								<X>130</X>
 								<Y>51</Y>
@@ -19119,7 +19580,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 							</Rectangle>
 							<Control Type="Button">
 								<EmbeddedIcon>false</EmbeddedIcon>
-								<Id>1796000001381</Id>
+								<Id>1796000001255</Id>
 								<Name><![CDATA[navbar0Boton1]]></Name>
 								<X>280</X>
 								<Y>13</Y>
@@ -19145,7 +19606,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 							</Control>
 							<Control Type="Button">
 								<EmbeddedIcon>false</EmbeddedIcon>
-								<Id>1796000001382</Id>
+								<Id>1796000001256</Id>
 								<Name><![CDATA[navbar0Boton2]]></Name>
 								<X>430</X>
 								<Y>13</Y>
@@ -19170,7 +19631,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								</ExtendedProperties>
 							</Control>
 							<Text>
-								<Id>1796000001383</Id>
+								<Id>1796000001260</Id>
 								<Name><![CDATA[navbar0Reloj]]></Name>
 								<X>1620</X>
 								<Y>20</Y>
@@ -19196,7 +19657,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>RIGHT</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000001384</Id>
+								<Id>1796000001261</Id>
 								<Name><![CDATA[navbar1Fondo]]></Name>
 								<X>0</X>
 								<Y>-2000</Y>
@@ -19222,7 +19683,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000001385</Id>
+								<Id>1796000001262</Id>
 								<Name><![CDATA[navbar1Titulo]]></Name>
 								<X>24</X>
 								<Y>-1982</Y>
@@ -19248,7 +19709,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 							</Text>
 							<Control Type="Button">
 								<EmbeddedIcon>false</EmbeddedIcon>
-								<Id>1796000001386</Id>
+								<Id>1796000001263</Id>
 								<Name><![CDATA[navbar1Boton0]]></Name>
 								<X>130</X>
 								<Y>-1987</Y>
@@ -19274,7 +19735,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 							</Control>
 							<Control Type="Button">
 								<EmbeddedIcon>false</EmbeddedIcon>
-								<Id>1796000001388</Id>
+								<Id>1796000001265</Id>
 								<Name><![CDATA[navbar1Boton1]]></Name>
 								<X>280</X>
 								<Y>-1987</Y>
@@ -19299,7 +19760,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								</ExtendedProperties>
 							</Control>
 							<Rectangle>
-								<Id>1796000001389</Id>
+								<Id>1796000001270</Id>
 								<Name><![CDATA[navbar1Activa]]></Name>
 								<X>280</X>
 								<Y>-1949</Y>
@@ -19326,7 +19787,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 							</Rectangle>
 							<Control Type="Button">
 								<EmbeddedIcon>false</EmbeddedIcon>
-								<Id>1796000001395</Id>
+								<Id>1796000001271</Id>
 								<Name><![CDATA[navbar1Boton2]]></Name>
 								<X>430</X>
 								<Y>-1987</Y>
@@ -19351,7 +19812,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								</ExtendedProperties>
 							</Control>
 							<Text>
-								<Id>1796000001396</Id>
+								<Id>1796000001272</Id>
 								<Name><![CDATA[navbar1Reloj]]></Name>
 								<X>1620</X>
 								<Y>-1980</Y>
@@ -19377,7 +19838,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<Alignment>RIGHT</Alignment>
 							</Text>
 							<Rectangle>
-								<Id>1796000001397</Id>
+								<Id>1796000001273</Id>
 								<Name><![CDATA[navbar2Fondo]]></Name>
 								<X>0</X>
 								<Y>-1000</Y>
@@ -19403,7 +19864,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000001398</Id>
+								<Id>1796000001274</Id>
 								<Name><![CDATA[navbar2Titulo]]></Name>
 								<X>24</X>
 								<Y>-982</Y>
@@ -19429,7 +19890,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 							</Text>
 							<Control Type="Button">
 								<EmbeddedIcon>false</EmbeddedIcon>
-								<Id>1796000001399</Id>
+								<Id>1796000001275</Id>
 								<Name><![CDATA[navbar2Boton0]]></Name>
 								<X>130</X>
 								<Y>-987</Y>
@@ -19455,7 +19916,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 							</Control>
 							<Control Type="Button">
 								<EmbeddedIcon>false</EmbeddedIcon>
-								<Id>1796000001400</Id>
+								<Id>1796000001276</Id>
 								<Name><![CDATA[navbar2Boton1]]></Name>
 								<X>280</X>
 								<Y>-987</Y>
@@ -19481,7 +19942,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 							</Control>
 							<Control Type="Button">
 								<EmbeddedIcon>false</EmbeddedIcon>
-								<Id>1796000001401</Id>
+								<Id>1796000001277</Id>
 								<Name><![CDATA[navbar2Boton2]]></Name>
 								<X>430</X>
 								<Y>-987</Y>
@@ -19506,7 +19967,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								</ExtendedProperties>
 							</Control>
 							<Rectangle>
-								<Id>1796000001402</Id>
+								<Id>1796000001278</Id>
 								<Name><![CDATA[navbar2Activa]]></Name>
 								<X>430</X>
 								<Y>-949</Y>
@@ -19532,7 +19993,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<FillMaterial>null</FillMaterial>
 							</Rectangle>
 							<Text>
-								<Id>1796000001403</Id>
+								<Id>1796000001279</Id>
 								<Name><![CDATA[navbar2Reloj]]></Name>
 								<X>1620</X>
 								<Y>-980</Y>
@@ -19562,7 +20023,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 				</Presentation>
 				<Areas>
 					<Area>
-						<Id>1796000001127</Id>
+						<Id>1796000001130</Id>
 						<Name><![CDATA[vistaPlanta]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -19578,7 +20039,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						<Height>900</Height>
 					</Area>
 					<Area>
-						<Id>1796000001131</Id>
+						<Id>1796000001133</Id>
 						<Name><![CDATA[vistaVariables]]></Name>
 						<X>0</X>
 						<Y>-2000</Y>
@@ -19594,7 +20055,7 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 						<Height>900</Height>
 					</Area>
 					<Area>
-						<Id>1796000001132</Id>
+						<Id>1796000001134</Id>
 						<Name><![CDATA[vistaGraficos]]></Name>
 						<X>0</X>
 						<Y>-1000</Y>
@@ -20213,6 +20674,25 @@ Operarios: relleno verde = trabaja · amarillo = camina · gris = libre · rojo 
 								<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
 								<DelimeterType>NO_DELIMETER</DelimeterType>
 							</ParameterEditor>
+						</Properties>
+					</Variable>
+					<Variable Class="PlainVariable">
+						<Id>1796000000792</Id>
+						<Name><![CDATA[nroEnModelo]]></Name>
+						<X>2560</X>
+						<Y>612</Y>
+						<Label>
+							<X>10</X>
+							<Y>0</Y>
+						</Label>
+						<PublicFlag>false</PublicFlag>
+						<PresentationFlag>true</PresentationFlag>
+						<ShowLabel>true</ShowLabel>
+						<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+							<Type><![CDATA[int]]></Type>
+							<InitialValue Class="CodeValue">
+								<Code><![CDATA[0]]></Code>
+							</InitialValue>
 						</Properties>
 					</Variable>
 				</Variables>
@@ -22694,7 +23174,7 @@ return new Color(15, 23, 42);]]></Body>
 				<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
 				<AnalysisData>
 					<DataSet>
-						<Id>1796000001404</Id>
+						<Id>1796000001280</Id>
 						<Name><![CDATA[dsCostoReplica]]></Name>
 						<X>40</X>
 						<Y>660</Y>
@@ -22707,7 +23187,7 @@ return new Color(15, 23, 42);]]></Body>
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001405</Id>
+							<Id>1796000001281</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -22723,7 +23203,7 @@ return new Color(15, 23, 42);]]></Body>
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001406</Id>
+						<Id>1796000001282</Id>
 						<Name><![CDATA[dsCumplimientoReplica]]></Name>
 						<X>200</X>
 						<Y>660</Y>
@@ -22736,7 +23216,7 @@ return new Color(15, 23, 42);]]></Body>
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001407</Id>
+							<Id>1796000001284</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -22752,7 +23232,7 @@ return new Color(15, 23, 42);]]></Body>
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001408</Id>
+						<Id>1796000001285</Id>
 						<Name><![CDATA[dsHorasExtraReplica]]></Name>
 						<X>360</X>
 						<Y>660</Y>
@@ -22765,7 +23245,7 @@ return new Color(15, 23, 42);]]></Body>
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001409</Id>
+							<Id>1796000001286</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -22783,7 +23263,7 @@ return new Color(15, 23, 42);]]></Body>
 				</AnalysisData>
 				<Presentation>
 					<Rectangle>
-						<Id>1796000001410</Id>
+						<Id>1796000001288</Id>
 						<Name><![CDATA[fondoReplicas]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -22809,7 +23289,7 @@ return new Color(15, 23, 42);]]></Body>
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001411</Id>
+						<Id>1796000001289</Id>
 						<Name><![CDATA[tituloReplicas]]></Name>
 						<X>30</X>
 						<Y>22</Y>
@@ -22834,7 +23314,7 @@ return new Color(15, 23, 42);]]></Body>
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001412</Id>
+						<Id>1796000001290</Id>
 						<Name><![CDATA[resumenReplicas]]></Name>
 						<X>30</X>
 						<Y>60</Y>
@@ -22860,7 +23340,7 @@ return new Color(15, 23, 42);]]></Body>
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001413</Id>
+						<Id>1796000001291</Id>
 						<Name><![CDATA[notaReplicas]]></Name>
 						<X>30</X>
 						<Y>84</Y>
@@ -22885,7 +23365,7 @@ return new Color(15, 23, 42);]]></Body>
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Rectangle>
-						<Id>1796000001419</Id>
+						<Id>1796000001292</Id>
 						<Name><![CDATA[tarjetaReplicas0]]></Name>
 						<X>30</X>
 						<Y>120</Y>
@@ -22911,7 +23391,7 @@ return new Color(15, 23, 42);]]></Body>
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001420</Id>
+						<Id>1796000001294</Id>
 						<Name><![CDATA[tituloReplicas0]]></Name>
 						<X>48</X>
 						<Y>132</Y>
@@ -22936,7 +23416,7 @@ return new Color(15, 23, 42);]]></Body>
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001421</Id>
+						<Id>1796000001296</Id>
 						<Name><![CDATA[graficoReplicas0]]></Name>
 						<X>35</X>
 						<Y>165</Y>
@@ -22950,7 +23430,7 @@ return new Color(15, 23, 42);]]></Body>
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001422</Id>
+							<Id>1796000001297</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -22994,7 +23474,7 @@ return new Color(15, 23, 42);]]></Body>
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Costo total (millones de $)]]></Title>
-							<Id>1796000001432</Id>
+							<Id>1796000001302</Id>
 							<Expression><![CDATA[dsCostoReplica]]></Expression>
 							<Color>-14326805</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -23009,7 +23489,7 @@ return new Color(15, 23, 42);]]></Body>
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001433</Id>
+						<Id>1796000001303</Id>
 						<Name><![CDATA[tarjetaReplicas1]]></Name>
 						<X>570</X>
 						<Y>120</Y>
@@ -23035,7 +23515,7 @@ return new Color(15, 23, 42);]]></Body>
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001434</Id>
+						<Id>1796000001304</Id>
 						<Name><![CDATA[tituloReplicas1]]></Name>
 						<X>588</X>
 						<Y>132</Y>
@@ -23060,7 +23540,7 @@ return new Color(15, 23, 42);]]></Body>
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001435</Id>
+						<Id>1796000001305</Id>
 						<Name><![CDATA[graficoReplicas1]]></Name>
 						<X>575</X>
 						<Y>165</Y>
@@ -23074,7 +23554,7 @@ return new Color(15, 23, 42);]]></Body>
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001438</Id>
+							<Id>1796000001308</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -23118,7 +23598,7 @@ return new Color(15, 23, 42);]]></Body>
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Cumplimiento de la OF (%)]]></Title>
-							<Id>1796000001442</Id>
+							<Id>1796000001311</Id>
 							<Expression><![CDATA[dsCumplimientoReplica]]></Expression>
 							<Color>-15293622</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -23133,7 +23613,7 @@ return new Color(15, 23, 42);]]></Body>
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001443</Id>
+						<Id>1796000001312</Id>
 						<Name><![CDATA[tarjetaReplicas2]]></Name>
 						<X>1110</X>
 						<Y>120</Y>
@@ -23159,7 +23639,7 @@ return new Color(15, 23, 42);]]></Body>
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001444</Id>
+						<Id>1796000001315</Id>
 						<Name><![CDATA[tituloReplicas2]]></Name>
 						<X>1128</X>
 						<Y>132</Y>
@@ -23184,7 +23664,7 @@ return new Color(15, 23, 42);]]></Body>
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001445</Id>
+						<Id>1796000001316</Id>
 						<Name><![CDATA[graficoReplicas2]]></Name>
 						<X>1115</X>
 						<Y>165</Y>
@@ -23198,7 +23678,7 @@ return new Color(15, 23, 42);]]></Body>
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001446</Id>
+							<Id>1796000001317</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -23242,7 +23722,7 @@ return new Color(15, 23, 42);]]></Body>
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Horas extra (h-hombre)]]></Title>
-							<Id>1796000001449</Id>
+							<Id>1796000001320</Id>
 							<Expression><![CDATA[dsHorasExtraReplica]]></Expression>
 							<Color>-2525434</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -23596,6 +24076,34 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Code><![CDATA[1]]></Code>
 					</Step>
 				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000161</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000161</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000310</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000310</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000312</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000312</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000314</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000314</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
 				<ModelTimeProperties>
 					<StopOption><![CDATA[Never]]></StopOption>
 					<InitialDate><![CDATA[1787875200000]]></InitialDate>
@@ -23633,7 +24141,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
 				<AnalysisData>
 					<DataSet>
-						<Id>1796000001450</Id>
+						<Id>1796000001321</Id>
 						<Name><![CDATA[dsCostoReplica]]></Name>
 						<X>40</X>
 						<Y>660</Y>
@@ -23646,7 +24154,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001451</Id>
+							<Id>1796000001323</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -23662,7 +24170,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001452</Id>
+						<Id>1796000001325</Id>
 						<Name><![CDATA[dsCumplimientoReplica]]></Name>
 						<X>200</X>
 						<Y>660</Y>
@@ -23675,7 +24183,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001453</Id>
+							<Id>1796000001326</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -23691,7 +24199,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001454</Id>
+						<Id>1796000001327</Id>
 						<Name><![CDATA[dsHorasExtraReplica]]></Name>
 						<X>360</X>
 						<Y>660</Y>
@@ -23704,7 +24212,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001455</Id>
+							<Id>1796000001328</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -23722,7 +24230,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				</AnalysisData>
 				<Presentation>
 					<Rectangle>
-						<Id>1796000001458</Id>
+						<Id>1796000001329</Id>
 						<Name><![CDATA[fondoReplicas]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -23748,7 +24256,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001459</Id>
+						<Id>1796000001330</Id>
 						<Name><![CDATA[tituloReplicas]]></Name>
 						<X>30</X>
 						<Y>22</Y>
@@ -23773,7 +24281,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001460</Id>
+						<Id>1796000001331</Id>
 						<Name><![CDATA[resumenReplicas]]></Name>
 						<X>30</X>
 						<Y>60</Y>
@@ -23799,7 +24307,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001463</Id>
+						<Id>1796000001332</Id>
 						<Name><![CDATA[notaReplicas]]></Name>
 						<X>30</X>
 						<Y>84</Y>
@@ -23824,7 +24332,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Rectangle>
-						<Id>1796000001464</Id>
+						<Id>1796000001333</Id>
 						<Name><![CDATA[tarjetaReplicas0]]></Name>
 						<X>30</X>
 						<Y>120</Y>
@@ -23850,7 +24358,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001466</Id>
+						<Id>1796000001334</Id>
 						<Name><![CDATA[tituloReplicas0]]></Name>
 						<X>48</X>
 						<Y>132</Y>
@@ -23875,7 +24383,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001467</Id>
+						<Id>1796000001340</Id>
 						<Name><![CDATA[graficoReplicas0]]></Name>
 						<X>35</X>
 						<Y>165</Y>
@@ -23889,7 +24397,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001468</Id>
+							<Id>1796000001341</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -23933,7 +24441,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Costo total (millones de $)]]></Title>
-							<Id>1796000001471</Id>
+							<Id>1796000001344</Id>
 							<Expression><![CDATA[dsCostoReplica]]></Expression>
 							<Color>-14326805</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -23948,7 +24456,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001472</Id>
+						<Id>1796000001349</Id>
 						<Name><![CDATA[tarjetaReplicas1]]></Name>
 						<X>570</X>
 						<Y>120</Y>
@@ -23974,7 +24482,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001474</Id>
+						<Id>1796000001350</Id>
 						<Name><![CDATA[tituloReplicas1]]></Name>
 						<X>588</X>
 						<Y>132</Y>
@@ -23999,7 +24507,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001477</Id>
+						<Id>1796000001351</Id>
 						<Name><![CDATA[graficoReplicas1]]></Name>
 						<X>575</X>
 						<Y>165</Y>
@@ -24013,7 +24521,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001478</Id>
+							<Id>1796000001352</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -24057,7 +24565,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Cumplimiento de la OF (%)]]></Title>
-							<Id>1796000001481</Id>
+							<Id>1796000001358</Id>
 							<Expression><![CDATA[dsCumplimientoReplica]]></Expression>
 							<Color>-15293622</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -24072,7 +24580,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001482</Id>
+						<Id>1796000001359</Id>
 						<Name><![CDATA[tarjetaReplicas2]]></Name>
 						<X>1110</X>
 						<Y>120</Y>
@@ -24098,7 +24606,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001483</Id>
+						<Id>1796000001360</Id>
 						<Name><![CDATA[tituloReplicas2]]></Name>
 						<X>1128</X>
 						<Y>132</Y>
@@ -24123,7 +24631,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001484</Id>
+						<Id>1796000001361</Id>
 						<Name><![CDATA[graficoReplicas2]]></Name>
 						<X>1115</X>
 						<Y>165</Y>
@@ -24137,7 +24645,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001485</Id>
+							<Id>1796000001362</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -24181,7 +24689,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Horas extra (h-hombre)]]></Title>
-							<Id>1796000001488</Id>
+							<Id>1796000001365</Id>
 							<Expression><![CDATA[dsHorasExtraReplica]]></Expression>
 							<Color>-2525434</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -24538,6 +25046,34 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Code><![CDATA[1]]></Code>
 					</Step>
 				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000161</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000161</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000310</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000310</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000312</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000312</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000314</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000314</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
 				<ModelTimeProperties>
 					<StopOption><![CDATA[Never]]></StopOption>
 					<InitialDate><![CDATA[1787875200000]]></InitialDate>
@@ -24575,7 +25111,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
 				<AnalysisData>
 					<DataSet>
-						<Id>1796000001489</Id>
+						<Id>1796000001366</Id>
 						<Name><![CDATA[dsCostoReplica]]></Name>
 						<X>40</X>
 						<Y>660</Y>
@@ -24588,7 +25124,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001490</Id>
+							<Id>1796000001367</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -24604,7 +25140,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001493</Id>
+						<Id>1796000001368</Id>
 						<Name><![CDATA[dsCumplimientoReplica]]></Name>
 						<X>200</X>
 						<Y>660</Y>
@@ -24617,7 +25153,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001494</Id>
+							<Id>1796000001369</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -24633,7 +25169,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001495</Id>
+						<Id>1796000001370</Id>
 						<Name><![CDATA[dsHorasExtraReplica]]></Name>
 						<X>360</X>
 						<Y>660</Y>
@@ -24646,7 +25182,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001496</Id>
+							<Id>1796000001371</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -24664,7 +25200,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				</AnalysisData>
 				<Presentation>
 					<Rectangle>
-						<Id>1796000001497</Id>
+						<Id>1796000001377</Id>
 						<Name><![CDATA[fondoReplicas]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -24690,7 +25226,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001498</Id>
+						<Id>1796000001378</Id>
 						<Name><![CDATA[tituloReplicas]]></Name>
 						<X>30</X>
 						<Y>22</Y>
@@ -24715,7 +25251,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001500</Id>
+						<Id>1796000001379</Id>
 						<Name><![CDATA[resumenReplicas]]></Name>
 						<X>30</X>
 						<Y>60</Y>
@@ -24741,7 +25277,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001503</Id>
+						<Id>1796000001380</Id>
 						<Name><![CDATA[notaReplicas]]></Name>
 						<X>30</X>
 						<Y>84</Y>
@@ -24766,7 +25302,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Rectangle>
-						<Id>1796000001504</Id>
+						<Id>1796000001387</Id>
 						<Name><![CDATA[tarjetaReplicas0]]></Name>
 						<X>30</X>
 						<Y>120</Y>
@@ -24792,7 +25328,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001505</Id>
+						<Id>1796000001390</Id>
 						<Name><![CDATA[tituloReplicas0]]></Name>
 						<X>48</X>
 						<Y>132</Y>
@@ -24817,7 +25353,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001506</Id>
+						<Id>1796000001391</Id>
 						<Name><![CDATA[graficoReplicas0]]></Name>
 						<X>35</X>
 						<Y>165</Y>
@@ -24831,7 +25367,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001508</Id>
+							<Id>1796000001392</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -24875,7 +25411,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Costo total (millones de $)]]></Title>
-							<Id>1796000001513</Id>
+							<Id>1796000001414</Id>
 							<Expression><![CDATA[dsCostoReplica]]></Expression>
 							<Color>-14326805</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -24890,7 +25426,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001514</Id>
+						<Id>1796000001415</Id>
 						<Name><![CDATA[tarjetaReplicas1]]></Name>
 						<X>570</X>
 						<Y>120</Y>
@@ -24916,7 +25452,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001515</Id>
+						<Id>1796000001416</Id>
 						<Name><![CDATA[tituloReplicas1]]></Name>
 						<X>588</X>
 						<Y>132</Y>
@@ -24941,7 +25477,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001516</Id>
+						<Id>1796000001417</Id>
 						<Name><![CDATA[graficoReplicas1]]></Name>
 						<X>575</X>
 						<Y>165</Y>
@@ -24955,7 +25491,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001517</Id>
+							<Id>1796000001418</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -24999,7 +25535,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Cumplimiento de la OF (%)]]></Title>
-							<Id>1796000001520</Id>
+							<Id>1796000001425</Id>
 							<Expression><![CDATA[dsCumplimientoReplica]]></Expression>
 							<Color>-15293622</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -25014,7 +25550,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001521</Id>
+						<Id>1796000001426</Id>
 						<Name><![CDATA[tarjetaReplicas2]]></Name>
 						<X>1110</X>
 						<Y>120</Y>
@@ -25040,7 +25576,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001522</Id>
+						<Id>1796000001427</Id>
 						<Name><![CDATA[tituloReplicas2]]></Name>
 						<X>1128</X>
 						<Y>132</Y>
@@ -25065,7 +25601,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001525</Id>
+						<Id>1796000001428</Id>
 						<Name><![CDATA[graficoReplicas2]]></Name>
 						<X>1115</X>
 						<Y>165</Y>
@@ -25079,7 +25615,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001526</Id>
+							<Id>1796000001429</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -25123,7 +25659,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Horas extra (h-hombre)]]></Title>
-							<Id>1796000001533</Id>
+							<Id>1796000001436</Id>
 							<Expression><![CDATA[dsHorasExtraReplica]]></Expression>
 							<Color>-2525434</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -25480,6 +26016,34 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Code><![CDATA[1]]></Code>
 					</Step>
 				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000161</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000161</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000310</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000310</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000312</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000312</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000314</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000314</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
 				<ModelTimeProperties>
 					<StopOption><![CDATA[Never]]></StopOption>
 					<InitialDate><![CDATA[1787875200000]]></InitialDate>
@@ -25517,7 +26081,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
 				<AnalysisData>
 					<DataSet>
-						<Id>1796000001534</Id>
+						<Id>1796000001437</Id>
 						<Name><![CDATA[dsCostoReplica]]></Name>
 						<X>40</X>
 						<Y>660</Y>
@@ -25530,7 +26094,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001535</Id>
+							<Id>1796000001439</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -25546,7 +26110,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001536</Id>
+						<Id>1796000001440</Id>
 						<Name><![CDATA[dsCumplimientoReplica]]></Name>
 						<X>200</X>
 						<Y>660</Y>
@@ -25559,7 +26123,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001539</Id>
+							<Id>1796000001441</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -25575,7 +26139,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001540</Id>
+						<Id>1796000001447</Id>
 						<Name><![CDATA[dsHorasExtraReplica]]></Name>
 						<X>360</X>
 						<Y>660</Y>
@@ -25588,7 +26152,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001541</Id>
+							<Id>1796000001448</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -25606,7 +26170,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				</AnalysisData>
 				<Presentation>
 					<Rectangle>
-						<Id>1796000001542</Id>
+						<Id>1796000001456</Id>
 						<Name><![CDATA[fondoReplicas]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -25632,7 +26196,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001543</Id>
+						<Id>1796000001457</Id>
 						<Name><![CDATA[tituloReplicas]]></Name>
 						<X>30</X>
 						<Y>22</Y>
@@ -25657,7 +26221,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001545</Id>
+						<Id>1796000001461</Id>
 						<Name><![CDATA[resumenReplicas]]></Name>
 						<X>30</X>
 						<Y>60</Y>
@@ -25683,7 +26247,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001546</Id>
+						<Id>1796000001462</Id>
 						<Name><![CDATA[notaReplicas]]></Name>
 						<X>30</X>
 						<Y>84</Y>
@@ -25708,7 +26272,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Rectangle>
-						<Id>1796000001547</Id>
+						<Id>1796000001465</Id>
 						<Name><![CDATA[tarjetaReplicas0]]></Name>
 						<X>30</X>
 						<Y>120</Y>
@@ -25734,7 +26298,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001548</Id>
+						<Id>1796000001469</Id>
 						<Name><![CDATA[tituloReplicas0]]></Name>
 						<X>48</X>
 						<Y>132</Y>
@@ -25759,7 +26323,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001549</Id>
+						<Id>1796000001470</Id>
 						<Name><![CDATA[graficoReplicas0]]></Name>
 						<X>35</X>
 						<Y>165</Y>
@@ -25773,7 +26337,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001550</Id>
+							<Id>1796000001473</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -25817,7 +26381,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Costo total (millones de $)]]></Title>
-							<Id>1796000001553</Id>
+							<Id>1796000001479</Id>
 							<Expression><![CDATA[dsCostoReplica]]></Expression>
 							<Color>-14326805</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -25832,7 +26396,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001554</Id>
+						<Id>1796000001480</Id>
 						<Name><![CDATA[tarjetaReplicas1]]></Name>
 						<X>570</X>
 						<Y>120</Y>
@@ -25858,7 +26422,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001556</Id>
+						<Id>1796000001486</Id>
 						<Name><![CDATA[tituloReplicas1]]></Name>
 						<X>588</X>
 						<Y>132</Y>
@@ -25883,7 +26447,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001557</Id>
+						<Id>1796000001487</Id>
 						<Name><![CDATA[graficoReplicas1]]></Name>
 						<X>575</X>
 						<Y>165</Y>
@@ -25897,7 +26461,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001558</Id>
+							<Id>1796000001491</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -25941,7 +26505,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Cumplimiento de la OF (%)]]></Title>
-							<Id>1796000001563</Id>
+							<Id>1796000001501</Id>
 							<Expression><![CDATA[dsCumplimientoReplica]]></Expression>
 							<Color>-15293622</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -25956,7 +26520,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001564</Id>
+						<Id>1796000001502</Id>
 						<Name><![CDATA[tarjetaReplicas2]]></Name>
 						<X>1110</X>
 						<Y>120</Y>
@@ -25982,7 +26546,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001567</Id>
+						<Id>1796000001507</Id>
 						<Name><![CDATA[tituloReplicas2]]></Name>
 						<X>1128</X>
 						<Y>132</Y>
@@ -26007,7 +26571,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001568</Id>
+						<Id>1796000001509</Id>
 						<Name><![CDATA[graficoReplicas2]]></Name>
 						<X>1115</X>
 						<Y>165</Y>
@@ -26021,7 +26585,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001569</Id>
+							<Id>1796000001510</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -26065,7 +26629,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Horas extra (h-hombre)]]></Title>
-							<Id>1796000001572</Id>
+							<Id>1796000001518</Id>
 							<Expression><![CDATA[dsHorasExtraReplica]]></Expression>
 							<Color>-2525434</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -26422,6 +26986,34 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Code><![CDATA[1]]></Code>
 					</Step>
 				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000161</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000161</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000310</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000310</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000312</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000312</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000314</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000314</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
 				<ModelTimeProperties>
 					<StopOption><![CDATA[Never]]></StopOption>
 					<InitialDate><![CDATA[1787875200000]]></InitialDate>
@@ -26459,7 +27051,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
 				<AnalysisData>
 					<DataSet>
-						<Id>1796000001573</Id>
+						<Id>1796000001519</Id>
 						<Name><![CDATA[dsCostoReplica]]></Name>
 						<X>40</X>
 						<Y>660</Y>
@@ -26472,7 +27064,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001576</Id>
+							<Id>1796000001523</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -26488,7 +27080,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001577</Id>
+						<Id>1796000001524</Id>
 						<Name><![CDATA[dsCumplimientoReplica]]></Name>
 						<X>200</X>
 						<Y>660</Y>
@@ -26501,7 +27093,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001578</Id>
+							<Id>1796000001527</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -26517,7 +27109,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001579</Id>
+						<Id>1796000001528</Id>
 						<Name><![CDATA[dsHorasExtraReplica]]></Name>
 						<X>360</X>
 						<Y>660</Y>
@@ -26530,7 +27122,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001580</Id>
+							<Id>1796000001529</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -26548,7 +27140,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				</AnalysisData>
 				<Presentation>
 					<Rectangle>
-						<Id>1796000001583</Id>
+						<Id>1796000001530</Id>
 						<Name><![CDATA[fondoReplicas]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -26574,7 +27166,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001584</Id>
+						<Id>1796000001531</Id>
 						<Name><![CDATA[tituloReplicas]]></Name>
 						<X>30</X>
 						<Y>22</Y>
@@ -26599,7 +27191,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001586</Id>
+						<Id>1796000001532</Id>
 						<Name><![CDATA[resumenReplicas]]></Name>
 						<X>30</X>
 						<Y>60</Y>
@@ -26625,7 +27217,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001587</Id>
+						<Id>1796000001537</Id>
 						<Name><![CDATA[notaReplicas]]></Name>
 						<X>30</X>
 						<Y>84</Y>
@@ -26650,7 +27242,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Rectangle>
-						<Id>1796000001588</Id>
+						<Id>1796000001538</Id>
 						<Name><![CDATA[tarjetaReplicas0]]></Name>
 						<X>30</X>
 						<Y>120</Y>
@@ -26676,7 +27268,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001589</Id>
+						<Id>1796000001544</Id>
 						<Name><![CDATA[tituloReplicas0]]></Name>
 						<X>48</X>
 						<Y>132</Y>
@@ -26701,7 +27293,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001590</Id>
+						<Id>1796000001551</Id>
 						<Name><![CDATA[graficoReplicas0]]></Name>
 						<X>35</X>
 						<Y>165</Y>
@@ -26715,7 +27307,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001591</Id>
+							<Id>1796000001552</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -26759,7 +27351,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Costo total (millones de $)]]></Title>
-							<Id>1796000001595</Id>
+							<Id>1796000001560</Id>
 							<Expression><![CDATA[dsCostoReplica]]></Expression>
 							<Color>-14326805</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -26774,7 +27366,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001596</Id>
+						<Id>1796000001561</Id>
 						<Name><![CDATA[tarjetaReplicas1]]></Name>
 						<X>570</X>
 						<Y>120</Y>
@@ -26800,7 +27392,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001597</Id>
+						<Id>1796000001562</Id>
 						<Name><![CDATA[tituloReplicas1]]></Name>
 						<X>588</X>
 						<Y>132</Y>
@@ -26825,7 +27417,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001598</Id>
+						<Id>1796000001565</Id>
 						<Name><![CDATA[graficoReplicas1]]></Name>
 						<X>575</X>
 						<Y>165</Y>
@@ -26839,7 +27431,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001601</Id>
+							<Id>1796000001566</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -26883,7 +27475,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Cumplimiento de la OF (%)]]></Title>
-							<Id>1796000001606</Id>
+							<Id>1796000001574</Id>
 							<Expression><![CDATA[dsCumplimientoReplica]]></Expression>
 							<Color>-15293622</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -26898,7 +27490,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001607</Id>
+						<Id>1796000001575</Id>
 						<Name><![CDATA[tarjetaReplicas2]]></Name>
 						<X>1110</X>
 						<Y>120</Y>
@@ -26924,7 +27516,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001608</Id>
+						<Id>1796000001581</Id>
 						<Name><![CDATA[tituloReplicas2]]></Name>
 						<X>1128</X>
 						<Y>132</Y>
@@ -26949,7 +27541,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001609</Id>
+						<Id>1796000001582</Id>
 						<Name><![CDATA[graficoReplicas2]]></Name>
 						<X>1115</X>
 						<Y>165</Y>
@@ -26963,7 +27555,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001610</Id>
+							<Id>1796000001585</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -27007,7 +27599,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Horas extra (h-hombre)]]></Title>
-							<Id>1796000001615</Id>
+							<Id>1796000001594</Id>
 							<Expression><![CDATA[dsHorasExtraReplica]]></Expression>
 							<Color>-2525434</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -27364,6 +27956,34 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Code><![CDATA[1]]></Code>
 					</Step>
 				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000161</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000161</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000310</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000310</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000312</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000312</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000314</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000314</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
 				<ModelTimeProperties>
 					<StopOption><![CDATA[Never]]></StopOption>
 					<InitialDate><![CDATA[1787875200000]]></InitialDate>
@@ -27401,7 +28021,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
 				<AnalysisData>
 					<DataSet>
-						<Id>1796000001618</Id>
+						<Id>1796000001599</Id>
 						<Name><![CDATA[dsCostoReplica]]></Name>
 						<X>40</X>
 						<Y>660</Y>
@@ -27414,7 +28034,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001619</Id>
+							<Id>1796000001600</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -27430,7 +28050,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001622</Id>
+						<Id>1796000001602</Id>
 						<Name><![CDATA[dsCumplimientoReplica]]></Name>
 						<X>200</X>
 						<Y>660</Y>
@@ -27443,7 +28063,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001624</Id>
+							<Id>1796000001603</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -27459,7 +28079,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001625</Id>
+						<Id>1796000001604</Id>
 						<Name><![CDATA[dsHorasExtraReplica]]></Name>
 						<X>360</X>
 						<Y>660</Y>
@@ -27472,7 +28092,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001626</Id>
+							<Id>1796000001605</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -27490,7 +28110,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				</AnalysisData>
 				<Presentation>
 					<Rectangle>
-						<Id>1796000001627</Id>
+						<Id>1796000001611</Id>
 						<Name><![CDATA[fondoReplicas]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -27516,7 +28136,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001628</Id>
+						<Id>1796000001612</Id>
 						<Name><![CDATA[tituloReplicas]]></Name>
 						<X>30</X>
 						<Y>22</Y>
@@ -27541,7 +28161,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001629</Id>
+						<Id>1796000001613</Id>
 						<Name><![CDATA[resumenReplicas]]></Name>
 						<X>30</X>
 						<Y>60</Y>
@@ -27567,7 +28187,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001630</Id>
+						<Id>1796000001614</Id>
 						<Name><![CDATA[notaReplicas]]></Name>
 						<X>30</X>
 						<Y>84</Y>
@@ -27592,7 +28212,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Rectangle>
-						<Id>1796000001632</Id>
+						<Id>1796000001616</Id>
 						<Name><![CDATA[tarjetaReplicas0]]></Name>
 						<X>30</X>
 						<Y>120</Y>
@@ -27618,7 +28238,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001633</Id>
+						<Id>1796000001617</Id>
 						<Name><![CDATA[tituloReplicas0]]></Name>
 						<X>48</X>
 						<Y>132</Y>
@@ -27643,7 +28263,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001634</Id>
+						<Id>1796000001620</Id>
 						<Name><![CDATA[graficoReplicas0]]></Name>
 						<X>35</X>
 						<Y>165</Y>
@@ -27657,7 +28277,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001635</Id>
+							<Id>1796000001621</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -27701,7 +28321,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Costo total (millones de $)]]></Title>
-							<Id>1796000001638</Id>
+							<Id>1796000001636</Id>
 							<Expression><![CDATA[dsCostoReplica]]></Expression>
 							<Color>-14326805</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -27716,7 +28336,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001641</Id>
+						<Id>1796000001637</Id>
 						<Name><![CDATA[tarjetaReplicas1]]></Name>
 						<X>570</X>
 						<Y>120</Y>
@@ -27742,7 +28362,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001642</Id>
+						<Id>1796000001639</Id>
 						<Name><![CDATA[tituloReplicas1]]></Name>
 						<X>588</X>
 						<Y>132</Y>
@@ -27767,7 +28387,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001643</Id>
+						<Id>1796000001640</Id>
 						<Name><![CDATA[graficoReplicas1]]></Name>
 						<X>575</X>
 						<Y>165</Y>
@@ -27781,7 +28401,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001644</Id>
+							<Id>1796000001645</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -27825,7 +28445,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Cumplimiento de la OF (%)]]></Title>
-							<Id>1796000001647</Id>
+							<Id>1796000001649</Id>
 							<Expression><![CDATA[dsCumplimientoReplica]]></Expression>
 							<Color>-15293622</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -27840,7 +28460,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001650</Id>
+						<Id>1796000001654</Id>
 						<Name><![CDATA[tarjetaReplicas2]]></Name>
 						<X>1110</X>
 						<Y>120</Y>
@@ -27866,7 +28486,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001651</Id>
+						<Id>1796000001655</Id>
 						<Name><![CDATA[tituloReplicas2]]></Name>
 						<X>1128</X>
 						<Y>132</Y>
@@ -27891,7 +28511,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001652</Id>
+						<Id>1796000001656</Id>
 						<Name><![CDATA[graficoReplicas2]]></Name>
 						<X>1115</X>
 						<Y>165</Y>
@@ -27905,7 +28525,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001653</Id>
+							<Id>1796000001657</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -27949,7 +28569,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Horas extra (h-hombre)]]></Title>
-							<Id>1796000001659</Id>
+							<Id>1796000001675</Id>
 							<Expression><![CDATA[dsHorasExtraReplica]]></Expression>
 							<Color>-2525434</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -28306,6 +28926,34 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Code><![CDATA[1]]></Code>
 					</Step>
 				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000161</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000161</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000310</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000310</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000312</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000312</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000314</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000314</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
 				<ModelTimeProperties>
 					<StopOption><![CDATA[Never]]></StopOption>
 					<InitialDate><![CDATA[1787875200000]]></InitialDate>
@@ -28343,7 +28991,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
 				<AnalysisData>
 					<DataSet>
-						<Id>1796000001660</Id>
+						<Id>1796000001676</Id>
 						<Name><![CDATA[dsCostoReplica]]></Name>
 						<X>40</X>
 						<Y>660</Y>
@@ -28356,7 +29004,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001661</Id>
+							<Id>1796000001678</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -28372,7 +29020,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001662</Id>
+						<Id>1796000001679</Id>
 						<Name><![CDATA[dsCumplimientoReplica]]></Name>
 						<X>200</X>
 						<Y>660</Y>
@@ -28385,7 +29033,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001663</Id>
+							<Id>1796000001683</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -28401,7 +29049,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001664</Id>
+						<Id>1796000001684</Id>
 						<Name><![CDATA[dsHorasExtraReplica]]></Name>
 						<X>360</X>
 						<Y>660</Y>
@@ -28414,7 +29062,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001665</Id>
+							<Id>1796000001686</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -28432,7 +29080,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				</AnalysisData>
 				<Presentation>
 					<Rectangle>
-						<Id>1796000001666</Id>
+						<Id>1796000001687</Id>
 						<Name><![CDATA[fondoReplicas]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -28458,7 +29106,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001667</Id>
+						<Id>1796000001692</Id>
 						<Name><![CDATA[tituloReplicas]]></Name>
 						<X>30</X>
 						<Y>22</Y>
@@ -28483,7 +29131,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001668</Id>
+						<Id>1796000001693</Id>
 						<Name><![CDATA[resumenReplicas]]></Name>
 						<X>30</X>
 						<Y>60</Y>
@@ -28509,7 +29157,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001669</Id>
+						<Id>1796000001694</Id>
 						<Name><![CDATA[notaReplicas]]></Name>
 						<X>30</X>
 						<Y>84</Y>
@@ -28534,7 +29182,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Rectangle>
-						<Id>1796000001670</Id>
+						<Id>1796000001696</Id>
 						<Name><![CDATA[tarjetaReplicas0]]></Name>
 						<X>30</X>
 						<Y>120</Y>
@@ -28560,7 +29208,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001671</Id>
+						<Id>1796000001697</Id>
 						<Name><![CDATA[tituloReplicas0]]></Name>
 						<X>48</X>
 						<Y>132</Y>
@@ -28585,7 +29233,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001672</Id>
+						<Id>1796000001698</Id>
 						<Name><![CDATA[graficoReplicas0]]></Name>
 						<X>35</X>
 						<Y>165</Y>
@@ -28599,7 +29247,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001673</Id>
+							<Id>1796000001699</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -28643,7 +29291,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Costo total (millones de $)]]></Title>
-							<Id>1796000001677</Id>
+							<Id>1796000001702</Id>
 							<Expression><![CDATA[dsCostoReplica]]></Expression>
 							<Color>-14326805</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -28658,7 +29306,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001680</Id>
+						<Id>1796000001703</Id>
 						<Name><![CDATA[tarjetaReplicas1]]></Name>
 						<X>570</X>
 						<Y>120</Y>
@@ -28684,7 +29332,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001681</Id>
+						<Id>1796000001704</Id>
 						<Name><![CDATA[tituloReplicas1]]></Name>
 						<X>588</X>
 						<Y>132</Y>
@@ -28709,7 +29357,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001682</Id>
+						<Id>1796000001705</Id>
 						<Name><![CDATA[graficoReplicas1]]></Name>
 						<X>575</X>
 						<Y>165</Y>
@@ -28723,7 +29371,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001685</Id>
+							<Id>1796000001706</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -28767,7 +29415,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Cumplimiento de la OF (%)]]></Title>
-							<Id>1796000001688</Id>
+							<Id>1796000001709</Id>
 							<Expression><![CDATA[dsCumplimientoReplica]]></Expression>
 							<Color>-15293622</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -28782,7 +29430,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001689</Id>
+						<Id>1796000001710</Id>
 						<Name><![CDATA[tarjetaReplicas2]]></Name>
 						<X>1110</X>
 						<Y>120</Y>
@@ -28808,7 +29456,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001690</Id>
+						<Id>1796000001711</Id>
 						<Name><![CDATA[tituloReplicas2]]></Name>
 						<X>1128</X>
 						<Y>132</Y>
@@ -28833,7 +29481,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001691</Id>
+						<Id>1796000001712</Id>
 						<Name><![CDATA[graficoReplicas2]]></Name>
 						<X>1115</X>
 						<Y>165</Y>
@@ -28847,7 +29495,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001695</Id>
+							<Id>1796000001713</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -28891,7 +29539,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Horas extra (h-hombre)]]></Title>
-							<Id>1796000001715</Id>
+							<Id>1796000001718</Id>
 							<Expression><![CDATA[dsHorasExtraReplica]]></Expression>
 							<Color>-2525434</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -29257,6 +29905,34 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Code><![CDATA[1]]></Code>
 					</Step>
 				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000161</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000161</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000310</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000310</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000312</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000312</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000314</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000314</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
 				<ModelTimeProperties>
 					<StopOption><![CDATA[Never]]></StopOption>
 					<InitialDate><![CDATA[1787875200000]]></InitialDate>
@@ -29294,7 +29970,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
 				<AnalysisData>
 					<DataSet>
-						<Id>1796000001716</Id>
+						<Id>1796000001719</Id>
 						<Name><![CDATA[dsCostoReplica]]></Name>
 						<X>40</X>
 						<Y>660</Y>
@@ -29307,7 +29983,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001722</Id>
+							<Id>1796000001720</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -29323,7 +29999,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001723</Id>
+						<Id>1796000001721</Id>
 						<Name><![CDATA[dsCumplimientoReplica]]></Name>
 						<X>200</X>
 						<Y>660</Y>
@@ -29336,7 +30012,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001725</Id>
+							<Id>1796000001724</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -29352,7 +30028,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<SamplesToKeep>500</SamplesToKeep>
 					</DataSet>
 					<DataSet>
-						<Id>1796000001726</Id>
+						<Id>1796000001736</Id>
 						<Name><![CDATA[dsHorasExtraReplica]]></Name>
 						<X>360</X>
 						<Y>660</Y>
@@ -29365,7 +30041,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<ShowLabel>true</ShowLabel>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001727</Id>
+							<Id>1796000001737</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -29383,7 +30059,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 				</AnalysisData>
 				<Presentation>
 					<Rectangle>
-						<Id>1796000001728</Id>
+						<Id>1796000001743</Id>
 						<Name><![CDATA[fondoReplicas]]></Name>
 						<X>0</X>
 						<Y>0</Y>
@@ -29409,7 +30085,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001729</Id>
+						<Id>1796000001744</Id>
 						<Name><![CDATA[tituloReplicas]]></Name>
 						<X>30</X>
 						<Y>22</Y>
@@ -29434,7 +30110,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001730</Id>
+						<Id>1796000001750</Id>
 						<Name><![CDATA[resumenReplicas]]></Name>
 						<X>30</X>
 						<Y>60</Y>
@@ -29460,7 +30136,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Text>
-						<Id>1796000001731</Id>
+						<Id>1796000001751</Id>
 						<Name><![CDATA[notaReplicas]]></Name>
 						<X>30</X>
 						<Y>84</Y>
@@ -29485,7 +30161,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Rectangle>
-						<Id>1796000001732</Id>
+						<Id>1796000001753</Id>
 						<Name><![CDATA[tarjetaReplicas0]]></Name>
 						<X>30</X>
 						<Y>120</Y>
@@ -29511,7 +30187,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001733</Id>
+						<Id>1796000001754</Id>
 						<Name><![CDATA[tituloReplicas0]]></Name>
 						<X>48</X>
 						<Y>132</Y>
@@ -29536,7 +30212,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001734</Id>
+						<Id>1796000001755</Id>
 						<Name><![CDATA[graficoReplicas0]]></Name>
 						<X>35</X>
 						<Y>165</Y>
@@ -29550,7 +30226,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001735</Id>
+							<Id>1796000001756</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -29594,7 +30270,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Costo total (millones de $)]]></Title>
-							<Id>1796000001738</Id>
+							<Id>1796000001759</Id>
 							<Expression><![CDATA[dsCostoReplica]]></Expression>
 							<Color>-14326805</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -29609,7 +30285,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001739</Id>
+						<Id>1796000001760</Id>
 						<Name><![CDATA[tarjetaReplicas1]]></Name>
 						<X>570</X>
 						<Y>120</Y>
@@ -29635,7 +30311,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001740</Id>
+						<Id>1796000001761</Id>
 						<Name><![CDATA[tituloReplicas1]]></Name>
 						<X>588</X>
 						<Y>132</Y>
@@ -29660,7 +30336,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001741</Id>
+						<Id>1796000001762</Id>
 						<Name><![CDATA[graficoReplicas1]]></Name>
 						<X>575</X>
 						<Y>165</Y>
@@ -29674,7 +30350,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001742</Id>
+							<Id>1796000001763</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -29718,7 +30394,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Cumplimiento de la OF (%)]]></Title>
-							<Id>1796000001745</Id>
+							<Id>1796000001766</Id>
 							<Expression><![CDATA[dsCumplimientoReplica]]></Expression>
 							<Color>-15293622</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -29733,7 +30409,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<HorScaleType>AUTO</HorScaleType>
 					</Plot>
 					<Rectangle>
-						<Id>1796000001746</Id>
+						<Id>1796000001767</Id>
 						<Name><![CDATA[tarjetaReplicas2]]></Name>
 						<X>1110</X>
 						<Y>120</Y>
@@ -29759,7 +30435,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<FillMaterial>null</FillMaterial>
 					</Rectangle>
 					<Text>
-						<Id>1796000001747</Id>
+						<Id>1796000001768</Id>
 						<Name><![CDATA[tituloReplicas2]]></Name>
 						<X>1128</X>
 						<Y>132</Y>
@@ -29784,7 +30460,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Alignment>LEFT</Alignment>
 					</Text>
 					<Plot>
-						<Id>1796000001748</Id>
+						<Id>1796000001769</Id>
 						<Name><![CDATA[graficoReplicas2]]></Name>
 						<X>1115</X>
 						<Y>165</Y>
@@ -29798,7 +30474,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<DrawMode>SHAPE_DRAW_2D</DrawMode>
 						<AutoUpdate>false</AutoUpdate>
 						<RecurrenceProperties>
-							<Id>1796000001749</Id>
+							<Id>1796000001770</Id>
 							<OccurrenceAtTime>true</OccurrenceAtTime>
 							<OccurrenceDate>1794211200000</OccurrenceDate>
 							<OccurrenceTime Class="CodeUnitValue">
@@ -29842,7 +30518,7 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 						<Interpolation>LINEAR</Interpolation>
 						<DatasetExpression>
 							<Title><![CDATA[Horas extra (h-hombre)]]></Title>
-							<Id>1796000001752</Id>
+							<Id>1796000001773</Id>
 							<Expression><![CDATA[dsHorasExtraReplica]]></Expression>
 							<Color>-2525434</Color>
 							<Expression2><![CDATA[0]]></Expression2>
@@ -30198,6 +30874,34 @@ traceln("Resultados en Resultados/resultados_corridas.csv: analizalos con script
 					<Step Class="CodeValue">
 						<Code><![CDATA[1]]></Code>
 					</Step>
+				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000161</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000161</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000310</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000310</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000312</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000312</Id>
+					<Type>FIXED</Type>
+				</RangeVariationParamValue>
+				<FreeformParamValue>
+					<Id>1796000000314</Id>
+				</FreeformParamValue>
+				<RangeVariationParamValue>
+					<Id>1796000000314</Id>
+					<Type>FIXED</Type>
 				</RangeVariationParamValue>
 				<ModelTimeProperties>
 					<StopOption><![CDATA[Never]]></StopOption>
