@@ -1033,7 +1033,7 @@ def arnes(destino):
     (pkg / "Main.java").write_text(m, encoding="utf-8")
     # Experimentos de réplicas: data sets, código antes/después y texto de resumen
     x = imports + "public abstract class ReplicasArnes {\n  Main root;\n"
-    x += "".join(f"  DataSet {n} = new DataSet(500);\n" for n, *_ in G.DATASETS_REPLICAS)
+    x += "".join(f"  DataSet {n} = new DataSet(500);\n" for n in G.nombres_datasets_replicas())
     x += f"  void antes() {{\n{G.codigo_antes_replicas()}\n  }}\n"
     x += f"  void despues() {{\n{G.codigo_despues_corrida()}\n  }}\n"
     x += f"  void fin() {{\n{G.codigo_fin_experimento('Escenario')}\n  }}\n"

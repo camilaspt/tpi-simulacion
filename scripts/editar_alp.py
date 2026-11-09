@@ -335,7 +335,7 @@ class Editor(D.Generador):
             if tipo != "BarChart":
                 # Expression2Flag = "usar valor": en true grafica Expression2 (0) en lugar del data set
                 self.poner(it, "Expression2Flag", "false")
-                self.poner(it, "PointStyle", "CIRCLE" if tipo == "Plot" else "NONE")
+                self.poner(it, "PointStyle", opciones.get("puntos") or ("CIRCLE" if tipo == "Plot" else "NONE"))
                 self.poner(it, "LineWidth", "2.0")
             g.insertBefore(it, ref)
         if tipo != "BarChart":
@@ -542,23 +542,25 @@ class Editor(D.Generador):
         despues = self.hijo(e, "LoadRootFromSnapshot")
         e.insertBefore(pres, despues.nextSibling)
         e.insertBefore(analisis, pres)
-        for i, (n, _, _, _) in enumerate(G.DATASETS_REPLICAS):
-            analisis.appendChild(self.data_set(tpl_ds, n, 500, 40 + i * 160, 660))
+        for i, n in enumerate(G.nombres_datasets_replicas()):
+            analisis.appendChild(self.data_set(tpl_ds, n, 500, 40 + (i % 4) * 200, 660 + (i // 4) * 25))
         self.rectangulo(pres, "fondoReplicas", 0, 0, 1660, 640, fill="F1F5F9", line="CBD5E1")
         self.texto(pres, "tituloReplicas", 30, 22, f"KRETZ | Réplicas: {titulo}", size=22, bold=True, color="0F172A")
         self.texto(pres, "resumenReplicas", 30, 60, "Réplicas terminadas: 0", G.texto_resumen_replicas(), size=13,
                    bold=True, color="1D4ED8")
         self.texto(pres, "notaReplicas", 30, 84,
                    f"{G.REPLICAS} réplicas con la misma secuencia de semillas en todos los escenarios. "
-                   "Cada punto es una réplica completa; los resultados se guardan en Resultados/resultados_corridas.csv.",
+                   "Cada gráfico muestra la media acumulada de las réplicas terminadas y su intervalo de confianza "
+                   "del 95 %: cuando las líneas se estabilizan y se juntan, alcanzan las réplicas.",
                    size=11, color="475569")
         for i, (n, _, titulo_ds, color) in enumerate(G.DATASETS_REPLICAS):
             x = 30 + i * 540
             self.rectangulo(pres, f"tarjetaReplicas{i}", x, 120, 510, 490, fill="FFFFFF", line="CBD5E1")
-            self.texto(pres, f"tituloReplicas{i}", x + 18, 132, titulo_ds + " por réplica", size=15, bold=True,
-                       color="0F172A")
-            pres.appendChild(self.grafico(tpl_plot, f"graficoReplicas{i}", "Plot", x + 5, 165, 500, 430,
-                                          {"series": [(n, titulo_ds, color)], "sin_linea": True}))
+            self.texto(pres, f"tituloReplicas{i}", x + 18, 132, titulo_ds, size=15, bold=True, color="0F172A")
+            self.texto(pres, f"subtituloReplicas{i}", x + 18, 154, "Media acumulada ± IC 95 % según réplicas terminadas",
+                       size=11, color="475569")
+            pres.appendChild(self.grafico(tpl_plot, f"graficoReplicas{i}", "Plot", x + 5, 175, 500, 425,
+                                          {"series": G.series_replicas(n, color), "puntos": "NONE"}))
 
     def registrar_recurso(self, ruta):
         recursos = self.doc.getElementsByTagName("ModelResources")[0]

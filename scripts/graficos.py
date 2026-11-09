@@ -114,13 +114,48 @@ DATASETS_REPLICAS = [
 ]
 
 
+# Cada indicador guarda los valores de las réplicas (sin graficar) y tres series derivadas que se grafican:
+# la media acumulada y los extremos de su intervalo de confianza del 95 %
+SUFIJOS_REPLICAS = [("Media", "Media acumulada", None), ("Sup", "IC 95 % superior", "94A3B8"),
+                    ("Inf", "IC 95 % inferior", "94A3B8")]
+
+
+def nombres_datasets_replicas():
+    return [n + s for n, *_ in DATASETS_REPLICAS for s in [""] + [x for x, *_ in SUFIJOS_REPLICAS]]
+
+
+def series_replicas(n, color):
+    return [(n + s, t, c or color) for s, t, c in SUFIJOS_REPLICAS]
+
+
+# Cuantiles t de Student (95 %, dos colas) para 1..30 grados de libertad; más allá se usa 1,96
+T95 = "12.706, 4.303, 3.182, 2.776, 2.571, 2.447, 2.365, 2.306, 2.262, 2.228, 2.201, 2.179, 2.160, 2.145, " \
+      "2.131, 2.120, 2.110, 2.101, 2.093, 2.086, 2.080, 2.074, 2.069, 2.064, 2.060, 2.056, 2.052, 2.048, 2.045, 2.042"
+
+
 def codigo_antes_replicas():
-    return "\n".join(f"{n}.reset();" for n, *_ in DATASETS_REPLICAS)
+    return "\n".join(f"{n}.reset();" for n in nombres_datasets_replicas())
 
 
 def codigo_despues_corrida():
-    lineas = ["// Un punto por réplica: x = número de réplica (parámetro replica, 1..N)"]
-    lineas += [f"{n}.add(root.replica, {e});" for n, e, *_ in DATASETS_REPLICAS]
+    lineas = ["// Cada réplica que termina suma su valor y actualiza la media acumulada y su IC del 95 %",
+              "// (x = réplicas terminadas: muestra cómo se estabiliza el resultado al sumar réplicas)",
+              f"double[] t95 = {{ {T95} }};"]
+    for n, e, *_ in DATASETS_REPLICAS:
+        lineas += [
+            "{",
+            f"\t{n}.add({n}.size() + 1, {e});",
+            f"\tint k = {n}.size();",
+            "\tdouble suma = 0, suma2 = 0;",
+            f"\tfor (int i = 0; i < k; i++) {{ double y = {n}.getY(i); suma += y; suma2 += y * y; }}",
+            "\tdouble media = suma / k;",
+            "\tdouble semi = k > 1 ? (k - 1 <= t95.length ? t95[k - 2] : 1.96)",
+            "\t\t* Math.sqrt(Math.max(0, (suma2 - k * media * media) / (k - 1)) / k) : 0;",
+            f"\t{n}Media.add(k, media);",
+            f"\t{n}Sup.add(k, media + semi);",
+            f"\t{n}Inf.add(k, media - semi);",
+            "}",
+        ]
     return "\n".join(lineas)
 
 
