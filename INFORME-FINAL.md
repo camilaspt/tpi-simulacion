@@ -99,7 +99,7 @@ Las secuencias de puestos y los tiempos medios de cada modelo, relevados de SAP,
 | Ausentismo | 6 % por empleado y día, con un factor por día de la semana (lunes 1,25; martes 1,0; miércoles y jueves 0,9; viernes 1,1); 10 % en la recuperación de fin de semana | Supuesto, coherente con la planilla de ausencias de referencia (Sección 3.5) |
 | Velocidad de caminata | 1,3 m/s, en línea recta y pasando por la puerta entre naves | Valor típico de marcha; plano a escala (16 px = 1 m) |
 | Inspección de calidad | 8 min por equipo inspeccionado; 3 % de rechazo | Supuesto |
-| OF | OF 1, mezcla equilibrada, todos los días: 42 AILA 30KG, 58 REPORT LT, 83 NOVEL ECO, 55 LURA y 69 AURA (307 unidades) | OF de ejemplo, calibrada con la frecuencia de recuperación de la planta (ver abajo) |
+| OF | OF 1, mezcla equilibrada, todos los días: 42 AILA 30KG, 58 REPORT LT, 83 NOVEL ECO, 55 LURA y 69 AURA (307 unidades) | KRETZ (OF de producción) |
 | Costo de la hora normal | $ 6.500 por empleado, con cargas | Supuesto |
 | Recargo de fin de semana | ×2 | KRETZ |
 | Recuperación de fin de semana | Se convoca una cuadrilla proporcional al faltante: 1 persona cada 4 unidades pendientes, entre 3 y 12, repartidas entre especialidades según los minutos pendientes. Se pagan al menos 4 h y como máximo 16 h; lo que no se recupera pasa a la semana siguiente | Supuesto |
@@ -111,17 +111,6 @@ Supuestos principales:
 - La asistencia se define al inicio de la jornada.
 - La jornada de fin de semana rinde por hora lo mismo que una jornada normal; solo cambia el costo.
 - El operario que retira los materiales es siempre el que hace el primer puesto de la unidad.
-
-**Calibración del tamaño de la OF.** La OF de ejemplo original pedía 266 unidades por día. Con ella el modelo necesitaba recuperación en el 29 % de las semanas, mientras que en KRETZ hay que convocar al personal el sábado en la mayoría de las semanas (según la empresa, unas 3 de cada 4). Como la mezcla de modelos sí es representativa, se escaló la OF manteniendo las proporciones y se midió, con las 30 réplicas del escenario actual, la frecuencia de recuperación:
-
-| OF por día | Semanas con recuperación |
-|---|---|
-| 266 | 29 % |
-| 298 | 55 % |
-| 307 | 62,5 % |
-| 325 | 100 % (no se cumple ninguna jornada) |
-
-La respuesta es muy sensible porque la planta trabaja cerca de su capacidad: con 325 unidades se supera la capacidad diaria de Ajuste. Se adoptó la OF de **307 unidades** (+15 %), la más grande de las probadas que no satura la planta.
 
 **Coberturas.** En el escenario actual, una vacante se cubre con un operario de la misma especialidad que deja su propio puesto; los puestos críticos (Ajuste y Control) se cubren primero. Si hay personal de reserva, la reserva cubre primero los puestos críticos y después el resto, en el orden Ajuste, Control, Embalaje y Armado. Solo en la reorganización se habilitan las coberturas entre especialidades: cualquier operario de la misma línea puede cubrir un puesto vacante.
 
@@ -440,7 +429,7 @@ La tabla explica los resultados:
 **Limitaciones y trabajo futuro.**
 
 - **Datos de validación.** La validación se hizo contra un historial **sintético**, construido con los mismos supuestos del modelo. Hay que repetirla con los registros reales de asistencia, OF y horas extra de KRETZ.
-- **OF de ejemplo.** Se usó una sola OF, la mezcla equilibrada escalada a 307 unidades, todos los días. El tamaño se calibró con la frecuencia de recuperación de la planta y los resultados son muy sensibles a él, porque la planta trabaja cerca de su capacidad. Conviene repetir el análisis con las OF reales.
+- **Una sola OF.** Se simuló la misma OF (mezcla equilibrada, 307 unidades) todos los días. Las OF varían de un día a otro y los resultados son muy sensibles a su tamaño, porque la planta trabaja cerca de su capacidad en Ajuste. Conviene repetir el análisis con la secuencia de OF de varios meses.
 - **Supuestos de costo.** El costo de la hora ($ 6.500) y el costo de la reorganización ($ 1.500.000) son supuestos. El tiempo de repago es proporcional al costo de la reorganización.
 - **Caminata.** Se modeló en línea recta y no con la Pedestrian Library, por la limitación de la edición Personal Learning. Esto puede subestimar levemente los tiempos de traslado.
 - **Reorganización.** No se modeló un período de aprendizaje: se supone que los operarios que pasan a ajustador rinden igual que los actuales desde el primer día.
