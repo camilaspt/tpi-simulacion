@@ -49,11 +49,12 @@ MIN_POR_UNIDAD = {
     "AURA": {"Armador": 3.15 + 3.5, "Ajustador": 3, "Controlador": 2.5, "Embalador": 2.88},
 }
 # Mezclas típicas de OF (unidades por día), cerca de las OF de ejemplo del modelo
-MEZCLAS = [
+ESCALA_OF = 1.13               # OF más grandes: en la planta se recupera el sábado 3 de cada 4 semanas
+MEZCLAS = [(n, [c * ESCALA_OF for c in base]) for n, base in [
     ("Equilibrada", [34, 46, 72, 46, 60]),
     ("Mucha REPORT LT", [20, 64, 48, 34, 46]),
     ("Equipos cortos", [40, 28, 92, 60, 72]),
-]
+]]
 MOTIVOS = [("Enfermedad", 0.50), ("Razones particulares", 0.20), ("Trámite", 0.10),
            ("Licencia por examen", 0.05), ("Sin aviso", 0.15)]
 EVENTOS = ["Demora en la entrega de materiales al rack", "Corte de energía", "Falla de la impresora de etiquetas",
@@ -213,7 +214,7 @@ def main():
             continue
         minutos_trabajo = sum(falt_semana[m] * sum(MIN_POR_UNIDAD[m].values()) for m in MODELOS)
         convocados = max(3, min(12, math.ceil(falt_total / 4)))
-        asisten = sum(1 for _ in range(convocados) if rng.random() > 0.10)
+        asisten = max(1, sum(1 for _ in range(convocados) if rng.random() > 0.10))
         horas = minutos_trabajo / (asisten * 60 * rng.gauss(0.70, 0.04))
         horas = max(4.0, math.ceil(horas * 2) / 2)    # se convoca por un mínimo de 4 h
         hh = horas * asisten
