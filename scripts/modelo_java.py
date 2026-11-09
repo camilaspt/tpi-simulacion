@@ -10,11 +10,11 @@ compilación que verifica el código contra las librerías de AnyLogic.
 PARAMETROS = [
     # Orden de fabricación
     ("ofSeleccionada", "int", "1", "OF (1, 2, 3 = ejemplos; 4 = rotar ejemplos; 0 = personalizada)"),
-    ("cantidadAILA", "int", "40", "OF personalizada: AILA 30KG"),
-    ("cantidadREPORT", "int", "56", "OF personalizada: REPORT LT"),
-    ("cantidadNOVEL", "int", "81", "OF personalizada: NOVEL ECO"),
-    ("cantidadLURA", "int", "54", "OF personalizada: LURA"),
-    ("cantidadAURA", "int", "67", "OF personalizada: AURA"),
+    ("cantidadAILA", "int", "44", "OF personalizada: AILA 30KG"),
+    ("cantidadREPORT", "int", "61", "OF personalizada: REPORT LT"),
+    ("cantidadNOVEL", "int", "88", "OF personalizada: NOVEL ECO"),
+    ("cantidadLURA", "int", "59", "OF personalizada: LURA"),
+    ("cantidadAURA", "int", "73", "OF personalizada: AURA"),
     ("reglaSecuencia", "int", "0", "Secuencia (0 FIFO de la OF, 1 largos primero, 2 cortos primero, 3 intercalado)"),
     # Jornada
     ("diasPorSemana", "int", "5", "Jornadas por semana"),
@@ -461,12 +461,13 @@ if (o.idOp < nPuestos) {
 """)
 
 funcion("ofEjemplo", "int", [("of", "int"), ("m", "int")], """
-// OF de ejemplo (reemplazar por OF reales de KRETZ cuando estén disponibles). Escaladas un 12 %
-// para que, como en la planta, haya que recuperar el sábado en 3 de cada 4 semanas.
+// OF de ejemplo (reemplazar por OF reales de KRETZ cuando estén disponibles). Escaladas un 22 %
+// para que, como en la planta, haya que recuperar el sábado en 3 de cada 4 semanas
+// (calibración: 266 u/día -> 29 % de las semanas; 298 -> 55 %; 325 -> objetivo 75 %).
 int[][] ejemplos = {
-	{ 40, 56, 81, 54, 67 },   // OF 1: mezcla equilibrada (298 unidades)
-	{ 27, 81, 54, 40, 54 },   // OF 2: mucha REPORT LT (procesos largos)
-	{ 54, 34, 108, 67, 81 }   // OF 3: alto volumen de equipos cortos
+	{ 44, 61, 88, 59, 73 },   // OF 1: mezcla equilibrada (325 unidades)
+	{ 29, 88, 59, 44, 59 },   // OF 2: mucha REPORT LT (procesos largos)
+	{ 59, 37, 117, 73, 88 }   // OF 3: alto volumen de equipos cortos
 };
 if (of == 0) {
 	int[] propia = { cantidadAILA, cantidadREPORT, cantidadNOVEL, cantidadLURA, cantidadAURA };
