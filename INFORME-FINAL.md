@@ -3,27 +3,29 @@
 **Trabajo Práctico Integrador de Simulación — Etapa 2/2 — Grupo 7**
 [[COMPLETAR: autores y correos electrónicos]]
 
-> Borrador en Markdown para pasar después a Overleaf. Las fórmulas están escritas en sintaxis LaTeX (`$...$`) para copiarlas tal cual. Los valores marcados `[[COMPLETAR]]` o `[[RESULTADO]]` se llenan cuando estén las corridas.
+> Borrador en Markdown para pasar después a Overleaf. Las fórmulas están en sintaxis LaTeX (`$...$`) para copiarlas tal cual. Las figuras están en `Informe/figuras/` y los números salen de `Resultados/Resultados_KRETZ.xlsx` (240 corridas: 8 escenarios × 30 réplicas).
 
 ---
 
 ## Resumen
 
-KRETZ, fabricante de balanzas, no cumple todos los días la Orden de Fabricación (OF) y recupera el faltante con horas extra los fines de semana, que se pagan al doble. Construimos un modelo de simulación de eventos discretos en AnyLogic de la planta (6 líneas, 5 modelos de balanza, viaje a depósito, ausentismo, coberturas y control de calidad por muestreo) para comparar en costo la situación actual contra siete alternativas: contratar personal de distintas especialidades, tener personal de reserva polivalente, reorganizar las líneas y cambiar la secuencia de fabricación. Cada escenario se corrió con las mismas 30 semillas fijas, de modo que cada réplica es independiente de las demás y todos los escenarios enfrentan las mismas condiciones aleatorias. Las medidas de desempeño son el costo total, el cumplimiento de la OF y las horas extra de fin de semana. Sus medias se estimaron con intervalos de confianza del 95 % basados en el Teorema Central del Límite. [[RESULTADO: una o dos frases con el hallazgo principal, por ejemplo: «La alternativa X reduce el costo total en $ Y por semana (IC 95 %: …) frente a la situación actual».]]
+KRETZ, fabricante de balanzas, no cumple todos los días la Orden de Fabricación (OF) y recupera el faltante con horas extra los sábados, que se pagan al doble. Construimos en AnyLogic un modelo de simulación de eventos discretos de la planta: 6 líneas, 5 modelos de balanza, viaje al depósito de materiales, ausentismo, coberturas, control de calidad por muestreo y recuperación de fin de semana. Con él comparamos en costo la situación actual contra siete alternativas: contratar personal de cuatro especialidades distintas, tener personal de reserva polivalente, reorganizar las líneas y cambiar la secuencia de fabricación. Cada escenario se corrió 30 veces con la misma lista de semillas (números aleatorios comunes), y las alternativas se compararon por pares de réplicas con intervalos de confianza del 95 %.
 
-**Palabras clave:** simulación de eventos discretos, AnyLogic, planificación de la producción, ausentismo, horas extra, intervalos de confianza.
+En el escenario actual la OF no se cumple en el 25,7 % de las jornadas. El cuello de botella es el puesto de Ajuste, con una utilización del 82 %. La recuperación requiere 14,6 h-hombre de fin de semana por semana, con un costo de $ 190.075 por semana. Ninguna contratación se paga sola: un empleado cuesta lo mismo que 20 h-hombre de horas extra por semana, y la planta usa menos que eso en total. La reorganización (3 armadores + 2 ajustadores por línea, con coberturas entre especialidades) no agrega sueldos y baja las horas extra a 2,7 h-hombre por semana. Su ahorro operativo es de $ 155.275 por semana (IC 95 %: $ 112.834 a $ 197.715), así que recupera la inversión de $ 1.500.000 en unas 10 semanas (entre 7,6 y 13,3). Por eso es la alternativa que recomendamos.
+
+**Palabras clave:** simulación de eventos discretos, AnyLogic, planificación de la producción, ausentismo, horas extra, números aleatorios comunes, intervalos de confianza.
 
 ---
 
-## 1. Introducción (Paso 1: Formulación del problema)
+## 1. Introducción
 
-KRETZ produce balanzas comerciales e industriales en una planta de dos naves: una de producción, con 4 líneas de Armado y 2 de Control Final de 5 puestos cada una, y un depósito con el rack de materiales, el rack de espera de control de calidad y los racks de producto terminado. Las líneas no están dedicadas a un modelo: cualquier línea de Armado puede recibir cualquier equipo, y lo mismo vale para las de Control Final.
+KRETZ produce balanzas comerciales e industriales en una planta de dos naves. En la nave de producción hay 4 líneas de Armado y 2 de Control Final, de 5 puestos cada una. En el depósito están el rack de materiales, el rack de espera de control de calidad y los racks de producto terminado. Las líneas no están dedicadas a un modelo: cualquier línea de Armado puede recibir cualquier equipo, y lo mismo vale para las de Control Final.
 
-La producción de cada día sigue una Orden de Fabricación (OF) que indica qué equipos producir y en qué cantidad. Los tiempos de proceso registrados en SAP son promedios, pero en la práctica varían. A eso se suman las ausencias del personal y la cantidad limitada de puestos. Por eso hay jornadas en las que la OF no se cumple. Hoy la empresa recupera ese faltante con horas extra de fin de semana pagadas al doble, lo que representa un costo importante.
+La producción de cada día sigue una Orden de Fabricación (OF) que indica qué equipos producir y en qué cantidad. Los tiempos de proceso registrados en SAP son promedios y en la práctica varían. A eso se suman las ausencias del personal y la cantidad limitada de puestos, así que hay jornadas en las que la OF no se cumple. Hoy la empresa recupera ese faltante con horas extra de fin de semana pagadas al doble, lo que representa un costo importante.
 
-Un cálculo con tiempos medios no alcanza para estudiar el problema, porque los incumplimientos los provoca justamente la variabilidad: un día con varias ausencias o con tiempos de tarea largos deja unidades sin terminar, aunque en promedio la capacidad alcance. Por eso elegimos simular el sistema con sus fuentes de variabilidad y comparar las alternativas sobre muchas réplicas.
+Un cálculo con tiempos medios no alcanza para estudiar el problema, porque los incumplimientos los provoca justamente la variabilidad. Un día con varias ausencias o con tiempos de tarea largos deja unidades sin terminar, aunque en promedio la capacidad alcance. Por eso simulamos el sistema con sus fuentes de variabilidad y comparamos las alternativas sobre muchas réplicas.
 
-## 2. Objetivos (Paso 2: Objetivos y plan general del estudio)
+## 2. Objetivos
 
 **Objetivo general.** Determinar, en términos de costo, si a KRETZ le conviene seguir recuperando el faltante con horas extra de fin de semana o adoptar alguna alternativa de dotación u organización.
 
@@ -36,25 +38,42 @@ Un cálculo con tiempos medios no alcanza para estudiar el problema, porque los 
 
 ## 3. Metodología
 
-### 3.1 Sistema y alcance (Paso 3: Modelo conceptual)
+### 3.1 Sistema y alcance
 
-El modelo representa el recorrido de cada unidad de los 5 modelos seleccionados como representativos de la carga de la planta: AILA 30KG, REPORT LT, NOVEL ECO, LURA y AURA. Cada unidad se libera según la OF del día y termina cuando pasa a stock, después del control de calidad. Quedan fuera del alcance los demás modelos que fabrica KRETZ, la cadena de abastecimiento (el rack de materiales siempre tiene stock), el despacho a clientes, las fallas de equipos y el retrabajo de las unidades rechazadas.
+El modelo representa el recorrido de cada unidad de 5 modelos, elegidos como representativos de la carga de la planta: AILA 30KG, REPORT LT, NOVEL ECO, LURA y AURA. Cada unidad se libera según la OF del día y termina cuando pasa a stock, después del control de calidad.
+
+Quedan fuera del alcance:
+
+- los demás modelos que fabrica KRETZ;
+- la cadena de abastecimiento: el rack de materiales siempre tiene stock;
+- el despacho a clientes;
+- las fallas de equipos;
+- el retrabajo de las unidades rechazadas.
 
 Los tres aspectos centrales que el modelo debía capturar son:
 
-- **Viaje a depósito.** Antes de empezar un equipo, el operario que hará su primer puesto camina hasta el rack único de materiales, retira lo necesario (2 min según SAP) y vuelve a su puesto. El tiempo de caminata forma parte del proceso.
+- **Viaje a depósito.** Antes de empezar un equipo, el operario que hará su primer puesto camina hasta el rack único de materiales, retira lo necesario (2 min según SAP) y vuelve a su puesto. En el rack pueden retirar hasta 5 personas a la vez. El tiempo de caminata forma parte del proceso.
 - **Ausentismo y coberturas.** Al inicio de cada jornada se determina quién falta. El puesto del ausente queda vacante hasta que otro operario lo cubre dejando el suyo, de modo que la cobertura traslada el cuello de botella en lugar de eliminarlo.
 - **Control de calidad por muestreo.** De la producción diaria de cada modelo, el inspector controla solo el primer y el último equipo.
 
-### 3.2 Modelo conceptual (Paso 3: Modelo conceptual)
+### 3.2 Modelo conceptual
 
-[[FIGURA: diagrama_conceptual.png — Diagrama conceptual del sistema]]
+![Diagrama conceptual del sistema](Informe/figuras/diagrama_conceptual.png)
 
 - **Entidades:** la balanza (unidad), con atributos de modelo, línea asignada, tiempos de inicio y fin y resultado de la inspección; la OF del día; la muestra de calidad por modelo.
-- **Recursos:** los operarios, con una especialidad (Armador, Ajustador, Controlador o Embalador), un puesto habitual y un estado de asistencia; el rack único de materiales; el inspector de calidad.
-- **Dotación de línea del escenario actual:** 4 líneas de Armado con 4 armadores y 1 ajustador cada una, y 2 líneas de Control Final con 2 controladores y 3 embaladores cada una (30 operarios de línea). A ellos se suman 10 empleados de depósito y 1 inspector, que entran solo en los costos.
-- **Colas:** unidades liberadas esperando operario, retiro en el rack de materiales, colas por puesto (FIFO, capacidad ilimitada) y rack de espera de calidad.
-- **Eventos principales:** inicio de jornada (OF y asistencia), coberturas, liberación de unidades, llegada del operario al rack o al puesto, fin de tarea, ingreso al rack de calidad, inspección, cierre de jornada y jornada de recuperación de fin de semana.
+- **Recursos:** los operarios, con una especialidad (Armador, Ajustador, Controlador o Embalador), un puesto habitual y un estado de asistencia; el rack de materiales (5 lugares); el inspector de calidad.
+- **Dotación de línea del escenario actual:** 4 líneas de Armado con 4 armadores y 1 ajustador cada una, y 2 líneas de Control Final con 2 controladores y 3 embaladores cada una, en total 30 operarios de línea. A ellos se suman 10 empleados de depósito y 1 inspector, que entran solo en los costos.
+- **Colas:** unidades liberadas esperando operario, retiro en el rack de materiales, colas por puesto (prioridad para la unidad más avanzada en su receta y, a igual etapa, para la liberada antes), rack de espera de calidad.
+- **Eventos principales:**
+  - inicio de jornada (OF y asistencia);
+  - coberturas;
+  - liberación de unidades;
+  - llegada del operario al rack o al puesto;
+  - fin de tarea;
+  - ingreso al rack de calidad;
+  - inspección;
+  - cierre de jornada;
+  - jornada de recuperación de fin de semana.
 
 Las secuencias de puestos y los tiempos medios de cada modelo, relevados de SAP, se presentan en la Tabla 1.
 
@@ -68,62 +87,103 @@ Las secuencias de puestos y los tiempos medios de cada modelo, relevados de SAP,
 | LURA (importado, sin armado) | — | 4 | 3,15 | 3,15 | 12,3 |
 | AURA | 3,15 | 3 | 2,5 | 2,88 | 13,53 |
 
-### 3.3 Datos de entrada y supuestos (Paso 4: Recolección de datos)
+### 3.3 Datos de entrada y supuestos
 
 | Dato | Valor en el modelo | Fuente |
 |---|---|---|
-| Tiempos de tarea | Triangular con mínimo $0{,}8\,m$, moda $0{,}9\,m$ y máximo $1{,}3\,m$, donde $m$ es la media de SAP (la media de la distribución es $m$) | SAP; asimetría supuesta: las demoras largas son más probables que las tareas muy cortas |
+| Tiempos de tarea | Triangular con mínimo $0{,}8\,m$, moda $0{,}9\,m$ y máximo $1{,}3\,m$, donde $m$ es el tiempo de SAP (la media de la distribución es $m$) | SAP; asimetría supuesta: las demoras largas son más probables que las tareas muy cortas |
+| Retiro de materiales | 2 min (misma triangular); hasta 5 operarios a la vez en el rack | SAP y planta |
 | Jornada | Turno de 480 min, 5 jornadas por semana | KRETZ |
-| Ausentismo | 6 % por empleado y día, con un factor por día de la semana (lunes 1,25; martes 1,0; miércoles y jueves 0,9; viernes 1,1); 10 % en la recuperación de fin de semana | [[COMPLETAR: planilla de asistencia o declarar como supuesto]] |
+| Ausentismo | 6 % por empleado y día, con un factor por día de la semana (lunes 1,25; martes 1,0; miércoles y jueves 0,9; viernes 1,1); 10 % en la recuperación de fin de semana | Supuesto, coherente con la planilla de ausencias de referencia (Sección 3.5) |
 | Velocidad de caminata | 1,3 m/s, en línea recta y pasando por la puerta entre naves | Valor típico de marcha; plano a escala (16 px = 1 m) |
-| Inspección de calidad | 8 min por equipo inspeccionado; 3 % de rechazo | [[COMPLETAR]] |
-| OF | 3 OF de ejemplo (equilibrada; con mucha REPORT LT; alto volumen de equipos cortos) | [[COMPLETAR: reemplazar por OF reales o declarar como supuesto]] |
-| Costo de la hora normal | $ 6.500 por empleado, con cargas | [[COMPLETAR: fuente]] |
+| Inspección de calidad | 8 min por equipo inspeccionado; 3 % de rechazo | Supuesto |
+| OF | OF 1, mezcla equilibrada, todos los días: 36 AILA 30KG, 50 REPORT LT, 72 NOVEL ECO, 48 LURA y 60 AURA (266 unidades) | OF de ejemplo (supuesto; reemplazar por OF reales) |
+| Costo de la hora normal | $ 6.500 por empleado, con cargas | Supuesto |
 | Recargo de fin de semana | ×2 | KRETZ |
-| Recuperación de fin de semana | Hasta 16 h; lo que no se recupera pasa a la semana siguiente | Supuesto |
+| Recuperación de fin de semana | Se convoca una cuadrilla proporcional al faltante: 1 persona cada 4 unidades pendientes, entre 3 y 12, repartidas entre especialidades según los minutos pendientes. Se pagan al menos 4 h y como máximo 16 h; lo que no se recupera pasa a la semana siguiente | Supuesto |
 
-Supuestos principales: los 5 modelos son representativos de la carga; el rack de materiales nunca se queda sin stock; la asistencia se define al inicio de la jornada; la jornada de fin de semana rinde por hora lo mismo que una jornada normal y solo cambia el costo; el operario que retira los materiales es siempre el que hace el primer puesto de la unidad.
+Supuestos principales:
 
-### 3.4 Construcción del modelo (Paso 5: Traducción del modelo / construcción en AnyLogic)
+- Los 5 modelos son representativos de la carga.
+- El rack de materiales nunca se queda sin stock.
+- La asistencia se define al inicio de la jornada.
+- La jornada de fin de semana rinde por hora lo mismo que una jornada normal; solo cambia el costo.
+- El operario que retira los materiales es siempre el que hace el primer puesto de la unidad.
 
-El modelo se construyó en AnyLogic usando Process Modeling Library. Un único flujo atiende los 5 modelos: cada unidad recorre su receta y, en cada paso, toma un operario de la especialidad requerida (*Seize*), el operario camina hasta el puesto, ejecuta la tarea (*Delay*) y lo libera (*Release*). El primer paso incluye el retiro en el rack, con el mismo *Seize* que el primer puesto, para que el operario que retira los materiales sea el que hace la primera tarea.
+**Coberturas.** En el escenario actual, una vacante se cubre con un operario de la misma especialidad que deja su propio puesto; los puestos críticos (Ajuste y Control) se cubren primero. Si hay personal de reserva, la reserva cubre primero los puestos críticos y después el resto, en el orden Ajuste, Control, Embalaje y Armado. Solo en la reorganización se habilitan las coberturas entre especialidades: cualquier operario de la misma línea puede cubrir un puesto vacante.
 
-Las líneas equivalentes se resuelven con una regla de ruteo en la condición del *Seize*: se elige un operario de un puesto apto en la línea ya asignada a la unidad o en cualquier línea capaz de completar el equipo con el personal presente ese día.
+### 3.4 Construcción del modelo
 
-Los operarios son agentes que se desplazan sobre el plano a escala. Se evaluó la Pedestrian Library, que modela la caminata con paredes y obstáculos, pero la edición Personal Learning de AnyLogic limita esa librería a 5 horas de tiempo simulado, y cada réplica necesita 4 semanas. Por eso la caminata se calcula como distancia sobre velocidad, en línea recta y pasando por la puerta entre naves cuando el operario cambia de nave.
+El modelo se construyó en AnyLogic 8.9 (Personal Learning Edition) con la Process Modeling Library. Un único flujo atiende los 5 modelos. Cada unidad recorre su receta y, en cada paso:
 
-Al cierre de cada jornada se compara lo producido a tiempo con la OF. Al terminar la semana, el faltante acumulado se procesa en una jornada de recuperación de fin de semana con el personal que asiste ese día. Las horas-hombre de esa jornada se valorizan al doble.
+1. toma un operario de la especialidad requerida (*Seize*);
+2. el operario camina hasta el puesto;
+3. ejecuta la tarea (*Delay*);
+4. libera al operario (*Release*).
 
-### 3.5 Verificación y validación (Paso 6: Verificación — Paso 7: Validación)
+El primer paso incluye el retiro en el rack, con el mismo *Seize* que el primer puesto, para que el operario que retira los materiales sea el que hace la primera tarea.
+
+Las líneas equivalentes se resuelven con una regla de ruteo en la condición del *Seize*. Se elige un operario de un puesto apto en la línea ya asignada a la unidad, o en cualquier línea capaz de completar el equipo con el personal presente ese día.
+
+Los operarios son agentes que se desplazan sobre el plano a escala. Evaluamos la Pedestrian Library, que modela la caminata con paredes y obstáculos, pero la edición Personal Learning la limita a 5 horas de tiempo simulado, y cada réplica necesita 4 semanas. Por eso la caminata se calcula como distancia sobre velocidad, en línea recta y pasando por la puerta entre naves cuando el operario cambia de nave. En el escenario actual la caminata ocupa el 3,7 % del tiempo de trabajo de los operarios.
+
+Al cierre de cada jornada se compara lo producido a tiempo con la OF. Las unidades atrasadas siguen en proceso y se terminan primero al día siguiente. Al cerrar el viernes, lo que sigue pendiente se procesa en la jornada de recuperación del sábado, y sus horas-hombre se valorizan al doble.
+
+El modelo tiene tres pestañas: **Simulación** (animación 2D y 3D de la planta), **Variables** (tablero de indicadores) y **Gráficos**. Al terminar, cada corrida guarda una fila en `Resultados/resultados_corridas.csv` y una por semana en `Resultados/resultados_semanas.csv`.
+
+### 3.5 Verificación y validación
 
 **Verificación** (el modelo hace lo que dice la especificación):
 
-- Corridas con variabilidad nula (`variabilidadTiempos = 0`) y sin ausencias, comparando el tiempo de proceso de una unidad aislada con la suma de los tiempos de la Tabla 1 más la caminata calculada a mano. [[RESULTADO]]
-- Seguimiento de unidades individuales en la animación 3D: retiro en el rack, recorrido de puestos, rack de calidad y stock.
-- Controles de conservación: unidades liberadas = terminadas + en proceso + pendientes al cierre de cada semana.
-- Reproducibilidad: dos corridas con la misma semilla dan exactamente los mismos resultados.
-- Inspección: solo el primer y el último equipo de cada modelo por día.
+- **Corridas con variabilidad nula** (`variabilidadTiempos = 0`) y sin ausencias. Comparamos el tiempo de proceso de una unidad aislada con la suma de los tiempos de la Tabla 1 más la caminata calculada a mano. [[COMPLETAR: resultado de la prueba]]
+- **Seguimiento de unidades individuales** en la animación: retiro en el rack, recorrido de puestos, rack de calidad y stock.
+- **Conservación:** unidades liberadas = terminadas + en proceso + pendientes, al cierre de cada semana.
+- **Reproducibilidad:** dos corridas con la misma semilla dan exactamente los mismos resultados. Además, la planilla de resultados confirma que los 8 escenarios usaron las mismas 30 semillas.
+- **Inspección:** solo el primer y el último equipo de cada modelo por día.
+- **Coherencia de los indicadores.**
+  - El efecto de las ausencias se mide comparando cada día de la semana consigo mismo, porque el atraso se acumula de lunes a viernes. En el escenario actual, una jornada con ausencias deja en promedio 24,2 ± 5,7 unidades más de faltante que el mismo día de la semana sin ausencias.
+  - Las alternativas que agregan capacidad en el cuello de botella (Ajuste) son las que bajan el faltante, como se espera.
 
-**Validación** (el escenario actual se parece a la planta real):
+**Validación** (el escenario actual se parece a la planta real). Comparamos el escenario actual con un historial de referencia de 26 semanas (marzo a agosto de 2026, 120 jornadas): planilla de ausencias, OF diarias y horas extra de cada sábado (`Datos/Sinteticos/`).
 
-- Comparación del cumplimiento de la OF y de las horas extra de fin de semana simuladas en el escenario actual con el historial de KRETZ. [[COMPLETAR: datos reales y resultado de la comparación]]
-- Revisión del comportamiento del modelo con personal de la planta (validación cara a cara): qué puestos se saturan y qué coberturas se hacen. [[COMPLETAR]]
+> **Importante:** mientras KRETZ no entregue los registros completos, ese historial es **sintético**. Lo genera `scripts/generar_datos_sinteticos.py` con un modelo de capacidad más simple que el de AnyLogic, pero con los mismos tiempos de SAP, la misma tasa de ausentismo y el mismo valor de la hora. Por eso la comparación muestra que el modelo es coherente con esos supuestos, no que reproduce la planta real. Cuando lleguen los registros reales, alcanza con reemplazar esos archivos y volver a correr la planilla.
 
-### 3.6 Medidas de desempeño (Paso 8: Diseño de experimentos)
+**Tabla 2. Validación del escenario actual.**
 
-De cada réplica $i$ de un escenario se registran tres medidas de desempeño. Son las que responden directamente a la pregunta del estudio:
+| Medida | Historial | Modelo: media (IC 95 %) | ¿Historial dentro del IC? |
+|---|---|---|---|
+| Jornadas sin cumplir la OF | 29,2 % | 25,7 % (21,8 % a 29,5 %) | Sí |
+| Cumplimiento de la OF en el turno | 93,9 % | 93,1 % (91,7 % a 94,4 %) | Sí |
+| Horas extra de fin de semana (h-hombre/semana) | 14,6 | 14,6 (11,2 a 18,0) | Sí |
+| Costo de horas extra por semana | $ 189.500 | $ 190.075 ($ 145.773 a $ 234.376) | Sí |
+| Semanas con recuperación | 34,6 % | 29,2 % | (proporción) |
+| Especialidad que limita la jornada | Ajustador (31 de 35 jornadas sin cumplir) | Ajustador (utilización del 82 %) | Sí |
 
-1. **Costo total semanal** $C_i$ ($ por semana): horas normales de toda la dotación, incluidas contrataciones y reserva, más horas extra de fin de semana al doble, más el costo de la reorganización prorrateado. Es la medida principal para decidir entre escenarios.
+![Validación del escenario actual](Informe/figuras/validacion.png)
+
+Las cuatro medidas cuantitativas del historial caen dentro del intervalo del 95 % del modelo, y los dos identifican al Ajuste como el cuello de botella. Queda pendiente la validación cara a cara con el personal de la planta: qué puestos se saturan y qué coberturas se hacen en la práctica. [[COMPLETAR]]
+
+### 3.6 Medidas de desempeño
+
+De cada réplica $i$ de un escenario se registran tres medidas de desempeño, que son las que responden directamente a la pregunta del estudio:
+
+1. **Costo total semanal** $C_i$ ($ por semana). Suma las horas normales de toda la dotación (incluidas las contrataciones y la reserva), las horas extra de fin de semana al doble y el costo de la reorganización. Es la medida principal para decidir entre escenarios.
 2. **Cumplimiento de la OF** $P_i$ (%): unidades terminadas dentro de la jornada sobre unidades pedidas, en el horizonte de la réplica.
 3. **Horas extra de fin de semana** $H_i$ (horas-hombre por semana): horas necesarias para recuperar el faltante.
 
-Como medidas complementarias, para explicar los resultados y no para elegir el escenario, se informan la utilización de operarios por especialidad, el tiempo medio de espera en cola por tipo de puesto (cuellos de botella), las coberturas por jornada y la fracción del tiempo de los operarios que se va en caminar.
+Como medidas complementarias, para explicar los resultados y no para elegir el escenario, se informan:
 
-### 3.7 Diseño de experimentos (Paso 8: Diseño de experimentos)
+- la utilización de operarios por especialidad;
+- el tiempo medio de espera en cola por tipo de puesto (cuellos de botella);
+- el faltante por modelo;
+- las coberturas por jornada;
+- la fracción del tiempo de los operarios que se va en caminar.
 
-**Escenarios.** Se compararon 8 escenarios (Tabla 2). Todos usan la misma OF, el mismo horizonte y los mismos datos de entrada; solo cambian los parámetros indicados.
+### 3.7 Diseño de experimentos
 
-**Tabla 2. Escenarios evaluados.**
+**Escenarios.** Se compararon 8 escenarios (Tabla 3). Todos usan la misma OF, el mismo horizonte y los mismos datos de entrada; solo cambian los parámetros indicados.
+
+**Tabla 3. Escenarios evaluados.**
 
 | # | Escenario | Cambio respecto del escenario actual |
 |---|---|---|
@@ -132,120 +192,213 @@ Como medidas complementarias, para explicar los resultados y no para elegir el e
 | E2 | Contratar 2 Armadores | +2 Armadores |
 | E3 | Contratar 1 Controlador | +1 Controlador |
 | E4 | Contratar 1 Embalador | +1 Embalador |
-| E5 | Personal de reserva | 2 operarios polivalentes que cubren ausencias |
-| E6 | Reorganización | 3 armadores + 2 ajustadores por línea de Armado, coberturas entre especialidades; costo de reorganización $ 1.500.000 |
-| E7 | Cambio de secuencia | Se fabrican primero los equipos con procesos más largos |
+| E5 | Personal de reserva | 2 operarios polivalentes que cubren ausencias de cualquier especialidad |
+| E6 | Reorganización | 3 armadores + 2 ajustadores por línea de Armado (misma dotación total) y coberturas entre especialidades; costo de reorganización de $ 1.500.000, una sola vez |
+| E7 | Cambio de secuencia | Se liberan primero los equipos con procesos más largos |
 
-**Horizonte y tipo de simulación.** Es una simulación con horizonte finito (terminante): cada réplica simula 4 semanas, es decir 20 jornadas de 480 min más hasta 4 jornadas de recuperación de fin de semana. Cada réplica arranca con la planta vacía, igual que una semana real arranca sin unidades en proceso, por lo que no hace falta descartar un período de calentamiento.
+**Horizonte y tipo de simulación.** Es una simulación con horizonte finito (terminante). Cada réplica simula 4 semanas: 20 jornadas de 480 min más hasta 4 jornadas de recuperación de fin de semana. Cada réplica arranca con la planta vacía, igual que una semana real arranca sin unidades en proceso, por lo que no hace falta descartar un período de calentamiento.
 
-**Réplicas y semillas.** Cada escenario se corre $n = 30$ veces. Para asegurar que las réplicas sean independientes, cada una usa una semilla distinta del generador de números aleatorios. Las semillas no se sortean: se fija de antemano una lista y se usa **la misma lista en todos los escenarios**:
+**Réplicas y semillas.** Cada escenario se corre $n = 30$ veces. Para que las réplicas sean independientes, cada una usa una semilla distinta. Las semillas no se sortean en cada corrida: se generaron una vez, al azar, y quedan fijas en el modelo (función `semillaDeReplica`). La réplica $j$ usa la semilla $s_j$ en **todos los escenarios**:
 
-$$\mathcal{S} = \{s_1, s_2, \dots, s_{30}\} = \{1001, 1002, \dots, 1030\}$$
+$$\mathcal{S} = \{s_1, \dots, s_{30}\} = \{227904006,\ 443043868,\ 639572182,\ \dots,\ 976990827,\ 205282126\}$$
 
-[[COMPLETAR: confirmar la lista usada en las corridas]]
+(la lista completa está en el Anexo y en la hoja *Pares* de la planilla).
 
 Esto tiene tres consecuencias:
 
 - **Independencia dentro de cada escenario.** Las 30 réplicas de un escenario usan semillas distintas, así que sus resultados $X_1, \dots, X_n$ son observaciones independientes e idénticamente distribuidas de la medida de desempeño.
-- **Reproducibilidad.** Cualquier réplica se puede repetir exactamente con su semilla, y quien lea el informe puede volver a obtener los mismos números.
-- **Comparación justa entre escenarios.** La réplica $j$ de cada escenario enfrenta las mismas condiciones aleatorias de partida (mismas ausencias y mismos tiempos sorteados en la medida en que los escenarios consumen los números en el mismo orden). Las diferencias entre escenarios se deben entonces a los cambios de dotación u organización y no a que a un escenario le tocaron, por azar, días con más ausencias. Esta técnica se conoce como números aleatorios comunes.
+- **Reproducibilidad.** Cualquier réplica se puede repetir exactamente con su semilla.
+- **Comparación justa entre escenarios (números aleatorios comunes).** El modelo usa flujos de números aleatorios separados para cada fuente de variabilidad: ausencias de lunes a viernes, ausencias de fin de semana, tiempos de tarea y rechazos. Cada número sale de la semilla y de una clave fija, por ejemplo día y puesto para las ausencias, o modelo, unidad y paso para los tiempos. Así, en la réplica $j$ falta la misma gente el mismo día y cada unidad tarda lo mismo en cada paso en todos los escenarios, aunque un escenario consuma más o menos números que otro. Las diferencias entre escenarios se deben entonces a los cambios de dotación u organización, y no a que a un escenario le tocaron, por azar, días con más ausencias.
 
-En AnyLogic, las réplicas se corren con un experimento de Variación de parámetros que recorre el parámetro `semilla` del modelo sobre la lista $\mathcal{S}$, una corrida por semilla, para cada escenario. Cada corrida guarda una fila con sus medidas en `Resultados/resultados_corridas.csv`.
+En AnyLogic, cada escenario tiene un experimento de Variación de parámetros que recorre el parámetro `replica` de 1 a 30, una corrida por réplica. Mientras corre, el experimento grafica la media acumulada de cada medida con su intervalo del 95 %, para ver cómo se estabiliza al sumar réplicas (Figura 1).
 
-**Cantidad de réplicas.** Se hizo primero una corrida piloto de $n_0 = 10$ réplicas del escenario actual para estimar el desvío del costo total. La cantidad de réplicas necesaria para estimar la media con un error relativo $\varepsilon$ (por ejemplo, $\varepsilon = 5\,\%$) es
+![Media acumulada e IC del costo total y del cumplimiento, escenario actual](Informe/figuras/replicas_actual_costo_cumplimiento.png)
 
-$$n \ge \left( \frac{z_{\alpha/2}\, S}{\varepsilon\, \bar{X}} \right)^2 .$$
+**Figura 1.** Media acumulada ± IC 95 % del costo total y del cumplimiento de la OF en las 30 réplicas del escenario actual.
 
-[[RESULTADO: valor de $n$ obtenido con el piloto; si da más de 30, usar ese $n$ y ampliar la lista de semillas]]. Además, se fijó un mínimo de 30 réplicas para que la aproximación normal del Teorema Central del Límite sea razonable.
+**Cantidad de réplicas.** Con las réplicas del escenario actual se estimó cuántas hacen falta para estimar la media del costo total semanal con un error relativo $\varepsilon$:
 
-### 3.8 Análisis estadístico (Paso 9: Corridas de producción y análisis)
+$$n \ge \left( \frac{t_{n-1;\,\alpha/2}\, S}{\varepsilon\, \bar{X}} \right)^2 = \left( \frac{2{,}045 \times 118.641}{0{,}01 \times 10.850.075} \right)^2 \approx 5 .$$
+
+Incluso con un error del 1 % alcanzan 5 réplicas, porque las horas normales son fijas y solo varía la parte de horas extra. Si se mide la precisión sobre el costo de las horas extra solo, que varía mucho porque la mayoría de las semanas no hay recuperación, harían falta unas 650 réplicas para un ±5 %. Sin embargo, la decisión no depende de esa precisión: con las 30 réplicas emparejadas, todas las diferencias de costo contra el escenario actual resultaron significativas (Sección 4.3). Se mantuvo $n = 30$ como mínimo para que la aproximación del Teorema Central del Límite sea razonable.
+
+### 3.8 Análisis estadístico
 
 **Intervalo de confianza para la media de cada escenario.** Sea $X_1, \dots, X_n$ la medida de desempeño (por ejemplo, el costo total semanal) en las $n$ réplicas de un escenario. Las réplicas son independientes porque cada una usa una semilla distinta, y tienen la misma distribución porque corren el mismo modelo con los mismos parámetros. Se calculan la media y el desvío muestrales:
 
 $$\bar{X} = \frac{1}{n}\sum_{i=1}^{n} X_i, \qquad S = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n}\left(X_i - \bar{X}\right)^2}.$$
 
-Por el Teorema Central del Límite, para $n$ grande la media muestral se distribuye aproximadamente normal, $\bar{X} \sim N\!\left(\mu, \sigma^2/n\right)$, sea cual sea la distribución de cada $X_i$. Estandarizando se obtiene una normal estándar:
+Por el Teorema Central del Límite, para $n$ grande la media muestral se distribuye aproximadamente normal, $\bar{X} \sim N\!\left(\mu, \sigma^2/n\right)$, sea cual sea la distribución de cada $X_i$. Como $\sigma$ se estima con $S$, el estadístico estandarizado sigue aproximadamente una $t$ de Student con $n-1$ grados de libertad (que para $n = 30$ ya es casi una normal estándar: $t_{29;\,0{,}025} = 2{,}045$ frente a $z_{0{,}025} = 1{,}96$):
 
-$$Z = \frac{\bar{X} - \mu}{S/\sqrt{n}} \sim N(0, 1).$$
+$$T = \frac{\bar{X} - \mu}{S/\sqrt{n}} \sim t_{n-1}.$$
 
-Entonces $P\left(-z_{\alpha/2} \le Z \le z_{\alpha/2}\right) = 1 - \alpha$, y despejando $\mu$ se obtiene el intervalo de confianza:
+Entonces $P\left(-t_{n-1;\,\alpha/2} \le T \le t_{n-1;\,\alpha/2}\right) = 1 - \alpha$, y despejando $\mu$ se obtiene el intervalo de confianza:
 
-$$\mu \in \left[\, \bar{X} - z_{\alpha/2}\,\frac{S}{\sqrt{n}} \; ; \; \bar{X} + z_{\alpha/2}\,\frac{S}{\sqrt{n}} \,\right].$$
-
-Con un nivel de confianza del 95 % ($\alpha = 0{,}05$), $z_{0{,}025} = 1{,}96$.
+$$\mu \in \left[\, \bar{X} - t_{n-1;\,\alpha/2}\,\frac{S}{\sqrt{n}} \; ; \; \bar{X} + t_{n-1;\,\alpha/2}\,\frac{S}{\sqrt{n}} \,\right].$$
 
 **Comparación entre escenarios.** Para comparar una alternativa $k$ con el escenario actual se usa el ahorro de cada réplica. Como las dos corridas de la réplica $j$ usan la misma semilla $s_j$, se pueden emparejar:
 
 $$D_j = C_j^{(E0)} - C_j^{(k)}, \qquad j = 1, \dots, n.$$
 
-Las $D_j$ son independientes entre sí (cada par usa una semilla distinta), así que se aplica el mismo procedimiento: por el Teorema Central del Límite, $\bar{D}$ es aproximadamente normal, se estandariza a $Z$ y el intervalo del ahorro medio es
+Las $D_j$ son independientes entre sí, porque cada par usa una semilla distinta, así que se aplica el mismo procedimiento. El intervalo del ahorro medio es
 
-$$\bar{D} \pm z_{\alpha/2}\,\frac{S_D}{\sqrt{n}}.$$
+$$\bar{D} \pm t_{n-1;\,\alpha/2}\,\frac{S_D}{\sqrt{n}}.$$
 
-Si el intervalo no contiene el cero, la diferencia es significativa al 95 %: si está entero por encima del cero, la alternativa ahorra; si está entero por debajo, la alternativa cuesta más. Como las dos corridas de cada par comparten la semilla, sus resultados están correlacionados positivamente, y por eso $S_D$ suele ser bastante menor que si los escenarios se hubieran corrido con semillas distintas: los intervalos de las diferencias son más angostos con la misma cantidad de réplicas.
+- Si el intervalo no contiene el cero, la diferencia es significativa al 95 %.
+- Si está entero por encima del cero, la alternativa ahorra; si está entero por debajo, cuesta más.
 
-## 4. Resultados (Paso 9: Corridas de producción y análisis)
+Las dos corridas de cada par comparten la semilla, así que sus resultados están correlacionados positivamente. Por eso $S_D$ es mucho menor que el desvío de cada escenario. Por ejemplo, para la contratación de un Embalador $S_D = \$\,4.764$, frente a $S = \$\,118.641$ del escenario actual. Así, los intervalos de las diferencias son mucho más angostos con la misma cantidad de réplicas.
 
-> Los valores de esta sección salen de `Resultados/resultados_corridas.csv` después de correr los 8 escenarios con las 30 semillas.
+Como se hacen 7 comparaciones contra el escenario actual, cada una al 95 %, se informa además si la conclusión se mantiene con la corrección de Bonferroni: un nivel del $1 - 0{,}05/7 \approx 99{,}3\,\%$ por comparación, para un nivel conjunto del 95 %.
+
+Todos los cálculos están en `Resultados/Resultados_KRETZ.xlsx` como fórmulas de Excel. Las hojas son:
+
+- *Resumen*: medias e intervalos;
+- *Pares*: diferencias réplica a réplica;
+- *Equilibrio*: punto de equilibrio y repago;
+- *Validacion*;
+- los datos crudos de cada corrida.
+
+También se reproducen con `scripts/analizar_resultados.py`.
+
+## 4. Resultados
 
 ### 4.1 Escenario actual
 
-[[RESULTADO: párrafo con lo que muestra el escenario actual]]
+Con la dotación actual, la planta entrega a tiempo el 93,1 % de lo pedido (IC 95 %: 91,7 % a 94,4 %). La OF no se cumple en el 25,7 % de las jornadas (21,8 % a 29,5 %), es decir, alrededor de una jornada por semana.
 
-- Jornadas en las que no se cumple la OF: [[RESULTADO]] % (IC 95 %: [[ ]]).
-- Faltante concentrado en: [[RESULTADO: modelo]], cuello de botella en [[RESULTADO: tipo de puesto]], especialidad más cargada: [[RESULTADO]].
-- Horas extra de fin de semana: [[RESULTADO]] h-hombre por semana, con un costo de $ [[RESULTADO]] por semana.
-- Validación: [[RESULTADO: comparación con los datos reales de KRETZ]].
+El cuello de botella es claramente el **Ajuste**:
+
+- **Utilización por especialidad:**
+  - Ajustadores: 82,0 %;
+  - Controladores: 67,6 %;
+  - Embaladores: 54,6 %;
+  - Armadores: 36,0 %.
+- **Espera media en cola hasta conseguir un ajustador:** 135,6 min, frente a 26,1 min en armado y menos de 12 min en control y embalaje.
+
+Hay un solo ajustador por línea, así que cuando falta uno, otro tiene que repartirse entre dos líneas y la producción del día cae.
+
+El faltante se concentra en los modelos que la OF libera al final, porque las unidades se liberan en el orden de la OF. Por réplica de 4 semanas, faltan:
+
+- AURA: 209 unidades;
+- NOVEL ECO: 99;
+- LURA: 50;
+- REPORT LT: 10.
+
+Para recuperarlo hacen falta 14,6 h-hombre de fin de semana por semana (IC 95 %: 11,2 a 18,0), con un costo de $ 190.075 por semana. En 35 de las 120 semanas simuladas (29 %) hubo que convocar al personal el sábado.
 
 ### 4.2 Medidas de desempeño por escenario
 
-**Tabla 3. Media e intervalo de confianza del 95 % ($\bar{X} \pm 1{,}96\,S/\sqrt{n}$, $n = 30$).**
+**Tabla 4. Media e intervalo de confianza del 95 % ($\bar{X} \pm t_{29;\,0{,}025}\,S/\sqrt{n}$, $n = 30$). Valores por semana.**
 
-| Escenario | Costo total semanal ($) | Cumplimiento de la OF (%) | Horas extra (h-hombre/semana) |
-|---|---|---|---|
-| E0 Actual | [[ ]] ± [[ ]] | [[ ]] ± [[ ]] | [[ ]] ± [[ ]] |
-| E1 +2 Ajustadores | | | |
-| E2 +2 Armadores | | | |
-| E3 +1 Controlador | | | |
-| E4 +1 Embalador | | | |
-| E5 Reserva (2) | | | |
-| E6 Reorganización | | | |
-| E7 Secuencia | | | |
+| Escenario | Costo total semanal ($) | Cumplimiento de la OF | Jornadas sin cumplir | Horas extra (h-hombre/semana) |
+|---|---|---|---|---|
+| E0 Actual | 10.850.075 ± 44.301 | 93,1 % ± 1,4 % | 25,7 % ± 3,8 % | 14,6 ± 3,4 |
+| E1 +2 Ajustadores | 11.224.253 ± 43.377 | 97,5 % ± 0,9 % | 8,0 % ± 2,8 % | 3,4 ± 3,3 |
+| E2 +2 Armadores | 11.377.682 ± 45.916 | 92,4 % ± 1,4 % | 27,7 % ± 4,4 % | 15,2 ± 3,5 |
+| E3 +1 Controlador | 11.108.637 ± 41.270 | 93,5 % ± 1,4 % | 30,5 % ± 3,9 % | 14,5 ± 3,2 |
+| E4 +1 Embalador | 11.110.979 ± 44.350 | 93,5 % ± 1,3 % | 24,5 % ± 3,7 % | 14,7 ± 3,4 |
+| E5 Reserva (2) | 11.220.067 ± 29.725 | 98,0 % ± 0,6 % | 7,3 % ± 1,9 % | 3,1 ± 2,3 |
+| E6 Reorganización | 11.069.800 ± 34.005 | 97,9 % ± 0,8 % | 7,5 % ± 2,6 % | 2,7 ± 2,6 |
+| E7 Secuencia largos primero | 10.841.684 ± 41.501 | 93,4 % ± 1,4 % | 25,5 % ± 3,7 % | 14,0 ± 3,2 |
 
-[[FIGURA: gráfico de intervalos de confianza del costo total por escenario]]
+En E6, el costo total incluye la reorganización completa ($ 1.500.000) dentro de las 4 semanas de la réplica, es decir $ 375.000 por semana. Ese costo se paga una sola vez; ver la Sección 4.3.
+
+![Costo total semanal por escenario](Informe/figuras/costo_total_ic.png)
+
+**Figura 2.** Costo total semanal por escenario: media e intervalo del 95 %. La línea punteada es la media del escenario actual.
+
+![Horas extra por escenario](Informe/figuras/horas_extra_ic.png)
+
+**Figura 3.** Horas extra de fin de semana por escenario: media e intervalo del 95 %.
 
 ### 4.3 Ahorro neto frente al escenario actual
 
-**Tabla 4. Ahorro medio por semana ($\bar{D} \pm 1{,}96\,S_D/\sqrt{n}$) y significación.**
+**Tabla 5. Ahorro medio por semana ($\bar{D} \pm t_{29;\,0{,}025}\,S_D/\sqrt{n}$, pares con la misma semilla). Un valor negativo indica que la alternativa cuesta más.**
 
-| Alternativa | Ahorro medio ($/semana) | IC 95 % | ¿Significativo? |
-|---|---|---|---|
-| E1 +2 Ajustadores | | [ ; ] | |
-| E2 +2 Armadores | | [ ; ] | |
-| E3 +1 Controlador | | [ ; ] | |
-| E4 +1 Embalador | | [ ; ] | |
-| E5 Reserva (2) | | [ ; ] | |
-| E6 Reorganización | | [ ; ] | |
-| E7 Secuencia | | [ ; ] | |
+| Alternativa | Ahorro medio ($/semana) | IC 95 % | ¿Significativo al 95 %? | ¿Y con Bonferroni (99,3 %)? |
+|---|---|---|---|---|
+| E1 +2 Ajustadores | −374.179 | [−418.623 ; −329.734] | Sí, cuesta más | Sí |
+| E2 +2 Armadores | −527.607 | [−535.627 ; −519.588] | Sí, cuesta más | Sí |
+| E3 +1 Controlador | −258.562 | [−275.121 ; −242.003] | Sí, cuesta más | Sí |
+| E4 +1 Embalador | −260.904 | [−262.683 ; −259.125] | Sí, cuesta más | Sí |
+| E5 Reserva (2) | −369.992 | [−407.941 ; −332.044] | Sí, cuesta más | Sí |
+| E6 Reorganización (con la inversión en 4 semanas) | −219.725 | [−262.227 ; −177.223] | Sí, cuesta más | Sí |
+| E7 Secuencia largos primero | +8.391 | [+1.051 ; +15.731] | Sí, ahorra | No |
+
+![Ahorro semanal frente al escenario actual](Informe/figuras/ahorro_vs_actual.png)
+
+**Figura 4.** Ahorro semanal de cada alternativa frente al escenario actual (intervalo del 95 % pareado). Verde: ahorra; rojo: cuesta más.
+
+**Por qué no conviene contratar.**
+
+- Un empleado contratado cuesta $40\ \text{h} \times \$\,6.500 = \$\,260.000$ por semana.
+- Una hora extra de fin de semana cuesta $\$\,13.000$.
+- Por lo tanto, una contratación se paga sola solo si ahorra al menos **20 h-hombre de horas extra por semana**.
+- El escenario actual usa en total 14,6 h-hombre por semana, y el extremo superior de su intervalo es 18,0.
+
+Ninguna contratación puede pagarse, ni siquiera si eliminara todas las horas extra. La contratación de 2 Ajustadores es la que más reduce las horas extra (de 14,6 a 3,4 h-hombre por semana), porque ataca el cuello de botella, pero cuesta $ 520.000 por semana y ahorra solo $ 145.822. Contratar en especialidades que no son el cuello de botella (Armadores, Controlador o Embalador) agrega sueldos y casi no cambia las horas extra. Con 2 armadores más, el cumplimiento incluso baja un poco, porque llegan más unidades a la cola de Ajuste.
+
+**La reorganización se paga en unas 10 semanas.** E6 no cambia la dotación total ni los sueldos: pasa a 3 armadores y 2 ajustadores por línea y habilita las coberturas entre especialidades. Su único costo extra es la inversión de $ 1.500.000, que en la réplica de 4 semanas se carga entera y la hace parecer más cara. Si se separa el ahorro operativo, la diferencia pareada en el costo de horas extra es la siguiente:
+
+$$\bar{D}_{HE} = \$\,155.275 \text{ por semana} \quad (\text{IC 95 \%: } \$\,112.834 \text{ a } \$\,197.715),$$
+
+y el tiempo de repago de la inversión es
+
+$$\frac{\$\,1.500.000}{\$\,155.275/\text{semana}} \approx 9{,}7 \text{ semanas} \quad (\text{entre } 7{,}6 \text{ y } 13{,}3 \text{ semanas}).$$
+
+En un año de 48 semanas hábiles, el ahorro neto esperado es de $48 \times 155.275 - 1.500.000 \approx \$\,5{,}95$ millones. Además, la reorganización lleva el cumplimiento de la OF al 97,9 % y las jornadas sin cumplir al 7,5 %, el mismo nivel que con 2 Ajustadores o 2 operarios de reserva, pero sin sumar sueldos.
+
+**La secuencia ahorra poco.** Liberar primero los equipos de proceso largo ahorra $ 8.391 por semana. El ahorro es significativo al 95 %, pero no con la corrección de Bonferroni, y no cambia el cumplimiento (93,4 %). Lo que hace es trasladar el faltante de AURA (de 209 a 68 unidades por réplica) a NOVEL ECO y LURA. Como no cuesta nada, se puede adoptar, pero no resuelve el problema.
 
 ### 4.4 Medidas complementarias
 
-[[RESULTADO: tabla de utilización por especialidad, espera media por tipo de puesto, coberturas y fracción de tiempo caminando, solo para explicar por qué cada alternativa mejora o no]]
+**Tabla 6. Utilización, espera en cola y coberturas (media de las 30 réplicas).**
 
-## 5. Conclusiones (Paso 10: Documentación e implementación)
+| Escenario | Util. Armador | Util. Ajustador | Util. Controlador | Util. Embalador | Espera media en ajuste (min) | Coberturas por réplica |
+|---|---|---|---|---|---|---|
+| E0 Actual | 36,0 % | 82,0 % | 67,6 % | 54,6 % | 135,6 | 24,1 |
+| E1 +2 Ajustadores | 36,3 % | 55,4 % | 68,0 % | 54,9 % | 66,4 | 22,2 |
+| E2 +2 Armadores | 32,7 % | 81,8 % | 67,5 % | 54,5 % | 150,4 | 14,6 |
+| E3 +1 Controlador | 36,0 % | 82,1 % | 54,2 % | 54,7 % | 135,5 | 24,0 |
+| E4 +1 Embalador | 36,0 % | 82,0 % | 67,6 % | 46,9 % | 135,5 | 24,0 |
+| E5 Reserva (2) | 34,5 % | 79,4 % | 65,8 % | 53,5 % | 123,2 | 29,6 |
+| E6 Reorganización | 48,4 % | 42,5 % | 68,0 % | 55,0 % | 20,8 | 16,1 |
+| E7 Secuencia | 35,7 % | 82,1 % | 67,7 % | 54,7 % | 140,4 | 24,1 |
 
-[[RESULTADO: responder en prosa, con los números de las tablas 3 y 4]]
+La tabla explica los resultados:
 
-1. **Situación actual.** Con la dotación y la organización actuales, la OF no se cumple en [[ ]] % de las jornadas; el faltante se concentra en [[ ]].
-2. **Costo de las horas extra.** Recuperar el faltante requiere [[ ]] h-hombre por semana, con un costo de $ [[ ]].
-3. **Contratación.** [[ ¿Conviene? ¿Cuántos y de qué especialidad? ]]
-4. **Reorganización.** [[ ]]
-5. **Personal de reserva.** [[ ]]
-6. **Secuencia de fabricación.** [[ ]]
+- **Las alternativas que funcionan aumentan la capacidad de Ajuste.**
+  - E1 y E6 lo hacen directamente: la espera en ajuste baja de 136 min a 66 y 21 min.
+  - E5 lo hace indirectamente: la reserva cubre las ausencias de los ajustadores sin desarmar otra línea.
+- **Las demás solo suben la capacidad de especialidades que tienen holgura.**
+  - Los armadores trabajan el 36 % del tiempo, y por eso pasar uno de cada línea a ajustador (E6) no perjudica al armado.
+  - En E6 la carga de las especialidades queda más pareja: 48 % los armadores y 43 % los ajustadores.
+- **La caminata al depósito no es un problema:** ocupa el 3,7 % del tiempo de trabajo en todos los escenarios.
 
-**Recomendación para KRETZ.** [[ ]]
+## 5. Conclusiones
 
-**Limitaciones y trabajo futuro.** Los resultados dependen de [[ las OF de ejemplo / la probabilidad de ausencia supuesta / el costo de la hora ]]; conviene repetir el análisis con OF reales y con la probabilidad de ausencia estimada de la planilla de asistencia. La caminata se modeló en línea recta y no con la Pedestrian Library, por la limitación de la edición Personal Learning, lo que puede subestimar levemente los tiempos de traslado.
+1. **Situación actual.** Con la dotación y la organización actuales, la OF no se cumple en el 25,7 % de las jornadas (IC 95 %: 21,8 % a 29,5 %) y se entrega a tiempo el 93,1 % de lo pedido. El cuello de botella es el Ajuste: hay un solo ajustador por línea, con una utilización del 82 % y 136 min de espera media. El faltante se concentra en AURA y NOVEL ECO, que la OF libera al final del día.
+2. **Costo de las horas extra.** Recuperar el faltante requiere 14,6 h-hombre de fin de semana por semana (11,2 a 18,0), con un costo de $ 190.075 por semana. Es un costo real, pero chico frente al de un sueldo.
+3. **Contratación.** No conviene contratar. Cualquier contratación cuesta más de lo que ahorra, y la diferencia es significativa en los cuatro casos. Un contratado cuesta lo mismo que 20 h-hombre de horas extra por semana, más que todas las horas extra que hoy paga la planta. De las contrataciones, la única que mejora el cumplimiento es la de Ajustadores, porque es la que ataca el cuello de botella.
+4. **Reorganización.** Es la alternativa recomendada. Con la misma dotación (3 armadores + 2 ajustadores por línea y coberturas entre especialidades):
+   - lleva el cumplimiento de la OF del 93,1 % al 97,9 %;
+   - baja las horas extra de 14,6 a 2,7 h-hombre por semana;
+   - ahorra $ 155.275 por semana en horas extra;
+   - recupera la inversión de $ 1.500.000 en unas 10 semanas (7,6 a 13,3);
+   - deja un ahorro neto esperado de casi $ 6 millones en el primer año.
+5. **Personal de reserva.** Dos operarios polivalentes logran el mejor cumplimiento (98,0 %), pero cuestan $ 520.000 por semana en sueldos y ahorran solo unos $ 150.000 en horas extra. No conviene por costo, aunque podría justificarse si KRETZ valora mucho cumplir la OF en el día.
+6. **Secuencia de fabricación.** Fabricar primero los equipos de proceso largo ahorra muy poco ($ 8.391 por semana, no significativo con Bonferroni) y solo cambia qué modelos quedan atrasados. Como no cuesta nada, puede combinarse con la reorganización.
+
+**Recomendación para KRETZ.** Reorganizar las líneas de Armado a 3 armadores + 2 ajustadores, habilitar las coberturas entre especialidades y no contratar personal. La inversión se recupera en menos de un trimestre. A partir de ahí, la planta cumple la OF en más del 92 % de las jornadas y las horas extra de fin de semana pasan a ser excepcionales.
+
+**Limitaciones y trabajo futuro.**
+
+- **Datos de validación.** La validación se hizo contra un historial **sintético**, construido con los mismos supuestos del modelo. Hay que repetirla con los registros reales de asistencia, OF y horas extra de KRETZ.
+- **OF de ejemplo.** Se usó una sola OF, la mezcla equilibrada, todos los días. Las OF reales varían de un día a otro, y conviene repetir el análisis con ellas.
+- **Supuestos de costo.** El costo de la hora ($ 6.500) y el costo de la reorganización ($ 1.500.000) son supuestos. El tiempo de repago es proporcional al costo de la reorganización.
+- **Caminata.** Se modeló en línea recta y no con la Pedestrian Library, por la limitación de la edición Personal Learning. Esto puede subestimar levemente los tiempos de traslado.
+- **Reorganización.** No se modeló un período de aprendizaje: se supone que los operarios que pasan a ajustador rinden igual que los actuales desde el primer día.
 
 ## Referencias
 
@@ -254,8 +407,15 @@ Si el intervalo no contiene el cero, la diferencia es significativa al 95 %: si 
 - The AnyLogic Company. *AnyLogic Help: Process Modeling Library*. https://anylogic.help
 - [[COMPLETAR: bibliografía de la cátedra]]
 
-## Anexos (material entregado) (Paso 10: Documentación e implementación)
+## Anexos (material entregado)
 
-- Modelo de AnyLogic (`.alp`) y link de AnyLogic Cloud: [[COMPLETAR]]
-- Planilla de cálculo con los resultados de las corridas: [[COMPLETAR]]
+- Modelo de AnyLogic (`TPI-Simulacion-KRETZ - copia.alp`) y link de AnyLogic Cloud: [[COMPLETAR]]
+- Planilla de cálculo con los resultados de las 240 corridas: `Resultados/Resultados_KRETZ.xlsx`
 - Video de presentación: [[COMPLETAR]]
+- Scripts de análisis:
+  - `scripts/unir_resultados.py`: une los CSV de los 8 experimentos;
+  - `scripts/analizar_resultados.py`;
+  - `scripts/armar_planilla.py`;
+  - `scripts/graficos_informe.py`.
+- Datos de referencia (sintéticos): `Datos/Sinteticos/`, generados con `scripts/generar_datos_sinteticos.py`.
+- **Lista de semillas** $\mathcal{S}$ (réplicas 1 a 30): 227904006, 443043868, 639572182, 649565454, 794923749, 210205473, 339749960, 745351751, 767313473, 697600698, 551631864, 941140765, 714791075, 688208069, 884410270, 933838458, 924757551, 627104586, 906407983, 930080574, 729771961, 573622146, 357627256, 102721764, 759496827, 186676380, 218902461, 408421828, 976990827, 205282126.

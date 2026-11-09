@@ -31,6 +31,7 @@ TURNO_MIN = 480
 VALOR_HORA = 6500               # $/h con cargas (mismo supuesto que el modelo)
 RECARGO = 2
 PROB_AUSENCIA = 0.06
+EFICIENCIA = 0.94               # fracción del turno que rinde (caminatas, esperas, arranque y cierre)
 FACTOR_DIA = [1.25, 1.0, 0.9, 0.9, 1.1]          # lunes a viernes, igual que el modelo
 DIAS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
 FERIADOS = {date(2026, 3, 23), date(2026, 3, 24), date(2026, 4, 2), date(2026, 4, 3), date(2026, 5, 1),
@@ -119,6 +120,7 @@ def main():
     for s in range(SEMANAS):
         lunes = INICIO + timedelta(weeks=s)
         falt_semana = {m: 0 for m in MODELOS}
+        pendiente = {m: 0 for m in MODELOS}   # unidades atrasadas: se hacen primero al día siguiente
         pedido_semana = producido_semana = 0
         for d in range(5):
             fecha = lunes + timedelta(days=d)
@@ -152,26 +154,28 @@ def main():
             # --- Capacidad por especialidad ---
             presentes = {esp: sum(1 for e in linea if e["especialidad"] == esp and e["legajo"] not in ausentes)
                          for esp in ESPECIALIDADES}
-            sobran_arm = max(0, presentes["Armador"] - 14)
-            eficiencia = rng.gauss(0.86, 0.03)       # caminatas, esperas y arranque/cierre de turno
-            variab = rng.gauss(1.0, 0.05)            # tiempos reales frente a SAP
+            eficiencia = rng.gauss(EFICIENCIA, 0.02)       # caminatas, esperas y arranque/cierre de turno
+            variab = rng.gauss(1.0, 0.08)            # tiempos reales frente a SAP
             evento = ""
             if rng.random() < 0.04:
                 evento = rng.choice(EVENTOS)
                 eficiencia *= rng.uniform(0.80, 0.92)
             ratios = {}
             for esp in ESPECIALIDADES:
-                carga = sum(pedido[m] * MIN_POR_UNIDAD[m][esp] for m in MODELOS) * variab
+                carga = sum((pedido[m] + pendiente[m]) * MIN_POR_UNIDAD[m][esp] for m in MODELOS) * variab
                 personas = presentes[esp]
-                if esp == "Ajustador" and personas < 4:   # un armador experimentado cubre a medias
-                    personas += min(4 - personas, sobran_arm) * 0.5
+                # Sin cobertura entre especialidades (igual que el escenario actual del modelo): si falta un
+                # ajustador, otro ajustador reparte su tiempo entre dos líneas y la capacidad de ajuste baja
                 capacidad = personas * TURNO_MIN * eficiencia
                 ratios[esp] = capacidad / carga if carga else math.inf
             cuello = min(ratios, key=ratios.get)
             r = min(1.0, ratios[cuello])
 
             # --- Producción en el turno y faltante por modelo ---
-            perdido = sum(pedido[m] * MIN_POR_UNIDAD[m][cuello] for m in MODELOS) * (1 - r)
+            # Primero se terminan las unidades atrasadas del día anterior; lo que no entra en el
+            # turno queda pendiente y son siempre unidades de la OF del día.
+            atrasadas = sum(pendiente.values())
+            perdido = sum((pedido[m] + pendiente[m]) * MIN_POR_UNIDAD[m][cuello] for m in MODELOS) * (1 - r)
             pesos = {m: pedido[m] * MIN_POR_UNIDAD[m][cuello] * rng.gammavariate(2, 0.5) for m in MODELOS}
             total_p = sum(pesos.values()) or 1
             faltante = {}
@@ -181,6 +185,7 @@ def main():
             if r >= 1 and rng.random() < 0.06:        # unidades que quedan en proceso al cierre
                 m = rng.choice([m for m in MODELOS if pedido[m]])
                 faltante[m] = min(pedido[m], rng.randint(1, 3))
+            pendiente = dict(faltante)
 
             of_id = f"OF-2026-{n_of:04d}"
             tot_ped = sum(pedido.values())
@@ -191,16 +196,16 @@ def main():
                 prod = pedido[m] - faltante[m]
                 of_filas.append([of_id, fecha.isoformat(), DIAS[d], m, pedido[m], prod, faltante[m],
                                  num(100 * prod / pedido[m], 1), "Sí" if faltante[m] == 0 else "No"])
-                falt_semana[m] += faltante[m]
             aus_linea = sum(1 for e in linea if e["legajo"] in ausentes)
             diario.append([of_id, fecha.isoformat(), DIAS[d], nombre_mezcla, tot_ped, tot_ped - tot_falt, tot_falt,
                            num(100 * (tot_ped - tot_falt) / tot_ped, 1), "Sí" if tot_falt == 0 else "No",
                            len(ausentes), aus_linea, presentes["Ajustador"], presentes["Controlador"],
-                           cuello if tot_falt else "", evento])
+                           cuello if tot_falt else "", atrasadas, evento])
             pedido_semana += tot_ped
             producido_semana += tot_ped - tot_falt
 
-        # --- Recuperación de fin de semana ---
+        # --- Recuperación de fin de semana: lo que sigue pendiente al cierre del viernes ---
+        falt_semana = pendiente
         falt_total = sum(falt_semana.values())
         sabado = lunes + timedelta(days=5)
         if falt_total == 0:
@@ -238,7 +243,7 @@ def main():
     escribir(salida / "cumplimiento_diario.csv",
              ["OF", "Fecha", "Dia", "Mezcla", "Pedido_total", "Producido_total", "Faltante_total",
               "Cumplimiento_pct", "OF_cumplida", "Ausentes_planta", "Ausentes_lineas", "Ajustadores_presentes",
-              "Controladores_presentes", "Especialidad_cuello", "Observaciones"], diario)
+              "Controladores_presentes", "Especialidad_cuello", "Atrasadas_dia_anterior", "Observaciones"], diario)
     escribir(salida / "horas_extra_fin_de_semana.csv",
              ["Semana", "Fecha_sabado", "Pedido_semana", "Producido_en_turno", "Faltante_a_recuperar",
               "Personas_convocadas_presentes", "Horas_jornada", "Horas_hombre", "Costo_pesos"], semanal)

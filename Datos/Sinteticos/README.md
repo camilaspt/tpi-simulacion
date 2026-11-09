@@ -23,11 +23,13 @@ Formato: separador `;`, decimales con coma, UTF-8 con BOM (se abren directo en E
 
 ## Resultados del período
 
-- 120 jornadas, de las que **27 (22 %) no cumplieron la OF**.
-- Cumplimiento medio en el turno: **97,7 %**.
-- Ausentismo de las líneas: alrededor del 6 %, más alto los lunes y viernes.
-- **17 de 26 semanas** necesitaron recuperación de fin de semana, con 19 h-hombre por semana en promedio.
-- El cuello de botella casi siempre es **Ajuste**, sobre todo cuando falta uno de los 4 ajustadores.
+- 120 jornadas, de las que **35 (29 %) no cumplieron la OF**.
+- Cumplimiento medio en el turno: **93,9 %**.
+- Ausentismo de las líneas: alrededor del 6 %, más alto los lunes.
+- **9 de 26 semanas** necesitaron recuperación de fin de semana; **14,6 h-hombre por semana** en promedio ($ 189.500 por semana).
+- El cuello de botella es **Ajuste** en 31 de las 35 jornadas que no cumplieron.
+
+Calibración (noviembre de 2026): la eficiencia del turno (94 % ± 2 %), la variación diaria de los tiempos (± 8 %) y el arrastre de las unidades atrasadas al día siguiente se ajustaron para que el historial quede dentro de los intervalos del 95 % del escenario actual del modelo (ver la hoja *Validacion* de `Resultados/Resultados_KRETZ.xlsx`).
 
 ## Cómo se generaron
 
@@ -35,9 +37,9 @@ Para cada jornada:
 
 1. **Asistencia.** Cada empleado tiene su propia propensión a faltar (media del 6 %), multiplicada por el factor de cada día de la semana que usa el modelo (lunes 1,25; martes 1,0; miércoles y jueves 0,9; viernes 1,1).
 2. **OF del día.** Se elige una de tres mezclas típicas (equilibrada, con mucha REPORT LT o con muchos equipos cortos), con ±10 % de variación por modelo. A veces algún modelo no entra en la OF.
-3. **Capacidad.** Para cada especialidad se comparan los minutos disponibles de los presentes (480 min × eficiencia del 86 % ± 3 %) con los minutos que pide la OF según los tiempos de SAP (±5 % de variación diaria). La especialidad con menos holgura limita la producción. Si falta un ajustador, un armador lo cubre a medio rendimiento. En el 4 % de los días hay un evento que baja la eficiencia.
-4. **Faltante.** Los minutos que no se llegan a cubrir se reparten entre los modelos según su carga en la especialidad que limitó la jornada.
-5. **Fin de semana.** El faltante de la semana se recupera el sábado con una cuadrilla proporcional al faltante (entre 3 y 12 personas, el 10 % falta). La jornada dura lo necesario a un 70 % de rendimiento, con un mínimo de 4 h.
+3. **Capacidad.** Para cada especialidad se comparan los minutos disponibles de los presentes (480 min × eficiencia del 94 % ± 2 %) con los minutos que piden la OF del día y las unidades atrasadas del día anterior, según los tiempos de SAP (±8 % de variación diaria). La especialidad con menos holgura limita la producción. No hay coberturas entre especialidades (igual que el escenario actual del modelo). En el 4 % de los días hay un evento que baja la eficiencia.
+4. **Faltante.** Primero se terminan las unidades atrasadas; los minutos que no se llegan a cubrir se reparten entre los modelos de la OF del día según su carga en la especialidad que limitó la jornada, y quedan pendientes para el día siguiente (columna `Atrasadas_dia_anterior`).
+5. **Fin de semana.** Lo que sigue pendiente al cierre del viernes se recupera el sábado con una cuadrilla proporcional al faltante (entre 3 y 12 personas, el 10 % falta). La jornada dura lo necesario a un 70 % de rendimiento, con un mínimo de 4 h.
 
 ## Cuidado al usarlos para validar
 
