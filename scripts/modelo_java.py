@@ -9,7 +9,7 @@ compilación que verifica el código contra las librerías de AnyLogic.
 # ---------------------------------------------------------------------------
 PARAMETROS = [
     # Orden de fabricación
-    ("ofSeleccionada", "int", "1", "OF (1, 2, 3 = ejemplos; 4 = rotar ejemplos; 0 = personalizada)"),
+    ("ofSeleccionada", "int", "1", "OF (1, 2, 3 = OF de producción; 4 = rotar las tres; 0 = personalizada)"),
     ("cantidadAILA", "int", "42", "OF personalizada: AILA 30KG"),
     ("cantidadREPORT", "int", "58", "OF personalizada: REPORT LT"),
     ("cantidadNOVEL", "int", "83", "OF personalizada: NOVEL ECO"),
@@ -461,10 +461,9 @@ if (o.idOp < nPuestos) {
 """)
 
 funcion("ofEjemplo", "int", [("of", "int"), ("m", "int")], """
-// OF de ejemplo (reemplazar por OF reales de KRETZ cuando estén disponibles). Escaladas un 15,5 %
-// para que, como en la planta, haya que recuperar el sábado en 3 de cada 4 semanas
-// (calibración con 30 réplicas: 266 u/día -> 29 % de las semanas; 298 -> 55 %; 325 -> 100 %).
-int[][] ejemplos = {
+// OF de producción de KRETZ: unidades por día de cada modelo
+// (AILA 30KG, REPORT LT, NOVEL ECO, LURA, AURA)
+int[][] ofs = {
 	{ 42, 58, 83, 55, 69 },   // OF 1: mezcla equilibrada (307 unidades)
 	{ 28, 83, 55, 42, 55 },   // OF 2: mucha REPORT LT (procesos largos)
 	{ 55, 35, 111, 69, 83 }   // OF 3: alto volumen de equipos cortos
@@ -473,8 +472,8 @@ if (of == 0) {
 	int[] propia = { cantidadAILA, cantidadREPORT, cantidadNOVEL, cantidadLURA, cantidadAURA };
 	return propia[m];
 }
-if (of == 4) return ejemplos[(diaGlobal - 1) % 3][m];
-return ejemplos[Math.max(1, Math.min(3, of)) - 1][m];
+if (of == 4) return ofs[(diaGlobal - 1) % 3][m];
+return ofs[Math.max(1, Math.min(3, of)) - 1][m];
 """)
 
 funcion("tiempoTotalModelo", "double", [("m", "int")], """
