@@ -31,7 +31,7 @@ TURNO_MIN = 480
 VALOR_HORA = 6500               # $/h con cargas (mismo supuesto que el modelo)
 RECARGO = 2
 PROB_AUSENCIA = 0.06
-EFICIENCIA = 0.94               # fracción del turno que rinde (caminatas, esperas, arranque y cierre)
+EFICIENCIA = 0.93               # fracción del turno que rinde (caminatas, esperas, arranque y cierre)
 FACTOR_DIA = [1.25, 1.0, 0.9, 0.9, 1.1]          # lunes a viernes, igual que el modelo
 DIAS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
 FERIADOS = {date(2026, 3, 23), date(2026, 3, 24), date(2026, 4, 2), date(2026, 4, 3), date(2026, 5, 1),
@@ -49,7 +49,7 @@ MIN_POR_UNIDAD = {
     "AURA": {"Armador": 3.15 + 3.5, "Ajustador": 3, "Controlador": 2.5, "Embalador": 2.88},
 }
 # Mezclas típicas de OF (unidades por día), cerca de las OF de ejemplo del modelo
-ESCALA_OF = 1.13               # OF más grandes: en la planta se recupera el sábado 3 de cada 4 semanas
+ESCALA_OF = 1.15               # OF un 15 % más grandes, igual que la OF de ejemplo del modelo (307 u/día)
 MEZCLAS = [(n, [c * ESCALA_OF for c in base]) for n, base in [
     ("Equilibrada", [34, 46, 72, 46, 60]),
     ("Mucha REPORT LT", [20, 64, 48, 34, 46]),
@@ -156,7 +156,7 @@ def main():
             presentes = {esp: sum(1 for e in linea if e["especialidad"] == esp and e["legajo"] not in ausentes)
                          for esp in ESPECIALIDADES}
             eficiencia = rng.gauss(EFICIENCIA, 0.02)       # caminatas, esperas y arranque/cierre de turno
-            variab = rng.gauss(1.0, 0.08)            # tiempos reales frente a SAP
+            variab = rng.gauss(1.0, 0.10)            # tiempos reales frente a SAP
             evento = ""
             if rng.random() < 0.04:
                 evento = rng.choice(EVENTOS)
@@ -215,7 +215,7 @@ def main():
         minutos_trabajo = sum(falt_semana[m] * sum(MIN_POR_UNIDAD[m].values()) for m in MODELOS)
         convocados = max(3, min(12, math.ceil(falt_total / 4)))
         asisten = max(1, sum(1 for _ in range(convocados) if rng.random() > 0.10))
-        horas = minutos_trabajo / (asisten * 60 * rng.gauss(0.70, 0.04))
+        horas = minutos_trabajo / (asisten * 60 * rng.gauss(0.95, 0.04))
         horas = max(4.0, math.ceil(horas * 2) / 2)    # se convoca por un mínimo de 4 h
         hh = horas * asisten
         semanal.append([s + 1, sabado.isoformat(), pedido_semana, producido_semana, falt_total, asisten,

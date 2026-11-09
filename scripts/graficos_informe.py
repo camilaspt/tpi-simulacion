@@ -5,6 +5,7 @@ Escribe en Informe/figuras/:
 - ahorro_vs_actual.png      ahorro semanal pareado contra el escenario actual, IC 95 %
 - horas_extra_ic.png        horas extra semanales por escenario, media e IC 95 %
 - validacion.png            escenario actual frente al historial (sintético) de KRETZ
+- repago_reorganizacion.png ahorro acumulado de la reorganización frente a su inversión
 
     py -3 scripts/graficos_informe.py
 """
@@ -172,6 +173,36 @@ def main():
                  fontsize=11, fontweight="bold", color=TINTA)
     fig.tight_layout()
     fig.savefig(SALIDA / "validacion.png")
+    plt.close(fig)
+    # Repago de la reorganización: ahorro operativo pareado en horas extra, acumulado por semana
+    he = por_replica(filas, "costo_horas_extra", 1 / SEMANAS)
+    nombre_reorg = ESCENARIOS[6][1]
+    m, h = ic([he["Escenario actual"][r] - he[nombre_reorg][r] for r in he["Escenario actual"]])
+    inversion = 1_500_000
+    semanas = list(range(0, 21))
+    fig, ax = plt.subplots(figsize=(7.2, 3.4))
+    ax.fill_between(semanas, [(m - h) * w / 1e6 for w in semanas], [(m + h) * w / 1e6 for w in semanas],
+                    color=VERDE, alpha=0.12, linewidth=0, label="IC 95 % del ahorro")
+    ax.plot(semanas, [m * w / 1e6 for w in semanas], color=VERDE, linewidth=2, label="Ahorro acumulado en horas extra")
+    ax.axhline(inversion / 1e6, color=TINTA, linewidth=1.2, linestyle="--", label="Inversión de la reorganización")
+    for valor, estilo_l in ((inversion / (m + h), ":"), (inversion / m, "-"), (inversion / (m - h), ":")):
+        ax.axvline(valor, color=TINTA2, linewidth=1, linestyle=estilo_l)
+    ax.text(inversion / m + 0.2, 0.2, f"repago: {inversion / m:.1f} semanas\n({inversion / (m + h):.1f} a {inversion / (m - h):.1f})"
+            .replace(".", ","), fontsize=8.5, color=TINTA)
+    ax.set_xlim(0, 20)
+    ax.set_xticks(range(0, 21, 2))
+    ax.set_ylim(0, None)
+    ax.set_xlabel("Semanas desde la reorganización")
+    ax.set_ylabel("Millones de $")
+    ax.set_title("Repago de la reorganización (E6)", loc="left")
+    ax.grid(axis="y", color=GRILLA, linewidth=0.8)
+    ax.set_axisbelow(True)
+    for sp in ("top", "right"):
+        ax.spines[sp].set_visible(False)
+    ax.tick_params(length=0)
+    ax.legend(loc="upper left", fontsize=8, frameon=True, facecolor="white", edgecolor="white", framealpha=1)
+    fig.tight_layout()
+    fig.savefig(SALIDA / "repago_reorganizacion.png")
     plt.close(fig)
     print(f"Figuras en {SALIDA}")
 

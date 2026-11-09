@@ -23,23 +23,23 @@ Formato: separador `;`, decimales con coma, UTF-8 con BOM (se abren directo en E
 
 ## Resultados del período
 
-- 120 jornadas, de las que **64 (53 %) no cumplieron la OF**.
-- Cumplimiento medio en el turno: **88,4 %**.
+- 120 jornadas, de las que **78 (65 %) no cumplieron la OF**.
+- Cumplimiento medio en el turno: **83,4 %**.
 - Ausentismo de las líneas: alrededor del 6 %, más alto los lunes.
-- **19 de 26 semanas** (3 de cada 4) necesitaron recuperación de fin de semana; **33,3 h-hombre por semana** en promedio.
-- El cuello de botella es casi siempre **Ajuste**.
+- **17 de 26 semanas** (65 %) necesitaron recuperación de fin de semana; **32,1 h-hombre por semana** en promedio ($ 417.250 por semana).
+- El cuello de botella es **Ajuste** en 69 de las 78 jornadas que no cumplieron.
 
-Calibración (noviembre de 2026): las OF se agrandaron un 13 % (en la planta hay que recuperar el sábado 3 de cada 4 semanas); la eficiencia del turno (94 % ± 2 %), la variación diaria de los tiempos (± 8 %) y el arrastre de las unidades atrasadas al día siguiente se ajustaron para que el historial quede dentro de los intervalos del 95 % del escenario actual del modelo (ver la hoja *Validacion* de `Resultados/Resultados_KRETZ.xlsx`).
+Calibración (noviembre de 2026): las OF se agrandaron un 15 %, igual que la OF de ejemplo del modelo (307 unidades por día), porque en la planta hay que recuperar el sábado en la mayoría de las semanas. La eficiencia del turno (93 % ± 2 %), la variación diaria de los tiempos (± 10 %), el rendimiento de la jornada del sábado (95 %, como el modelo) y el arrastre de las unidades atrasadas al día siguiente se ajustaron para que el historial quede dentro de los intervalos del 95 % del escenario actual del modelo (hoja *Validacion* de `Resultados/Resultados_KRETZ.xlsx`).
 
 ## Cómo se generaron
 
 Para cada jornada:
 
 1. **Asistencia.** Cada empleado tiene su propia propensión a faltar (media del 6 %), multiplicada por el factor de cada día de la semana que usa el modelo (lunes 1,25; martes 1,0; miércoles y jueves 0,9; viernes 1,1).
-2. **OF del día.** Se elige una de tres mezclas típicas, agrandadas un 13 % (equilibrada, con mucha REPORT LT o con muchos equipos cortos), con ±10 % de variación por modelo. A veces algún modelo no entra en la OF.
-3. **Capacidad.** Para cada especialidad se comparan los minutos disponibles de los presentes (480 min × eficiencia del 94 % ± 2 %) con los minutos que piden la OF del día y las unidades atrasadas del día anterior, según los tiempos de SAP (±8 % de variación diaria). La especialidad con menos holgura limita la producción. No hay coberturas entre especialidades (igual que el escenario actual del modelo). En el 4 % de los días hay un evento que baja la eficiencia.
+2. **OF del día.** Se elige una de tres mezclas típicas, agrandadas un 15 % (equilibrada, con mucha REPORT LT o con muchos equipos cortos), con ±10 % de variación por modelo. A veces algún modelo no entra en la OF.
+3. **Capacidad.** Para cada especialidad se comparan los minutos disponibles de los presentes (480 min × eficiencia del 93 % ± 2 %) con los minutos que piden la OF del día y las unidades atrasadas del día anterior, según los tiempos de SAP (±10 % de variación diaria). La especialidad con menos holgura limita la producción. No hay coberturas entre especialidades (igual que el escenario actual del modelo). En el 4 % de los días hay un evento que baja la eficiencia.
 4. **Faltante.** Primero se terminan las unidades atrasadas; los minutos que no se llegan a cubrir se reparten entre los modelos de la OF del día según su carga en la especialidad que limitó la jornada, y quedan pendientes para el día siguiente (columna `Atrasadas_dia_anterior`).
-5. **Fin de semana.** Lo que sigue pendiente al cierre del viernes se recupera el sábado con una cuadrilla proporcional al faltante (entre 3 y 12 personas, el 10 % falta). La jornada dura lo necesario a un 70 % de rendimiento, con un mínimo de 4 h.
+5. **Fin de semana.** Lo que sigue pendiente al cierre del viernes se recupera el sábado con una cuadrilla proporcional al faltante (entre 3 y 12 personas, el 10 % falta). La jornada dura lo necesario a un 95 % de rendimiento, con un mínimo de 4 h.
 
 ## Cuidado al usarlos para validar
 

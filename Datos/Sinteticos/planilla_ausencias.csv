@@ -30,260 +30,282 @@
 1021;Controlador;Control Final 1;2026-03-27;Viernes;Enfermedad;1
 1023;Embalador;Control Final 1;2026-03-27;Viernes;Enfermedad;1
 1035;Depósito;Depósito;2026-03-27;Viernes;Enfermedad;1
-1013;Armador;Armado 3;2026-03-30;Lunes;Enfermedad;1
+1005;Ajustador;Armado 1;2026-03-30;Lunes;Enfermedad;1
+1017;Armador;Armado 4;2026-03-30;Lunes;Sin aviso;1
 1035;Depósito;Depósito;2026-03-30;Lunes;Enfermedad;1
-1010;Ajustador;Armado 2;2026-03-31;Martes;Enfermedad;1
+1005;Ajustador;Armado 1;2026-03-31;Martes;Enfermedad;1
+1011;Armador;Armado 3;2026-03-31;Martes;Enfermedad;1
 1013;Armador;Armado 3;2026-03-31;Martes;Enfermedad;1
-1023;Embalador;Control Final 1;2026-03-31;Martes;Enfermedad;1
-1027;Controlador;Control Final 2;2026-03-31;Martes;Enfermedad;1
+1014;Armador;Armado 3;2026-03-31;Martes;Enfermedad;1
+1017;Armador;Armado 4;2026-03-31;Martes;Enfermedad;1
+1031;Depósito;Depósito;2026-03-31;Martes;Enfermedad;1
 1035;Depósito;Depósito;2026-03-31;Martes;Enfermedad;1
-1027;Controlador;Control Final 2;2026-04-01;Miércoles;Enfermedad;1
-1032;Depósito;Depósito;2026-04-01;Miércoles;Enfermedad;1
-1027;Controlador;Control Final 2;2026-04-06;Lunes;Enfermedad;1
-1032;Depósito;Depósito;2026-04-06;Lunes;Enfermedad;1
-1039;Depósito;Depósito;2026-04-06;Lunes;Enfermedad;1
-1011;Armador;Armado 3;2026-04-07;Martes;Sin aviso;1
-1034;Depósito;Depósito;2026-04-07;Martes;Enfermedad;1
-1013;Armador;Armado 3;2026-04-08;Miércoles;Razones particulares;1
-1017;Armador;Armado 4;2026-04-08;Miércoles;Razones particulares;1
-1021;Controlador;Control Final 1;2026-04-08;Miércoles;Enfermedad;1
-1030;Embalador;Control Final 2;2026-04-08;Miércoles;Trámite;1
-1034;Depósito;Depósito;2026-04-08;Miércoles;Enfermedad;1
-1040;Depósito;Depósito;2026-04-08;Miércoles;Enfermedad;1
-1005;Ajustador;Armado 1;2026-04-09;Jueves;Razones particulares;1
-1013;Armador;Armado 3;2026-04-09;Jueves;Enfermedad;1
-1006;Armador;Armado 2;2026-04-10;Viernes;Enfermedad;1
+1026;Controlador;Control Final 2;2026-04-01;Miércoles;Trámite;1
+1019;Armador;Armado 4;2026-04-06;Lunes;Enfermedad;1
+1030;Embalador;Control Final 2;2026-04-06;Lunes;Enfermedad;1
+1032;Depósito;Depósito;2026-04-06;Lunes;Trámite;1
+1030;Embalador;Control Final 2;2026-04-07;Martes;Enfermedad;1
+1037;Depósito;Depósito;2026-04-07;Martes;Enfermedad;1
+1005;Ajustador;Armado 1;2026-04-08;Miércoles;Enfermedad;1
+1014;Armador;Armado 3;2026-04-08;Miércoles;Trámite;1
+1023;Embalador;Control Final 1;2026-04-08;Miércoles;Enfermedad;1
+1030;Embalador;Control Final 2;2026-04-08;Miércoles;Enfermedad;1
+1040;Depósito;Depósito;2026-04-09;Jueves;Enfermedad;1
+1010;Ajustador;Armado 2;2026-04-10;Viernes;Enfermedad;1
 1013;Armador;Armado 3;2026-04-10;Viernes;Enfermedad;1
-1017;Armador;Armado 4;2026-04-10;Viernes;Enfermedad;1
-1032;Depósito;Depósito;2026-04-10;Viernes;Enfermedad;1
-1037;Depósito;Depósito;2026-04-10;Viernes;Enfermedad;1
-1040;Depósito;Depósito;2026-04-10;Viernes;Trámite;1
-1013;Armador;Armado 3;2026-04-13;Lunes;Enfermedad;1
+1023;Embalador;Control Final 1;2026-04-10;Viernes;Enfermedad;1
+1028;Embalador;Control Final 2;2026-04-10;Viernes;Enfermedad;1
+1031;Depósito;Depósito;2026-04-10;Viernes;Trámite;1
+1032;Depósito;Depósito;2026-04-10;Viernes;Trámite;1
+1006;Armador;Armado 2;2026-04-13;Lunes;Razones particulares;1
+1010;Ajustador;Armado 2;2026-04-13;Lunes;Enfermedad;1
 1017;Armador;Armado 4;2026-04-13;Lunes;Enfermedad;1
-1035;Depósito;Depósito;2026-04-13;Lunes;Razones particulares;1
-1017;Armador;Armado 4;2026-04-14;Martes;Enfermedad;1
-1017;Armador;Armado 4;2026-04-15;Miércoles;Enfermedad;1
-1018;Armador;Armado 4;2026-04-17;Viernes;Trámite;1
-1004;Armador;Armado 1;2026-04-20;Lunes;Razones particulares;1
-1013;Armador;Armado 3;2026-04-20;Lunes;Enfermedad;1
-1005;Ajustador;Armado 1;2026-04-21;Martes;Trámite;1
-1013;Armador;Armado 3;2026-04-21;Martes;Enfermedad;1
-1021;Controlador;Control Final 1;2026-04-21;Martes;Enfermedad;1
-1032;Depósito;Depósito;2026-04-21;Martes;Sin aviso;1
-1005;Ajustador;Armado 1;2026-04-23;Jueves;Enfermedad;1
-1005;Ajustador;Armado 1;2026-04-24;Viernes;Enfermedad;1
-1010;Ajustador;Armado 2;2026-04-24;Viernes;Enfermedad;1
-1014;Armador;Armado 3;2026-04-24;Viernes;Enfermedad;1
-1010;Ajustador;Armado 2;2026-04-27;Lunes;Enfermedad;1
-1018;Armador;Armado 4;2026-04-27;Lunes;Enfermedad;1
-1029;Embalador;Control Final 2;2026-04-27;Lunes;Razones particulares;1
-1030;Embalador;Control Final 2;2026-04-27;Lunes;Sin aviso;1
-1034;Depósito;Depósito;2026-04-27;Lunes;Enfermedad;1
-1018;Armador;Armado 4;2026-04-28;Martes;Enfermedad;1
-1033;Depósito;Depósito;2026-04-28;Martes;Enfermedad;1
-1033;Depósito;Depósito;2026-04-29;Miércoles;Enfermedad;1
-1006;Armador;Armado 2;2026-04-30;Jueves;Sin aviso;1
-1010;Ajustador;Armado 2;2026-04-30;Jueves;Razones particulares;1
-1013;Armador;Armado 3;2026-04-30;Jueves;Razones particulares;1
-1017;Armador;Armado 4;2026-04-30;Jueves;Enfermedad;1
-1033;Depósito;Depósito;2026-04-30;Jueves;Enfermedad;1
-1035;Depósito;Depósito;2026-04-30;Jueves;Enfermedad;1
-1032;Depósito;Depósito;2026-05-04;Lunes;Enfermedad;1
+1031;Depósito;Depósito;2026-04-13;Lunes;Enfermedad;1
+1034;Depósito;Depósito;2026-04-13;Lunes;Razones particulares;1
+1005;Ajustador;Armado 1;2026-04-14;Martes;Sin aviso;1
+1039;Depósito;Depósito;2026-04-14;Martes;Enfermedad;1
+1005;Ajustador;Armado 1;2026-04-15;Miércoles;Razones particulares;1
+1013;Armador;Armado 3;2026-04-15;Miércoles;Enfermedad;1
+1023;Embalador;Control Final 1;2026-04-15;Miércoles;Trámite;1
+1017;Armador;Armado 4;2026-04-16;Jueves;Enfermedad;1
+1007;Armador;Armado 2;2026-04-17;Viernes;Enfermedad;1
+1019;Armador;Armado 4;2026-04-17;Viernes;Sin aviso;1
+1038;Depósito;Depósito;2026-04-17;Viernes;Razones particulares;1
+1030;Embalador;Control Final 2;2026-04-20;Lunes;Trámite;1
+1014;Armador;Armado 3;2026-04-21;Martes;Enfermedad;1
+1019;Armador;Armado 4;2026-04-21;Martes;Enfermedad;1
+1014;Armador;Armado 3;2026-04-22;Miércoles;Enfermedad;1
+1005;Ajustador;Armado 1;2026-04-23;Jueves;Licencia por examen;1
+1014;Armador;Armado 3;2026-04-23;Jueves;Enfermedad;1
+1019;Armador;Armado 4;2026-04-23;Jueves;Enfermedad;1
+1030;Embalador;Control Final 2;2026-04-23;Jueves;Enfermedad;1
+1034;Depósito;Depósito;2026-04-23;Jueves;Enfermedad;1
+1019;Armador;Armado 4;2026-04-24;Viernes;Enfermedad;1
+1020;Ajustador;Armado 4;2026-04-24;Viernes;Enfermedad;1
+1030;Embalador;Control Final 2;2026-04-24;Viernes;Enfermedad;1
+1013;Armador;Armado 3;2026-04-27;Lunes;Enfermedad;1
+1019;Armador;Armado 4;2026-04-27;Lunes;Enfermedad;1
+1021;Controlador;Control Final 1;2026-04-27;Lunes;Enfermedad;1
+1037;Depósito;Depósito;2026-04-27;Lunes;Razones particulares;1
+1007;Armador;Armado 2;2026-04-28;Martes;Enfermedad;1
+1019;Armador;Armado 4;2026-04-28;Martes;Trámite;1
+1032;Depósito;Depósito;2026-04-28;Martes;Sin aviso;1
+1005;Ajustador;Armado 1;2026-04-29;Miércoles;Razones particulares;1
+1013;Armador;Armado 3;2026-04-29;Miércoles;Razones particulares;1
+1015;Ajustador;Armado 3;2026-04-29;Miércoles;Enfermedad;1
+1032;Depósito;Depósito;2026-04-29;Miércoles;Enfermedad;1
+1035;Depósito;Depósito;2026-04-29;Miércoles;Razones particulares;1
+1038;Depósito;Depósito;2026-04-29;Miércoles;Enfermedad;1
+1015;Ajustador;Armado 3;2026-04-30;Jueves;Enfermedad;1
+1030;Embalador;Control Final 2;2026-04-30;Jueves;Razones particulares;1
+1002;Armador;Armado 1;2026-05-04;Lunes;Enfermedad;1
+1005;Ajustador;Armado 1;2026-05-04;Lunes;Enfermedad;1
+1011;Armador;Armado 3;2026-05-04;Lunes;Trámite;1
+1013;Armador;Armado 3;2026-05-04;Lunes;Enfermedad;1
+1016;Armador;Armado 4;2026-05-04;Lunes;Trámite;1
 1034;Depósito;Depósito;2026-05-04;Lunes;Enfermedad;1
-1040;Depósito;Depósito;2026-05-04;Lunes;Enfermedad;1
-1032;Depósito;Depósito;2026-05-05;Martes;Enfermedad;1
+1039;Depósito;Depósito;2026-05-04;Lunes;Trámite;1
+1005;Ajustador;Armado 1;2026-05-05;Martes;Enfermedad;1
+1032;Depósito;Depósito;2026-05-05;Martes;Razones particulares;1
+1034;Depósito;Depósito;2026-05-05;Martes;Enfermedad;1
 1030;Embalador;Control Final 2;2026-05-06;Miércoles;Enfermedad;1
-1005;Ajustador;Armado 1;2026-05-08;Viernes;Razones particulares;1
-1025;Embalador;Control Final 1;2026-05-08;Viernes;Enfermedad;1
-1008;Armador;Armado 2;2026-05-12;Martes;Enfermedad;1
-1011;Armador;Armado 3;2026-05-12;Martes;Enfermedad;1
-1017;Armador;Armado 4;2026-05-12;Martes;Licencia por examen;1
-1008;Armador;Armado 2;2026-05-13;Miércoles;Enfermedad;1
-1011;Armador;Armado 3;2026-05-13;Miércoles;Enfermedad;1
-1038;Depósito;Depósito;2026-05-13;Miércoles;Enfermedad;1
-1010;Ajustador;Armado 2;2026-05-14;Jueves;Sin aviso;1
-1014;Armador;Armado 3;2026-05-14;Jueves;Enfermedad;1
-1019;Armador;Armado 4;2026-05-14;Jueves;Razones particulares;1
-1034;Depósito;Depósito;2026-05-14;Jueves;Enfermedad;1
-1038;Depósito;Depósito;2026-05-14;Jueves;Enfermedad;1
-1005;Ajustador;Armado 1;2026-05-15;Viernes;Trámite;1
-1006;Armador;Armado 2;2026-05-15;Viernes;Enfermedad;1
-1017;Armador;Armado 4;2026-05-15;Viernes;Enfermedad;1
-1029;Embalador;Control Final 2;2026-05-15;Viernes;Enfermedad;1
-1032;Depósito;Depósito;2026-05-15;Viernes;Enfermedad;1
-1002;Armador;Armado 1;2026-05-18;Lunes;Trámite;1
-1017;Armador;Armado 4;2026-05-18;Lunes;Enfermedad;1
-1029;Embalador;Control Final 2;2026-05-18;Lunes;Enfermedad;1
-1033;Depósito;Depósito;2026-05-18;Lunes;Enfermedad;1
-1038;Depósito;Depósito;2026-05-18;Lunes;Enfermedad;1
-1017;Armador;Armado 4;2026-05-19;Martes;Enfermedad;1
-1015;Ajustador;Armado 3;2026-05-20;Miércoles;Trámite;1
-1037;Depósito;Depósito;2026-05-21;Jueves;Enfermedad;1
-1017;Armador;Armado 4;2026-05-22;Viernes;Enfermedad;1
-1036;Depósito;Depósito;2026-05-22;Viernes;Razones particulares;1
-1037;Depósito;Depósito;2026-05-22;Viernes;Enfermedad;1
-1017;Armador;Armado 4;2026-05-26;Martes;Enfermedad;1
-1029;Embalador;Control Final 2;2026-05-27;Miércoles;Sin aviso;1
-1029;Embalador;Control Final 2;2026-05-28;Jueves;Razones particulares;1
-1032;Depósito;Depósito;2026-05-28;Jueves;Razones particulares;1
-1005;Ajustador;Armado 1;2026-05-29;Viernes;Enfermedad;1
-1015;Ajustador;Armado 3;2026-05-29;Viernes;Razones particulares;1
-1018;Armador;Armado 4;2026-05-29;Viernes;Enfermedad;1
-1021;Controlador;Control Final 1;2026-05-29;Viernes;Razones particulares;1
-1035;Depósito;Depósito;2026-05-29;Viernes;Sin aviso;1
-1007;Armador;Armado 2;2026-06-01;Lunes;Enfermedad;1
-1008;Armador;Armado 2;2026-06-02;Martes;Enfermedad;1
-1029;Embalador;Control Final 2;2026-06-02;Martes;Razones particulares;1
-1008;Armador;Armado 2;2026-06-03;Miércoles;Enfermedad;1
-1014;Armador;Armado 3;2026-06-03;Miércoles;Enfermedad;1
-1026;Controlador;Control Final 2;2026-06-03;Miércoles;Razones particulares;1
-1014;Armador;Armado 3;2026-06-04;Jueves;Enfermedad;1
-1018;Armador;Armado 4;2026-06-04;Jueves;Enfermedad;1
-1033;Depósito;Depósito;2026-06-04;Jueves;Trámite;1
-1036;Depósito;Depósito;2026-06-08;Lunes;Trámite;1
-1038;Depósito;Depósito;2026-06-08;Lunes;Enfermedad;1
-1005;Ajustador;Armado 1;2026-06-09;Martes;Sin aviso;1
-1029;Embalador;Control Final 2;2026-06-09;Martes;Enfermedad;1
-1032;Depósito;Depósito;2026-06-09;Martes;Sin aviso;1
-1040;Depósito;Depósito;2026-06-09;Martes;Enfermedad;1
-1011;Armador;Armado 3;2026-06-10;Miércoles;Licencia por examen;1
-1040;Depósito;Depósito;2026-06-10;Miércoles;Enfermedad;1
-1010;Ajustador;Armado 2;2026-06-11;Jueves;Enfermedad;1
-1032;Depósito;Depósito;2026-06-11;Jueves;Trámite;1
-1039;Depósito;Depósito;2026-06-11;Jueves;Licencia por examen;1
-1021;Controlador;Control Final 1;2026-06-12;Viernes;Sin aviso;1
-1035;Depósito;Depósito;2026-06-16;Martes;Razones particulares;1
-1039;Depósito;Depósito;2026-06-16;Martes;Licencia por examen;1
-1017;Armador;Armado 4;2026-06-17;Miércoles;Razones particulares;1
-1018;Armador;Armado 4;2026-06-17;Miércoles;Sin aviso;1
-1014;Armador;Armado 3;2026-06-18;Jueves;Enfermedad;1
-1035;Depósito;Depósito;2026-06-18;Jueves;Enfermedad;1
-1016;Armador;Armado 4;2026-06-19;Viernes;Enfermedad;1
-1024;Embalador;Control Final 1;2026-06-19;Viernes;Sin aviso;1
-1004;Armador;Armado 1;2026-06-22;Lunes;Razones particulares;1
-1010;Ajustador;Armado 2;2026-06-22;Lunes;Enfermedad;1
-1016;Armador;Armado 4;2026-06-22;Lunes;Enfermedad;1
-1025;Embalador;Control Final 1;2026-06-22;Lunes;Razones particulares;1
-1032;Depósito;Depósito;2026-06-22;Lunes;Licencia por examen;1
-1039;Depósito;Depósito;2026-06-22;Lunes;Trámite;1
-1016;Armador;Armado 4;2026-06-23;Martes;Enfermedad;1
-1005;Ajustador;Armado 1;2026-06-24;Miércoles;Enfermedad;1
-1015;Ajustador;Armado 3;2026-06-24;Miércoles;Trámite;1
-1016;Armador;Armado 4;2026-06-24;Miércoles;Enfermedad;1
-1032;Depósito;Depósito;2026-06-24;Miércoles;Enfermedad;1
-1036;Depósito;Depósito;2026-06-24;Miércoles;Enfermedad;1
-1002;Armador;Armado 1;2026-06-25;Jueves;Enfermedad;1
-1004;Armador;Armado 1;2026-06-25;Jueves;Razones particulares;1
-1005;Ajustador;Armado 1;2026-06-25;Jueves;Enfermedad;1
-1016;Armador;Armado 4;2026-06-25;Jueves;Enfermedad;1
-1033;Depósito;Depósito;2026-06-25;Jueves;Enfermedad;1
-1005;Ajustador;Armado 1;2026-06-26;Viernes;Enfermedad;1
-1006;Armador;Armado 2;2026-06-26;Viernes;Sin aviso;1
-1023;Embalador;Control Final 1;2026-06-26;Viernes;Enfermedad;1
-1039;Depósito;Depósito;2026-06-26;Viernes;Enfermedad;1
-1006;Armador;Armado 2;2026-06-29;Lunes;Enfermedad;1
-1007;Armador;Armado 2;2026-06-29;Lunes;Razones particulares;1
-1037;Depósito;Depósito;2026-06-29;Lunes;Razones particulares;1
-1039;Depósito;Depósito;2026-06-29;Lunes;Enfermedad;1
-1017;Armador;Armado 4;2026-06-30;Martes;Sin aviso;1
-1005;Ajustador;Armado 1;2026-07-02;Jueves;Razones particulares;1
-1032;Depósito;Depósito;2026-07-02;Jueves;Razones particulares;1
-1017;Armador;Armado 4;2026-07-03;Viernes;Sin aviso;1
-1011;Armador;Armado 3;2026-07-06;Lunes;Enfermedad;1
-1013;Armador;Armado 3;2026-07-06;Lunes;Enfermedad;1
-1017;Armador;Armado 4;2026-07-06;Lunes;Enfermedad;1
-1028;Embalador;Control Final 2;2026-07-06;Lunes;Razones particulares;1
-1029;Embalador;Control Final 2;2026-07-06;Lunes;Enfermedad;1
+1012;Armador;Armado 3;2026-05-07;Jueves;Enfermedad;1
+1018;Armador;Armado 4;2026-05-07;Jueves;Sin aviso;1
+1030;Embalador;Control Final 2;2026-05-07;Jueves;Enfermedad;1
+1041;Inspector de calidad;Depósito;2026-05-07;Jueves;Enfermedad;1
+1015;Ajustador;Armado 3;2026-05-08;Viernes;Enfermedad;1
+1021;Controlador;Control Final 1;2026-05-08;Viernes;Enfermedad;1
+1030;Embalador;Control Final 2;2026-05-08;Viernes;Enfermedad;1
+1032;Depósito;Depósito;2026-05-08;Viernes;Enfermedad;1
+1014;Armador;Armado 3;2026-05-11;Lunes;Razones particulares;1
+1021;Controlador;Control Final 1;2026-05-11;Lunes;Enfermedad;1
+1024;Embalador;Control Final 1;2026-05-11;Lunes;Enfermedad;1
+1007;Armador;Armado 2;2026-05-12;Martes;Enfermedad;1
+1021;Controlador;Control Final 1;2026-05-12;Martes;Enfermedad;1
+1024;Embalador;Control Final 1;2026-05-12;Martes;Enfermedad;1
+1033;Depósito;Depósito;2026-05-12;Martes;Razones particulares;1
+1021;Controlador;Control Final 1;2026-05-13;Miércoles;Sin aviso;1
+1032;Depósito;Depósito;2026-05-13;Miércoles;Razones particulares;1
+1038;Depósito;Depósito;2026-05-13;Miércoles;Licencia por examen;1
+1017;Armador;Armado 4;2026-05-14;Jueves;Enfermedad;1
+1004;Armador;Armado 1;2026-05-18;Lunes;Enfermedad;1
+1013;Armador;Armado 3;2026-05-18;Lunes;Enfermedad;1
+1023;Embalador;Control Final 1;2026-05-18;Lunes;Razones particulares;1
+1032;Depósito;Depósito;2026-05-18;Lunes;Enfermedad;1
+1013;Armador;Armado 3;2026-05-19;Martes;Enfermedad;1
+1024;Embalador;Control Final 1;2026-05-19;Martes;Razones particulares;1
+1032;Depósito;Depósito;2026-05-19;Martes;Enfermedad;1
+1023;Embalador;Control Final 1;2026-05-20;Miércoles;Enfermedad;1
+1005;Ajustador;Armado 1;2026-05-21;Jueves;Trámite;1
+1013;Armador;Armado 3;2026-05-21;Jueves;Razones particulares;1
+1017;Armador;Armado 4;2026-05-21;Jueves;Sin aviso;1
+1006;Armador;Armado 2;2026-05-22;Viernes;Enfermedad;1
+1020;Ajustador;Armado 4;2026-05-22;Viernes;Razones particulares;1
+1030;Embalador;Control Final 2;2026-05-22;Viernes;Enfermedad;1
+1007;Armador;Armado 2;2026-05-27;Miércoles;Enfermedad;1
+1017;Armador;Armado 4;2026-05-28;Jueves;Enfermedad;1
+1032;Depósito;Depósito;2026-05-28;Jueves;Enfermedad;1
+1013;Armador;Armado 3;2026-05-29;Viernes;Sin aviso;1
+1022;Controlador;Control Final 1;2026-05-29;Viernes;Razones particulares;1
+1023;Embalador;Control Final 1;2026-05-29;Viernes;Razones particulares;1
+1007;Armador;Armado 2;2026-06-01;Lunes;Sin aviso;1
+1020;Ajustador;Armado 4;2026-06-01;Lunes;Sin aviso;1
+1026;Controlador;Control Final 2;2026-06-01;Lunes;Enfermedad;1
+1032;Depósito;Depósito;2026-06-01;Lunes;Enfermedad;1
+1034;Depósito;Depósito;2026-06-01;Lunes;Razones particulares;1
+1027;Controlador;Control Final 2;2026-06-02;Martes;Enfermedad;1
+1030;Embalador;Control Final 2;2026-06-02;Martes;Enfermedad;1
+1034;Depósito;Depósito;2026-06-03;Miércoles;Sin aviso;1
+1001;Armador;Armado 1;2026-06-04;Jueves;Enfermedad;1
+1001;Armador;Armado 1;2026-06-05;Viernes;Enfermedad;1
+1001;Armador;Armado 1;2026-06-08;Lunes;Enfermedad;1
+1021;Controlador;Control Final 1;2026-06-08;Lunes;Enfermedad;1
+1035;Depósito;Depósito;2026-06-08;Lunes;Enfermedad;1
+1002;Armador;Armado 1;2026-06-09;Martes;Razones particulares;1
+1011;Armador;Armado 3;2026-06-09;Martes;Enfermedad;1
+1021;Controlador;Control Final 1;2026-06-09;Martes;Enfermedad;1
+1032;Depósito;Depósito;2026-06-09;Martes;Enfermedad;1
+1034;Depósito;Depósito;2026-06-09;Martes;Licencia por examen;1
+1035;Depósito;Depósito;2026-06-09;Martes;Enfermedad;1
+1005;Ajustador;Armado 1;2026-06-10;Miércoles;Trámite;1
+1031;Depósito;Depósito;2026-06-10;Miércoles;Enfermedad;1
+1006;Armador;Armado 2;2026-06-11;Jueves;Razones particulares;1
+1001;Armador;Armado 1;2026-06-12;Viernes;Enfermedad;1
+1032;Depósito;Depósito;2026-06-12;Viernes;Sin aviso;1
+1010;Ajustador;Armado 2;2026-06-16;Martes;Enfermedad;1
+1039;Depósito;Depósito;2026-06-16;Martes;Enfermedad;1
+1007;Armador;Armado 2;2026-06-17;Miércoles;Enfermedad;1
+1008;Armador;Armado 2;2026-06-17;Miércoles;Sin aviso;1
+1010;Ajustador;Armado 2;2026-06-17;Miércoles;Razones particulares;1
+1013;Armador;Armado 3;2026-06-17;Miércoles;Enfermedad;1
+1017;Armador;Armado 4;2026-06-17;Miércoles;Trámite;1
+1007;Armador;Armado 2;2026-06-18;Jueves;Enfermedad;1
+1011;Armador;Armado 3;2026-06-18;Jueves;Sin aviso;1
+1007;Armador;Armado 2;2026-06-19;Viernes;Sin aviso;1
+1017;Armador;Armado 4;2026-06-19;Viernes;Licencia por examen;1
+1018;Armador;Armado 4;2026-06-19;Viernes;Enfermedad;1
+1041;Inspector de calidad;Depósito;2026-06-19;Viernes;Enfermedad;1
+1006;Armador;Armado 2;2026-06-22;Lunes;Trámite;1
+1015;Ajustador;Armado 3;2026-06-23;Martes;Enfermedad;1
+1019;Armador;Armado 4;2026-06-23;Martes;Enfermedad;1
+1004;Armador;Armado 1;2026-06-24;Miércoles;Enfermedad;1
+1023;Embalador;Control Final 1;2026-06-24;Miércoles;Enfermedad;1
+1034;Depósito;Depósito;2026-06-24;Miércoles;Razones particulares;1
+1039;Depósito;Depósito;2026-06-24;Miércoles;Licencia por examen;1
+1035;Depósito;Depósito;2026-06-25;Jueves;Enfermedad;1
+1038;Depósito;Depósito;2026-06-25;Jueves;Enfermedad;1
+1024;Embalador;Control Final 1;2026-06-26;Viernes;Enfermedad;1
+1032;Depósito;Depósito;2026-06-26;Viernes;Razones particulares;1
+1035;Depósito;Depósito;2026-06-26;Viernes;Sin aviso;1
+1011;Armador;Armado 3;2026-06-29;Lunes;Razones particulares;1
+1013;Armador;Armado 3;2026-06-29;Lunes;Sin aviso;1
+1017;Armador;Armado 4;2026-06-29;Lunes;Enfermedad;1
+1032;Depósito;Depósito;2026-06-29;Lunes;Enfermedad;1
+1038;Depósito;Depósito;2026-06-29;Lunes;Sin aviso;1
+1004;Armador;Armado 1;2026-06-30;Martes;Enfermedad;1
+1005;Ajustador;Armado 1;2026-06-30;Martes;Enfermedad;1
+1032;Depósito;Depósito;2026-06-30;Martes;Enfermedad;1
+1004;Armador;Armado 1;2026-07-01;Miércoles;Enfermedad;1
+1013;Armador;Armado 3;2026-07-01;Miércoles;Enfermedad;1
+1016;Armador;Armado 4;2026-07-01;Miércoles;Trámite;1
+1040;Depósito;Depósito;2026-07-03;Viernes;Enfermedad;1
+1005;Ajustador;Armado 1;2026-07-06;Lunes;Enfermedad;1
+1006;Armador;Armado 2;2026-07-06;Lunes;Razones particulares;1
 1011;Armador;Armado 3;2026-07-07;Martes;Enfermedad;1
-1013;Armador;Armado 3;2026-07-07;Martes;Enfermedad;1
-1017;Armador;Armado 4;2026-07-07;Martes;Enfermedad;1
-1027;Controlador;Control Final 2;2026-07-07;Martes;Enfermedad;1
-1030;Embalador;Control Final 2;2026-07-07;Martes;Sin aviso;1
-1031;Depósito;Depósito;2026-07-07;Martes;Enfermedad;1
-1038;Depósito;Depósito;2026-07-07;Martes;Enfermedad;1
-1039;Depósito;Depósito;2026-07-07;Martes;Razones particulares;1
-1011;Armador;Armado 3;2026-07-08;Miércoles;Enfermedad;1
-1013;Armador;Armado 3;2026-07-08;Miércoles;Enfermedad;1
-1017;Armador;Armado 4;2026-07-08;Miércoles;Razones particulares;1
-1031;Depósito;Depósito;2026-07-08;Miércoles;Enfermedad;1
-1007;Armador;Armado 2;2026-07-13;Lunes;Razones particulares;1
-1011;Armador;Armado 3;2026-07-13;Lunes;Licencia por examen;1
-1032;Depósito;Depósito;2026-07-13;Lunes;Sin aviso;1
-1033;Depósito;Depósito;2026-07-13;Lunes;Enfermedad;1
-1020;Ajustador;Armado 4;2026-07-14;Martes;Enfermedad;1
-1007;Armador;Armado 2;2026-07-15;Miércoles;Enfermedad;1
-1007;Armador;Armado 2;2026-07-16;Jueves;Enfermedad;1
-1033;Depósito;Depósito;2026-07-16;Jueves;Razones particulares;1
-1007;Armador;Armado 2;2026-07-17;Viernes;Enfermedad;1
-1024;Embalador;Control Final 1;2026-07-17;Viernes;Sin aviso;1
-1034;Depósito;Depósito;2026-07-17;Viernes;Sin aviso;1
-1036;Depósito;Depósito;2026-07-17;Viernes;Enfermedad;1
-1006;Armador;Armado 2;2026-07-20;Lunes;Enfermedad;1
-1016;Armador;Armado 4;2026-07-20;Lunes;Enfermedad;1
-1017;Armador;Armado 4;2026-07-20;Lunes;Enfermedad;1
-1036;Depósito;Depósito;2026-07-20;Lunes;Trámite;1
-1016;Armador;Armado 4;2026-07-21;Martes;Sin aviso;1
-1006;Armador;Armado 2;2026-07-23;Jueves;Licencia por examen;1
-1025;Embalador;Control Final 1;2026-07-23;Jueves;Enfermedad;1
-1034;Depósito;Depósito;2026-07-23;Jueves;Sin aviso;1
+1036;Depósito;Depósito;2026-07-07;Martes;Enfermedad;1
+1008;Armador;Armado 2;2026-07-08;Miércoles;Enfermedad;1
+1017;Armador;Armado 4;2026-07-08;Miércoles;Enfermedad;1
+1036;Depósito;Depósito;2026-07-08;Miércoles;Enfermedad;1
+1032;Depósito;Depósito;2026-07-13;Lunes;Razones particulares;1
+1004;Armador;Armado 1;2026-07-14;Martes;Enfermedad;1
+1032;Depósito;Depósito;2026-07-15;Miércoles;Enfermedad;1
+1012;Armador;Armado 3;2026-07-16;Jueves;Razones particulares;1
+1032;Depósito;Depósito;2026-07-16;Jueves;Enfermedad;1
+1004;Armador;Armado 1;2026-07-17;Viernes;Enfermedad;1
+1030;Embalador;Control Final 2;2026-07-17;Viernes;Enfermedad;1
+1035;Depósito;Depósito;2026-07-17;Viernes;Sin aviso;1
+1039;Depósito;Depósito;2026-07-17;Viernes;Razones particulares;1
+1001;Armador;Armado 1;2026-07-20;Lunes;Sin aviso;1
+1007;Armador;Armado 2;2026-07-20;Lunes;Razones particulares;1
+1013;Armador;Armado 3;2026-07-20;Lunes;Enfermedad;1
+1032;Depósito;Depósito;2026-07-20;Lunes;Enfermedad;1
+1034;Depósito;Depósito;2026-07-20;Lunes;Sin aviso;1
+1031;Depósito;Depósito;2026-07-21;Martes;Enfermedad;1
+1035;Depósito;Depósito;2026-07-21;Martes;Enfermedad;1
+1032;Depósito;Depósito;2026-07-22;Miércoles;Sin aviso;1
+1034;Depósito;Depósito;2026-07-22;Miércoles;Licencia por examen;1
+1002;Armador;Armado 1;2026-07-23;Jueves;Enfermedad;1
+1011;Armador;Armado 3;2026-07-23;Jueves;Sin aviso;1
+1031;Depósito;Depósito;2026-07-23;Jueves;Enfermedad;1
 1005;Ajustador;Armado 1;2026-07-24;Viernes;Razones particulares;1
-1013;Armador;Armado 3;2026-07-24;Viernes;Enfermedad;1
-1004;Armador;Armado 1;2026-07-27;Lunes;Razones particulares;1
-1013;Armador;Armado 3;2026-07-27;Lunes;Enfermedad;1
-1020;Ajustador;Armado 4;2026-07-27;Lunes;Razones particulares;1
-1032;Depósito;Depósito;2026-07-27;Lunes;Licencia por examen;1
-1038;Depósito;Depósito;2026-07-27;Lunes;Trámite;1
-1032;Depósito;Depósito;2026-07-29;Miércoles;Sin aviso;1
-1026;Controlador;Control Final 2;2026-07-30;Jueves;Sin aviso;1
-1038;Depósito;Depósito;2026-07-31;Viernes;Enfermedad;1
-1017;Armador;Armado 4;2026-08-03;Lunes;Razones particulares;1
-1032;Depósito;Depósito;2026-08-03;Lunes;Sin aviso;1
-1038;Depósito;Depósito;2026-08-03;Lunes;Enfermedad;1
-1024;Embalador;Control Final 1;2026-08-05;Miércoles;Enfermedad;1
-1034;Depósito;Depósito;2026-08-05;Miércoles;Enfermedad;1
-1038;Depósito;Depósito;2026-08-06;Jueves;Trámite;1
-1002;Armador;Armado 1;2026-08-07;Viernes;Licencia por examen;1
-1019;Armador;Armado 4;2026-08-07;Viernes;Razones particulares;1
-1034;Depósito;Depósito;2026-08-07;Viernes;Razones particulares;1
-1004;Armador;Armado 1;2026-08-10;Lunes;Enfermedad;1
-1017;Armador;Armado 4;2026-08-10;Lunes;Trámite;1
-1018;Armador;Armado 4;2026-08-10;Lunes;Razones particulares;1
-1035;Depósito;Depósito;2026-08-11;Martes;Enfermedad;1
-1013;Armador;Armado 3;2026-08-12;Miércoles;Sin aviso;1
-1040;Depósito;Depósito;2026-08-12;Miércoles;Razones particulares;1
-1038;Depósito;Depósito;2026-08-13;Jueves;Enfermedad;1
+1017;Armador;Armado 4;2026-07-24;Viernes;Trámite;1
+1021;Controlador;Control Final 1;2026-07-24;Viernes;Trámite;1
+1030;Embalador;Control Final 2;2026-07-24;Viernes;Razones particulares;1
+1035;Depósito;Depósito;2026-07-24;Viernes;Razones particulares;1
+1017;Armador;Armado 4;2026-07-27;Lunes;Enfermedad;1
+1010;Ajustador;Armado 2;2026-07-29;Miércoles;Enfermedad;1
+1011;Armador;Armado 3;2026-07-29;Miércoles;Razones particulares;1
+1017;Armador;Armado 4;2026-07-29;Miércoles;Enfermedad;1
+1035;Depósito;Depósito;2026-07-29;Miércoles;Enfermedad;1
+1035;Depósito;Depósito;2026-07-30;Jueves;Enfermedad;1
+1006;Armador;Armado 2;2026-07-31;Viernes;Enfermedad;1
+1014;Armador;Armado 3;2026-07-31;Viernes;Enfermedad;1
+1023;Embalador;Control Final 1;2026-07-31;Viernes;Sin aviso;1
+1033;Depósito;Depósito;2026-07-31;Viernes;Enfermedad;1
+1006;Armador;Armado 2;2026-08-03;Lunes;Enfermedad;1
+1023;Embalador;Control Final 1;2026-08-03;Lunes;Enfermedad;1
+1006;Armador;Armado 2;2026-08-04;Martes;Enfermedad;1
+1038;Depósito;Depósito;2026-08-04;Martes;Trámite;1
+1006;Armador;Armado 2;2026-08-05;Miércoles;Enfermedad;1
+1032;Depósito;Depósito;2026-08-06;Jueves;Sin aviso;1
+1035;Depósito;Depósito;2026-08-06;Jueves;Razones particulares;1
+1004;Armador;Armado 1;2026-08-07;Viernes;Enfermedad;1
+1029;Embalador;Control Final 2;2026-08-07;Viernes;Enfermedad;1
+1008;Armador;Armado 2;2026-08-10;Lunes;Razones particulares;1
+1013;Armador;Armado 3;2026-08-10;Lunes;Enfermedad;1
+1017;Armador;Armado 4;2026-08-10;Lunes;Enfermedad;1
+1032;Depósito;Depósito;2026-08-10;Lunes;Enfermedad;1
+1017;Armador;Armado 4;2026-08-11;Martes;Enfermedad;1
+1018;Armador;Armado 4;2026-08-11;Martes;Enfermedad;1
+1017;Armador;Armado 4;2026-08-12;Miércoles;Razones particulares;1
+1032;Depósito;Depósito;2026-08-12;Miércoles;Sin aviso;1
+1040;Depósito;Depósito;2026-08-12;Miércoles;Enfermedad;1
+1005;Ajustador;Armado 1;2026-08-13;Jueves;Sin aviso;1
+1017;Armador;Armado 4;2026-08-13;Jueves;Trámite;1
+1032;Depósito;Depósito;2026-08-13;Jueves;Enfermedad;1
+1040;Depósito;Depósito;2026-08-13;Jueves;Enfermedad;1
 1018;Armador;Armado 4;2026-08-14;Viernes;Razones particulares;1
-1030;Embalador;Control Final 2;2026-08-14;Viernes;Enfermedad;1
-1038;Depósito;Depósito;2026-08-14;Viernes;Enfermedad;1
-1005;Ajustador;Armado 1;2026-08-18;Martes;Enfermedad;1
-1007;Armador;Armado 2;2026-08-18;Martes;Licencia por examen;1
-1023;Embalador;Control Final 1;2026-08-18;Martes;Enfermedad;1
-1005;Ajustador;Armado 1;2026-08-19;Miércoles;Enfermedad;1
-1006;Armador;Armado 2;2026-08-19;Miércoles;Trámite;1
-1015;Ajustador;Armado 3;2026-08-19;Miércoles;Enfermedad;1
-1023;Embalador;Control Final 1;2026-08-19;Miércoles;Enfermedad;1
-1015;Ajustador;Armado 3;2026-08-20;Jueves;Enfermedad;1
-1021;Controlador;Control Final 1;2026-08-20;Jueves;Enfermedad;1
-1035;Depósito;Depósito;2026-08-20;Jueves;Enfermedad;1
-1040;Depósito;Depósito;2026-08-20;Jueves;Trámite;1
-1007;Armador;Armado 2;2026-08-21;Viernes;Enfermedad;1
-1013;Armador;Armado 3;2026-08-21;Viernes;Enfermedad;1
-1017;Armador;Armado 4;2026-08-21;Viernes;Enfermedad;1
-1018;Armador;Armado 4;2026-08-21;Viernes;Enfermedad;1
-1024;Embalador;Control Final 1;2026-08-21;Viernes;Enfermedad;1
-1010;Ajustador;Armado 2;2026-08-24;Lunes;Trámite;1
+1021;Controlador;Control Final 1;2026-08-14;Viernes;Sin aviso;1
+1011;Armador;Armado 3;2026-08-18;Martes;Enfermedad;1
+1020;Ajustador;Armado 4;2026-08-18;Martes;Enfermedad;1
+1031;Depósito;Depósito;2026-08-18;Martes;Enfermedad;1
+1032;Depósito;Depósito;2026-08-18;Martes;Trámite;1
+1036;Depósito;Depósito;2026-08-18;Martes;Enfermedad;1
+1040;Depósito;Depósito;2026-08-18;Martes;Enfermedad;1
+1002;Armador;Armado 1;2026-08-19;Miércoles;Sin aviso;1
+1006;Armador;Armado 2;2026-08-19;Miércoles;Licencia por examen;1
+1007;Armador;Armado 2;2026-08-19;Miércoles;Enfermedad;1
+1011;Armador;Armado 3;2026-08-19;Miércoles;Enfermedad;1
+1029;Embalador;Control Final 2;2026-08-19;Miércoles;Enfermedad;1
+1032;Depósito;Depósito;2026-08-19;Miércoles;Enfermedad;1
+1011;Armador;Armado 3;2026-08-20;Jueves;Enfermedad;1
+1040;Depósito;Depósito;2026-08-21;Viernes;Enfermedad;1
+1003;Armador;Armado 1;2026-08-24;Lunes;Enfermedad;1
+1005;Ajustador;Armado 1;2026-08-24;Lunes;Razones particulares;1
 1018;Armador;Armado 4;2026-08-24;Lunes;Enfermedad;1
+1019;Armador;Armado 4;2026-08-24;Lunes;Enfermedad;1
 1024;Embalador;Control Final 1;2026-08-24;Lunes;Enfermedad;1
-1033;Depósito;Depósito;2026-08-24;Lunes;Enfermedad;1
-1038;Depósito;Depósito;2026-08-24;Lunes;Trámite;1
-1024;Embalador;Control Final 1;2026-08-25;Martes;Enfermedad;1
-1036;Depósito;Depósito;2026-08-25;Martes;Razones particulares;1
-1039;Depósito;Depósito;2026-08-25;Martes;Sin aviso;1
-1001;Armador;Armado 1;2026-08-26;Miércoles;Sin aviso;1
-1024;Embalador;Control Final 1;2026-08-26;Miércoles;Enfermedad;1
-1034;Depósito;Depósito;2026-08-26;Miércoles;Trámite;1
-1025;Embalador;Control Final 1;2026-08-27;Jueves;Enfermedad;1
-1007;Armador;Armado 2;2026-08-28;Viernes;Enfermedad;1
-1025;Embalador;Control Final 1;2026-08-28;Viernes;Enfermedad;1
-1032;Depósito;Depósito;2026-08-28;Viernes;Razones particulares;1
-1040;Depósito;Depósito;2026-08-28;Viernes;Enfermedad;1
+1034;Depósito;Depósito;2026-08-24;Lunes;Razones particulares;1
+1040;Depósito;Depósito;2026-08-24;Lunes;Enfermedad;1
+1018;Armador;Armado 4;2026-08-25;Martes;Enfermedad;1
+1030;Embalador;Control Final 2;2026-08-25;Martes;Sin aviso;1
+1011;Armador;Armado 3;2026-08-26;Miércoles;Enfermedad;1
+1018;Armador;Armado 4;2026-08-26;Miércoles;Enfermedad;1
+1026;Controlador;Control Final 2;2026-08-26;Miércoles;Enfermedad;1
+1011;Armador;Armado 3;2026-08-27;Jueves;Enfermedad;1
+1013;Armador;Armado 3;2026-08-27;Jueves;Razones particulares;1
+1018;Armador;Armado 4;2026-08-27;Jueves;Enfermedad;1
+1026;Controlador;Control Final 2;2026-08-27;Jueves;Enfermedad;1
+1031;Depósito;Depósito;2026-08-27;Jueves;Enfermedad;1
+1014;Armador;Armado 3;2026-08-28;Viernes;Licencia por examen;1
+1018;Armador;Armado 4;2026-08-28;Viernes;Enfermedad;1

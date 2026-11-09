@@ -11,7 +11,9 @@
 
 KRETZ, fabricante de balanzas, no cumple todos los días la Orden de Fabricación (OF) y recupera el faltante con horas extra los sábados, que se pagan al doble. Construimos en AnyLogic un modelo de simulación de eventos discretos de la planta: 6 líneas, 5 modelos de balanza, viaje al depósito de materiales, ausentismo, coberturas, control de calidad por muestreo y recuperación de fin de semana. Con él comparamos en costo la situación actual contra siete alternativas: contratar personal de cuatro especialidades distintas, tener personal de reserva polivalente, reorganizar las líneas y cambiar la secuencia de fabricación. Cada escenario se corrió 30 veces con la misma lista de semillas (números aleatorios comunes), y las alternativas se compararon por pares de réplicas con intervalos de confianza del 95 %.
 
-En el escenario actual la OF no se cumple en el 25,7 % de las jornadas. El cuello de botella es el puesto de Ajuste, con una utilización del 82 %. La recuperación requiere 14,6 h-hombre de fin de semana por semana, con un costo de $ 190.075 por semana. Ninguna contratación se paga sola: un empleado cuesta lo mismo que 20 h-hombre de horas extra por semana, y la planta usa menos que eso en total. La reorganización (3 armadores + 2 ajustadores por línea, con coberturas entre especialidades) no agrega sueldos y baja las horas extra a 2,7 h-hombre por semana. Su ahorro operativo es de $ 155.275 por semana (IC 95 %: $ 112.834 a $ 197.715), así que recupera la inversión de $ 1.500.000 en unas 10 semanas (entre 7,6 y 13,3). Por eso es la alternativa que recomendamos.
+En el escenario actual la OF no se cumple en el 60 % de las jornadas y hay que trabajar el sábado en casi dos de cada tres semanas. El cuello de botella es el puesto de Ajuste, con una utilización del 92 %. La recuperación requiere 29,6 h-hombre de fin de semana por semana, con un costo de $ 385.147 por semana.
+
+Ninguna contratación se paga sola. Un empleado cuesta lo mismo que 20 h-hombre de horas extra por semana, y la contratación más eficaz, la de 2 Ajustadores, ahorra en total 18,2 h-hombre por semana entre los dos. La reorganización (3 armadores + 2 ajustadores por línea, con coberturas entre especialidades) no agrega sueldos y baja las horas extra a 10,1 h-hombre por semana. Su ahorro operativo es de $ 254.243 por semana (IC 95 %: $ 186.392 a $ 322.095), así que recupera la inversión de $ 1.500.000 en unas 6 semanas (entre 4,7 y 8,0). Por eso es la alternativa que recomendamos.
 
 **Palabras clave:** simulación de eventos discretos, AnyLogic, planificación de la producción, ausentismo, horas extra, números aleatorios comunes, intervalos de confianza.
 
@@ -97,7 +99,7 @@ Las secuencias de puestos y los tiempos medios de cada modelo, relevados de SAP,
 | Ausentismo | 6 % por empleado y día, con un factor por día de la semana (lunes 1,25; martes 1,0; miércoles y jueves 0,9; viernes 1,1); 10 % en la recuperación de fin de semana | Supuesto, coherente con la planilla de ausencias de referencia (Sección 3.5) |
 | Velocidad de caminata | 1,3 m/s, en línea recta y pasando por la puerta entre naves | Valor típico de marcha; plano a escala (16 px = 1 m) |
 | Inspección de calidad | 8 min por equipo inspeccionado; 3 % de rechazo | Supuesto |
-| OF | OF 1, mezcla equilibrada, todos los días: 36 AILA 30KG, 50 REPORT LT, 72 NOVEL ECO, 48 LURA y 60 AURA (266 unidades) | OF de ejemplo (supuesto; reemplazar por OF reales) |
+| OF | OF 1, mezcla equilibrada, todos los días: 42 AILA 30KG, 58 REPORT LT, 83 NOVEL ECO, 55 LURA y 69 AURA (307 unidades) | OF de ejemplo, calibrada con la frecuencia de recuperación de la planta (ver abajo) |
 | Costo de la hora normal | $ 6.500 por empleado, con cargas | Supuesto |
 | Recargo de fin de semana | ×2 | KRETZ |
 | Recuperación de fin de semana | Se convoca una cuadrilla proporcional al faltante: 1 persona cada 4 unidades pendientes, entre 3 y 12, repartidas entre especialidades según los minutos pendientes. Se pagan al menos 4 h y como máximo 16 h; lo que no se recupera pasa a la semana siguiente | Supuesto |
@@ -109,6 +111,17 @@ Supuestos principales:
 - La asistencia se define al inicio de la jornada.
 - La jornada de fin de semana rinde por hora lo mismo que una jornada normal; solo cambia el costo.
 - El operario que retira los materiales es siempre el que hace el primer puesto de la unidad.
+
+**Calibración del tamaño de la OF.** La OF de ejemplo original pedía 266 unidades por día. Con ella el modelo necesitaba recuperación en el 29 % de las semanas, mientras que en KRETZ hay que convocar al personal el sábado en la mayoría de las semanas (según la empresa, unas 3 de cada 4). Como la mezcla de modelos sí es representativa, se escaló la OF manteniendo las proporciones y se midió, con las 30 réplicas del escenario actual, la frecuencia de recuperación:
+
+| OF por día | Semanas con recuperación |
+|---|---|
+| 266 | 29 % |
+| 298 | 55 % |
+| 307 | 62,5 % |
+| 325 | 100 % (no se cumple ninguna jornada) |
+
+La respuesta es muy sensible porque la planta trabaja cerca de su capacidad: con 325 unidades se supera la capacidad diaria de Ajuste. Se adoptó la OF de **307 unidades** (+15 %), la más grande de las probadas que no satura la planta.
 
 **Coberturas.** En el escenario actual, una vacante se cubre con un operario de la misma especialidad que deja su propio puesto; los puestos críticos (Ajuste y Control) se cubren primero. Si hay personal de reserva, la reserva cubre primero los puestos críticos y después el resto, en el orden Ajuste, Control, Embalaje y Armado. Solo en la reorganización se habilitan las coberturas entre especialidades: cualquier operario de la misma línea puede cubrir un puesto vacante.
 
@@ -141,7 +154,7 @@ El modelo tiene tres pestañas: **Simulación** (animación 2D y 3D de la planta
 - **Reproducibilidad:** dos corridas con la misma semilla dan exactamente los mismos resultados. Además, la planilla de resultados confirma que los 8 escenarios usaron las mismas 30 semillas.
 - **Inspección:** solo el primer y el último equipo de cada modelo por día.
 - **Coherencia de los indicadores.**
-  - El efecto de las ausencias se mide comparando cada día de la semana consigo mismo, porque el atraso se acumula de lunes a viernes. En el escenario actual, una jornada con ausencias deja en promedio 24,2 ± 5,7 unidades más de faltante que el mismo día de la semana sin ausencias.
+  - El efecto de las ausencias se mide comparando cada día de la semana consigo mismo, porque el atraso se acumula de lunes a viernes. En el escenario actual, una jornada con ausencias deja en promedio 46,8 ± 13,2 unidades más de faltante que el mismo día de la semana sin ausencias.
   - Las alternativas que agregan capacidad en el cuello de botella (Ajuste) son las que bajan el faltante, como se espera.
 
 **Validación** (el escenario actual se parece a la planta real). Comparamos el escenario actual con un historial de referencia de 26 semanas (marzo a agosto de 2026, 120 jornadas): planilla de ausencias, OF diarias y horas extra de cada sábado (`Datos/Sinteticos/`).
@@ -152,16 +165,18 @@ El modelo tiene tres pestañas: **Simulación** (animación 2D y 3D de la planta
 
 | Medida | Historial | Modelo: media (IC 95 %) | ¿Historial dentro del IC? |
 |---|---|---|---|
-| Jornadas sin cumplir la OF | 29,2 % | 25,7 % (21,8 % a 29,5 %) | Sí |
-| Cumplimiento de la OF en el turno | 93,9 % | 93,1 % (91,7 % a 94,4 %) | Sí |
-| Horas extra de fin de semana (h-hombre/semana) | 14,6 | 14,6 (11,2 a 18,0) | Sí |
-| Costo de horas extra por semana | $ 189.500 | $ 190.075 ($ 145.773 a $ 234.376) | Sí |
-| Semanas con recuperación | 34,6 % | 29,2 % | (proporción) |
-| Especialidad que limita la jornada | Ajustador (31 de 35 jornadas sin cumplir) | Ajustador (utilización del 82 %) | Sí |
+| Jornadas sin cumplir la OF | 65,0 % | 60,0 % (54,4 % a 65,6 %) | Sí |
+| Cumplimiento de la OF en el turno | 83,4 % | 82,3 % (79,4 % a 85,3 %) | Sí |
+| Horas extra de fin de semana (h-hombre/semana) | 32,1 | 29,6 (25,0 a 34,2) | Sí |
+| Costo de horas extra por semana | $ 417.250 | $ 385.147 ($ 325.165 a $ 445.128) | Sí |
+| Semanas con recuperación | 65,4 % (17 de 26) | 62,5 % (75 de 120) | (proporción) |
+| Especialidad que limita la jornada | Ajustador (69 de 78 jornadas sin cumplir) | Ajustador (utilización del 92 %) | Sí |
 
 ![Validación del escenario actual](Informe/figuras/validacion.png)
 
-Las cuatro medidas cuantitativas del historial caen dentro del intervalo del 95 % del modelo, y los dos identifican al Ajuste como el cuello de botella. Queda pendiente la validación cara a cara con el personal de la planta: qué puestos se saturan y qué coberturas se hacen en la práctica. [[COMPLETAR]]
+**Figura 1.** Escenario actual simulado (media e IC 95 %, banda celeste) frente al historial de referencia.
+
+Las cuatro medidas cuantitativas del historial caen dentro del intervalo del 95 % del modelo, y los dos identifican al Ajuste como el cuello de botella. El historial queda cerca del borde superior del intervalo en jornadas sin cumplir y en horas extra: el modelo puede subestimar levemente el faltante. Queda pendiente la validación cara a cara con el personal de la planta: qué puestos se saturan y qué coberturas se hacen en la práctica. [[COMPLETAR]]
 
 ### 3.6 Medidas de desempeño
 
@@ -210,17 +225,28 @@ Esto tiene tres consecuencias:
 - **Reproducibilidad.** Cualquier réplica se puede repetir exactamente con su semilla.
 - **Comparación justa entre escenarios (números aleatorios comunes).** El modelo usa flujos de números aleatorios separados para cada fuente de variabilidad: ausencias de lunes a viernes, ausencias de fin de semana, tiempos de tarea y rechazos. Cada número sale de la semilla y de una clave fija, por ejemplo día y puesto para las ausencias, o modelo, unidad y paso para los tiempos. Así, en la réplica $j$ falta la misma gente el mismo día y cada unidad tarda lo mismo en cada paso en todos los escenarios, aunque un escenario consuma más o menos números que otro. Las diferencias entre escenarios se deben entonces a los cambios de dotación u organización, y no a que a un escenario le tocaron, por azar, días con más ausencias.
 
-En AnyLogic, cada escenario tiene un experimento de Variación de parámetros que recorre el parámetro `replica` de 1 a 30, una corrida por réplica. Mientras corre, el experimento grafica la media acumulada de cada medida con su intervalo del 95 %, para ver cómo se estabiliza al sumar réplicas (Figura 1).
+En AnyLogic, cada escenario tiene un experimento de Variación de parámetros que recorre el parámetro `replica` de 1 a 30, una corrida por réplica. Mientras corre, el experimento grafica la media acumulada de cada medida con su intervalo del 95 %, para ver cómo se estabiliza al sumar réplicas (Figuras 2 y 3).
 
 ![Media acumulada e IC del costo total y del cumplimiento, escenario actual](Informe/figuras/replicas_actual_costo_cumplimiento.png)
 
-**Figura 1.** Media acumulada ± IC 95 % del costo total y del cumplimiento de la OF en las 30 réplicas del escenario actual.
+**Figura 2.** Escenario actual: media acumulada ± IC 95 % del costo total (millones de $ por réplica de 4 semanas) y del cumplimiento de la OF, a medida que terminan las 30 réplicas.
+
+![Media acumulada e IC de las horas extra, escenario actual](Informe/figuras/replicas_actual_horas_extra.png)
+
+**Figura 3.** Escenario actual: media acumulada ± IC 95 % de las horas extra (h-hombre por réplica de 4 semanas).
+
+Cómo leer estas figuras:
+
+- **Unidades.** Están **por réplica de 4 semanas**, no por semana. Los valores finales coinciden con los de la Tabla 4 multiplicados por 4: $ 44,18 M de costo, 82,3 % de cumplimiento y 118,5 h-hombre de horas extra.
+- **Primeras réplicas.** Con 2 réplicas el cuantil $t_{1;\,0{,}025}$ vale 12,7, así que el intervalo es enorme. Por eso aparecen límites imposibles, como más de 100 % de cumplimiento u horas extra negativas: no son errores del modelo.
+- **Estabilización.** Desde unas 15 réplicas la media acumulada casi no se mueve y el intervalo se angosta lentamente, como $1/\sqrt{n}$.
+- **Escala del eje.** AnyLogic ajusta solo la escala vertical de cada gráfico. Para comparar escenarios entre sí hay que usar las Figuras 4 a 6, que tienen un eje común.
 
 **Cantidad de réplicas.** Con las réplicas del escenario actual se estimó cuántas hacen falta para estimar la media del costo total semanal con un error relativo $\varepsilon$:
 
-$$n \ge \left( \frac{t_{n-1;\,\alpha/2}\, S}{\varepsilon\, \bar{X}} \right)^2 = \left( \frac{2{,}045 \times 118.641}{0{,}01 \times 10.850.075} \right)^2 \approx 5 .$$
+$$n \ge \left( \frac{t_{n-1;\,\alpha/2}\, S}{\varepsilon\, \bar{X}} \right)^2 = \left( \frac{2{,}045 \times 160.634}{0{,}01 \times 11.045.147} \right)^2 \approx 9 .$$
 
-Incluso con un error del 1 % alcanzan 5 réplicas, porque las horas normales son fijas y solo varía la parte de horas extra. Si se mide la precisión sobre el costo de las horas extra solo, que varía mucho porque la mayoría de las semanas no hay recuperación, harían falta unas 650 réplicas para un ±5 %. Sin embargo, la decisión no depende de esa precisión: con las 30 réplicas emparejadas, todas las diferencias de costo contra el escenario actual resultaron significativas (Sección 4.3). Se mantuvo $n = 30$ como mínimo para que la aproximación del Teorema Central del Límite sea razonable.
+Con un error del 1 % alcanzan 9 réplicas, porque las horas normales son fijas y solo varía la parte de horas extra. Si se mide la precisión sobre el costo de las horas extra solo, que varía mucho de una réplica a otra, harían falta unas 290 réplicas para un ±5 %. Sin embargo, la decisión no depende de esa precisión: con las 30 réplicas emparejadas, todas las diferencias de costo contra el escenario actual resultaron significativas, salvo la del cambio de secuencia (Sección 4.3). Se mantuvo $n = 30$ como mínimo para que la aproximación del Teorema Central del Límite sea razonable.
 
 ### 3.8 Análisis estadístico
 
@@ -247,7 +273,7 @@ $$\bar{D} \pm t_{n-1;\,\alpha/2}\,\frac{S_D}{\sqrt{n}}.$$
 - Si el intervalo no contiene el cero, la diferencia es significativa al 95 %.
 - Si está entero por encima del cero, la alternativa ahorra; si está entero por debajo, cuesta más.
 
-Las dos corridas de cada par comparten la semilla, así que sus resultados están correlacionados positivamente. Por eso $S_D$ es mucho menor que el desvío de cada escenario. Por ejemplo, para la contratación de un Embalador $S_D = \$\,4.764$, frente a $S = \$\,118.641$ del escenario actual. Así, los intervalos de las diferencias son mucho más angostos con la misma cantidad de réplicas.
+Las dos corridas de cada par comparten la semilla, así que sus resultados están correlacionados positivamente. Por eso $S_D$ es mucho menor que el desvío de cada escenario. Por ejemplo, para la contratación de un Embalador $S_D = \$\,12.474$, frente a $S = \$\,160.634$ del escenario actual. Así, los intervalos de las diferencias son mucho más angostos con la misma cantidad de réplicas.
 
 Como se hacen 7 comparaciones contra el escenario actual, cada una al 95 %, se informa además si la conclusión se mantiene con la corrección de Bonferroni: un nivel del $1 - 0{,}05/7 \approx 99{,}3\,\%$ por comparación, para un nivel conjunto del 95 %.
 
@@ -265,52 +291,60 @@ También se reproducen con `scripts/analizar_resultados.py`.
 
 ### 4.1 Escenario actual
 
-Con la dotación actual, la planta entrega a tiempo el 93,1 % de lo pedido (IC 95 %: 91,7 % a 94,4 %). La OF no se cumple en el 25,7 % de las jornadas (21,8 % a 29,5 %), es decir, alrededor de una jornada por semana.
+Con la dotación actual y la OF de 307 unidades, la planta entrega a tiempo el 82,3 % de lo pedido (IC 95 %: 79,4 % a 85,3 %). La OF no se cumple en el 60,0 % de las jornadas (54,4 % a 65,6 %), es decir, en tres de cada cinco días.
 
 El cuello de botella es claramente el **Ajuste**:
 
 - **Utilización por especialidad:**
-  - Ajustadores: 82,0 %;
-  - Controladores: 67,6 %;
-  - Embaladores: 54,6 %;
-  - Armadores: 36,0 %.
-- **Espera media en cola hasta conseguir un ajustador:** 135,6 min, frente a 26,1 min en armado y menos de 12 min en control y embalaje.
+  - Ajustadores: 92,4 %;
+  - Controladores: 76,8 %;
+  - Embaladores: 62,2 %;
+  - Armadores: 41,0 %.
+- **Espera media en cola hasta conseguir un ajustador:** 165,1 min, frente a 25,8 min en armado y menos de 14 min en control y embalaje.
 
-Hay un solo ajustador por línea, así que cuando falta uno, otro tiene que repartirse entre dos líneas y la producción del día cae.
+Hay un solo ajustador por línea, así que cuando falta uno, otro tiene que repartirse entre dos líneas y la producción del día cae. Una jornada con ausencias deja en promedio 46,8 unidades más de faltante que el mismo día de la semana sin ausencias.
 
 El faltante se concentra en los modelos que la OF libera al final, porque las unidades se liberan en el orden de la OF. Por réplica de 4 semanas, faltan:
 
-- AURA: 209 unidades;
-- NOVEL ECO: 99;
-- LURA: 50;
-- REPORT LT: 10.
+- AURA: 595 unidades;
+- NOVEL ECO: 259;
+- LURA: 187;
+- REPORT LT: 42;
+- AILA 30KG: casi nada (1,5).
 
-Para recuperarlo hacen falta 14,6 h-hombre de fin de semana por semana (IC 95 %: 11,2 a 18,0), con un costo de $ 190.075 por semana. En 35 de las 120 semanas simuladas (29 %) hubo que convocar al personal el sábado.
+Para recuperarlo hacen falta 29,6 h-hombre de fin de semana por semana (IC 95 %: 25,0 a 34,2), con un costo de $ 385.147 por semana. Hubo que convocar al personal el sábado en 75 de las 120 semanas simuladas (62,5 %). En todos los escenarios, la recuperación del sábado alcanzó para terminar lo pendiente: no quedó faltante sin recuperar.
 
 ### 4.2 Medidas de desempeño por escenario
 
 **Tabla 4. Media e intervalo de confianza del 95 % ($\bar{X} \pm t_{29;\,0{,}025}\,S/\sqrt{n}$, $n = 30$). Valores por semana.**
 
-| Escenario | Costo total semanal ($) | Cumplimiento de la OF | Jornadas sin cumplir | Horas extra (h-hombre/semana) |
-|---|---|---|---|---|
-| E0 Actual | 10.850.075 ± 44.301 | 93,1 % ± 1,4 % | 25,7 % ± 3,8 % | 14,6 ± 3,4 |
-| E1 +2 Ajustadores | 11.224.253 ± 43.377 | 97,5 % ± 0,9 % | 8,0 % ± 2,8 % | 3,4 ± 3,3 |
-| E2 +2 Armadores | 11.377.682 ± 45.916 | 92,4 % ± 1,4 % | 27,7 % ± 4,4 % | 15,2 ± 3,5 |
-| E3 +1 Controlador | 11.108.637 ± 41.270 | 93,5 % ± 1,4 % | 30,5 % ± 3,9 % | 14,5 ± 3,2 |
-| E4 +1 Embalador | 11.110.979 ± 44.350 | 93,5 % ± 1,3 % | 24,5 % ± 3,7 % | 14,7 ± 3,4 |
-| E5 Reserva (2) | 11.220.067 ± 29.725 | 98,0 % ± 0,6 % | 7,3 % ± 1,9 % | 3,1 ± 2,3 |
-| E6 Reorganización | 11.069.800 ± 34.005 | 97,9 % ± 0,8 % | 7,5 % ± 2,6 % | 2,7 ± 2,6 |
-| E7 Secuencia largos primero | 10.841.684 ± 41.501 | 93,4 % ± 1,4 % | 25,5 % ± 3,7 % | 14,0 ± 3,2 |
+| Escenario | Costo total semanal ($) | Cumplimiento de la OF | Jornadas sin cumplir | Horas extra (h-hombre/semana) | Semanas con sábado |
+|---|---|---|---|---|---|
+| E0 Actual | 11.045.147 ± 59.982 | 82,3 % ± 3,0 % | 60,0 % ± 5,6 % | 29,6 ± 4,6 | 62,5 % |
+| E1 +2 Ajustadores | 11.327.791 ± 52.473 | 94,2 % ± 1,5 % | 36,0 % ± 4,1 % | 11,4 ± 4,0 | 33,3 % |
+| E2 +2 Armadores | 11.582.778 ± 58.801 | 82,4 % ± 2,9 % | 61,5 % ± 4,9 % | 31,0 ± 4,5 | 65,8 % |
+| E3 +1 Controlador | 11.294.813 ± 61.029 | 83,0 % ± 3,0 % | 54,7 % ± 5,6 % | 28,8 ± 4,7 | 59,2 % |
+| E4 +1 Embalador | 11.300.927 ± 60.960 | 82,9 % ± 2,9 % | 57,2 % ± 5,7 % | 29,3 ± 4,7 | 61,7 % |
+| E5 Reserva (2) | 11.294.923 ± 43.251 | 95,0 % ± 1,2 % | 26,7 % ± 4,7 % | 8,8 ± 3,3 | 24,2 % |
+| E6 Reorganización | 11.165.903 ± 44.231 | 94,9 % ± 1,3 % | 33,8 % ± 4,3 % | 10,1 ± 3,4 | 30,0 % |
+| E7 Secuencia largos primero | 11.030.952 ± 60.905 | 83,7 % ± 3,0 % | 60,7 % ± 5,8 % | 28,5 ± 4,7 | 65,0 % |
 
 En E6, el costo total incluye la reorganización completa ($ 1.500.000) dentro de las 4 semanas de la réplica, es decir $ 375.000 por semana. Ese costo se paga una sola vez; ver la Sección 4.3.
 
 ![Costo total semanal por escenario](Informe/figuras/costo_total_ic.png)
 
-**Figura 2.** Costo total semanal por escenario: media e intervalo del 95 %. La línea punteada es la media del escenario actual.
+**Figura 4.** Costo total semanal por escenario: media e intervalo del 95 %. La línea punteada es la media del escenario actual.
 
 ![Horas extra por escenario](Informe/figuras/horas_extra_ic.png)
 
-**Figura 3.** Horas extra de fin de semana por escenario: media e intervalo del 95 %.
+**Figura 5.** Horas extra de fin de semana por escenario: media e intervalo del 95 %.
+
+Las Figuras 4 y 5 muestran dos grupos bien separados:
+
+- **Bajan las horas extra a la tercera parte:** E1, E5 y E6, entre 8,8 y 11,4 h-hombre por semana. Sus intervalos no se solapan con el del escenario actual. Son las tres alternativas que agregan capacidad de Ajuste.
+- **Casi no cambian las horas extra:** E2, E3, E4 y E7, entre 28,5 y 31,0 h-hombre por semana, con intervalos solapados con el del escenario actual.
+
+En costo total, el único escenario que queda a la altura del actual es E7. Todos los demás quedan a la derecha, es decir, cuestan más.
 
 ### 4.3 Ahorro neto frente al escenario actual
 
@@ -318,87 +352,99 @@ En E6, el costo total incluye la reorganización completa ($ 1.500.000) dentro d
 
 | Alternativa | Ahorro medio ($/semana) | IC 95 % | ¿Significativo al 95 %? | ¿Y con Bonferroni (99,3 %)? |
 |---|---|---|---|---|
-| E1 +2 Ajustadores | −374.179 | [−418.623 ; −329.734] | Sí, cuesta más | Sí |
-| E2 +2 Armadores | −527.607 | [−535.627 ; −519.588] | Sí, cuesta más | Sí |
-| E3 +1 Controlador | −258.562 | [−275.121 ; −242.003] | Sí, cuesta más | Sí |
-| E4 +1 Embalador | −260.904 | [−262.683 ; −259.125] | Sí, cuesta más | Sí |
-| E5 Reserva (2) | −369.992 | [−407.941 ; −332.044] | Sí, cuesta más | Sí |
-| E6 Reorganización (con la inversión en 4 semanas) | −219.725 | [−262.227 ; −177.223] | Sí, cuesta más | Sí |
-| E7 Secuencia largos primero | +8.391 | [+1.051 ; +15.731] | Sí, ahorra | No |
+| E1 +2 Ajustadores | −282.644 | [−356.927 ; −208.362] | Sí, cuesta más | Sí |
+| E2 +2 Armadores | −537.631 | [−546.997 ; −528.265] | Sí, cuesta más | Sí |
+| E3 +1 Controlador | −249.666 | [−274.420 ; −224.912] | Sí, cuesta más | Sí |
+| E4 +1 Embalador | −255.781 | [−260.438 ; −251.123] | Sí, cuesta más | Sí |
+| E5 Reserva (2) | −249.777 | [−307.612 ; −191.942] | Sí, cuesta más | Sí |
+| E6 Reorganización (con la inversión en 4 semanas) | −120.757 | [−188.608 ; −52.905] | Sí, cuesta más | Sí |
+| E7 Secuencia largos primero | +14.194 | [−1.327 ; +29.715] | No | No |
 
 ![Ahorro semanal frente al escenario actual](Informe/figuras/ahorro_vs_actual.png)
 
-**Figura 4.** Ahorro semanal de cada alternativa frente al escenario actual (intervalo del 95 % pareado). Verde: ahorra; rojo: cuesta más.
+**Figura 6.** Ahorro semanal de cada alternativa frente al escenario actual (intervalo del 95 % pareado). Rojo: cuesta más; gris: diferencia no significativa.
 
 **Por qué no conviene contratar.**
 
 - Un empleado contratado cuesta $40\ \text{h} \times \$\,6.500 = \$\,260.000$ por semana.
 - Una hora extra de fin de semana cuesta $\$\,13.000$.
 - Por lo tanto, una contratación se paga sola solo si ahorra al menos **20 h-hombre de horas extra por semana**.
-- El escenario actual usa en total 14,6 h-hombre por semana, y el extremo superior de su intervalo es 18,0.
 
-Ninguna contratación puede pagarse, ni siquiera si eliminara todas las horas extra. La contratación de 2 Ajustadores es la que más reduce las horas extra (de 14,6 a 3,4 h-hombre por semana), porque ataca el cuello de botella, pero cuesta $ 520.000 por semana y ahorra solo $ 145.822. Contratar en especialidades que no son el cuello de botella (Armadores, Controlador o Embalador) agrega sueldos y casi no cambia las horas extra. Con 2 armadores más, el cumplimiento incluso baja un poco, porque llegan más unidades a la cola de Ajuste.
+El escenario actual paga 29,6 h-hombre por semana, así que en teoría una contratación podría pagarse, pero tendría que eliminar dos tercios de todas las horas extra por sí sola. La simulación muestra que no pasa:
 
-**La reorganización se paga en unas 10 semanas.** E6 no cambia la dotación total ni los sueldos: pasa a 3 armadores y 2 ajustadores por línea y habilita las coberturas entre especialidades. Su único costo extra es la inversión de $ 1.500.000, que en la réplica de 4 semanas se carga entera y la hace parecer más cara. Si se separa el ahorro operativo, la diferencia pareada en el costo de horas extra es la siguiente:
+- **2 Ajustadores**, que atacan el cuello de botella, bajan las horas extra de 29,6 a 11,4 h-hombre. Son 18,2 h-hombre entre los dos, unas 9 por persona. Ahorran $ 237.356 por semana y cuestan $ 520.000.
+- **Armadores, Controlador o Embalador** no son el cuello de botella. Agregan sueldos y las horas extra no cambian de forma apreciable. Con 2 armadores más, las horas extra incluso suben un poco (31,0), porque llegan más unidades a la cola de Ajuste.
 
-$$\bar{D}_{HE} = \$\,155.275 \text{ por semana} \quad (\text{IC 95 \%: } \$\,112.834 \text{ a } \$\,197.715),$$
+**La reorganización se paga en unas 6 semanas.** E6 no cambia la dotación total ni los sueldos: pasa a 3 armadores y 2 ajustadores por línea y habilita las coberturas entre especialidades. Su único costo extra es la inversión de $ 1.500.000, que en la réplica de 4 semanas se carga entera y la hace parecer más cara en la Tabla 5. Si se separa el ahorro operativo, la diferencia pareada en el costo de horas extra es la siguiente:
+
+$$\bar{D}_{HE} = \$\,254.243 \text{ por semana} \quad (\text{IC 95 \%: } \$\,186.392 \text{ a } \$\,322.095),$$
 
 y el tiempo de repago de la inversión es
 
-$$\frac{\$\,1.500.000}{\$\,155.275/\text{semana}} \approx 9{,}7 \text{ semanas} \quad (\text{entre } 7{,}6 \text{ y } 13{,}3 \text{ semanas}).$$
+$$\frac{\$\,1.500.000}{\$\,254.243/\text{semana}} \approx 5{,}9 \text{ semanas} \quad (\text{entre } 4{,}7 \text{ y } 8{,}0 \text{ semanas}).$$
 
-En un año de 48 semanas hábiles, el ahorro neto esperado es de $48 \times 155.275 - 1.500.000 \approx \$\,5{,}95$ millones. Además, la reorganización lleva el cumplimiento de la OF al 97,9 % y las jornadas sin cumplir al 7,5 %, el mismo nivel que con 2 Ajustadores o 2 operarios de reserva, pero sin sumar sueldos.
+![Repago de la reorganización](Informe/figuras/repago_reorganizacion.png)
 
-**La secuencia ahorra poco.** Liberar primero los equipos de proceso largo ahorra $ 8.391 por semana. El ahorro es significativo al 95 %, pero no con la corrección de Bonferroni, y no cambia el cumplimiento (93,4 %). Lo que hace es trasladar el faltante de AURA (de 209 a 68 unidades por réplica) a NOVEL ECO y LURA. Como no cuesta nada, se puede adoptar, pero no resuelve el problema.
+**Figura 7.** Ahorro acumulado en horas extra de la reorganización frente a la inversión de $ 1.500.000. La banda es el IC 95 % del ahorro semanal pareado.
+
+En un año de 48 semanas hábiles, el ahorro neto esperado es de $48 \times 254.243 - 1.500.000 \approx \$\,10{,}7$ millones. Además, la reorganización lleva el cumplimiento de la OF al 94,9 % y la frecuencia de sábados de 62,5 % a 30 % de las semanas. Es el mismo nivel que con 2 Ajustadores o 2 operarios de reserva, pero sin sumar sueldos.
+
+En las capturas del experimento de réplicas de la reorganización (Anexo), la media acumulada termina en $ 44,66 M por réplica, 94,9 % de cumplimiento y 40,3 h-hombre de horas extra por réplica (10,1 por semana), coherente con la Tabla 4.
+
+**La secuencia no cambia el resultado.** Liberar primero los equipos de proceso largo ahorra en promedio $ 14.194 por semana, pero el intervalo incluye el cero: con 30 réplicas no se puede afirmar que ahorre. El cumplimiento (83,7 %) es el mismo que el actual. Lo que cambia es qué modelos quedan atrasados:
+
+- baja el faltante de AURA, de 595 a 202 unidades por réplica;
+- sube el de NOVEL ECO (de 259 a 353), LURA (de 187 a 379) y AILA 30KG (de 1,5 a 55).
 
 ### 4.4 Medidas complementarias
 
 **Tabla 6. Utilización, espera en cola y coberturas (media de las 30 réplicas).**
 
-| Escenario | Util. Armador | Util. Ajustador | Util. Controlador | Util. Embalador | Espera media en ajuste (min) | Coberturas por réplica |
-|---|---|---|---|---|---|---|
-| E0 Actual | 36,0 % | 82,0 % | 67,6 % | 54,6 % | 135,6 | 24,1 |
-| E1 +2 Ajustadores | 36,3 % | 55,4 % | 68,0 % | 54,9 % | 66,4 | 22,2 |
-| E2 +2 Armadores | 32,7 % | 81,8 % | 67,5 % | 54,5 % | 150,4 | 14,6 |
-| E3 +1 Controlador | 36,0 % | 82,1 % | 54,2 % | 54,7 % | 135,5 | 24,0 |
-| E4 +1 Embalador | 36,0 % | 82,0 % | 67,6 % | 46,9 % | 135,5 | 24,0 |
-| E5 Reserva (2) | 34,5 % | 79,4 % | 65,8 % | 53,5 % | 123,2 | 29,6 |
-| E6 Reorganización | 48,4 % | 42,5 % | 68,0 % | 55,0 % | 20,8 | 16,1 |
-| E7 Secuencia | 35,7 % | 82,1 % | 67,7 % | 54,7 % | 140,4 | 24,1 |
+| Escenario | Util. Armador | Util. Ajustador | Util. Controlador | Util. Embalador | Espera media en ajuste (min) | Espera media en control (min) | Coberturas por réplica |
+|---|---|---|---|---|---|---|---|
+| E0 Actual | 41,0 % | 92,4 % | 76,8 % | 62,2 % | 165,1 | 13,3 | 24,1 |
+| E1 +2 Ajustadores | 41,8 % | 63,9 % | 78,4 % | 63,4 % | 74,0 | 51,4 | 22,2 |
+| E2 +2 Armadores | 36,9 % | 92,2 % | 76,7 % | 62,1 % | 180,8 | 13,1 | 14,6 |
+| E3 +1 Controlador | 41,1 % | 92,6 % | 61,8 % | 62,3 % | 165,1 | 2,5 | 24,0 |
+| E4 +1 Embalador | 41,0 % | 92,4 % | 76,8 % | 53,6 % | 165,1 | 13,3 | 24,0 |
+| E5 Reserva (2) | 39,4 % | 91,3 % | 75,9 % | 61,8 % | 139,4 | 8,8 | 29,6 |
+| E6 Reorganización | 56,0 % | 49,1 % | 78,4 % | 63,5 % | 23,8 | 60,8 | 16,1 |
+| E7 Secuencia | 41,2 % | 92,8 % | 77,1 % | 62,3 % | 173,7 | 17,5 | 24,1 |
 
 La tabla explica los resultados:
 
 - **Las alternativas que funcionan aumentan la capacidad de Ajuste.**
-  - E1 y E6 lo hacen directamente: la espera en ajuste baja de 136 min a 66 y 21 min.
+  - E1 y E6 lo hacen directamente: la espera en ajuste baja de 165 min a 74 y 24 min.
   - E5 lo hace indirectamente: la reserva cubre las ausencias de los ajustadores sin desarmar otra línea.
-- **Las demás solo suben la capacidad de especialidades que tienen holgura.**
-  - Los armadores trabajan el 36 % del tiempo, y por eso pasar uno de cada línea a ajustador (E6) no perjudica al armado.
-  - En E6 la carga de las especialidades queda más pareja: 48 % los armadores y 43 % los ajustadores.
+- **Las demás solo suben la capacidad de especialidades que tienen holgura.** Con un Controlador más, la espera en control baja de 13 a 2,5 min, pero la de ajuste sigue en 165 min.
+- **El cuello de botella se traslada.** Cuando se descomprime el Ajuste (E1 y E6), las unidades llegan antes a Control Final y la espera en control sube a 51 y 61 min. Con 78 % de utilización, Control pasa a ser el próximo cuello de botella.
+- **La reorganización no perjudica al armado.** Los armadores trabajan el 41 % del tiempo, así que pasar uno de cada línea a ajustador no le hace daño. En E6 la carga queda más pareja: 56 % los armadores y 49 % los ajustadores.
 - **La caminata al depósito no es un problema:** ocupa el 3,7 % del tiempo de trabajo en todos los escenarios.
 
 ## 5. Conclusiones
 
-1. **Situación actual.** Con la dotación y la organización actuales, la OF no se cumple en el 25,7 % de las jornadas (IC 95 %: 21,8 % a 29,5 %) y se entrega a tiempo el 93,1 % de lo pedido. El cuello de botella es el Ajuste: hay un solo ajustador por línea, con una utilización del 82 % y 136 min de espera media. El faltante se concentra en AURA y NOVEL ECO, que la OF libera al final del día.
-2. **Costo de las horas extra.** Recuperar el faltante requiere 14,6 h-hombre de fin de semana por semana (11,2 a 18,0), con un costo de $ 190.075 por semana. Es un costo real, pero chico frente al de un sueldo.
-3. **Contratación.** No conviene contratar. Cualquier contratación cuesta más de lo que ahorra, y la diferencia es significativa en los cuatro casos. Un contratado cuesta lo mismo que 20 h-hombre de horas extra por semana, más que todas las horas extra que hoy paga la planta. De las contrataciones, la única que mejora el cumplimiento es la de Ajustadores, porque es la que ataca el cuello de botella.
+1. **Situación actual.** Con la dotación y la organización actuales, la OF no se cumple en el 60 % de las jornadas (IC 95 %: 54,4 % a 65,6 %), se entrega a tiempo el 82,3 % de lo pedido y hay que trabajar el sábado en el 62,5 % de las semanas. El cuello de botella es el Ajuste: hay un solo ajustador por línea, con una utilización del 92 % y 165 min de espera media. El faltante se concentra en AURA, NOVEL ECO y LURA, que la OF libera al final del día.
+2. **Costo de las horas extra.** Recuperar el faltante requiere 29,6 h-hombre de fin de semana por semana (25,0 a 34,2), con un costo de $ 385.147 por semana, unos $ 18,5 millones por año.
+3. **Contratación.** No conviene contratar. Las cuatro contrataciones cuestan más de lo que ahorran, y la diferencia es significativa en todos los casos, aun con la corrección de Bonferroni. Una contratación necesita ahorrar 20 h-hombre de horas extra por semana para pagarse, y 2 Ajustadores juntos ahorran solo 18,2. Las contrataciones en especialidades que no son el cuello de botella prácticamente no cambian las horas extra.
 4. **Reorganización.** Es la alternativa recomendada. Con la misma dotación (3 armadores + 2 ajustadores por línea y coberturas entre especialidades):
-   - lleva el cumplimiento de la OF del 93,1 % al 97,9 %;
-   - baja las horas extra de 14,6 a 2,7 h-hombre por semana;
-   - ahorra $ 155.275 por semana en horas extra;
-   - recupera la inversión de $ 1.500.000 en unas 10 semanas (7,6 a 13,3);
-   - deja un ahorro neto esperado de casi $ 6 millones en el primer año.
-5. **Personal de reserva.** Dos operarios polivalentes logran el mejor cumplimiento (98,0 %), pero cuestan $ 520.000 por semana en sueldos y ahorran solo unos $ 150.000 en horas extra. No conviene por costo, aunque podría justificarse si KRETZ valora mucho cumplir la OF en el día.
-6. **Secuencia de fabricación.** Fabricar primero los equipos de proceso largo ahorra muy poco ($ 8.391 por semana, no significativo con Bonferroni) y solo cambia qué modelos quedan atrasados. Como no cuesta nada, puede combinarse con la reorganización.
+   - lleva el cumplimiento de la OF del 82,3 % al 94,9 %;
+   - baja las horas extra de 29,6 a 10,1 h-hombre por semana;
+   - ahorra $ 254.243 por semana en horas extra;
+   - recupera la inversión de $ 1.500.000 en unas 6 semanas (4,7 a 8,0);
+   - deja un ahorro neto esperado de unos $ 10,7 millones en el primer año.
+5. **Personal de reserva.** Dos operarios polivalentes logran el mejor cumplimiento (95,0 %) y la menor cantidad de sábados (24 % de las semanas). Pero cuestan $ 520.000 por semana en sueldos y ahorran $ 270.223 en horas extra, así que no convienen por costo.
+6. **Secuencia de fabricación.** Fabricar primero los equipos de proceso largo no cambia significativamente el costo ni el cumplimiento; solo cambia qué modelos quedan atrasados.
 
-**Recomendación para KRETZ.** Reorganizar las líneas de Armado a 3 armadores + 2 ajustadores, habilitar las coberturas entre especialidades y no contratar personal. La inversión se recupera en menos de un trimestre. A partir de ahí, la planta cumple la OF en más del 92 % de las jornadas y las horas extra de fin de semana pasan a ser excepcionales.
+**Recomendación para KRETZ.** Reorganizar las líneas de Armado a 3 armadores + 2 ajustadores, habilitar las coberturas entre especialidades y no contratar personal. La inversión se recupera en menos de dos meses. Después, la planta trabaja el sábado en 3 de cada 10 semanas en lugar de 6, y el próximo punto a vigilar pasa a ser Control Final.
 
 **Limitaciones y trabajo futuro.**
 
 - **Datos de validación.** La validación se hizo contra un historial **sintético**, construido con los mismos supuestos del modelo. Hay que repetirla con los registros reales de asistencia, OF y horas extra de KRETZ.
-- **OF de ejemplo.** Se usó una sola OF, la mezcla equilibrada, todos los días. Las OF reales varían de un día a otro, y conviene repetir el análisis con ellas.
+- **OF de ejemplo.** Se usó una sola OF, la mezcla equilibrada escalada a 307 unidades, todos los días. El tamaño se calibró con la frecuencia de recuperación de la planta y los resultados son muy sensibles a él, porque la planta trabaja cerca de su capacidad. Conviene repetir el análisis con las OF reales.
 - **Supuestos de costo.** El costo de la hora ($ 6.500) y el costo de la reorganización ($ 1.500.000) son supuestos. El tiempo de repago es proporcional al costo de la reorganización.
 - **Caminata.** Se modeló en línea recta y no con la Pedestrian Library, por la limitación de la edición Personal Learning. Esto puede subestimar levemente los tiempos de traslado.
 - **Reorganización.** No se modeló un período de aprendizaje: se supone que los operarios que pasan a ajustador rinden igual que los actuales desde el primer día.
+- **Alternativas no simuladas.** No se evaluó contratar un solo Ajustador ni combinar la reorganización con un Controlador más, que sería el paso siguiente si Control Final se satura.
 
 ## Referencias
 
@@ -417,5 +463,6 @@ La tabla explica los resultados:
   - `scripts/analizar_resultados.py`;
   - `scripts/armar_planilla.py`;
   - `scripts/graficos_informe.py`.
+- Capturas de los experimentos de réplicas (media acumulada ± IC 95 % del costo total, del cumplimiento y de las horas extra, por réplica de 4 semanas), una carpeta por experimento en `Resultados/`: `Replicas`, `ReplicasContratacion`, `ReplicasContratacionArmadores`, `ReplicasContratacionControlador`, `ReplicasContratacionEmbalador`, `ReplicasReserva`, `ReplicasReorganizacion` y `ReplicasSecuencia`. Las de la reorganización están también en `Informe/figuras/replicas_reorganizacion_*.png`.
 - Datos de referencia (sintéticos): `Datos/Sinteticos/`, generados con `scripts/generar_datos_sinteticos.py`.
 - **Lista de semillas** $\mathcal{S}$ (réplicas 1 a 30): 227904006, 443043868, 639572182, 649565454, 794923749, 210205473, 339749960, 745351751, 767313473, 697600698, 551631864, 941140765, 714791075, 688208069, 884410270, 933838458, 924757551, 627104586, 906407983, 930080574, 729771961, 573622146, 357627256, 102721764, 759496827, 186676380, 218902461, 408421828, 976990827, 205282126.
