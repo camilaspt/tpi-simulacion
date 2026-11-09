@@ -12,6 +12,8 @@ import re
 import shutil
 import zipfile
 
+from PIL import Image
+
 RAIZ = Path(__file__).resolve().parent.parent
 ORIGEN = RAIZ / "INFORME-FINAL.md"
 SALIDA = RAIZ / "Informe" / "Overleaf"
@@ -314,7 +316,9 @@ def main():
     (SALIDA / "main.tex").write_text(tex, encoding="utf-8")
     usadas = sorted(set(re.findall(r"figuras/([\w\-.]+\.png)", tex)))
     for nombre in usadas:
-        shutil.copy(RAIZ / "Informe" / "figuras" / nombre, SALIDA / "figuras" / nombre)
+        # El informe va solo en negro, grises y blanco: las capturas de AnyLogic y el diagrama
+        # (que tienen colores) se pasan a escala de grises
+        Image.open(RAIZ / "Informe" / "figuras" / nombre).convert("L").save(SALIDA / "figuras" / nombre)
     with zipfile.ZipFile(ZIP, "w", zipfile.ZIP_DEFLATED) as z:
         z.write(SALIDA / "main.tex", "main.tex")
         for nombre in usadas:

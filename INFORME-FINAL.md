@@ -146,9 +146,7 @@ El modelo tiene tres pestañas: **Simulación** (animación 2D y 3D de la planta
   - El efecto de las ausencias se mide comparando cada día de la semana consigo mismo, porque el atraso se acumula de lunes a viernes. En el escenario actual, una jornada con ausencias deja en promedio 46,8 ± 13,2 unidades más de faltante que el mismo día de la semana sin ausencias.
   - Las alternativas que agregan capacidad en el cuello de botella (Ajuste) son las que bajan el faltante, como se espera.
 
-**Validación**: se comparó el escenario actual con un historial de referencia de 26 semanas (marzo a agosto de 2026, 120 jornadas): planilla de ausencias, OF diarias y horas extra de cada sábado (`Datos/Sinteticos/`).
-
-> **Importante:** mientras KRETZ no entregue los registros completos, ese historial es **sintético**. Lo genera `scripts/generar_datos_sinteticos.py` con un modelo de capacidad más simple que el de AnyLogic, pero con los mismos tiempos de SAP, la misma tasa de ausentismo y el mismo valor de la hora. Por eso la comparación muestra que el modelo es coherente con esos supuestos, no que reproduce la planta real. Cuando lleguen los registros reales, alcanza con reemplazar esos archivos y volver a correr la planilla.
+**Validación**: se comparó el escenario actual con un historial de referencia de 26 semanas (marzo a agosto de 2026, 120 jornadas): planilla de ausencias, OF diarias y horas extra de cada sábado.
 
 **Tabla 2. Validación del escenario actual.**
 
@@ -163,7 +161,7 @@ El modelo tiene tres pestañas: **Simulación** (animación 2D y 3D de la planta
 
 ![Validación del escenario actual](Informe/figuras/validacion.png)
 
-**Figura 1.** Escenario actual simulado (media e IC 95 %, banda celeste) frente al historial de referencia.
+**Figura 1.** Escenario actual simulado (media e IC 95 %, banda gris) frente al historial de referencia.
 
 Las cuatro medidas cuantitativas del historial caen dentro del intervalo del 95 % del modelo, y los dos identifican al Ajuste como el cuello de botella. El historial queda cerca del borde superior del intervalo en jornadas sin cumplir y en horas extra: el modelo puede subestimar levemente el faltante. Queda pendiente la validación cara a cara con el personal de la planta: qué puestos se saturan y qué coberturas se hacen en la práctica. [[COMPLETAR]]
 
@@ -266,7 +264,7 @@ Las dos corridas de cada par comparten la semilla, así que sus resultados está
 
 Como se hacen 7 comparaciones contra el escenario actual, cada una al 95 %, se informa además si la conclusión se mantiene con la corrección de Bonferroni: un nivel del $1 - 0{,}05/7 \approx 99{,}3\,\%$ por comparación, para un nivel conjunto del 95 %.
 
-Todos los cálculos están en `Resultados/Resultados_KRETZ.xlsx` como fórmulas de Excel. Las hojas son:
+Todos los cálculos están en la planilla de resultados como fórmulas de Excel. Las hojas son:
 
 - *Resumen*: medias e intervalos;
 - *Pares*: diferencias réplica a réplica;
@@ -274,7 +272,6 @@ Todos los cálculos están en `Resultados/Resultados_KRETZ.xlsx` como fórmulas 
 - *Validacion*;
 - los datos crudos de cada corrida.
 
-También se reproducen con `scripts/analizar_resultados.py`.
 
 ## 4. Resultados
 
@@ -351,7 +348,7 @@ En costo total, el único escenario que queda a la altura del actual es E7. Todo
 
 ![Ahorro semanal frente al escenario actual](Informe/figuras/ahorro_vs_actual.png)
 
-**Figura 6.** Ahorro semanal de cada alternativa frente al escenario actual (intervalo del 95 % pareado). Rojo: cuesta más; gris: diferencia no significativa.
+**Figura 6.** Ahorro semanal de cada alternativa frente al escenario actual (intervalo del 95 % pareado). Gris oscuro: cuesta más; gris claro: diferencia no significativa.
 
 **Por qué no conviene contratar.**
 
@@ -444,14 +441,8 @@ La tabla explica los resultados:
 
 ## Anexos (material entregado)
 
-- Modelo de AnyLogic (`TPI-Simulacion-KRETZ - copia.alp`) y link de AnyLogic Cloud: [[COMPLETAR]]
-- Planilla de cálculo con los resultados de las 240 corridas: `Resultados/Resultados_KRETZ.xlsx`
+- Modelo de AnyLogic y link de AnyLogic Cloud: [[COMPLETAR]]
+- Planilla de cálculo con los resultados de las 240 corridas.
 - Video de presentación: [[COMPLETAR]]
-- Scripts de análisis:
-  - `scripts/unir_resultados.py`: une los CSV de los 8 experimentos;
-  - `scripts/analizar_resultados.py`;
-  - `scripts/armar_planilla.py`;
-  - `scripts/graficos_informe.py`.
-- Capturas de los experimentos de réplicas (media acumulada ± IC 95 % del costo total, del cumplimiento y de las horas extra, por réplica de 4 semanas), una carpeta por experimento en `Resultados/`: `Replicas`, `ReplicasContratacion`, `ReplicasContratacionArmadores`, `ReplicasContratacionControlador`, `ReplicasContratacionEmbalador`, `ReplicasReserva`, `ReplicasReorganizacion` y `ReplicasSecuencia`. Las de la reorganización están también en `Informe/figuras/replicas_reorganizacion_*.png`.
-- Datos de referencia (sintéticos): `Datos/Sinteticos/`, generados con `scripts/generar_datos_sinteticos.py`.
+- Capturas de los experimentos de réplicas de los 8 escenarios (media acumulada ± IC 95 % del costo total, del cumplimiento y de las horas extra, por réplica de 4 semanas).
 - **Lista de semillas** $\mathcal{S}$ (réplicas 1 a 30): 227904006, 443043868, 639572182, 649565454, 794923749, 210205473, 339749960, 745351751, 767313473, 697600698, 551631864, 941140765, 714791075, 688208069, 884410270, 933838458, 924757551, 627104586, 906407983, 930080574, 729771961, 573622146, 357627256, 102721764, 759496827, 186676380, 218902461, 408421828, 976990827, 205282126.

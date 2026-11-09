@@ -35,8 +35,8 @@ ESCENARIOS = [
 T95 = [12.706, 4.303, 3.182, 2.776, 2.571, 2.447, 2.365, 2.306, 2.262, 2.228, 2.201, 2.179, 2.160, 2.145,
        2.131, 2.120, 2.110, 2.101, 2.093, 2.086, 2.080, 2.074, 2.069, 2.064, 2.060, 2.056, 2.052, 2.048, 2.045, 2.042]
 
-TINTA, TINTA2, GRILLA = "#1F2937", "#6B7280", "#E5E7EB"
-AZUL, GRIS, VERDE, ROJO = "#2563EB", "#9CA3AF", "#15803D", "#B91C1C"
+TINTA, TINTA2, GRILLA = "#000000", "#404040", "#E0E0E0"   # solo negro, grises y blanco
+AZUL, GRIS, VERDE, ROJO = "#707070", "#B0B0B0", "#000000", "#404040"   # nombres históricos; todos son grises
 plt.rcParams.update({"font.family": "Arial", "font.size": 10, "axes.edgecolor": GRILLA, "axes.labelcolor": TINTA2,
                      "xtick.color": TINTA2, "ytick.color": TINTA2, "axes.titlesize": 12, "axes.titleweight": "bold",
                      "axes.titlecolor": TINTA, "figure.dpi": 150})

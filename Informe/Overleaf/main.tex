@@ -250,9 +250,7 @@ El modelo tiene tres pestañas: \textbf{Simulación} (animación 2D y 3D de la p
 \end{itemize}
 \end{itemize}
 
-\textbf{Validación}: se comparó el escenario actual con un historial de referencia de 26 semanas (marzo a agosto de 2026, 120 jornadas): planilla de ausencias, OF diarias y horas extra de cada sábado (\texttt{Datos/\allowbreak{}Sinteticos/\allowbreak{}}).
-
-\begin{center}\fcolorbox{borde}{fila}{\parbox{0.93\linewidth}{\small \textbf{Importante:} mientras KRETZ no entregue los registros completos, ese historial es \textbf{sintético}. Lo genera \texttt{scripts/\allowbreak{}generar\_\allowbreak{}datos\_\allowbreak{}sinteticos.py} con un modelo de capacidad más simple que el de AnyLogic, pero con los mismos tiempos de SAP, la misma tasa de ausentismo y el mismo valor de la hora. Por eso la comparación muestra que el modelo es coherente con esos supuestos, no que reproduce la planta real. Cuando lleguen los registros reales, alcanza con reemplazar esos archivos y volver a correr la planilla.}}\end{center}
+\textbf{Validación}: se comparó el escenario actual con un historial de referencia de 26 semanas (marzo a agosto de 2026, 120 jornadas): planilla de ausencias, OF diarias y horas extra de cada sábado.
 
 \needspace{5\baselineskip}
 {\small
@@ -274,7 +272,7 @@ Semanas con recuperación & 65,4 \% (17 de 26) & 62,5 \% (75 de 120) & (proporci
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.95\linewidth]{figuras/validacion.png}
-\caption{Escenario actual simulado (media e IC 95 \%, banda celeste) frente al historial de referencia.}
+\caption{Escenario actual simulado (media e IC 95 \%, banda gris) frente al historial de referencia.}
 \end{figure}
 
 Las cuatro medidas cuantitativas del historial caen dentro del intervalo del 95 \% del modelo, y los dos identifican al Ajuste como el cuello de botella. El historial queda cerca del borde superior del intervalo en jornadas sin cumplir y en horas extra: el modelo puede subestimar levemente el faltante. Queda pendiente la validación cara a cara con el personal de la planta: qué puestos se saturan y qué coberturas se hacen en la práctica. \pendiente{COMPLETAR}
@@ -398,7 +396,7 @@ Las dos corridas de cada par comparten la semilla, así que sus resultados está
 
 Como se hacen 7 comparaciones contra el escenario actual, cada una al 95 \%, se informa además si la conclusión se mantiene con la corrección de Bonferroni: un nivel del $1 - 0{,}05/7 \approx 99{,}3\,\%$ por comparación, para un nivel conjunto del 95 \%.
 
-Todos los cálculos están en \texttt{Resultados/\allowbreak{}Resultados\_\allowbreak{}KRETZ.xlsx} como fórmulas de Excel. Las hojas son:
+Todos los cálculos están en la planilla de resultados como fórmulas de Excel. Las hojas son:
 
 \begin{itemize}
 \item \emph{Resumen}: medias e intervalos;
@@ -407,8 +405,6 @@ Todos los cálculos están en \texttt{Resultados/\allowbreak{}Resultados\_\allow
 \item \emph{Validacion};
 \item los datos crudos de cada corrida.
 \end{itemize}
-
-También se reproducen con \texttt{scripts/\allowbreak{}analizar\_\allowbreak{}resultados.py}.
 
 \section{Resultados}
 
@@ -510,7 +506,7 @@ E7 Secuencia largos primero & +14.194 & [$-$1.327 ; +29.715] & No & No \\
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.95\linewidth]{figuras/ahorro_vs_actual.png}
-\caption{Ahorro semanal de cada alternativa frente al escenario actual (intervalo del 95 \% pareado). Rojo: cuesta más; gris: diferencia no significativa.}
+\caption{Ahorro semanal de cada alternativa frente al escenario actual (intervalo del 95 \% pareado). Gris oscuro: cuesta más; gris claro: diferencia no significativa.}
 \end{figure}
 
 \textbf{Por qué no conviene contratar.}
@@ -635,18 +631,10 @@ La tabla explica los resultados:
 \addcontentsline{toc}{section}{Anexos (material entregado)}
 
 \begin{itemize}
-\item Modelo de AnyLogic (\texttt{TPI-Simulacion-KRETZ - copia.alp}) y link de AnyLogic Cloud: \pendiente{COMPLETAR}
-\item Planilla de cálculo con los resultados de las 240 corridas: \texttt{Resultados/\allowbreak{}Resultados\_\allowbreak{}KRETZ.xlsx}
+\item Modelo de AnyLogic y link de AnyLogic Cloud: \pendiente{COMPLETAR}
+\item Planilla de cálculo con los resultados de las 240 corridas.
 \item Video de presentación: \pendiente{COMPLETAR}
-\item Scripts de análisis:
-\begin{itemize}
-\item \texttt{scripts/\allowbreak{}unir\_\allowbreak{}resultados.py}: une los CSV de los 8 experimentos;
-\item \texttt{scripts/\allowbreak{}analizar\_\allowbreak{}resultados.py};
-\item \texttt{scripts/\allowbreak{}armar\_\allowbreak{}planilla.py};
-\item \texttt{scripts/\allowbreak{}graficos\_\allowbreak{}informe.py}.
-\end{itemize}
-\item Capturas de los experimentos de réplicas (media acumulada \textpm{} IC 95 \% del costo total, del cumplimiento y de las horas extra, por réplica de 4 semanas), una carpeta por experimento en \texttt{Resultados/\allowbreak{}}: \texttt{Replicas}, \texttt{ReplicasContratacion}, \texttt{ReplicasContratacionArmadores}, \texttt{ReplicasContratacionControlador}, \texttt{ReplicasContratacionEmbalador}, \texttt{ReplicasReserva}, \texttt{ReplicasReorganizacion} y \texttt{ReplicasSecuencia}. Las de la reorganización están también en \texttt{Informe/\allowbreak{}figuras/\allowbreak{}replicas\_\allowbreak{}reorganizacion\_\allowbreak{}*.png}.
-\item Datos de referencia (sintéticos): \texttt{Datos/\allowbreak{}Sinteticos/\allowbreak{}}, generados con \texttt{scripts/\allowbreak{}generar\_\allowbreak{}datos\_\allowbreak{}sinteticos.py}.
+\item Capturas de los experimentos de réplicas de los 8 escenarios (media acumulada \textpm{} IC 95 \% del costo total, del cumplimiento y de las horas extra, por réplica de 4 semanas).
 \item \textbf{Lista de semillas} $\mathcal{S}$ (réplicas 1 a 30): 227904006, 443043868, 639572182, 649565454, 794923749, 210205473, 339749960, 745351751, 767313473, 697600698, 551631864, 941140765, 714791075, 688208069, 884410270, 933838458, 924757551, 627104586, 906407983, 930080574, 729771961, 573622146, 357627256, 102721764, 759496827, 186676380, 218902461, 408421828, 976990827, 205282126.
 \end{itemize}
 
