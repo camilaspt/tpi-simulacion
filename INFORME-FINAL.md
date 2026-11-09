@@ -9,11 +9,11 @@
 
 ## Resumen
 
-KRETZ, fabricante de balanzas, no cumple todos los días la Orden de Fabricación (OF) y recupera el faltante con horas extra los sábados, que se pagan al doble. Construimos en AnyLogic un modelo de simulación de eventos discretos de la planta: 6 líneas, 5 modelos de balanza, viaje al depósito de materiales, ausentismo, coberturas, control de calidad por muestreo y recuperación de fin de semana. Con él comparamos en costo la situación actual contra siete alternativas: contratar personal de cuatro especialidades distintas, tener personal de reserva polivalente, reorganizar las líneas y cambiar la secuencia de fabricación. Cada escenario se corrió 30 veces con la misma lista de semillas (números aleatorios comunes), y las alternativas se compararon por pares de réplicas con intervalos de confianza del 95 %.
+KRETZ, fabricante de balanzas, no cumple todos los días la Orden de Fabricación (OF) y recupera el faltante con horas extra los sábados, que se pagan al doble. Se construyó en AnyLogic un modelo de simulación de eventos discretos de la planta: 6 líneas, 5 modelos de balanza, viaje al depósito de materiales, ausentismo, coberturas, control de calidad por muestreo y recuperación de fin de semana. Con él se comparó en costo la situación actual contra siete alternativas: contratar personal de cuatro especialidades distintas, tener personal de reserva polivalente, reorganizar las líneas y cambiar la secuencia de fabricación. Cada escenario se corrió 30 veces con la misma lista de semillas (números aleatorios comunes), y las alternativas se compararon por pares de réplicas con intervalos de confianza del 95 %.
 
 En el escenario actual la OF no se cumple en el 60 % de las jornadas y hay que trabajar el sábado en casi dos de cada tres semanas. El cuello de botella es el puesto de Ajuste, con una utilización del 92 %. La recuperación requiere 29,6 h-hombre de fin de semana por semana, con un costo de $ 385.147 por semana.
 
-Ninguna contratación se paga sola. Un empleado cuesta lo mismo que 20 h-hombre de horas extra por semana, y la contratación más eficaz, la de 2 Ajustadores, ahorra en total 18,2 h-hombre por semana entre los dos. La reorganización (3 armadores + 2 ajustadores por línea, con coberturas entre especialidades) no agrega sueldos y baja las horas extra a 10,1 h-hombre por semana. Su ahorro operativo es de $ 254.243 por semana (IC 95 %: $ 186.392 a $ 322.095), así que recupera la inversión de $ 1.500.000 en unas 6 semanas (entre 4,7 y 8,0). Por eso es la alternativa que recomendamos.
+Ninguna contratación se paga sola. Un empleado cuesta lo mismo que 20 h-hombre de horas extra por semana, y la contratación más eficaz, la de 2 Ajustadores, ahorra en total 18,2 h-hombre por semana entre los dos. La reorganización (3 armadores + 2 ajustadores por línea, con coberturas entre especialidades) no agrega sueldos y baja las horas extra a 10,1 h-hombre por semana. Su ahorro operativo es de $ 254.243 por semana (IC 95 %: $ 186.392 a $ 322.095), así que recupera la inversión de $ 1.500.000 en unas 6 semanas (entre 4,7 y 8,0). Por eso es la alternativa que se recomienda.
 
 **Palabras clave:** simulación de eventos discretos, AnyLogic, planificación de la producción, ausentismo, horas extra, números aleatorios comunes, intervalos de confianza.
 
@@ -25,7 +25,7 @@ KRETZ produce balanzas comerciales e industriales en una planta de dos naves. En
 
 La producción de cada día sigue una Orden de Fabricación (OF) que indica qué equipos producir y en qué cantidad. Los tiempos de proceso registrados en SAP son promedios y en la práctica varían. A eso se suman las ausencias del personal y la cantidad limitada de puestos, así que hay jornadas en las que la OF no se cumple. Hoy la empresa recupera ese faltante con horas extra de fin de semana pagadas al doble, lo que representa un costo importante.
 
-Un cálculo con tiempos medios no alcanza para estudiar el problema, porque los incumplimientos los provoca justamente la variabilidad. Un día con varias ausencias o con tiempos de tarea largos deja unidades sin terminar, aunque en promedio la capacidad alcance. Por eso simulamos el sistema con sus fuentes de variabilidad y comparamos las alternativas sobre muchas réplicas.
+Un cálculo con tiempos medios no alcanza para estudiar el problema, porque los incumplimientos los provoca justamente la variabilidad. Un día con varias ausencias o con tiempos de tarea largos deja unidades sin terminar, aunque en promedio la capacidad alcance. Por eso se simuló el sistema con sus fuentes de variabilidad y se compararon las alternativas sobre muchas réplicas.
 
 ## 2. Objetivos
 
@@ -116,7 +116,7 @@ Supuestos principales:
 
 ### 3.4 Construcción del modelo
 
-El modelo se construyó en AnyLogic 8.9 (Personal Learning Edition) con la Process Modeling Library. Un único flujo atiende los 5 modelos. Cada unidad recorre su receta y, en cada paso:
+El modelo se construyó en AnyLogic 8.9 (Personal Learning Edition) con la Process Modeling Library. Un único flujo atiende los 5 modelos. Cada unidad, en cada paso:
 
 1. toma un operario de la especialidad requerida (*Seize*);
 2. el operario camina hasta el puesto;
@@ -127,17 +127,17 @@ El primer paso incluye el retiro en el rack, con el mismo *Seize* que el primer 
 
 Las líneas equivalentes se resuelven con una regla de ruteo en la condición del *Seize*. Se elige un operario de un puesto apto en la línea ya asignada a la unidad, o en cualquier línea capaz de completar el equipo con el personal presente ese día.
 
-Los operarios son agentes que se desplazan sobre el plano a escala. Evaluamos la Pedestrian Library, que modela la caminata con paredes y obstáculos, pero la edición Personal Learning la limita a 5 horas de tiempo simulado, y cada réplica necesita 4 semanas. Por eso la caminata se calcula como distancia sobre velocidad, en línea recta y pasando por la puerta entre naves cuando el operario cambia de nave. En el escenario actual la caminata ocupa el 3,7 % del tiempo de trabajo de los operarios.
+Los operarios son agentes que se desplazan sobre el plano a escala. Se evaluó el uso de Pedestrian Library, que modela la caminata con paredes y obstáculos, pero la edición Personal Learning la limita a 5 horas de tiempo simulado, y cada réplica necesita 4 semanas. Por eso la caminata se calcula como distancia sobre velocidad, en línea recta y pasando por la puerta entre naves cuando el operario cambia de nave. En el escenario actual la caminata ocupa el 3,7 % del tiempo de trabajo de los operarios.
 
 Al cierre de cada jornada se compara lo producido a tiempo con la OF. Las unidades atrasadas siguen en proceso y se terminan primero al día siguiente. Al cerrar el viernes, lo que sigue pendiente se procesa en la jornada de recuperación del sábado, y sus horas-hombre se valorizan al doble.
 
-El modelo tiene tres pestañas: **Simulación** (animación 2D y 3D de la planta), **Variables** (tablero de indicadores) y **Gráficos**. Al terminar, cada corrida guarda una fila en `Resultados/resultados_corridas.csv` y una por semana en `Resultados/resultados_semanas.csv`.
+El modelo tiene tres pestañas: **Simulación** (animación 2D y 3D de la planta), **Variables** (tablero de indicadores) y **Gráficos**. Al terminar, cada corrida guarda una fila en `resultados_corridas.csv` y una por semana en `resultados_semanas.csv`.
 
 ### 3.5 Verificación y validación
 
-**Verificación** (el modelo hace lo que dice la especificación):
+**Verificación**:
 
-- **Corridas con variabilidad nula** (`variabilidadTiempos = 0`) y sin ausencias. Comparamos el tiempo de proceso de una unidad aislada con la suma de los tiempos de la Tabla 1 más la caminata calculada a mano. [[COMPLETAR: resultado de la prueba]]
+- **Corridas con variabilidad nula** (`variabilidadTiempos = 0`) y sin ausencias. Se comparó el tiempo de proceso de una unidad aislada con la suma de los tiempos de la Tabla 1 más la caminata calculada a mano. [[COMPLETAR: resultado de la prueba]]
 - **Seguimiento de unidades individuales** en la animación: retiro en el rack, recorrido de puestos, rack de calidad y stock.
 - **Conservación:** unidades liberadas = terminadas + en proceso + pendientes, al cierre de cada semana.
 - **Reproducibilidad:** dos corridas con la misma semilla dan exactamente los mismos resultados. Además, la planilla de resultados confirma que los 8 escenarios usaron las mismas 30 semillas.
@@ -146,7 +146,7 @@ El modelo tiene tres pestañas: **Simulación** (animación 2D y 3D de la planta
   - El efecto de las ausencias se mide comparando cada día de la semana consigo mismo, porque el atraso se acumula de lunes a viernes. En el escenario actual, una jornada con ausencias deja en promedio 46,8 ± 13,2 unidades más de faltante que el mismo día de la semana sin ausencias.
   - Las alternativas que agregan capacidad en el cuello de botella (Ajuste) son las que bajan el faltante, como se espera.
 
-**Validación** (el escenario actual se parece a la planta real). Comparamos el escenario actual con un historial de referencia de 26 semanas (marzo a agosto de 2026, 120 jornadas): planilla de ausencias, OF diarias y horas extra de cada sábado (`Datos/Sinteticos/`).
+**Validación**: se comparó el escenario actual con un historial de referencia de 26 semanas (marzo a agosto de 2026, 120 jornadas): planilla de ausencias, OF diarias y horas extra de cada sábado (`Datos/Sinteticos/`).
 
 > **Importante:** mientras KRETZ no entregue los registros completos, ese historial es **sintético**. Lo genera `scripts/generar_datos_sinteticos.py` con un modelo de capacidad más simple que el de AnyLogic, pero con los mismos tiempos de SAP, la misma tasa de ausentismo y el mismo valor de la hora. Por eso la comparación muestra que el modelo es coherente con esos supuestos, no que reproduce la planta real. Cuando lleguen los registros reales, alcanza con reemplazar esos archivos y volver a correr la planilla.
 
